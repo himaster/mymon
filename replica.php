@@ -11,7 +11,8 @@
     $stream = ssh2_exec($connection, "mysql -N -e 'show master status;' | awk '{print $1}'");
     stream_set_blocking($stream, true);
     $file = stream_get_contents($stream);
-    $file = "mysql-bin.001113";
+    $file = trim(preg_replace('/\s+/', ' ', $file));
+    //$file = "mysql-bin.001113";
     $stream = ssh2_exec($connection, "mysql -N -e 'show master status;' | awk '{print $2}'");
     stream_set_blocking($stream, true);
     $position = stream_get_contents($stream);
