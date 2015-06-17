@@ -60,17 +60,20 @@
         ob_flush();
         while(! feof($file)) {
                 $line = fgets($file);
+                if ($line[0] == '#') {
+     				continue;
+    			}
                 $array = explode(" ", $line);
                 $serverip = $array[0];
                 $server = $array[1];
                 $errs = $array[2];
                 $db = $array[3];
                 $serverdb = $server . "_db";
-		echo "<tr>";
+				echo "<tr>";
                 echo "<td><b><a href='http://netbox.co/mymon/testgraph.php?serverip=" .$serverip. "' target='_blank' style='text-decoration: none;'><font color='black'>" .$server. "</font></b></td>";
-		echo "<td><div id='" .$server. "_la'></div></td>";
-		echo "<td><div id='" .$server. "_rep'></div></td>";
-		echo "<td><div id='" .$server. "_500'></div></td>";
+				echo "<td><div id='" .$server. "_la'></div></td>";
+				echo "<td><div id='" .$server. "_rep'></div></td>";
+				echo "<td><div id='" .$server. "_500'></div></td>";
 ?>
 	<script>
 	function myAjax(serverip){
