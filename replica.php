@@ -30,6 +30,7 @@
     stream_set_blocking($stream, true);
     $result = stream_get_contents($stream);
     echo $result;
+    echo "Ok";
     ssh2_exec($connection, "mysql -N -e 'start slave;'");
     unset($connection);
 ?>
