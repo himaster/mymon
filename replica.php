@@ -26,8 +26,10 @@
 	   die('Public Key Authentication Failed');
     }
     ssh2_exec($connection, "mysql -N -e 'stop slave;'");
-    echo $query;
-    ssh2_exec($connection, "mysql -N -e '$query'");
+    $stream = ssh2_exec($connection, "mysql -N -e '$query'");
+    stream_set_blocking($stream, true);
+    $result = stream_get_contents($stream);
+    echo $result;
     ssh2_exec($connection, "mysql -N -e 'start slave;'");
     unset($connection);
 ?>
