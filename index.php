@@ -70,7 +70,7 @@
                 $db = $array[3];
                 $serverdb = $server . "_db";
 				echo "<tr>";
-                echo "<td><b><a href='http://netbox.co/mymon/testgraph.php?serverip=" .$serverip. "' target='_blank' style='text-decoration: none;'><font color='black'>" .$server. "</font></b></td>";
+                echo "<td><b><a href='http://netbox.co/mymon/testgraph.php?serverip=" .$serverip. "' target='_blank' style='text-decoration: none;'><font color='black'>" .$line[0].$server. "</font></b></td>";
 				echo "<td><div id='" .$server. "_la'></div></td>";
 				echo "<td><div id='" .$server. "_rep'></div></td>";
 				echo "<td><div id='" .$server. "_500'></div></td>";
