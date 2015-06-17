@@ -1,7 +1,7 @@
 Order deny,allow
 Deny from all
 AuthType Basic
-AuthUserFile /etc/nginx/.htpasswd_mymons
+AuthUserFile /etc/nginx/.htpasswd_mymon
 AuthName "Please Log In"
 require valid-user
 Allow from 188.138.234.131
