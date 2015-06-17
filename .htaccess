@@ -1,7 +1,8 @@
+Order deny,allow
+Deny from all
+AuthType Basic
 AuthUserFile .htpasswd
 AuthName "Please Log In"
-AuthType Basic
 require valid-user
-Order allow,deny
 Allow from 188.138.234.131
 satisfy any
