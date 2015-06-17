@@ -6,4 +6,6 @@ AuthUserFile /var/www/netbox.co/mymon.test/.htpasswd
 AuthName "Please Log In"
 require valid-user
 Allow from 188.138.234.131
+SetEnvIf Request_URI "(/mymon/webhook.php)$" allow
+Allow from env=allow
 satisfy any
