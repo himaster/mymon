@@ -23,7 +23,6 @@
 	<link rel="shortcut icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
 </head>
 <body bgcolor="black">
-	<?php echo "QUERY_STRING: " .$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>
 	<div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 20px;">
 		<a href="editor.php"><img src="./images/button.png"></a>
 	</div>
@@ -37,7 +36,7 @@
 		<?php if (isset($_SERVER['PHP_AUTH_USER'])) {
 			echo $_SERVER['PHP_AUTH_USER'];
 			echo "<p style='font-size: 11;'>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
-			echo "<p><a href='http://logout@netbox.co/mymon/'>logout</a>";
+			echo "<p><a href='http://logout@".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']."'>logout</a>";
 		} else {
 			echo "Local user";
 			echo "<p style='font-size: 11;'>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
