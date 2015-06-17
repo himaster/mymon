@@ -2,10 +2,8 @@ test
 Order deny,allow
 Deny from all
 AuthType Basic
-AuthUserFile /var/www/netbox.co/mymon.test/.htpasswd
+AuthUserFile /etc/nginx/.htpasswd_mymons
 AuthName "Please Log In"
 require valid-user
 Allow from 188.138.234.131
-SetEnvIf Request_URI "(/mymon/webhook.php)$" allow
-Allow from env=allow
 satisfy any
