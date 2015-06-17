@@ -12,7 +12,6 @@
     stream_set_blocking($stream, true);
     $file = stream_get_contents($stream);
     $file = trim(preg_replace('/\s+/', ' ', $file));
-    //$file = "mysql-bin.001113";
     $stream = ssh2_exec($connection, "mysql -N -e 'show master status;' | awk '{print $2}'");
     stream_set_blocking($stream, true);
     $position = stream_get_contents($stream);
@@ -29,9 +28,6 @@
     }
     $stream = ssh2_exec($connection, "mysql -N -e 'stop slave;'");
     $stream = ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
-    stream_set_blocking($stream, true);
-    $result = stream_get_contents($stream);
-    echo $result;
     ssh2_exec($connection, "mysql -N -e 'start slave;'");
     unset($connection);
 ?>
