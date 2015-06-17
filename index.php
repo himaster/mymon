@@ -60,7 +60,7 @@
         ob_flush();
         while(! feof($file)) {
                 $line = fgets($file);
-                if ($line[0] == '#') {
+                if ($line[1] == '#') {
      				continue;
     			}
                 $array = explode(" ", $line);
