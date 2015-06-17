@@ -25,8 +25,8 @@
     if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 	   die('Public Key Authentication Failed');
     }
-    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
-    $stream = ssh2_exec($connection, "mysql -N -e '$query'");
+    $stream = ssh2_exec($connection, "mysql -N -e 'stop slave;'");
+    $stream = ssh2_exec($connection, "mysql -N -e '/$query'");
     stream_set_blocking($stream, true);
     $result = stream_get_contents($stream);
     echo $result;
