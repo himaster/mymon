@@ -23,7 +23,7 @@
 	<link rel="shortcut icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
 </head>
 <body bgcolor="black">
-	<?php echo $_SERVER['QUERY_STRING'];
+	<?php echo $_SERVER['QUERY_STRING']; ?>
 	<div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 20px;">
 		<a href="editor.php"><img src="./images/button.png"></a>
 	</div>
