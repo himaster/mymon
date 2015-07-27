@@ -32,7 +32,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			echo "<a href=http://netbox.co/mymon/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
 			if ($la1 < round($core/2)) {
 				echo "<font color='green'>";
-			} elseif ($la1 > round($core/2)) && ($la1 < round($core*.75)) {
+			} elseif (($la1 > round($core / 2)) && ($la1 < round($core * 0.75))) {
 				echo "<font color='#CAC003'>";
 			} else {
 				echo "<font color='red'>";
