@@ -32,9 +32,9 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			stream_set_blocking($stream, true);
 			$core = stream_get_contents($stream);
 			echo "<a href=http://netbox.co/mymon/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
-			if ($la1 < floor($core/2)) {
+			if ($la1 < ($core/2)) {
 				echo "<font color='green'>";
-			} elseif (($la1 >= floor($core/2)) && ($la1 < floor($core * 0.75))) {
+			} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
 				echo "<font color='#CAC003'>";
 			} else {
 				echo "<font color='red'>";
