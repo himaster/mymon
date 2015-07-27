@@ -28,10 +28,11 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$la = substr(strstr($str, 'average:'), 9, strlen($str));
 			$la2 = substr($la, 0, strpos($la, ','));
 			$la1 = intval($la2);
+			$core = 12;
 			echo "<a href=http://netbox.co/mymon/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
-			if ($la1 < 6) {
+			if ($la1 < $core/2) {
 				echo "<font color='green'>";
-			} elseif ( ($la1 > 5) && ($la1 < 9) ) {
+			} elseif ( ($la1 > $core/2) && ($la1 < $core * 0.75) {
 				echo "<font color='#CAC003'>";
 			} else {
 				echo "<font color='red'>";
