@@ -28,7 +28,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$la = substr(strstr($str, 'average:'), 9, strlen($str));
 			$la2 = substr($la, 0, strpos($la, ','));
 			$la1 = intval($la2);
-			$stream = ssh2_exec($connection, "/usr/bin/nproc");
+			$stream = ssh2_exec($connection, "grep -c processor /proc/cpuinfo");
 			stream_set_blocking($stream, true);
 			$core = stream_get_contents($stream);
 			echo "<a href=http://netbox.co/mymon/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
