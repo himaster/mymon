@@ -37,7 +37,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			} else {
 				echo "<font color='red'>";
 			}
-			echo "<b>" .$la. "</b></font></a>";
+			echo "<b>" .$core.$la. "</b></font></a>";
 			mysql_select_db(mymon, $conn) or die(mysql_error());
 			$datetime = date("Y-m-d H:i:s");
 			$result = mysql_query("INSERT INTO logs (serverip, datetime, la, lastring) VALUES ('" .$serverip. "', '" .$datetime. "', '" .$la2. "', '" .$la. "');", $conn);
