@@ -28,7 +28,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$la = substr(strstr($str, 'average:'), 9, strlen($str));
 			$la2 = substr($la, 0, strpos($la, ','));
 			$la1 = intval($la2);
-			$core = 12;
+			$core = ssh2_exec($connection, "/usr/bin/nproc");
 			echo "<a href=http://netbox.co/mymon/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
 			if ($la1 < round($core/2)) {
 				echo "<font color='green'>";
