@@ -18,7 +18,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 
 	$connection = ssh2_connect($serverip, 22);
 	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		echo "<font color='red'>***</font>";
+		echo "<center><font color='red'>* * *</font></center>";
 		die();
 	}
 	switch ($task) {
