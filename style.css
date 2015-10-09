@@ -32,9 +32,13 @@ span p {
 }
 
 .main_table {
-	border: 2px;
-	align: center;
-	background: lightgray;
+	border-top-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	-webkit-margin-start: auto;
+	-webkit-margin-end: auto;
+	background-color: rgb(211, 211, 211);
 }
 
 .status_bar {
