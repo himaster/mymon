@@ -90,10 +90,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
 			stream_set_blocking( $error_stream, TRUE );
 			$error_output = stream_get_contents( $error_stream );
-			echo $error_output;
-			stream_set_blocking($stream, true);
-            $str = stream_get_contents($stream);
-			if ($str != "curl: (7) couldn't connect to host ") {
+			if (empty($error_output) {
 				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
 				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
 			} else {
