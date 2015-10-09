@@ -39,6 +39,10 @@ span p {
 	-webkit-margin-start: auto;
 	-webkit-margin-end: auto;
 	background-color: rgb(211, 211, 211);
+	display: table;
+  	border-collapse: separate;
+  	border-spacing: 2px;
+  	border-color: grey;
 }
 
 .status_bar {
