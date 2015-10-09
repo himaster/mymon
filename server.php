@@ -50,39 +50,45 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			break;
 		case 'rep':
 			$stream = ssh2_exec($connection, "mysql -e 'show slave status\G'");
-                        stream_set_blocking($stream, true);
-                        $str = stream_get_contents($stream);
-                        $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
-                        $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
-                        $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
-                        echo "<a href='#' onclick=myAjax('" .$serverip. "') style='text-decoration: none;'>";
-                        echo "SQL: ";
-                        if ($sql == "Yes") {
-                                echo "<font color='green'>";
-                        } else {
-                                echo "<font color='red'>";
-                        }
-                        echo "<b>" .$sql. "</b>";
-                        echo "</font> IO: ";
-                        if ($io == "Yes") {
-                                echo "<font color='green'>";
-                        } else {
-                                echo "<font color='red'>";
-                        }
-                        echo "<b>" .$io. "</b>";
-                        echo "</font> Δ: ";
-                        if ($delta == 0) {
-                                echo "<font color='green'>";
-                        } else {
-                                echo "<font color='red'>";
-                        }
-                        echo "<b>" .$delta. "</b></a>";
+            stream_set_blocking($stream, true);
+            $str = stream_get_contents($stream);
+            $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
+            $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
+            $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
+            echo "<a href='#' onclick=myAjax('" .$serverip. "') style='text-decoration: none;'>";
+            echo "SQL: ";
+            if ($sql == "Yes") {
+                    echo "<font color='green'>";
+            } else {
+                    echo "<font color='red'>";
+            }
+            echo "<b>" .$sql. "</b>";
+            echo "</font> IO: ";
+            if ($io == "Yes") {
+                    echo "<font color='green'>";
+            } else {
+                    echo "<font color='red'>";
+            }
+            echo "<b>" .$io. "</b>";
+            echo "</font> Δ: ";
+            if ($delta == 0) {
+                    echo "<font color='green'>";
+            } else {
+                    echo "<font color='red'>";
+            }
+            echo "<b>" .$delta. "</b></a>";
 			break;
 		case '500':
 			$stream = ssh2_exec($connection, "cat /var/log/500err.log");
-                        stream_set_blocking($stream, true);
-                        $str = stream_get_contents($stream);
-                        echo "<b><a href=http://netbox.co/mymon/500errs.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
+            stream_set_blocking($stream, true);
+            $str = stream_get_contents($stream);
+            echo "<b><a href=http://netbox.co/mymon/500errs.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
+			break;
+		case 'elastic':
+			$curTime = microtime(true);
+			$stream = ssh2_exec($connection, "curl -s -o /dev/null -XGET http://10.0.0.$i:9200/_cluster/health?pretty");
+			$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
+			echo "<b><font color='black'>" .$timeConsumed. "ms</font></b>"
 			break;
 		default:
 			echo "Wrong task";
