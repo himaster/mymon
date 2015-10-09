@@ -87,7 +87,9 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 		case 'elastic':
 			$curTime = microtime(true);
 			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
-			echo "Stream=$stream";
+			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
+			$error_output = stream_get_contents( $error_stream );
+			echo $error_output;
 			stream_set_blocking($stream, true);
             $str = stream_get_contents($stream);
 			if ($str != "curl: (7) couldn't connect to host ") {
