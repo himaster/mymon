@@ -88,6 +88,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$curTime = microtime(true);
 			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
 			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
+			stream_set_blocking( $error_stream, TRUE );
 			$error_output = stream_get_contents( $error_stream );
 			echo $error_output;
 			stream_set_blocking($stream, true);
