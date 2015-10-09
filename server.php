@@ -90,7 +90,9 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			stream_set_blocking($stream, true);
             $str = stream_get_contents($stream);
             echo "*$str*";
-			if ("$str" != "curl: (7) couldn't connect to host ") {
+            $str1 = "curl: (7) couldn't connect to host ";
+            if ( $str == $str1) { echo "Equal"; }
+			if ($str != "curl: (7) couldn't connect to host ") {
 				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
 				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
 			} else {
