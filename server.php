@@ -86,12 +86,10 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			break;
 		case 'elastic':
 			$curTime = microtime(true);
-			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty 2>&1");
+			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
+			echo "Stream=$stream";
 			stream_set_blocking($stream, true);
             $str = stream_get_contents($stream);
-            echo "*$str*";
-            $str1 = "curl: (7) couldn't connect to host ";
-            if ( $str == $str1) { echo "Equal"; }
 			if ($str != "curl: (7) couldn't connect to host ") {
 				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
 				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
