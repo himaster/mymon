@@ -52,6 +52,7 @@
                         <td width="120"><b>Load Averages</b></td>
                         <td width="160"><b>Replication</b></td>
                         <td width="60"><b>500 errs</b></td>
+                        <td width="60"><b>Elastic</b></td>
                 </tr>
 		
 <?php
@@ -66,13 +67,15 @@
                 $serverip = $array[0];
                 $server = $array[1];
                 $errs = $array[2];
-                $db = $array[3];
+                $elastic = $array[3];
+                $db = $array[4];
                 $serverdb = $server . "_db";
 				echo "<tr>";
                 echo "<td><b><a href='http://netbox.co/mymon/testgraph.php?serverip=" .$serverip. "' target='_blank' style='text-decoration: none;'><font color='black'>" .$server. "</font></b></td>";
 				echo "<td><div id='" .$server. "_la'></div></td>";
 				echo "<td><div id='" .$server. "_rep'></div></td>";
 				echo "<td><div id='" .$server. "_500'></div></td>";
+				echo "<td><div id='" .$server. "_elastic'></div></td>";
 ?>
 	<script>
 	function myAjax(serverip){
@@ -101,8 +104,8 @@
             		$.ajax(this);
             	}
             });
-	<?php if (isset($db)) { ?>
-	    $.ajax({
+		<?php if (isset($db)) { ?>
+	    	$.ajax({
                 url: "server.php?serverip=<?php echo $serverip;?>&task=rep",
                 cache: false,
                 success: function(html){
@@ -112,13 +115,25 @@
                         $.ajax(this);
                 }
             });
-	<?php } ?>
-	<?php if ($errs == 1) { ?>
+		<?php } ?>
+		<?php if ($errs == 1) { ?>
             $.ajax({
                 url: "server.php?serverip=<?php echo $serverip;?>&task=500",
                 cache: false,
                 success: function(html){
                         $("#<?php echo $server. '_500'; ?>").html(html);
+                },
+                error: function(){
+                        $.ajax(this);
+                }
+            });
+        <?php } ?>
+        <?php if ($eladtic == 1) { ?>
+            $.ajax({
+                url: "server.php?serverip=<?php echo $serverip;?>&task=elastic",
+                cache: false,
+                success: function(html){
+                        $("#<?php echo $server. '_elastic'; ?>").html(html);
                 },
                 error: function(){
                         $.ajax(this);
