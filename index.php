@@ -128,7 +128,7 @@
                 }
             });
         <?php } ?>
-        <?php if ($eladtic == 1) { ?>
+        <?php if ($elastic == 1) { ?>
             $.ajax({
                 url: "server.php?serverip=<?php echo $serverip;?>&task=elastic",
                 cache: false,
