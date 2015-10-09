@@ -81,7 +81,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
 				echo "<b><font color='black'>" .$output. " ms</font></b>";
 			} else {
-				echo "<b><font color='red'>" .$error_output. "</font></b>";
+				echo "<b><font color='red'>Timeout</font></b>";
 			}
 			break;
 		default:
