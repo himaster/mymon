@@ -90,7 +90,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
 			stream_set_blocking( $error_stream, TRUE );
 			$error_output = stream_get_contents( $error_stream );
-			if (empty($error_output) {
+			if (empty($error_output)) {
 				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
 				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
 			} else {
