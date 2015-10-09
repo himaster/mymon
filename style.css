@@ -32,17 +32,29 @@ span p {
 }
 
 .main_table {
-	border-top-width: 2px;
-	border-right-width: 2px;
-	border-bottom-width: 2px;
-	border-left-width: 2px;
-	-webkit-margin-start: auto;
-	-webkit-margin-end: auto;
+	-webkit-border-horizontal-spacing: 2px;
+	-webkit-border-vertical-spacing: 2px;
 	background-color: rgb(211, 211, 211);
+	border-bottom-color: rgb(128, 128, 128);
+	border-bottom-width: 2px;
+	border-collapse: separate;
+	border-left-color: rgb(128, 128, 128);
+	border-left-width: 2px;
+	border-right-color: rgb(128, 128, 128);
+	border-right-width: 2px;
+	border-top-color: rgb(128, 128, 128);
+	border-top-width: 2px;
+	color: rgb(0, 0, 0);
 	display: table;
-  	border-collapse: separate;
-  	border-spacing: 2px;
-  	border-color: grey;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	height: 650px;
+	line-height: normal;
+	text-align: start;
+	white-space: normal;
+	width: 492px;
 }
 
 .status_bar {

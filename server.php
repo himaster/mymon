@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['serverip']) && isset($_GET['task'])){
 	$serverip = $_GET['serverip'];
-        $task = $_GET['task'];
+    $task = $_GET['task'];
 #        $servername = "localhost";
 #        $username = "mymon";
 #        $password = "chai7EeJ";
@@ -102,7 +102,6 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 		default:
 			echo "Wrong task";
 	}
-	ssh2_exec($connection, 'exit');
 	unset($connection);
 } else {
 	echo "Not enough params";
