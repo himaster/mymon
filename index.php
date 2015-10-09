@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body bgcolor="black">
-	<div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 20px;">
+	<div class="left_button" style="top: 20px;">
 		<a href="editor.php"><img src="./images/button.png"></a>
 	</div>
 	<div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 50px;">
@@ -47,14 +47,14 @@
 	</div>
 
 	<table border="2" align="center" bgcolor="lightgray">
-            <col span="4">
-                <tr>
-                        <td width="80"><b>Server</b></td>
-                        <td width="120"><b>Load Averages</b></td>
-                        <td width="160"><b>Replication</b></td>
-                        <td width="40"><b>500s</b></td>
-                        <td width="60"><b>Elastic</b></td>
-                </tr>
+        <col span="4">
+            <tr>
+                <td width="80"><b>Server</b></td>
+                <td width="120"><b>Load Averages</b></td>
+                <td width="160"><b>Replication</b></td>
+                <td width="40"><b>500s</b></td>
+                <td width="60"><b>Elastic</b></td>
+            </tr>
 		
 <?php
         flush();
