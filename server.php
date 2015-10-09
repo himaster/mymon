@@ -68,10 +68,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 		case 'elastic':
 			$curTime = microtime(true);
 			$stream = ssh2_exec($connection, "date1=$(($(date +\"%s%N\") / 1000000));
-											  curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 |
-											  grep 'inet addr:' |
-											  cut -d: -f2 |
-											  awk '{ print $1}'`:9200/_cluster/health?pretty;
+											  curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty;
 											  date2=$(($(date +\"%s%N\") / 1000000));
     										  echo $(($date2-$date1));");
 			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
