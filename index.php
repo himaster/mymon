@@ -51,7 +51,7 @@
                         <td width="80"><b>Server</b></td>
                         <td width="120"><b>Load Averages</b></td>
                         <td width="160"><b>Replication</b></td>
-                        <td width="60"><b>500 errs</b></td>
+                        <td width="60"><b>500s</b></td>
                         <td width="60"><b>Elastic</b></td>
                 </tr>
 		
