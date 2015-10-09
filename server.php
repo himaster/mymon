@@ -2,7 +2,6 @@
 if (isset($_GET['serverip']) && isset($_GET['task'])){
 	$serverip = $_GET['serverip'];
     $task = $_GET['task'];
-
 	$connection = ssh2_connect($serverip, 22);
 	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		echo "<center><font color='red'>* * *</font></center>";
@@ -29,12 +28,6 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 				echo "<font color='red'>";
 			}
 			echo "<b>" .$la. "</b></font></a>";
-			#mysql_select_db(mymon, $conn) or die(mysql_error());
-			#$datetime = date("Y-m-d H:i:s");
-			#$result = mysql_query("INSERT INTO logs (serverip, datetime, la, lastring) VALUES ('" .$serverip. "', '" .$datetime. "', '" .$la2. "', '" .$la. "');", $conn);
-			#if (!$result) {
-			#	die('Неверный запрос: ' . mysql_error());
-			#}
 			break;
 		case 'rep':
 			$stream = ssh2_exec($connection, "mysql -e 'show slave status\G'");
