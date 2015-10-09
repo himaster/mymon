@@ -99,7 +99,7 @@
                 url: "server.php?serverip=<?php echo $serverip;?>&task=la",
                 cache: false,
                 success: function(html){
-			$("#<?php echo $server. '_la'; ?>").html(html);
+			        $("#<?php echo $server. '_la'; ?>").html(html);
                 },
                 error: function(){
             		$.ajax(this);
@@ -110,10 +110,10 @@
                 url: "server.php?serverip=<?php echo $serverip;?>&task=rep",
                 cache: false,
                 success: function(html){
-                        $("#<?php echo $server. '_rep'; ?>").html(html);
+                    $("#<?php echo $server. '_rep'; ?>").html(html);
                 },
                 error: function(){
-                        $.ajax(this);
+                    $.ajax(this);
                 }
             });
 		<?php } ?>

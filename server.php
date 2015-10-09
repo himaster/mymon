@@ -86,19 +86,19 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
             $str = stream_get_contents($stream);
             echo "<b><a href=http://netbox.co/mymon/500errs.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
 			break;
-		case 'elastic':
-			$curTime = microtime(true);
-			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
-			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
-			stream_set_blocking( $error_stream, TRUE );
-			$error_output = stream_get_contents( $error_stream );
-			if (empty($error_output)) {
-				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
-				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
-			} else {
-				echo "<b><font color='red'>Timeout</font></b>";
-			}
-			break;
+#		case 'elastic':
+#			$curTime = microtime(true);
+#			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
+#			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
+#			stream_set_blocking( $error_stream, TRUE );
+#			$error_output = stream_get_contents( $error_stream );
+#			if (empty($error_output)) {
+#				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
+#				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
+#			} else {
+#				echo "<b><font color='red'>Timeout</font></b>";
+#			}
+#			break;
 		default:
 			echo "Wrong task";
 	}
