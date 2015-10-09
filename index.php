@@ -46,7 +46,7 @@
 		</span>
 	</div>
 
-	<table border="2" align="center" bgcolor="lightgray">
+	<table class="main_table">
         <col span="4">
             <tr>
                 <td width="80"><b>Server</b></td>
@@ -152,6 +152,7 @@
 	}
 	fclose($file);
 ?>
-<font color="white"><div id="test_div" style="display: none; position:fixed; width:100%; background-color: #565051; height:20px; bottom:20px; left: 0px; "></div></font>
+</table>
+<font color="white"><div id="test_div" class="status_bar"></div></font>
 </body>
 </html>
