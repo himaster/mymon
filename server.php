@@ -2,23 +2,25 @@
 if (isset($_GET['serverip']) && isset($_GET['task'])){
 	$serverip = $_GET['serverip'];
         $task = $_GET['task'];
-        $servername = "localhost";
-        $username = "mymon";
-        $password = "chai7EeJ";
+#        $servername = "localhost";
+#        $username = "mymon";
+#        $password = "chai7EeJ";
 
-	$conn = mysql_connect($servername, $username, $password);
-	if (!$conn) {
-                die('Ошибка соединения: ' . mysql_error());
-        }
-
-        $db_selected = mysql_select_db('mymon', $conn);
-        if (!$db_selected) {
-            die ('Can\'t use foo : ' . mysql_error());
-        }
+#	$conn = mysql_connect($servername, $username, $password);
+#	if (!$conn) {
+#               die('Ошибка соединения: ' . mysql_error());
+#        }
+#
+#        $db_selected = mysql_select_db('mymon', $conn);
+#        if (!$db_selected) {
+#            die ('Can\'t use foo : ' . mysql_error());
+#        }
 
 	$connection = ssh2_connect($serverip, 22);
 	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		echo "<center><font color='red'>* * *</font></center>";
+		ssh2_exec($connection, 'exit');
+		unset($connection);
 		die();
 	}
 	switch ($task) {
@@ -100,6 +102,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 		default:
 			echo "Wrong task";
 	}
+	ssh2_exec($connection, 'exit');
 	unset($connection);
 } else {
 	echo "Not enough params";
