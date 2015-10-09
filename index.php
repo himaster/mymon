@@ -46,7 +46,7 @@
 		</span>
 	</div>
 
-	<table class="main_table">
+	<table border="2" align="center" bgcolor="lightgray">
         <col span="4">
             <tr>
                 <td width="80"><b>Server</b></td>
@@ -83,15 +83,15 @@
 	    $('#test_div').html('processing...');
 	    document.getElementById('test_div').style.display = 'block';
 	    $.ajax({
-		url: 'replica.php?serverip=' + serverip,
-		success: function(){
-			$('#test_div').html('success');
-			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
-		},
-		error: function(){
-			$('#test_div').html('error');
-			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
-		}
+    		url: 'replica.php?serverip=' + serverip,
+    		success: function(){
+    			$('#test_div').html('success');
+    			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
+    		},
+    		error: function(){
+    			$('#test_div').html('error');
+    			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
+    		}
 	    });
 	};
 	function show_<?php echo $server; ?>(){

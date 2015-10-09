@@ -33,7 +33,7 @@ span p {
 
 .main_table {
 	border: 2px;
-	text-align: center;
+	align: center;
 	background: lightgray;
 }
 
