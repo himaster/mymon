@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="jquery.js"></script>
 	<link rel="icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body bgcolor="black">
 	<div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 20px;">
