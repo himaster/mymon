@@ -88,7 +88,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$curTime = microtime(true);
 			$stream = ssh2_exec($connection, "curl -s -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
 			$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
-			echo "<b><font color='black'>" .$timeConsumed. "ms</font></b>"
+			echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>"
 			break;
 		default:
 			echo "Wrong task";
