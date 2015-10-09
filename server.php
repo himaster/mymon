@@ -86,7 +86,11 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			break;
 		case 'elastic':
 			$curTime = microtime(true);
-			if (ssh2_exec($connection, "curl -s -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty")) {
+			$stream = ssh2_exec($connection, "curl -s -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty")
+			stream_set_blocking($stream, true);
+            $str = stream_get_contents($stream);
+            die($str);
+			if (true) {
 				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
 				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
 			} else {
