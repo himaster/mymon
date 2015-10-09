@@ -46,7 +46,7 @@
 		</span>
 	</div>
 
-	<table class="main_table">
+	<table border="2" align="center" bgcolor="lightgray">
         <col span="4">
             <tr>
                 <td width="80"><b>Server</b></td>
