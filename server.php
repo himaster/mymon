@@ -2,24 +2,10 @@
 if (isset($_GET['serverip']) && isset($_GET['task'])){
 	$serverip = $_GET['serverip'];
     $task = $_GET['task'];
-#        $servername = "localhost";
-#        $username = "mymon";
-#        $password = "chai7EeJ";
-
-#	$conn = mysql_connect($servername, $username, $password);
-#	if (!$conn) {
-#               die('Ошибка соединения: ' . mysql_error());
-#        }
-#
-#        $db_selected = mysql_select_db('mymon', $conn);
-#        if (!$db_selected) {
-#            die ('Can\'t use foo : ' . mysql_error());
-#        }
 
 	$connection = ssh2_connect($serverip, 22);
 	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		echo "<center><font color='red'>* * *</font></center>";
-		ssh2_exec($connection, 'exit');
 		unset($connection);
 		die();
 	}
@@ -43,12 +29,12 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 				echo "<font color='red'>";
 			}
 			echo "<b>" .$la. "</b></font></a>";
-			mysql_select_db(mymon, $conn) or die(mysql_error());
-			$datetime = date("Y-m-d H:i:s");
-			$result = mysql_query("INSERT INTO logs (serverip, datetime, la, lastring) VALUES ('" .$serverip. "', '" .$datetime. "', '" .$la2. "', '" .$la. "');", $conn);
-			if (!$result) {
-				die('Неверный запрос: ' . mysql_error());
-			}
+			#mysql_select_db(mymon, $conn) or die(mysql_error());
+			#$datetime = date("Y-m-d H:i:s");
+			#$result = mysql_query("INSERT INTO logs (serverip, datetime, la, lastring) VALUES ('" .$serverip. "', '" .$datetime. "', '" .$la2. "', '" .$la. "');", $conn);
+			#if (!$result) {
+			#	die('Неверный запрос: ' . mysql_error());
+			#}
 			break;
 		case 'rep':
 			$stream = ssh2_exec($connection, "mysql -e 'show slave status\G'");
@@ -86,19 +72,19 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
             $str = stream_get_contents($stream);
             echo "<b><a href=http://netbox.co/mymon/500errs.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
 			break;
-#		case 'elastic':
-#			$curTime = microtime(true);
-#			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
-#			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
-#			stream_set_blocking( $error_stream, TRUE );
-#			$error_output = stream_get_contents( $error_stream );
-#			if (empty($error_output)) {
-#				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
-#				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
-#			} else {
-#				echo "<b><font color='red'>Timeout</font></b>";
-#			}
-#			break;
+		case 'elastic':
+			$curTime = microtime(true);
+			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty");
+			$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
+			stream_set_blocking( $error_stream, TRUE );
+			$error_output = stream_get_contents( $error_stream );
+			if (empty($error_output)) {
+				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
+				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
+			} else {
+				echo "<b><font color='red'>Timeout</font></b>";
+			}
+			break;
 		default:
 			echo "Wrong task";
 	}
