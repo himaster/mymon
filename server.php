@@ -89,8 +89,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$stream = ssh2_exec($connection, "curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty 2>&1");
 			stream_set_blocking($stream, true);
             $str = stream_get_contents($stream);
-            echo "str=" .$str;
-			if (true) {
+			if ($str != "curl: (7) couldn't connect to host") {
 				$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
 				echo "<b><font color='black'>" .$timeConsumed. " ms</font></b>";
 			} else {
