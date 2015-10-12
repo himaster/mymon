@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET['serverip']) && isset($_GET['task'])){
+if (isset($_GET['task'])){
 	$serverip = $_GET['serverip'];
     $task = $_GET['task'];
 	$connection = ssh2_connect($serverip, 22);
