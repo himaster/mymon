@@ -14,4 +14,8 @@ if(isset($_POST['auth_submit']))
 	else
 		echo 'Неправильное имя или пароль';
 }
+else {
+	header("Location: http://netbox.co/mymon/");
+	die();
+}
 ?>
