@@ -20,7 +20,7 @@
         $db = $array[4];
         $serverdb = $server . "_db";
 		echo "<tr>";
-        echo "<td style='text-align: left'><b><a href='http://" .$_SERVER['SERVER_NAME']. "/testgraph.php?serverip=" .$serverip. "' target='_blank' style='text-decoration: none;'><font color='black'>" .$server. "</font></b></td>";
+        echo "<td style='text-align: left'><b><a href='http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/testgraph.php?serverip=" .$serverip. "' target='_blank' style='text-decoration: none;'><font color='black'>" .$server. "</font></b></td>";
 		echo "<td><div id='" .$server. "_la'></div></td>";
 		echo "<td><div id='" .$server. "_rep'></div></td>";
 		echo "<td><div id='" .$server. "_500'></div></td>";

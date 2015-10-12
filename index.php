@@ -5,7 +5,7 @@ if (isset($_GET["exit"])) {
 	setcookie('mymon[login]', '');
 	setcookie('mymon[password]', '');
 	#die("Logged out.");
-	header("Location: http://" .$_SERVER['SERVER_NAME']. "/");
+	header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/");
 }
 
 include_once("connect.php");
