@@ -11,7 +11,7 @@ if (isset($_COOKIE["mymon"])) {
     	include "footer.html";
     }
 	else
-		echo 'Неправильное имя или пароль';
+		echo 'Неправильное имя или пароль в куках???';
 }
 else {
 ?> 
