@@ -1,5 +1,12 @@
 <?php
+if (isset($_GET["exit"]) {
+	setcookie('mymon[login]', '', time() - 3600, '/');
+	setcookie('mymon[password]', '', time() - 3600, '/');
+	header('Location: http://netbox.co/mymon/');
+}
+
 include_once("connect.php");
+
 if (isset($_COOKIE["mymon"])) {
  	$login = $_COOKIE["mymon"]["login"];
 	$password = $_COOKIE["mymon"]["password"];
