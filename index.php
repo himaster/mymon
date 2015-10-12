@@ -1,7 +1,8 @@
 <?php
 if (isset($_GET["exit"])) {
-	setcookie('mymon[login]', '', time() - 3600, '/');
-	setcookie('mymon[password]', '', time() - 3600, '/');
+	unset($_COOKIE["mymon"]);
+	setcookie('mymon[login]', '');
+	setcookie('mymon[password]', '');
 	die("Logged out.");
 	header('Location: http://netbox.co/mymon/');
 }
