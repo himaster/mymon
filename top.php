@@ -2,8 +2,8 @@
 <head>
     <title>Process list</title>
     <meta id="autoRefresh" http-equiv="refresh" content="5" />
-    <link rel="icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
 </head>
 
 <body bgcolor="black" text="lightgray" style="margin: 20;">

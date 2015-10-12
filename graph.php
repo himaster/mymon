@@ -9,8 +9,8 @@ if(isset($_GET['serverip'])){
 <html>
 <head>
     <title><?php echo $serverip ?> LA</title>
-    <link rel="icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
     <div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 20px;">
         <a href="#" onclick="self.close()"><img src="./images/back.png"></a>
     </div>
@@ -22,7 +22,7 @@ if(isset($_GET['startdate'])){
     $enddate = $_GET['enddate'];
     $page = $_SERVER['PHP_SELF'];
 ?>
-<META http-equiv="refresh" content="5;URL=http://netbox.co/mymon/graph.php?serverip=<?php echo $serverip ?>&startdate=<?php echo $startdate ?>&enddate=<?php echo $enddate ?>">
+<META http-equiv="refresh" content="5;URL=http://<?php echo $_SERVER['SERVER_NAME']; ?>/graph.php?serverip=<?php echo $serverip ?>&startdate=<?php echo $startdate ?>&enddate=<?php echo $enddate ?>">
 </head>
 <body bgcolor="black" align="center" text="white">
 
@@ -104,7 +104,7 @@ $graph->Render("images/graph.png");
 </head>
 <body bgcolor="black" align="center" text="white">
 
-<form method="get" action="http://netbox.co/mymon/graph.php">
+<form method="get" action="http://<?php echo $_SERVER['SERVER_NAME']; ?>/graph.php">
     <input type="hidden" name="serverip" value="<?php echo $serverip ?>">
     Start date:
     <input type="date" name="startdate" min="1979-12-31"><br>

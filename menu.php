@@ -11,7 +11,7 @@
 	<?php 
 		echo $_COOKIE["mymon"]["login"];
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
-		echo "<p><a href='http://netbox.co/mymon/?exit'>logout</a>";
+		echo "<p><a href='http://". $_SERVER['SERVER_NAME'] ."/?exit'>logout</a>";
 	?>
 	</span>
 </div>

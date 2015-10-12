@@ -19,7 +19,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$stream = ssh2_exec($connection, "grep -c processor /proc/cpuinfo");
 			stream_set_blocking($stream, true);
 			$core = stream_get_contents($stream);
-			echo "<a href=http://netbox.co/mymon/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
+			echo "<a href=http://" .$_SERVER['SERVER_NAME']. "/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
 			if ($la1 < ($core/2)) {
 				echo "<font color='green'>";
 			} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
@@ -63,7 +63,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$stream = ssh2_exec($connection, "cat /var/log/500err.log");
             stream_set_blocking($stream, true);
             $str = stream_get_contents($stream);
-            echo "<b><a href=http://netbox.co/mymon/500errs.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
+            echo "<b><a href=http://". $_SERVER['SERVER_NAME']. "/500errs.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
 			break;
 		case 'elastic':
 			$curTime = microtime(true);

@@ -5,7 +5,7 @@ if (isset($_GET["exit"])) {
 	setcookie('mymon[login]', '');
 	setcookie('mymon[password]', '');
 	#die("Logged out.");
-	header('Location: http://netbox.co/mymon/');
+	header("Location: http://".$_SERVER['SERVER_NAME']."/");
 }
 
 include_once("connect.php");

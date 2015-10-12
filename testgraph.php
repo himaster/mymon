@@ -15,9 +15,8 @@ if(isset($_GET['serverip'])){
     <title><?php echo $serverip ?> LA</title>
     <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8">
     <script type="text/javascript" src="jquery.js"></script>
-    <link rel="icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
-<!--    <META http-equiv="refresh" content="5;URL=http://netbox.co/mymon/graph.php?serverip=<?php echo $serverip ?>"> -->
+    <link rel="icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
 </head>
 <body bgcolor="black" align="center" text="white">
     <img id="graph" src="" />
@@ -46,7 +45,7 @@ if(isset($_GET['serverip'])){
     <div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 20px;">
         <a href="#" onclick="self.close()"><img src="./images/back.png"></a>
     </div>
-    <form method="get" action="http://netbox.co/mymon/testgraph.php">
+    <form method="get" action="http://" .$_SERVER['SERVER_NAME']. "/testgraph.php">
 	<input type="hidden" name="serverip" value="<?php echo $serverip ?>">
 	Date and time:
 	<input type="datetime-local" name="startdate" id="startd" min="1979-12-31" value="01.06-2015 10:00">
