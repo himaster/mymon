@@ -1,5 +1,5 @@
 <?php
-echo $_SERVER["server_name"];
+echo $_SERVER['SERVER_NAME'];
 if (isset($_GET["exit"])) {
 	unset($_COOKIE["mymon"]);
 	setcookie('mymon[login]', '');
