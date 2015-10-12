@@ -79,6 +79,7 @@ function show_<?php echo $server; ?>(){
     }
 </script>
 <?php
+    }
 	fclose($file);
 ?>
 </table>
