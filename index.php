@@ -3,7 +3,7 @@ if (isset($_GET["exit"])) {
 	unset($_COOKIE["mymon"]);
 	setcookie('mymon[login]', '');
 	setcookie('mymon[password]', '');
-	die("Logged out.");
+	#die("Logged out.");
 	header('Location: http://netbox.co/mymon/');
 }
 
