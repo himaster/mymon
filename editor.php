@@ -1,7 +1,7 @@
 <?php
 
 // configuration
-$url = 'http://<?php echo $_SERVER['SERVER_NAME']; ?>/';
+$url = "http://" .$_SERVER['SERVER_NAME']. "/";
 $file = '/var/www/netbox.co/mymon/servers.conf';
 $mass = file($file);
 
