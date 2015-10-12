@@ -8,14 +8,10 @@
 	<img src="./images/menu.png">
 	<span class="menu_span">
 	<b>Profile</b><p>
-	<?php if (isset($_SERVER['PHP_AUTH_USER'])) {
-		echo $_SERVER['PHP_AUTH_USER'];
+	<?php 
+		echo $_COOKIE["mymon"]["login"];
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
-		echo "<p><a href='http://logout@".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']."'>logout</a>";
-	} else {
-		echo "Local user";
-		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
-	}
+		echo "<p><a href='http://netbox.co/server.php?task=exit'>logout</a>";
 	?>
 	</span>
 </div>

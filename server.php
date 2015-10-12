@@ -84,6 +84,11 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 				echo "<b><font color='red'>Timeout</font></b>";
 			}
 			break;
+		case 'exit':
+			setcookie('mymon[login]', '', time() - 3600, '/');
+			setcookie('mymon[password]', '', time() - 3600, '/');
+			header('Location: http://netbox.co/mymon/');
+			break;
 		default:
 			echo "Wrong task";
 	}
