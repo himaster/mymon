@@ -18,8 +18,7 @@ if (isset($_POST['submit'])) {
 	}
 	else {
 		$login = $_POST['login'];
-		$password = $_POST['password'];
-		$password2 = $_POST['password2'];
+		$password = md5($_POST['password']);
 		$email = $_POST['email'];
 		$query = "SELECT `id` FROM `users` WHERE `login`='{$login}' AND `password`='{$password}'";
 		$sql = mysql_query($query) or die(mysql_error());
