@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET["exit"]) {
+if (isset($_GET["exit"])) {
 	setcookie('mymon[login]', '', time() - 3600, '/');
 	setcookie('mymon[password]', '', time() - 3600, '/');
 	header('Location: http://netbox.co/mymon/');
