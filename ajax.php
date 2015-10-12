@@ -1,17 +1,17 @@
 <script>
-function show_<?php echo $server; ?>(){
+    function show_<?php echo $server; ?>(){
         $.ajax({
             url: "server.php?serverip=<?php echo $serverip;?>&task=la",
             cache: false,
             success: function(html){
-    	        $("#<?php echo $server. '_la'; ?>").html(html);
+                $("#<?php echo $server. '_la'; ?>").html(html);
             },
             error: function(){
-        		$.ajax(this);
-        	}
+                $.ajax(this);
+            }
         });
     <?php if (isset($db)) { ?>
-    	$.ajax({
+        $.ajax({
             url: "server.php?serverip=<?php echo $serverip;?>&task=rep",
             cache: false,
             success: function(html){
@@ -47,4 +47,9 @@ function show_<?php echo $server; ?>(){
         });
     <?php } ?>
     }
+
+    $(document).ready(function(){
+        show_<?php echo $server; ?>();
+        setInterval('show_<?php echo $server; ?>()',10000);
+    });
 </script>
