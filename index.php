@@ -1,4 +1,5 @@
 <?php
+include_once("connect.php");
 if (isset($_COOKIE["mymon"])) {
  	$login = $_COOKIE["mymon"]["login"];
 	$password = $_COOKIE["mymon"]["password"];
