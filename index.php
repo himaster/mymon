@@ -1,5 +1,5 @@
 <?php
-
+echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 if (isset($_GET["exit"])) {
 	unset($_COOKIE["mymon"]);
 	setcookie('mymon[login]', '');
