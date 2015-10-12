@@ -1,11 +1,11 @@
 <?php
-echo $_SERVER['SERVER_NAME'];
+
 if (isset($_GET["exit"])) {
 	unset($_COOKIE["mymon"]);
 	setcookie('mymon[login]', '');
 	setcookie('mymon[password]', '');
 	#die("Logged out.");
-	header("Location: http://".$_SERVER['SERVER_NAME']."/");
+	header("Location: http://" .$_SERVER['SERVER_NAME']. "/");
 }
 
 include_once("connect.php");
@@ -31,6 +31,7 @@ elseif(isset($_POST['auth_submit'])) {
 	if (mysql_num_rows($sql) == 1) {
 		setcookie('mymon[login]', $login);
 		setcookie('mymon[password]', $password);
+		echo "cookie set";
 		include "header.html";
     	include "table.php";
     	include "footer.html";
