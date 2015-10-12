@@ -26,8 +26,8 @@ if (isset($_POST['submit'])) {
 			echo 'Такой логин уже существует';
 		}
  		else {
-			$query = "INSERT INTO users(login , password , email )
-			VALUES ('$login', '$password', '$email')";
+			$query = "INSERT INTO users(login , password , email, approvied )
+			VALUES ('$login', '$password', '$email', '0')";
 			$result = mysql_query($query) or die(mysql_error());;
 			echo 'Регистрация успешно прошла';
 		}

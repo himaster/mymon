@@ -1,4 +1,14 @@
 <Files ~ "table.php">
-Order deny,allow
-Deny from all
+	Order deny,allow
+	Deny from all
+</Files>
+
+<Files ~ "connect.php">
+	Order deny,allow
+	Deny from all
+</Files>
+
+<Files ~ "menu.php">
+	Order deny,allow
+	Deny from all
 </Files>
