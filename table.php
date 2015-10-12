@@ -77,6 +77,11 @@ function show_<?php echo $server; ?>(){
         });
     <?php } ?>
     }
+
+    $(document).ready(function(){
+        show_<?php echo $server; ?>();
+        setInterval('show_<?php echo $server; ?>()',10000);
+    });
 </script>
 <?php
     }

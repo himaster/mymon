@@ -22,8 +22,4 @@ function toggle_visibility(id) {
         e.style.display = 'block';
 }
 
-$(document).ready(function(){
-    show_<?php echo $server; ?>();
-    setInterval('show_<?php echo $server; ?>()',10000);
-});
 
