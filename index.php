@@ -1,7 +1,5 @@
 <?php
-	$file = fopen("./servers.conf", "r");
-	if (ob_get_level() == 0) ob_start();
-        echo str_repeat(' ',1024*128);
+	
 ?>
 <html>
 <head>
@@ -23,7 +21,7 @@
 	<link rel="shortcut icon" href="http://netbox.co/mymon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body bgcolor="black">
+<body>
 	<div class="left_button" style="top: 20px;">
 		<a href="editor.php"><img src="./images/button.png"></a>
 	</div>
@@ -57,8 +55,11 @@
             </tr>
 		
 <?php
+        if (ob_get_level() == 0) ob_start();
+        echo str_repeat(' ',1024*128);
         flush();
         ob_flush();
+        $file = fopen("./servers.conf", "r");
         while(! feof($file)) {
                 $line = fgets($file);
                 if ($line[0] == '#') {
