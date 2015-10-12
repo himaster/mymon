@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET['task'])){
+if (isset($_GET['serverip']) && isset($_GET['task'])){
 	$serverip = $_GET['serverip'];
     $task = $_GET['task'];
 	$connection = ssh2_connect($serverip, 22);
@@ -83,11 +83,6 @@ if (isset($_GET['task'])){
 			} else {
 				echo "<b><font color='red'>Timeout</font></b>";
 			}
-			break;
-		case 'exit':
-			setcookie('mymon[login]', '', time() - 3600, '/');
-			setcookie('mymon[password]', '', time() - 3600, '/');
-			header('Location: http://netbox.co/mymon/');
 			break;
 		default:
 			echo "Wrong task";
