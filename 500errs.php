@@ -14,8 +14,8 @@ if (isset($_GET['serverip'])) {
 	    position: fixed;
 	}
     </style>
-    <link rel="icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>/favicon.ico" type="image/x-icon">
 </head>
 
 <body bgcolor="black" text="lightgray" style="margin: 20;">
