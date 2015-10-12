@@ -16,7 +16,8 @@ if(isset($_POST['auth_submit']))
 	else
 		echo 'Неправильное имя или пароль';
 }
-elseif (isset($_COOKIE["mymon[login]"])) {
+elseif (isset($_COOKIE["mymon"])) {
+	die("test");
  	$login = $_COOKIE["mymon[login]"];
 	$password = $_COOKIE["mymon[password]"];
 	$query = "SELECT id, login, password FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
