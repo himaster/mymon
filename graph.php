@@ -32,16 +32,10 @@ include 'pChart/pData.class';
 include 'pChart/pCache.class';
 include 'pChart/pChart.class';
 
-$servername = "localhost";
-$username = "mymon";
-$password = "chai7EeJ";
+include_once "connect.php";
 
 //создаем объект данных 
 $myData = new pData();
-
-/* Коннектимся к MySQL базе данных */
-$db = mysql_connect($servername, $username, $password);
-if ( $db == "" ) { echo " DB Connection error...\r\n"; exit(); }
 
 mysql_select_db("mymon", $db);
 
