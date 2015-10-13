@@ -14,8 +14,8 @@
 		echo "<p><input type=\"password\" name=\"password\" style=\"display: none; \">";
 		echo "<p><input type=\"password\" name=\"password2\" style=\"display: none; \">";
 		echo "<p><input type=\"text\" name=\"email\" style=\"display: none; \" value=\"".mysql_fetch_assoc($sql)["email"]."\">";
-		echo "<p><input type=\"submit\" name=\"submit\">";
-		echo "<p>Edit profile";
+		echo "<p><input type=\"submit\" name=\"submit\" style=\"display: none; \">";
+		echo "<p><a href=\"javascript: document.getElementById('password').style.display = \"block\";\">Edit profile";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
 		echo "<p><a href='http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ."?task=exit'>logout</a>";
 		echo "</form>";
