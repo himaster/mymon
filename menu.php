@@ -10,6 +10,8 @@
 	<b>Profile</b><p>
 	<?php 
 		echo $_COOKIE["mymon"]["login"];
+		echo "<p>Change password";
+		echo "<p>Change e-mail";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
 		echo "<p><a href='http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ."?task=exit'>logout</a>";
 	?>
