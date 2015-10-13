@@ -38,6 +38,7 @@ if (isset($_COOKIE["mymon"])) {
 					break;
 
 				case "editor":
+					die("test");
 					$file = '/var/www/netbox.co/mymon/servers.conf';
 					$mass = file($file);
 					$text = file_get_contents($file);
@@ -46,11 +47,21 @@ if (isset($_COOKIE["mymon"])) {
     					file_put_contents($file, $_POST['text']);
     					// redirect to form again
     					header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
-    					printf('<a href="%s">Moved</a>.', htmlspecialchars($url));
+    					printf("<a href=\"%s\">Moved</a>.", htmlspecialchars($url));
     					exit();
 					}
 					include "header.html";
-					
+					echo "<div class=\"back_menu\">";
+					echo "<a href=\"http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "\">";
+					echo "<img src=\"images/back.png\"></a>";
+					echo "</div>";
+					echo "<span align=\"center\">";
+					echo "<h2>Server list</h2>";
+					echo "<h4>IP&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspname&nbspweb&nbspDB</h4>";
+					echo "<form action=\"index.php?task=editor\" method=\"post\">";
+					echo "<textarea name=\"text\" cols=\"30\" rows=\"" .count($mass). "\" class=\"editor\">" .htmlspecialchars($text). "</textarea><p>";
+					echo "<input type=\"submit\" value=\"Сохранить\" onClick=\"window.location.href='http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "'\" />";
+					echo "<input type=\"reset\" />";
 </form>				include "footer.html";
 </span>				break;
 
