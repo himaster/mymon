@@ -57,14 +57,8 @@ span p {
 	-webkit-border-horizontal-spacing: 2px;
 	-webkit-border-vertical-spacing: 2px;
 	background-color: rgb(211, 211, 211);
-	border-bottom-color: rgb(128, 128, 128);
-	border-bottom-width: 2px;
 	border-collapse: separate;
-	border-left-color: rgb(128, 128, 128);
-	border-left-width: 2px;
-	border-right-color: rgb(128, 128, 128);
-	border-right-width: 2px;
-	border-top-color: rgb(128, 128, 128);
+	border: solid 2px rgb(128, 128, 128);
 	border-top-width: 2px;
 	color: rgb(0, 0, 0);
 	display: table;
