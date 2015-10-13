@@ -1,7 +1,7 @@
 <script>
     function show_<?php echo $server; ?>(){
         $.ajax({
-            url: "server.php?serverip=<?php echo $serverip;?>&task=la",
+            url: "index.php?serverip=<?php echo $serverip;?>&task=la",
             cache: false,
             success: function(html){
                 $("#<?php echo $server. '_la'; ?>").html(html);
