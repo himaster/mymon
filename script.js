@@ -2,7 +2,7 @@ function myAjax(serverip){
     $('#test_div').html('processing...');
     document.getElementById('test_div').style.display = 'block';
     $.ajax({
-		url: 'replica.php?serverip=' + serverip,
+		url: 'index.php?task=replica&serverip=' + serverip,
 		success: function(){
 			$('#test_div').html('success');
 			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
