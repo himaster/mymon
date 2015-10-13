@@ -22,7 +22,7 @@ if (isset($_COOKIE["mymon"])) {
 					echo("<div>");
 					echo("<a href=\"#\" onclick=\"self.close()\">");
 					echo("<img src=\"./images/back.png\"></a>");
-					echo("</div><span class=\"500err\">");
+					echo("</div><span style=\"color: lightgray;\">");
 
 					$connection1 = ssh2_connect($_GET["serverip"], 22);
 					if (! ssh2_auth_pubkey_file($connection1, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
