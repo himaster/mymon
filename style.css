@@ -6,6 +6,20 @@ td {
 	text-align: center;
 }
 
+.menu {
+	position: fixed;
+}
+
+.500err {
+	position: fixed;
+	z-index: 9999;
+	width: 30px;
+	height: 200px;
+	overflow: hidden;
+	left: 0px;
+	top: 20px;
+}
+
 .left_button {
 	position: fixed;
 	z-index: 9999;
