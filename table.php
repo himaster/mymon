@@ -1,5 +1,5 @@
 <?php 
-    include "menu.php";
+    #include "menu.php";
 ?>
 <table border="2" align="center" bgcolor="lightgray">
         <col span="4">
