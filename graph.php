@@ -22,7 +22,7 @@ if(isset($_GET['startdate'])){
     $enddate = $_GET['enddate'];
     $page = $_SERVER['PHP_SELF'];
 ?>
-<META http-equiv="refresh" content="5;URL=http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']); ?>/graph.php?serverip=<?php echo $serverip ?>&startdate=<?php echo $startdate ?>&enddate=<?php echo $enddate ?>">
+<META http-equiv="refresh" content="5;URL=http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']); ?>graph.php?serverip=<?php echo $serverip ?>&startdate=<?php echo $startdate ?>&enddate=<?php echo $enddate ?>">
 </head>
 <body bgcolor="black" align="center" text="white">
 
