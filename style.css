@@ -21,7 +21,7 @@ td {
 }
 
 .500err {
-	color: lightgray;
+	color: lightgray !important;
 }
 
 .left_button {
