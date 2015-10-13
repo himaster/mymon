@@ -13,7 +13,7 @@
 		echo "<input type=\"text\" name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" readonly>";
 		echo "<p><input type=\"password\" id=\"password\" style=\"display: none; \">";
 		echo "<p><input type=\"password\" id=\"password2\" style=\"display: none; \">";
-		echo "<p><input type=\"text\" name=\"email\" style=\"display: none; \" value=\"".mysql_fetch_assoc($sql)["email"]."\">";
+		echo "<p><input type=\"text\" id=\"email\" style=\"display: none; \" value=\"".mysql_fetch_assoc($sql)["email"]."\">";
 		echo "<p><input type=\"submit\" name=\"submit\" style=\"display: none; \">";
 		echo "<p><a href=\"javascript: toggle_visibility('password'); toggle_visibility('password2'); toggle_visibility('email')\">Edit profile</a>";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
