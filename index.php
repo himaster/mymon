@@ -102,6 +102,28 @@ if (isset($_COOKIE["mymon"])) {
 				    unset($connection);
 				    break;
 
+				case "top":
+					if (!isset($_GET['serverip'])){
+	   					die('Server is not defined!');
+    				}
+    				include "header.html";
+					echo "<div class=\"back_menu\">";
+					echo "<a href=\"#\" onclick=\"self.close()\"><img src=\"images/back.png\"></a>";
+					echo "</div>";
+					$serverip = $_GET['serverip'];
+					$connection = ssh2_connect($serverip, 22);
+					if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+						die('Public Key Authentication Failed');
+					}
+					$stream = ssh2_exec($connection, "ps aux --sort=-pcpu | head -n 30");
+					stream_set_blocking($stream, true);
+					$str = stream_get_contents($stream);
+					$str = nl2br($str);
+					echo($str);
+					unset($connection);
+					include "footer.html";
+					break;
+
     			default:
     				include "header.html";
 			    	include "table.php";
