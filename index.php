@@ -22,7 +22,7 @@ if (isset($_COOKIE["mymon"])) {
 					echo("<div class=\"500err\">");
 					echo("<a href=\"#\" onclick=\"self.close()\">");
 					echo("<img src=\"./images/back.png\"></a>");
-					echo("</div>");
+					echo("</div><div text=\"lightgray\">");
 
 					$connection1 = ssh2_connect($_GET["serverip"], 22);
 					if (! ssh2_auth_pubkey_file($connection1, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
@@ -32,6 +32,7 @@ if (isset($_COOKIE["mymon"])) {
 					stream_set_blocking($stream1, true);
 					$str = stream_get_contents($stream1);
 					echo nl2br($str);
+					echo "</div>";
 					unset($connection1);
 					break;
     			default:
