@@ -13,7 +13,7 @@
 		echo "<input type=\"text\" name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" readonly>";
 		echo "<input type=\"password\" name=\"password\">";
 		echo "<input type=\"password\" name=\"password2\">";
-		echo "<input type=\"text\" name=\"email\" value=\"".$sql."\">";
+		echo "<input type=\"text\" name=\"email\" value=\"<pre>".$sql."</pre>\">";
 		echo "<input type=\"submit\" name=\"submit\">";
 		echo "<p>Edit profile";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
