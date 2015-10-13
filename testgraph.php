@@ -44,7 +44,7 @@ if(isset($_GET['serverip'])){
     <div style="position: fixed; z-index: 9999; width: 30px; height: 200px; overflow: hidden; left: 0px; top: 20px;">
         <a href="#" onclick="self.close()"><img src="./images/back.png"></a>
     </div>
-    <form method="get" action="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']); ?>graph.php">
+    <form method="get" action="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']); ?>/graph.php">
 	<input type="hidden" name="serverip" value="<?php echo $serverip ?>">
 	Date and time:
 	<input type="datetime-local" name="startdate" id="startd" min="1979-12-31" value="01.06-2015 10:00">
