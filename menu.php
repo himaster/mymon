@@ -8,12 +8,13 @@
 	<img src="./images/menu.png">
 	<span class="menu_span">
 	<b>Profile</b><p>
-	<?php 
-		echo "<h2>".$_COOKIE["mymon"]["login"];
-		echo "<p>Change password";
-		echo "<p>Change e-mail";
+	<?php
+		echo "<form action=\"reg.php\" method=\"POST\">";
+		echo "<input name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" editable=\"no\" >";
+		echo "<p>Edit passowrd";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
 		echo "<p><a href='http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ."?task=exit'>logout</a>";
+		echo "</form>";
 	?>
 	</span>
 </div>
