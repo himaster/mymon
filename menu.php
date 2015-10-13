@@ -10,8 +10,12 @@
 	<b>Profile</b><p>
 	<?php
 		echo "<form action=\"reg.php\" method=\"POST\">";
-		echo "<input name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" editable=\"no\" >";
-		echo "<p>Edit passowrd";
+		echo "<input type=\"text\" name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" readonly>";
+		echo "<input type=\"password\" name=\"password\">";
+		echo "<input type=\"password\" name=\"password2\">";
+		echo "<input type=\"text\" name=\"email\" value=\"".$sql[3]."\">";
+		echo "<input type=\"submit\" name=\"submit\">";
+		echo "<p>Edit profile";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
 		echo "<p><a href='http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ."?task=exit'>logout</a>";
 		echo "</form>";
