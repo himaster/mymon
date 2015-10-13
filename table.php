@@ -1,7 +1,16 @@
 <?php 
     include "menu.php";
-    include "table_header.html";
-
+?>
+<table border="2" align="center" bgcolor="lightgray">
+        <col span="4">
+            <tr>
+                <td width="80"><b>Server</b></td>
+                <td width="120"><b>Load Averages</b></td>
+                <td width="160"><b>Replication</b></td>
+                <td width="40"><b>500s</b></td>
+                <td width="60"><b>Elastic</b></td>
+            </tr>
+<?php
     if (ob_get_level() == 0) ob_start();
     echo str_repeat(' ',1024*128);
     flush();
