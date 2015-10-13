@@ -11,8 +11,8 @@
 	<?php
 		echo "<form action=\"reg.php\" method=\"POST\">";
 		echo "<input type=\"text\" name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" readonly>";
-		echo "<p><input type=\"password\" name=\"password\" style=\"display: none; \">";
-		echo "<p><input type=\"password\" name=\"password2\" style=\"display: none; \">";
+		echo "<p><input type=\"password\" name=\"password\" id=\"password\" style=\"display: none; \">";
+		echo "<p><input type=\"password\" name=\"password2\" id=\"password2\" style=\"display: none; \">";
 		echo "<p><input type=\"text\" name=\"email\" style=\"display: none; \" value=\"".mysql_fetch_assoc($sql)["email"]."\">";
 		echo "<p><input type=\"submit\" name=\"submit\" style=\"display: none; \">";
 		echo "<p><a href=\"javascript: document.getElementById('password').style.display = 'block';\">Edit profile</a>";
