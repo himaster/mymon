@@ -10,7 +10,7 @@ td {
 	position: fixed;
 }
 
-.500err_menu {
+.err500_menu {
 	position: fixed;
 	z-index: 9999;
 	width: 30px;
@@ -20,8 +20,8 @@ td {
 	top: 20px;
 }
 
-.500err {
-	color: lightgray !important;
+.err500 {
+	color: lightgray;
 }
 
 .left_button {
