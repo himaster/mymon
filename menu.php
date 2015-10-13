@@ -9,7 +9,7 @@
 	<span class="menu_span">
 	<b>Profile</b><p>
 	<?php 
-		echo "<h2>".$_COOKIE['mymon']['login']."</h2>";
+		echo "<p>".$_COOKIE['mymon']['login'];
 		echo "<p>Change password";
 		echo "<p>Change e-mail"
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
