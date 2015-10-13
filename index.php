@@ -19,10 +19,10 @@ if (isset($_COOKIE["mymon"])) {
 			switch ($_GET["task"]) {
 				case "500err":
 					include "header.html";
-					echo("<div>");
+					echo("<div class=\"500err_menu\">");
 					echo("<a href=\"#\" onclick=\"self.close()\">");
 					echo("<img src=\"./images/back.png\"></a>");
-					echo("</div><div style=\"color: lightgray;\">");
+					echo("</div><div class=\"500err\">");
 
 					$connection1 = ssh2_connect($_GET["serverip"], 22);
 					if (! ssh2_auth_pubkey_file($connection1, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
