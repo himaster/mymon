@@ -34,7 +34,27 @@ if (isset($_POST['submit'])) {
 	}
 }
 elseif (isset($_POST['submit_edit'])) {
-	echo "Test";
+
+	elseif(empty($_POST['password'])) {
+		echo 'Вы не ввели пароль';
+	}
+	elseif(empty($_POST['password2'])) {
+		echo 'Вы не ввели подтверждение пароля';
+	}
+	elseif($_POST['password'] != $_POST['password2']) {
+		echo 'Введенные пароли не совпадают';
+	}
+	elseif(empty($_POST['email'])) {
+		echo 'Вы не ввели E-mail';
+	}
+	else {
+		$login = $_POST['login'];
+		$password = md5($_POST['password']);
+		$email = $_POST['email'];
+		$query = "UPDATE users SET password = '$password', email = '$email' WHERE login = '$login'";
+		$result = mysql_query($query) or die(mysql_error());;
+		echo 'Профиль успешно обновлен';
+	}
 }
 else {
 	echo "None selected";
