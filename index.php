@@ -62,8 +62,9 @@ if (isset($_COOKIE["mymon"])) {
 					echo "<textarea name=\"text\" cols=\"30\" rows=\"" .count($mass). "\" class=\"editor\">" .htmlspecialchars($text). "</textarea><p>";
 					echo "<input type=\"submit\" value=\"Сохранить\" onClick=\"window.location.href='http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "'\" />";
 					echo "<input type=\"reset\" />";
-</form>				include "footer.html";
-</span>				break;
+					echo "</form></span>";				
+					include "footer.html";
+					break;
 
     			default:
     				include "header.html";
