@@ -1,5 +1,5 @@
 <div class="left_button" style="top: 20px;">
-	<a href="editor.php"><img src="./images/button.png"></a>
+	<a href="index.php?task=editor"><img src="./images/button.png"></a>
 </div>
 <div class="left_button" style="top: 50px;">
 	<a href="#" onclick="toggle_visibility('my_div')"><img src="./images/profile.png"></a>
