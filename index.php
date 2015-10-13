@@ -33,6 +33,7 @@ if (isset($_COOKIE["mymon"])) {
 					$str = stream_get_contents($stream1);
 					echo nl2br($str);
 					echo "</div>";
+					include "footer.html";
 					unset($connection1);
 					break;
     			default:
