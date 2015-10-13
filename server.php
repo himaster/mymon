@@ -63,7 +63,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$stream = ssh2_exec($connection, "cat /var/log/500err.log");
             stream_set_blocking($stream, true);
             $str = stream_get_contents($stream);
-            echo "<b><a href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/500errs.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
+            echo "<b><a href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
 			break;
 		case 'elastic':
 			$curTime = microtime(true);
