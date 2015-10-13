@@ -33,4 +33,7 @@ if (isset($_POST['submit'])) {
 		}
 	}
 }
+elseif (isset($_POST['submit_edit'])) {
+	echo "Test";
+}
 ?> 
