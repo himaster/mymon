@@ -1,7 +1,5 @@
 <?php
 
-include_once("connect.php");
-
 if (isset($_COOKIE["mymon"])) {
  	$login = $_COOKIE["mymon"]["login"];
 	$password = $_COOKIE["mymon"]["password"];
@@ -208,6 +206,7 @@ if (isset($_COOKIE["mymon"])) {
 		echo 'Неправильное имя или пароль в куках???';
 } 
 elseif(isset($_POST['auth_submit'])) {
+	include_once("connect.php");
 	$login = $_POST['login'];
 	$password = md5($_POST['password']);
 	$query = "SELECT id, login, password FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
