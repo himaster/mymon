@@ -34,8 +34,7 @@ if (isset($_POST['submit'])) {
 	}
 }
 elseif (isset($_POST['submit_edit'])) {
-
-	elseif(empty($_POST['password'])) {
+	if(empty($_POST['password'])) {
 		echo 'Вы не ввели пароль';
 	}
 	elseif(empty($_POST['password2'])) {
@@ -48,7 +47,6 @@ elseif (isset($_POST['submit_edit'])) {
 		echo 'Вы не ввели E-mail';
 	}
 	else {
-		die("Test");
 		$login = $_POST['login'];
 		$password = md5($_POST['password']);
 		$email = $_POST['email'];
