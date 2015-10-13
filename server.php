@@ -19,7 +19,7 @@ if (isset($_GET['serverip']) && isset($_GET['task'])){
 			$stream = ssh2_exec($connection, "grep -c processor /proc/cpuinfo");
 			stream_set_blocking($stream, true);
 			$core = stream_get_contents($stream);
-			echo "<a href=http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/top.php?serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
+			echo "<a href=http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
 			if ($la1 < ($core/2)) {
 				echo "<font color='green'>";
 			} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
