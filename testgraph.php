@@ -22,18 +22,17 @@ if(isset($_GET['serverip'])){
     <img id="graph" src="" />
 
     <script>
-	function show_graph(){
+    	function show_graph(){
             $.ajax({
         	url: "graph.php?serverip=<?php echo $serverip;?>&startdate=" + document.getElementById('startd').value,
                 cache: false,
                 success: function(html){
             		var d = new Date();
             		document.getElementById('graph').src = "images/graph.png?id=" + d.getMilliseconds();
-//			$("#graph").html('');
                 },
                 error: function(){
-			$("#graph").html("error!");
-		}
+                    $("#graph").html("error!");
+                }
             });
         }
 
@@ -49,11 +48,12 @@ if(isset($_GET['serverip'])){
 	<input type="hidden" name="serverip" value="<?php echo $serverip ?>">
 	Date and time:
 	<input type="datetime-local" name="startdate" id="startd" min="1979-12-31" value="01.06-2015 10:00">
+    <input type="submit">
     </form>
     <script>
-	var nowd = new Date();
-	nowd.setHours(nowd.getHours()+3);
-	$("#startd").val(nowd.toJSON().slice(0,19));
+	   var nowd = new Date();
+	   nowd.setHours(nowd.getHours()+3);
+	   $("#startd").val(nowd.toJSON().slice(0,19));
     </script>
 </body>
 </html>
