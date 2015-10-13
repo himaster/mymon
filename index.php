@@ -36,6 +36,7 @@ if (isset($_COOKIE["mymon"])) {
 					include "footer.html";
 					unset($connection1);
 					break;
+
     			default:
     				include "header.html";
 			    	include "table.php";

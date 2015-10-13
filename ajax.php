@@ -24,7 +24,7 @@
     <?php } ?>
     <?php if ($errs == 1) { ?>
         $.ajax({
-            url: "index.php?serverip=<?php echo $serverip;?>&task=500err",
+            url: "server.php?serverip=<?php echo $serverip;?>&task=500",
             cache: false,
             success: function(html){
                     $("#<?php echo $server. '_500'; ?>").html(html);
