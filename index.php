@@ -38,7 +38,6 @@ if (isset($_COOKIE["mymon"])) {
 					break;
 
 				case "editor":
-					die("test");
 					$file = '/var/www/netbox.co/mymon/servers.conf';
 					$mass = file($file);
 					$text = file_get_contents($file);
