@@ -9,9 +9,9 @@
 	<span class="menu_span">
 	<b>Profile</b><p>
 	<?php 
-		echo "<p>".$_COOKIE['mymon']['login'];
+		echo $_COOKIE["mymon"]["login"];
 		echo "<p>Change password";
-		echo "<p>Change e-mail"
+		echo "<p>Change e-mail";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
 		echo "<p><a href='http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ."?task=exit'>logout</a>";
 	?>
