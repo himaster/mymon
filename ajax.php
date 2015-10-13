@@ -12,7 +12,7 @@
         });
     <?php if (isset($db)) { ?>
         $.ajax({
-            url: "server.php?serverip=<?php echo $serverip;?>&task=rep",
+            url: "index.php?serverip=<?php echo $serverip;?>&task=rep",
             cache: false,
             success: function(html){
                 $("#<?php echo $server. '_rep'; ?>").html(html);
@@ -24,7 +24,7 @@
     <?php } ?>
     <?php if ($errs == 1) { ?>
         $.ajax({
-            url: "server.php?serverip=<?php echo $serverip;?>&task=500",
+            url: "index.php?serverip=<?php echo $serverip;?>&task=500",
             cache: false,
             success: function(html){
                     $("#<?php echo $server. '_500'; ?>").html(html);
@@ -36,7 +36,7 @@
     <?php } ?>
     <?php if ($elastic == 1) { ?>
         $.ajax({
-            url: "server.php?serverip=<?php echo $serverip;?>&task=elastic",
+            url: "index.php?serverip=<?php echo $serverip;?>&task=elastic",
             cache: false,
             success: function(html){
                     $("#<?php echo $server. '_elastic'; ?>").html(html);
