@@ -7,7 +7,6 @@ if (isset($_COOKIE["mymon"])) {
 	$password = $_COOKIE["mymon"]["password"];
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
-	echo "<pre>".$sql."</pre>";
 	if (mysql_num_rows($sql) == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
@@ -15,7 +14,6 @@ if (isset($_COOKIE["mymon"])) {
    				die("<font color=\"red\">* * *</font>");
 			}
 		}
-		
 		switch ($_GET["task"]) {
 			case "500err":
 				if (!isset($_GET['serverip'])){
