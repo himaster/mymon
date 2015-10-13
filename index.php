@@ -23,7 +23,7 @@ if (isset($_COOKIE["mymon"])) {
 					echo("<img src=\"./images/back.png\"></a>");
 					echo("</div>");
 
-					$connection1 = ssh2_connect($serverip, 22);
+					$connection1 = ssh2_connect($_GET["serverip"], 22);
 					if (! ssh2_auth_pubkey_file($connection1, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    						die('Public Key Authentication Failed');
 					}
