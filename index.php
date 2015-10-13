@@ -25,7 +25,7 @@ if (isset($_COOKIE["mymon"])) {
 					echo("<div class=\"back_menu\">");
 					echo("<a href=\"#\" onclick=\"self.close()\">");
 					echo("<img src=\"./images/back.png\"></a>");
-					echo("</div><div class=\"err500\">");
+					echo("</div><div class=\"textstyle\">");
 
 					$connection = ssh2_connect($_GET["serverip"], 22);
 					if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
@@ -109,7 +109,7 @@ if (isset($_COOKIE["mymon"])) {
     				include "header.html";
 					echo "<div class=\"back_menu\">";
 					echo "<a href=\"#\" onclick=\"self.close()\"><img src=\"images/back.png\"></a>";
-					echo "</div>";
+					echo "</div><div class=\"textstyle\">";
 					$serverip = $_GET['serverip'];
 					$connection = ssh2_connect($serverip, 22);
 					if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
@@ -121,6 +121,7 @@ if (isset($_COOKIE["mymon"])) {
 					$str = nl2br($str);
 					echo($str);
 					unset($connection);
+					echo "</div>";
 					include "footer.html";
 					break;
 
