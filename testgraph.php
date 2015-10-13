@@ -48,6 +48,7 @@ if(isset($_GET['serverip'])){
 	<input type="hidden" name="serverip" value="<?php echo $serverip ?>">
 	Date and time:
 	<input type="datetime-local" name="startdate" id="startd" min="1979-12-31" value="01.06-2015 10:00">
+    <input type="datetime-local" name="enddate" id="endd" max="2015-12-31" value="01.06-2015 10:00">
     <input type="submit">
     </form>
     <script>
