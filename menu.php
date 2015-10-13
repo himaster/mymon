@@ -11,10 +11,10 @@
 	<?php
 		echo "<form action=\"reg.php\" method=\"POST\">";
 		echo "<input type=\"text\" name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" readonly>";
-		echo "<input type=\"password\" name=\"password\">";
-		echo "<input type=\"password\" name=\"password2\">";
-		echo "<input type=\"text\" name=\"email\" value=\"".mysql_fetch_assoc($sql)["email"]."\">";
-		echo "<input type=\"submit\" name=\"submit\">";
+		echo "<p><input type=\"password\" name=\"password\">";
+		echo "<p><input type=\"password\" name=\"password2\">";
+		echo "<p><input type=\"text\" name=\"email\" value=\"".mysql_fetch_assoc($sql)["email"]."\">";
+		echo "<p><input type=\"submit\" name=\"submit\">";
 		echo "<p>Edit profile";
 		echo "<p>IP: ".$_SERVER['REMOTE_ADDR']."</p>";
 		echo "<p><a href='http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ."?task=exit'>logout</a>";
