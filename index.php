@@ -18,6 +18,7 @@ if (isset($_COOKIE["mymon"])) {
 		#if (isset($_GET["task"])) {
 			switch ($_GET["task"]) {
 				case "500err":
+					include "header.html";
 					echo("<div class=\"500err\">");
 					echo("<a href=\"#\" onclick=\"self.close()\">");
 					echo("<img src=\"./images/back.png\"></a>");
