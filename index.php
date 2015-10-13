@@ -4,7 +4,6 @@ if (isset($_GET["exit"])) {
 	unset($_COOKIE["mymon"]);
 	setcookie('mymon[login]', '');
 	setcookie('mymon[password]', '');
-	#die("Logged out.");
 	header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 }
 
@@ -16,9 +15,31 @@ if (isset($_COOKIE["mymon"])) {
 	$query = "SELECT id, login, password FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	if (mysql_num_rows($sql) == 1) {
-		include "header.html";
-    	include "table.php";
-    	include "footer.html";
+		#if (isset($_GET["task"])) {
+			switch ($_GET["task"]) {
+				case "500err":
+					echo("<div class=\"500err\">");
+					echo("<a href=\"#\" onclick=\"self.close()\">");
+					echo("<img src=\"./images/back.png\"></a>");
+					echo("</div>");
+
+					$connection1 = ssh2_connect($serverip, 22);
+					if (! ssh2_auth_pubkey_file($connection1, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+   						die('Public Key Authentication Failed');
+					}
+					$stream1 = ssh2_exec($connection1, "cat /var/log/500.errs");
+					stream_set_blocking($stream1, true);
+					$str = stream_get_contents($stream1);
+					echo nl2br($str);
+					unset($connection1);
+					break;
+    			default:
+    				include "header.html";
+			    	include "table.php";
+			    	include "footer.html";
+			    	break;
+			}
+		#}		
     }
 	else
 		echo 'Неправильное имя или пароль в куках???';
