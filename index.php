@@ -11,7 +11,7 @@ if (isset($_COOKIE["mymon"])) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
 			if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-   				die('Public Key Authentication Failed');
+   				die("<font color=\"red\">* * *</font>");
 			}
 		}
 		#if (isset($_GET["task"])) {

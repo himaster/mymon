@@ -50,6 +50,6 @@
 
     $(document).ready(function(){
         show_<?php echo $server; ?>();
-        setInterval('show_<?php echo $server; ?>()',10000);
+        setInterval('show_<?php echo $server; ?>()',15000);
     });
 </script>
