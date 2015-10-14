@@ -28,8 +28,11 @@ if (isset($_POST['submit'])) {
  		else {
 			$query = "INSERT INTO users(login , password , email, approvied )
 			VALUES ('$login', '$password', '$email', '0')";
-			$result = mysql_query($query) or die(mysql_error());;
-			echo 'Регистрация успешно прошла';
+			$result = mysql_query($query) or die(mysql_error());
+			$msg = "First line of text\nSecond line of text";
+			$msg = wordwrap($msg,70);
+			mail("himaster@mailer.ag","Mymon registration",$msg);
+			echo "Регистрация успешно прошла";
 		}
 	}
 }
