@@ -195,8 +195,11 @@ if (isset($_COOKIE["mymon"])) {
 			case "confirm":
 				$login = $_GET["username"];
 				$query = "UPDATE users SET approvied = '1' WHERE login = '$login'";
-				$result = mysql_query($query) or die(mysql_error());;
-				echo 'Профиль успешно обновлен';
+				$result = mysql_query($query) or die(mysql_error());
+				$query = "SELECT email FROM users WHERE login = '$login'";
+				$result = mysql_query($query) or die(mysql_error());
+				echo mysql_fetch_assoc($result)['email'];
+				echo "<p>Профиль успешно обновлен";
 				break;
 
 			default:

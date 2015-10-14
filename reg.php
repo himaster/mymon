@@ -54,7 +54,7 @@ elseif (isset($_POST['submit_edit'])) {
 		$password = md5($_POST['password']);
 		$email = $_POST['email'];
 		$query = "UPDATE users SET password = '$password', email = '$email' WHERE login = '$login'";
-		$result = mysql_query($query) or die(mysql_error());;
+		$result = mysql_query($query) or die(mysql_error());
 		echo 'Профиль успешно обновлен';
 	}
 }
