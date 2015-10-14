@@ -96,7 +96,6 @@ if (isset($_COOKIE["mymon"])) {
 				echo "<div class=\"back_menu\">";
 				echo "<a href=\"#\" onclick=\"self.close()\"><img src=\"images/back.png\"></a>";
 				echo "</div><div class=\"textstyle\">";
-				$serverip = $_GET['serverip'];
 				$stream = ssh2_exec($connection, "ps aux --sort=-pcpu | head -n 30");
 				stream_set_blocking($stream, true);
 				$str = stream_get_contents($stream);
@@ -116,7 +115,7 @@ if (isset($_COOKIE["mymon"])) {
 				$stream = ssh2_exec($connection, "grep -c processor /proc/cpuinfo");
 				stream_set_blocking($stream, true);
 				$core = stream_get_contents($stream);
-				echo "<a href=http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$serverip. " style='text-decoration: none;' target='_blank'>";
+				echo "<a href=http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$_GET['serverip']. " style='text-decoration: none;' target='_blank'>";
 				if ($la1 < ($core/2)) {
 					echo "<font color='green'>";
 				} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
@@ -134,7 +133,7 @@ if (isset($_COOKIE["mymon"])) {
 	            $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
 	            $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
 	            $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
-	            echo "<a href='#' onclick=myAjax('" .$serverip. "') style='text-decoration: none;'>";
+	            echo "<a href='#' onclick=myAjax('" .$_GET['serverip']. "') style='text-decoration: none;'>";
 	            echo "SQL: ";
 	            if ($sql == "Yes") {
 	                    echo "<font color='green'>";
@@ -162,7 +161,7 @@ if (isset($_COOKIE["mymon"])) {
 				$stream = ssh2_exec($connection, "cat /var/log/500err.log");
 	            stream_set_blocking($stream, true);
 	            $str = stream_get_contents($stream);
-	            echo "<b><a href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$serverip. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
+	            echo "<b><a href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$_GET['serverip']. " style='text-decoration: none;' target='_blank'><font color='black'>" .$str. "</font></a></b>";
 				break;
 
 			case 'elastic':
