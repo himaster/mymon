@@ -31,7 +31,9 @@ if (isset($_POST['submit'])) {
 			$result = mysql_query($query) or die(mysql_error());
 			$msg = "First line of text\nSecond line of text";
 			$msg = wordwrap($msg,70);
-			mail("himaster@mailer.ag","Mymon registration",$msg);
+			$headers =  'From: mymon@netbox.co' . "\r\n" .
+    					'Reply-To: himaster@mailer.ag' . "\r\n"
+			mail("himaster@mailer.ag","Mymon registration",$msg,$headers);
 			echo "Регистрация успешно прошла";
 		}
 	}
