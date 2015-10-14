@@ -40,7 +40,7 @@ td {
 	left: 0px;
 	top: 70px;
 	display: none;
-	background: url("images/menu.png"), repeat-y;
+	background: lightgray;
 }
 
 .menu_span {
