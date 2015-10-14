@@ -198,7 +198,10 @@ if (isset($_COOKIE["mymon"])) {
 				$result = mysql_query($query) or die(mysql_error());
 				$query = "SELECT email FROM users WHERE login = '$login'";
 				$result = mysql_query($query) or die(mysql_error());
-				echo mysql_fetch_assoc($result)['email'];
+				$msg = "Hi! Your login ($login) just confirmed. Try to login on ".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+				$msg = wordwrap($msg,70);
+				$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
+				mail(mysql_fetch_assoc($result)['email'],"Mymon registration",$msg,$headers);
 				echo "<p>Профиль успешно обновлен";
 				break;
 
