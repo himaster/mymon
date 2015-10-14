@@ -28,10 +28,7 @@ if (isset($_POST['submit'])) {
  		else {
 			$query = "INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')";
 			$result = mysql_query($query) or die(mysql_error());
-			$msg = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">".
-				   "<html><head></head><body>".
-				   "User $login ($email) just registered. <a href=\"".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login\">Click</a> to confirm.".
-				   "</body></html>";
+			$msg = "User $login ($email) just registered. Click ".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login to confirm.";
 			$msg = wordwrap($msg,70);
 			$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 			mail("himaster@mailer.ag","Mymon registration",$msg,$headers);
