@@ -8,7 +8,7 @@
 	
 		<b>Profile</b><p>
 		<form action="reg.php" method="POST">
-			<input class="usename" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
+			<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
 			<p><input type="password" id="password" name="password" style="display: none;">
 			<p><input type="password" id="password2" name="password2" style="display: none;">
 			<p><input type="text" id="email" name="email" style="display: none;" value="<?php echo mysql_fetch_assoc($sql)['email'] ?>">
