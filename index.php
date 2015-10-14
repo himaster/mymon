@@ -8,6 +8,8 @@ if (isset($_COOKIE["mymon"])) {
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	if (mysql_num_rows($sql) == 1) {
+		setcookie('mymon[login]', $login, time()+604800);
+		setcookie('mymon[password]', $password, time()+604800);
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
 			if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
@@ -226,7 +228,6 @@ elseif(isset($_POST['auth_submit'])) {
 	if (mysql_num_rows($sql) == 1) {
 		setcookie('mymon[login]', $login, time()+604800);
 		setcookie('mymon[password]', $password, time()+604800);
-		echo "cookie set";
 		include "header.html";
     	include "table.php";
     	include "footer.html";
