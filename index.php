@@ -1,4 +1,10 @@
 <?php
+if ($_GET["task"] == "exit") {
+	unset($_COOKIE["mymon"]);
+	setcookie('mymon[login]', '');
+	setcookie('mymon[password]', '');
+	header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+}
 
 include_once("functions.php");
 include_once("connect.php");
@@ -186,13 +192,6 @@ if (isset($_COOKIE["mymon"])) {
 				} else {
 					echo "<b><font color='red'>Timeout</font></b>";
 				}
-				break;
-
-			case "exit":
-				unset($_COOKIE["mymon"]);
-				setcookie('mymon[login]', '');
-				setcookie('mymon[password]', '');
-				header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 				break;
 
 			case "confirm":
