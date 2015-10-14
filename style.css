@@ -82,3 +82,9 @@ span p {
 	bottom:20px;
 	left: 0px;
 }
+
+.username {
+	background-color: lightgray;
+	border: none;
+	font-weight:bold;
+}
