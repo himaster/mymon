@@ -26,10 +26,9 @@ if (isset($_POST['submit'])) {
 			echo 'Такой логин уже существует';
 		}
  		else {
-			$query = "INSERT INTO users(login , password , email, approvied )
-			VALUES ('$login', '$password', '$email', '0')";
+			$query = "INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')";
 			$result = mysql_query($query) or die(mysql_error());
-			$msg = "First line of text\nSecond line of text";
+			$msg = "User $login ($email) just registered. To confirm: <a href=\"".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login\"";
 			$msg = wordwrap($msg,70);
 			$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 			mail("himaster@mailer.ag","Mymon registration",$msg,$headers);
