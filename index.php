@@ -192,6 +192,13 @@ if (isset($_COOKIE["mymon"])) {
 				header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 				break;
 
+			case "confirm":
+				$login = $_GET["username"];
+				$query = "UPDATE users SET approvied = '1' WHERE login = '$login'";
+				$result = mysql_query($query) or die(mysql_error());;
+				echo 'Профиль успешно обновлен';
+				break;
+
 			default:
 				include "header.html";
 		    	include "table.php";
