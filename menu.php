@@ -10,7 +10,7 @@
 	<b>Profile</b><p>
 	<?php
 		echo "<form action=\"reg.php\" method=\"POST\">";
-		echo "<input type=\"text\" id=\"login\" name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" readonly>";
+		echo "<input style=\"background-color: lightgray;\" type=\"text\" id=\"login\" name=\"login\" value=\"".$_COOKIE["mymon"]["login"]."\" readonly>";
 		echo "<p><input type=\"password\" id=\"password\" name=\"password\" style=\"display: none; \">";
 		echo "<p><input type=\"password\" id=\"password2\" name=\"password2\" style=\"display: none; \">";
 		echo "<p><input type=\"text\" id=\"email\" name=\"email\" style=\"display: none; \" value=\"".mysql_fetch_assoc($sql)["email"]."\">";
