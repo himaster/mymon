@@ -224,8 +224,8 @@ elseif(isset($_POST['auth_submit'])) {
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	if (mysql_num_rows($sql) == 1) {
-		setcookie('mymon[login]', $login);
-		setcookie('mymon[password]', $password);
+		setcookie('mymon[login]', $login, time()+604800);
+		setcookie('mymon[password]', $password, time()+604800);
 		echo "cookie set";
 		include "header.html";
     	include "table.php";
