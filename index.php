@@ -1,10 +1,11 @@
 <?php
 
+include_once("functions.php");
 include_once("connect.php");
 
 if (isset($_COOKIE["mymon"])) {
- 	$login = $_COOKIE["mymon"]["login"];
-	$password = $_COOKIE["mymon"]["password"];
+ 	$login = no_injection($_COOKIE["mymon"]["login"]);
+	$password = no_injection($_COOKIE["mymon"]["password"]);
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	if (mysql_num_rows($sql) == 1) {
@@ -195,7 +196,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "confirm":
-				$login = $_GET["username"];
+				$login = no_injection($_GET["username"]);
 				$query = "UPDATE users SET approvied = '1' WHERE login = '$login'";
 				$result = mysql_query($query) or die(mysql_error());
 				$query = "SELECT email FROM users WHERE login = '$login'";
@@ -221,8 +222,8 @@ if (isset($_COOKIE["mymon"])) {
 		echo 'Неправильное имя или пароль в куках???';
 } 
 elseif(isset($_POST['auth_submit'])) {
-	$login = $_POST['login'];
-	$password = md5($_POST['password']);
+	$login = no_injection($_POST['login']);
+	$password = md5(no_injection($_POST['password']));
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	if (mysql_num_rows($sql) == 1) {

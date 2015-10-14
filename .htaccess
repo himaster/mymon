@@ -22,3 +22,8 @@ RewriteRule ^(.*)$ /index.php?/$1 [L]
 	Order deny,allow
 	Deny from all
 </Files>
+
+<Files ~ "functions.php">
+	Order deny,allow
+	Deny from all
+</Files>
