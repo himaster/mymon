@@ -40,7 +40,12 @@ td {
 	left: 0px;
 	top: 70px;
 	display: none;
-	background: lightgray;
+	background-color: rgb(211, 211, 211);
+	border-collapse: separate;
+	border: solid 2px rgb(128, 128, 128);
+	border-collapse: separate;
+	-webkit-border-horizontal-spacing: 2px;
+	-webkit-border-vertical-spacing: 2px;
 }
 
 .menu_span {
