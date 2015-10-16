@@ -17,8 +17,8 @@
 			</tr>
 		</form>
 	</table>
+	<a href="register.php">Регистрация</a>
 </div>
-<a href="register.php">Регистрация</a>
 <?php
 	include "footer.html";
 ?>
