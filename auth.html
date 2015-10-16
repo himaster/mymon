@@ -1,12 +1,6 @@
-<script> 
-    $(function(){
-      $("#includedHeader").load("header.html");
-    });
-    $(function(){
-      $("#includedFooter").load("footer.html");
-    });
-</script>
-<div id="includedHeader"></div>
+<?php
+	include "header.html";
+?>
 <table>
 	<form action="index.php" method="POST">
 		<tr>
@@ -23,4 +17,6 @@
 	</form>
 </table>
 <a href="register.php">Регистрация</a>
-<div id="includedFooter"></div>
+<?php
+	include "footer.html";
+?>
