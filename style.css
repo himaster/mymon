@@ -21,6 +21,11 @@ td {
 }
 
 .editor {
+	margin-left: auto;
+  	margin-right: auto;
+}
+
+.editor textarea {
 	background-color: lightgray;
   	height: 450px;
   	line-height: 1.2em;
