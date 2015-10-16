@@ -226,8 +226,6 @@ elseif(isset($_POST['auth_submit'])) {
 		echo 'Неправильное имя или пароль';
 } 
 else {
-	include "header.html";
 	include "auth.php";
-	include "footer.html";
 }
 ?>
