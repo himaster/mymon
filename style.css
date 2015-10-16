@@ -94,6 +94,9 @@ td {
 
 .register {
 	color: lightgray;
+	width: 300px;
+	margin-left: auto;
+  	margin-right: auto;
 }
 
 .register input {
