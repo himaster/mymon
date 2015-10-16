@@ -3,7 +3,7 @@ if ($_GET['task'] == "exit") {
 	#unset($_COOKIE['mymon']);
 	setcookie('mymon[login]', '', date()-360);
 	setcookie('mymon[password]', '', date()-360);
-	header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+	#header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 }
 
 include_once("functions.php");
@@ -225,6 +225,8 @@ elseif(isset($_POST['auth_submit'])) {
 		echo 'Неправильное имя или пароль';
 } 
 else {
+	include "header.html";
 	include "auth.html";
+	include "footer.html";
 }
 ?>
