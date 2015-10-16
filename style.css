@@ -63,6 +63,7 @@ td {
 .menu div {
 	display: none;
 	text-align: right;
+	margin-left:  2px;
 }
 
 .menu a {
@@ -105,10 +106,11 @@ td {
 
 .register {
 	color: lightgray;
-	width: 215px;
+	width: 300px;
 	margin-left: auto;
   	margin-right: auto;
   	text-align: center;
+  	margin-top: 100px;
 }
 
 .register input {
