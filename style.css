@@ -70,6 +70,10 @@ td {
 	text-decoration: none;
 }
 
+.menu input {
+	padding-right: 5px;
+}
+
 .main_table {
 	-webkit-border-horizontal-spacing: 2px;
 	-webkit-border-vertical-spacing: 2px;
