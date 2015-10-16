@@ -1,6 +1,6 @@
 <?php
-if ($_GET["task"] == "exit") {
-	unset($_COOKIE["mymon"]);
+if ("$_GET['task']" == "exit") {
+	unset($_COOKIE['mymon']);
 	setcookie('mymon[login]', '');
 	setcookie('mymon[password]', '');
 	header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
