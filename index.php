@@ -1,5 +1,5 @@
 <?php
-if ("$_GET['task']" == "exit") {
+if ($_GET['task'] == "exit") {
 	unset($_COOKIE['mymon']);
 	setcookie('mymon[login]', '');
 	setcookie('mymon[password]', '');
