@@ -6,9 +6,9 @@
 </div>
 <div id="my_div" class="menu">
 	
-		<b>Profile</b><p>
+		<div style="text-align: center; "><b>Profile</b></div>
 		<form action="reg.php" method="POST">
-			<div id="login_div" style="text-align: left; display: block ">Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly></div>
+			<p>Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
 			<p><div id="password_div"> Password:<input type="password" id="password" name="password"></div>
 			<p><div id="password2_div"> Repeat:<input type="password" id="password2" name="password2"></div>
 			<p><div id="email_div"> E-Mail:<input type="text" id="email" name="email" value="<?php echo mysql_fetch_assoc($sql)['email'] ?>"></div>
