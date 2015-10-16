@@ -91,3 +91,11 @@ td {
 	border: none;
 	font-weight:bold;
 }
+
+.register {
+	color: lightgray;
+}
+
+.register input {
+	color: black;
+}

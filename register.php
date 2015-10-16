@@ -1,7 +1,7 @@
 <?php
 	include "header.html";
 ?>
-<table>
+<table class="register">
 	<form action="reg.php" method="POST">
 		<tr>
 			<td>Имя</td>
@@ -20,7 +20,7 @@
 			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="OK" name="submit" ></td>
+			<p><td colspan="2"><input type="submit" value="OK" name="submit" ></td>
 		</tr>
 	</form>
 </table>
