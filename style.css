@@ -99,3 +99,7 @@ td {
 .register input {
 	color: black;
 }
+
+.register td {
+	text-align: left;
+}
