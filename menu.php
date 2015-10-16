@@ -15,7 +15,7 @@
 			<p><input type="submit" id="submit_edit" name="submit_edit" style="display: none; ">
 			<p><a href="javascript: toggle_visibility('password'); toggle_visibility('password2'); toggle_visibility('email'); toggle_visibility('submit_edit');">Edit profile</a>
 			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
-			<p><a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>?task=exit">logout</a>
+			<p><a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">logout</a>
 		</form>
 
 </div>
