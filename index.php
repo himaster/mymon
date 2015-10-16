@@ -92,7 +92,7 @@ if (isset($_COOKIE["mymon"])) {
 				if (!isset($_GET['serverip'])){
    					die('Server is not defined!');
 				}
-				header("Refresh: 10");
+				header("Refresh: 5");
 				include "header.html";
 				echo "<div class=\"back_menu\">";
 				echo "<a href=\"#\" onclick=\"self.close()\"><img src=\"images/back.png\"></a>";
