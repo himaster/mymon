@@ -9,7 +9,7 @@
 		<b>Profile</b><p>
 		<form action="reg.php" method="POST">
 			Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
-			<p><div id="password"> Password:<input type="password" style="display: none;"></div>
+			<p><div id="password"  style="display: none;"> Password:<input type="password" /></div>
 			<p>Repeat:<input type="password" id="password2" name="password2" style="display: none;">
 			<p>E-Mail:<input type="text" id="email" name="email" style="display: none;" value="<?php echo mysql_fetch_assoc($sql)['email'] ?>">
 			<p><input type="submit" id="submit_edit" name="submit_edit" style="display: none; ">
