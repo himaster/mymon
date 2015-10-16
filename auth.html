@@ -1,8 +1,12 @@
 <script> 
     $(function(){
-      $("#includedContent").load("header.html");
+      $("#includedHeader").load("header.html");
+    });
+    $(function(){
+      $("#includedFooter").load("footer.html");
     });
 </script>
+<div id="includedHeader"></div>
 <table>
 	<form action="index.php" method="POST">
 		<tr>
@@ -19,8 +23,4 @@
 	</form>
 </table>
 <a href="register.php">Регистрация</a>
-<script> 
-    $(function(){
-      $("#includedContent").load("footer.html");
-    });
-</script>
+<div id="includedFooter"></div>
