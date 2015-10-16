@@ -227,7 +227,7 @@ elseif(isset($_POST['auth_submit'])) {
 } 
 else {
 	include "header.html";
-	include "auth.html";
+	include "auth.php";
 	include "footer.html";
 }
 ?>
