@@ -59,6 +59,10 @@ td {
 	padding: 10px;
 }
 
+.menu div {
+	display: none;
+}
+
 .menu a {
 	text-decoration: none;
 }
