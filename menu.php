@@ -8,7 +8,7 @@
 	
 		<b>Profile</b><p>
 		<form action="reg.php" method="POST">
-			<div id="login_div">Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly></div>
+			<div id="login_div" style="text-align: left; ">Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly></div>
 			<p><div id="password_div"> Password:<input type="password" id="password" name="password"></div>
 			<p><div id="password2_div"> Repeat:<input type="password" id="password2" name="password2"></div>
 			<p><div id="email_div"> E-Mail:<input type="text" id="email" name="email" value="<?php echo mysql_fetch_assoc($sql)['email'] ?>"></div>
