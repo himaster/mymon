@@ -6,7 +6,7 @@
 </div>
 <div id="my_div" class="menu">
 	
-		<div style="text-align: center; "><b>Profile</b></div>
+		<div style="text-align: center; display: block; "><b>Profile</b></div>
 		<form action="reg.php" method="POST">
 			<p>Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
 			<p><div id="password_div"> Password:<input type="password" id="password" name="password"></div>
