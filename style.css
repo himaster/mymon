@@ -58,6 +58,7 @@ td {
 }
 
 .status_bar {
+	display: none;
 	width: 492px;
 	background-color: lightgray;
 	height: 20px;
