@@ -18,6 +18,8 @@ td {
 
 .textstyle {
 	color: lightgray;
+	margin-left: 30px;
+  	margin-top: 10px;
 }
 
 .editor {
