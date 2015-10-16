@@ -23,12 +23,21 @@ td {
 .editor {
 	margin-left: auto;
   	margin-right: auto;
+  	width: 235px;
+  	color: lightgray;
+  	text-align: center;
 }
 
 .editor textarea {
 	background-color: lightgray;
   	height: 450px;
   	line-height: 1.2em;
+  	width: 100%;
+  	color: black;
+}
+
+.editor input {
+	color: black;
 }
 
 .left_button {
