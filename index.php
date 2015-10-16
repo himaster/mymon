@@ -1,9 +1,8 @@
 <?php
 if ($_GET['task'] == "exit") {
-	echo "EXIT!!!";
-	unset($_COOKIE['mymon']);
-	setcookie('mymon[login]', '');
-	setcookie('mymon[password]', '');
+	#unset($_COOKIE['mymon']);
+	setcookie('mymon[login]', '', date()-360);
+	setcookie('mymon[password]', '', date()-360);
 	header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 }
 
