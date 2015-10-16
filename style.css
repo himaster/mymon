@@ -63,6 +63,7 @@ td {
 
 .menu div {
 	display: none;
+	text-align: right;
 }
 
 .menu a {
