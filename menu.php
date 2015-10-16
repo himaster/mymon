@@ -9,11 +9,11 @@
 		<b>Profile</b><p>
 		<form action="reg.php" method="POST">
 			Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
-			<p><div id="password"  style="display: none;"> Password:<input type="password" /></div>
-			<p><div id="password2"  style="display: none;"> Repeat:<input type="password" /></div>
-			<p><div id="email"  style="display: none;"> E-Mail:<input type="text" value="<?php echo mysql_fetch_assoc($sql)['email'] ?>" /></div>
-			<p><div id="submit" style="display: none; "><input type="submit" id="submit_edit" name="submit_edit" /></div>
-			<p><a href="javascript: toggle_visibility('password'); toggle_visibility('password2'); toggle_visibility('email'); toggle_visibility('submit');">Edit profile</a>
+			<p><div id="password_div"  style="display: none;"> Password:<input type="password" id="password" /></div>
+			<p><div id="password2_div"  style="display: none;"> Repeat:<input type="password" id="password2" /></div>
+			<p><div id="email_div"  style="display: none;"> E-Mail:<input type="text" id="email" value="<?php echo mysql_fetch_assoc($sql)['email'] ?>" /></div>
+			<p><div id="submit_div" style="display: none; "><input type="submit" id="submit_edit" /></div>
+			<p><a href="javascript: toggle_visibility('password_div'); toggle_visibility('password2_div'); toggle_visibility('email_div'); toggle_visibility('submit_div');">Edit profile</a>
 			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
 			<p><a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">logout</a>
 		</form>
