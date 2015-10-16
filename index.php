@@ -4,6 +4,7 @@ if ($_GET['task'] == "exit") {
 	setcookie('mymon[login]', '', date()-360);
 	setcookie('mymon[password]', '', date()-360);
 	#header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+	die('Exit');
 }
 
 include_once("functions.php");
