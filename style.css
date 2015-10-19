@@ -106,6 +106,7 @@ td {
 .main_table td:first-child {
   	text-align: left;
   	width: 80px;
+  	color: black;
 }
 
 .main_table td:nth-child(2) {
