@@ -107,20 +107,21 @@ td {
   	width: 80px;
 }
 
-.maintable td:nth-child(2) {
+.main_table td:nth-child(2) {
 	width: 120px;
 }
 
-.maintable td:nth-child(3) {
+.main_table td:nth-child(3) {
 	width: 160px;
 }
 
-.maintable td:nth-child(4) {
+.main_table td:nth-child(4) {
 	width: 40px;
+	text-decoration: none;
 	color: black;
 }
 
-.maintable td:nth-child(5) {
+.main_table td:nth-child(5) {
 	width: 60px;
 	color: black;
 }
