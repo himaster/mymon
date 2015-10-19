@@ -2,7 +2,7 @@
     $(document).ready(function(){
         show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "la");
         <?php if (isset($db)) { ?>
-            show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "db");
+            show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "rep");
         <?php } ?>
         <?php if ($errs == 1) { ?>
             show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "500");
