@@ -160,7 +160,7 @@ if (isset($_COOKIE["mymon"])) {
 						 href=\"http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$_GET['serverip']. "\"
 						 target='_blank'>";
 				if ($la1 < ($core/2)) {
-					echo "<font color='green' style=\"text-shadow: 1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; \">";
+					echo "<font color='green' style=\" \">";
 				} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
 					echo "<font color='#CAC003'>";
 				} else {
