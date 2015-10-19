@@ -190,7 +190,7 @@ if (isset($_COOKIE["mymon"])) {
 				$stream = ssh2_exec($connection, "cat /var/log/500err.log");
 	            stream_set_blocking($stream, true);
 	            $str = stream_get_contents($stream);
-	            echo "<a title=\"Click to show 500 errors\" href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$_GET['serverip']. " target='_blank'><font color='black'>" .$str. "</font></a>";
+	            echo "<a title=\"Click to show 500 errors\" href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$_GET['serverip']. " target='_blank'>" .$str. "</a>";
 				break;
 
 			case 'elastic':
