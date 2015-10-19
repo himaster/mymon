@@ -64,11 +64,11 @@
         });
 
     <?php } ?>
-    
+
     }
 
     $(document).ready(function(){
-        show("<?php echo $serverip; ?>", "<?php echo $server; ?>");
+        //show("<?php echo $serverip; ?>", "<?php echo $server; ?>");
         setInterval('show("<?php echo $serverip; ?>", "<?php echo $server; ?>")',15000);
     });
 </script>
