@@ -93,15 +93,17 @@ td {
   	margin-right: auto;
 }
 
+.main_table a {
+	text-decoration: none;
+}
+
 .main_table td {
 	border: solid 1px rgb(128, 128, 128);
 }
 
 .main_table td:first-child {
-	color: black;
   	text-align: left;
   	width: 80px;
-  	font-weight: bold;
 }
 
 .maintable td:nth-child(2) {
@@ -121,8 +123,6 @@ td {
 }
 
 .main_table tr:first-child {
-	color: black;
-  	text-align: center;
   	font-weight: bold;
 }
 
