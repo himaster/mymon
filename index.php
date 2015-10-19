@@ -106,7 +106,7 @@ if (isset($_COOKIE["mymon"])) {
 				    stream_set_blocking($stream, true);
 				    $position = stream_get_contents($stream);
 				    unset($connection_master);
-				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position. ";";
+				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position. ";";
 			    }
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) {
