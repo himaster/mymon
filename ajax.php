@@ -1,15 +1,15 @@
 <script>
     $(document).ready(function(){
-        show_la("<?php echo $serverip; ?>", "<?php echo $server; ?>");
+        show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "la");
         <?php if (isset($db)) { ?>
-            show_db("<?php echo $serverip; ?>", "<?php echo $server; ?>");
+            show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "db");
         <?php } ?>
         <?php if ($errs == 1) { ?>
-            show_500("<?php echo $serverip; ?>", "<?php echo $server; ?>");
+            show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "500");
         <?php } ?>
         <?php if ($elastic == 1) { ?>
-            show_elastic("<?php echo $serverip; ?>", "<?php echo $server; ?>");
+            show("<?php echo $serverip; ?>", "<?php echo $server; ?>", "elastic");
         <?php } ?>    
-        setInterval('show("<?php echo $serverip; ?>", "<?php echo $server; ?>")',15000);
+        //setInterval('show("<?php echo $serverip; ?>", "<?php echo $server; ?>")',15000);
     });
 </script>

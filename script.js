@@ -23,6 +23,22 @@ function toggle_visibility(id) {
 }
 
 
+function show(serverip, server, task){
+    var data = "&serverip=" + serverip + 
+                  "&task=" + task;
+    $.ajax({
+        url: "index.php",
+        data: data,
+        cache: false,
+        success: function(html){
+            $("#" + server + "_" + task).html(html);
+        },
+        error: function(){
+            $.ajax(this);
+        }
+    });
+}
+
 function show_la(serverip, server){
     var data_la = "&serverip=" + serverip + 
                   "&task=la";
