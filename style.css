@@ -120,6 +120,12 @@ td {
 	width: 60px;
 }
 
+.main_table tr:first-child {
+	color: black;
+  	text-align: center;
+  	font-weight: bold;
+}
+
 .status_bar {
 	display: none;
 	width: 492px;

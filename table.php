@@ -4,11 +4,11 @@
 <table class="main_table">
         <col span="4">
             <tr>
-                <td><b>Server</b></td>
-                <td><b>Load Averages</b></td>
-                <td><b>Replication</b></td>
-                <td><b>500s</b></td>
-                <td><b>Elastic</b></td>
+                <td>Server</td>
+                <td>Load Averages</td>
+                <td>Replication</td>
+                <td>500s</td>
+                <td>Elastic</td>
             </tr>
 <?php
     if (ob_get_level() == 0) ob_start();
