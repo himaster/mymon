@@ -110,7 +110,6 @@ if (isset($_COOKIE["mymon"])) {
 			    }
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) {
-			    	echo $query;
 			    	ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
 			    }
 			    ssh2_exec($connection, "mysql -N -e 'start slave;'");
