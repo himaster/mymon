@@ -2,8 +2,6 @@
     function show(serverip, server){
         var data_la = "&serverip=" + serverip + 
                       "&task=la";
-        var data_db = "&serverip=" + serverip + 
-                      "&task=rep";
         $.ajax({
             url: "index.php",
             data: data_la,
@@ -16,7 +14,9 @@
             }
         });
     <?php if (isset($db)) { ?>
-        
+
+        var data_db = "&serverip=" + serverip + 
+                      "&task=rep";
         $.ajax({
             url: "index.php",
             data: data_db,
@@ -28,8 +28,10 @@
                 $.ajax(this);
             }
         });
+
     <?php } ?>
     <?php if ($errs == 1) { ?>
+
         var data_500 = "&serverip=" + serverip + 
                        "&task=500";
         $.ajax({
@@ -43,8 +45,10 @@
                     $.ajax(this);
             }
         });
+
     <?php } ?>
     <?php if ($elastic == 1) { ?>
+
         var data_elastic = "&serverip=" + serverip + 
                            "&task=elastic";
         $.ajax({
@@ -58,7 +62,9 @@
                     $.ajax(this);
             }
         });
+
     <?php } ?>
+    
     }
 
     $(document).ready(function(){
