@@ -52,7 +52,7 @@
             data: data_elastic,
             cache: false,
             success: function(html){
-                    $("#<?php echo $server. '_elastic'; ?>").html(html);
+                    $("#" + server + "_elastic").html(html);
             },
             error: function(){
                     $.ajax(this);
