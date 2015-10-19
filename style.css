@@ -86,6 +86,10 @@ td {
 	width: 492px;
 }
 
+.main_table td:first-child {
+  	text-align: left;
+}
+
 .status_bar {
 	display: none;
 	width: 492px;
