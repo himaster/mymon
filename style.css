@@ -54,7 +54,7 @@ td {
 	display: none;
 	background-color: rgb(211, 211, 211);
 	border-collapse: separate;
-	border: solid 2px rgb(128, 128, 128);
+	border: double 4px rgb(128, 128, 128);
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 5px;
@@ -107,6 +107,7 @@ td {
   	text-align: left;
   	width: 80px;
   	color: black;
+  	padding-left: 2px;
 }
 
 .main_table td:nth-child(2) {
