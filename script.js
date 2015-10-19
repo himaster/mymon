@@ -3,8 +3,8 @@ function myAjax(serverip){
     document.getElementById('test_div').style.display = 'block';
     $.ajax({
 		url: 'index.php?task=replica&serverip=' + serverip,
-		success: function(){
-			$('#test_div').html('success');
+		success: function(html){
+			$('#test_div').html('success' + html);
 			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 		},
 		error: function(){
