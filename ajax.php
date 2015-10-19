@@ -8,6 +8,7 @@
             cache: false,
             success: function(html){
                 $("#" + server + "_la").html(html);
+                console.log("1");
             },
             error: function(){
                 $.ajax(this);
@@ -23,6 +24,7 @@
             cache: false,
             success: function(html){
                 $("#" + server + "_rep").html(html);
+                console.log("2");
             },
             error: function(){
                 $.ajax(this);
