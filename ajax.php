@@ -1,6 +1,4 @@
 <script>
-    //function show_<?php echo $server; ?>(){
-      
     function show(serverip, server){
         var data_la = "&serverip=" + serverip + 
                       "&task=la";
