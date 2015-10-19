@@ -14,6 +14,6 @@
 
     $(document).ready(function(){
         caller_<?php echo $server; ?>();
-        setInterval('caller<?php echo $server; ?>()',15000);
+        setInterval('caller_<?php echo $server; ?>()',15000);
     });
 </script>
