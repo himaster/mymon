@@ -1,5 +1,5 @@
 
-<div class="left_button" style="top: 20px;">
+<div class="left_button">
 	<a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>"><img src="images/back.png"></a>
 </div>
 <div class="editor">

@@ -1,4 +1,4 @@
-<div class="left_button" style="top: 20px;">
+<div class="left_button">
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
 <div class="left_button" style="top: 50px;">
