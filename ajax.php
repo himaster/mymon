@@ -13,7 +13,7 @@
     }
 
     $(document).ready(function(){
-        caller<?php echo $server; ?>();
+        caller_<?php echo $server; ?>();
         setInterval('caller<?php echo $server; ?>()',15000);
     });
 </script>
