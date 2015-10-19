@@ -179,9 +179,9 @@ if (isset($_COOKIE["mymon"])) {
 				$output = stream_get_contents( $stream );
 				if (empty($error_output)) {
 					$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
-					echo "<b><font color='black'>" .$output. " ms</font></b>";
+					echo $output;
 				} else {
-					echo "<b><font color='red'>Timeout</font></b>";
+					echo "<font color='red'>Timeout</font>";
 				}
 				break;
 
