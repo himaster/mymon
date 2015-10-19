@@ -117,10 +117,12 @@ td {
 
 .maintable td:nth-child(4) {
 	width: 40px;
+	color: black;
 }
 
 .maintable td:nth-child(5) {
 	width: 60px;
+	color: black;
 }
 
 .main_table tr:first-child {
