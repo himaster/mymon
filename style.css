@@ -84,6 +84,8 @@ td {
 	border: solid 2px rgb(128, 128, 128);
 	line-height: normal;
 	width: 492px;
+	margin-left: auto;
+  	margin-right: auto;
 }
 
 .main_table td:first-child {

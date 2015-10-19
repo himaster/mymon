@@ -1,7 +1,7 @@
 <?php 
     include "menu.php";
 ?>
-<table border="2" align="center" bgcolor="lightgray" class="main_table">
+<table class="main_table">
         <col span="4">
             <tr>
                 <td><b>Server</b></td>
