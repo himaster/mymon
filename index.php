@@ -76,7 +76,11 @@ if (isset($_COOKIE["mymon"])) {
 				    stream_set_blocking($stream, true);
 				    $position = stream_get_contents($stream);
 				    unset($connection_master);
-					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position. ";";
+					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\",
+											   MASTER_USER=\"replication\",
+											   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\",
+											   MASTER_LOG_FILE=\"" .$file. "\",
+											   MASTER_LOG_POS=" .$position. ";";
 			    } elseif ($_GET['serverip'] == "188.138.33.212") {
 			    	$masterip = "88.198.182.130";
 				    $connection_master = ssh2_connect($masterip, 22);
@@ -91,7 +95,11 @@ if (isset($_COOKIE["mymon"])) {
 				    stream_set_blocking($stream, true);
 				    $position = stream_get_contents($stream);
 				    unset($connection_master);
-					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.130\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", MASTER_LOG_FILE=\"".$file."\", MASTER_LOG_POS=" . $position . ";";
+					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.130\",
+											   MASTER_USER=\"replication\",
+											   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\",
+											   MASTER_LOG_FILE=\"".$file."\",
+											   MASTER_LOG_POS=" . $position . ";";
 			    } elseif ($_GET['serverip'] == "136.243.42.200") {
 			    	$masterip = "136.243.43.35";
 				    $connection_master = ssh2_connect($masterip, 22);
@@ -106,7 +114,11 @@ if (isset($_COOKIE["mymon"])) {
 				    stream_set_blocking($stream, true);
 				    $position = stream_get_contents($stream);
 				    unset($connection_master);
-				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position. ";";
+				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\",
+				    						   MASTER_USER=\"replication\",
+				    						   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\",
+				    						   MASTER_LOG_FILE=\"" .$file. "\",
+				    						   MASTER_LOG_POS=" .$position. ";";
 			    }
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) {
@@ -144,7 +156,9 @@ if (isset($_COOKIE["mymon"])) {
 				$stream = ssh2_exec($connection, "grep -c processor /proc/cpuinfo");
 				stream_set_blocking($stream, true);
 				$core = stream_get_contents($stream);
-				echo "<a title=\"Click to show processes\" href=\"http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$_GET['serverip']. "\" target='_blank'>";
+				echo "<a title=\"Click to show processes\" 
+						 href=\"http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$_GET['serverip']. "\"
+						 target='_blank'>";
 				if ($la1 < ($core/2)) {
 					echo "<font color='green'>";
 				} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
@@ -190,7 +204,9 @@ if (isset($_COOKIE["mymon"])) {
 				$stream = ssh2_exec($connection, "cat /var/log/500err.log");
 	            stream_set_blocking($stream, true);
 	            $str = stream_get_contents($stream);
-	            echo "<a title=\"Click to show 500 errors\" href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$_GET['serverip']. " target='_blank'>" .$str. "</a>";
+	            echo "<a title=\"Click to show 500 errors\" 
+	            		 href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$_GET['serverip']. " 
+	            		 target='_blank'>" .$str. "</a>";
 				break;
 
 			case 'elastic':
