@@ -93,6 +93,10 @@ td {
   	margin-right: auto;
 }
 
+.main_table td {
+	border: solid 2px rgb(128, 128, 128);
+}
+
 .main_table td:first-child {
   	text-align: left;
   	width: 80px;
