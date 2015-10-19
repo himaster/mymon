@@ -62,6 +62,11 @@ td {
 	text-align: left;
 }
 
+.menu_title {
+	text-align: center;
+	display: block;
+}
+
 .menu div {
 	display: none;
 	text-align: right;
