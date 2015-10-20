@@ -243,8 +243,8 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			default:
-				setcookie('mymon[login]', $login, time()+604800, , isset($_SERVER["HTTPS"]), true);
-				setcookie('mymon[password]', $password, time()+604800, , isset($_SERVER["HTTPS"]), true);
+				setcookie('mymon[login]', $login, time()+604800, , , isset($_SERVER["HTTPS"]), true);
+				setcookie('mymon[password]', $password, time()+604800, , , isset($_SERVER["HTTPS"]), true);
 				include "header.html";
 		    	include "table.php";
 		    	include "footer.html";
