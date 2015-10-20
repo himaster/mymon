@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") {
-	header("Location: https://mymon.pkwteile.de" .$_SERVER['REQUEST_URI']);
+	header("Location: https://mymon.pkwteile.de/");
 }
 
 if ($_GET['task'] == "exit") {
