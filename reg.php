@@ -29,11 +29,11 @@ if (isset($_POST['submit'])) {
  		else {
 			$query = "INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')";
 			$result = mysql_query($query) or die(mysql_error());
-			$msg = "User $login ($email) just registered. Click ".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login to confirm.";
+			$msg = "User $login ($email) just registered. Click https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login to confirm.";
 			$msg = wordwrap($msg,70);
 			$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 			mail("himaster@mailer.ag","Mymon registration",$msg,$headers);
-			echo "Регистрация успешно прошла.<a href=\"http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
+			echo "Регистрация успешно прошла.<a href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
 		}
 	}
 }
@@ -56,7 +56,7 @@ elseif (isset($_POST['submit_edit'])) {
 		$email = no_injection($_POST['email']);
 		$query = "UPDATE users SET password = '$password', email = '$email' WHERE login = '$login'";
 		$result = mysql_query($query) or die(mysql_error());
-		echo "Профиль успешно обновлен.<a href=\"http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
+		echo "Профиль успешно обновлен.<a href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
 	}
 }
 else {

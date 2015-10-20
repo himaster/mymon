@@ -3,7 +3,7 @@ if ($_GET['task'] == "exit") {
 	unset($_COOKIE['mymon']);
 	setcookie('mymon[login]', '', date()-360);
 	setcookie('mymon[password]', '', date()-360);
-	header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+	header("Location: https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 	die();
 }
 
@@ -48,7 +48,7 @@ if (isset($_COOKIE["mymon"])) {
 					// save the text contents
 					file_put_contents($file, $_POST['text']);
 					// redirect to form again
-					header("Location: http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+					header("Location: https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 					printf("<a href=\"%s\">Moved</a>.", htmlspecialchars($url));
 					exit();
 				}
@@ -157,7 +157,7 @@ if (isset($_COOKIE["mymon"])) {
 				stream_set_blocking($stream, true);
 				$core = stream_get_contents($stream);
 				echo "<a title=\"Click to show processes\" 
-						 href=\"http://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$_GET['serverip']. "\"
+						 href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$_GET['serverip']. "\"
 						 target='_blank'>";
 				if ($la1 < ($core/2)) {
 					echo "<font color='green'>";
@@ -205,7 +205,7 @@ if (isset($_COOKIE["mymon"])) {
 	            stream_set_blocking($stream, true);
 	            $str = stream_get_contents($stream);
 	            echo "<a title=\"Click to show 500 errors\" 
-	            		 href=http://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$_GET['serverip']. " 
+	            		 href=https://". $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$_GET['serverip']. " 
 	            		 target='_blank'>" .$str. "</a>";
 				break;
 
@@ -235,7 +235,7 @@ if (isset($_COOKIE["mymon"])) {
 				$result = mysql_query($query) or die(mysql_error());
 				$query = "SELECT email FROM users WHERE login = '$login'";
 				$result = mysql_query($query) or die(mysql_error());
-				$msg = "Hi! Your login ($login) just confirmed. Try to login on ".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+				$msg = "Hi! Your login ($login) just confirmed. Try to login on https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 				$msg = wordwrap($msg,70);
 				$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 				mail(mysql_fetch_assoc($result)['email'],"Mymon registration",$msg,$headers);
