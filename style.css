@@ -6,6 +6,10 @@ td {
 	text-align: center;
 }
 
+.title {
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
 .back_menu {
 	position: fixed;
 	z-index: 9999;
@@ -97,7 +101,6 @@ td {
 .main_table a {
 	text-decoration: none;
 	color: black;
-	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .main_table td {

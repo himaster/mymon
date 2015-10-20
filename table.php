@@ -3,7 +3,7 @@
 ?>
 <table class="main_table">
         <col span="4">
-            <tr>
+            <tr class="title">
                 <td>Server</td>
                 <td>Load Averages</td>
                 <td>Replication</td>
