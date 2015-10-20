@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") {
+	echo $_SERVER['HTTP_HOST'];
+}
+
 if ($_GET['task'] == "exit") {
 	setcookie('mymon[login]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 	setcookie('mymon[password]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
