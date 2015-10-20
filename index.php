@@ -1,8 +1,8 @@
 <?php
 if ($_GET['task'] == "exit") {
+	setcookie('mymon[login]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTPS"]), true);
+	setcookie('mymon[password]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTPS"]), true);
 	unset($_COOKIE['mymon']);
-	setcookie('mymon[login]', '', date()-360);
-	setcookie('mymon[password]', '', date()-360);
 	header("Location: https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 	die();
 }
@@ -263,8 +263,8 @@ elseif(isset($_POST['auth_submit'])) {
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	if (mysql_num_rows($sql) == 1) {
-		setcookie('mymon[login]', $login, time()+604800);
-		setcookie('mymon[password]', $password, time()+604800);
+		setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTPS"]), true);
+		setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTPS"]), true);
 		include "header.html";
     	include "table.php";
     	include "footer.html";
