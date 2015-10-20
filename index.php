@@ -2,7 +2,7 @@
 phpinfo();
 die();
 if ($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") {
-	header("Location: https://mymon.pkwteile.de" .);
+	header("Location: https://mymon.pkwteile.de");
 }
 
 if ($_GET['task'] == "exit") {
