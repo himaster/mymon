@@ -244,7 +244,7 @@ if (isset($_COOKIE["mymon"])) {
 
 			default:
 				if (isset($_SERVER["HTTPS"])) {
-					die($_SERVER["HTTPS"]));
+					die("HTTPS is set");
 				}
 				setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTPS"]), true);
 				setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTPS"]), true);
