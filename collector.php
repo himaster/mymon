@@ -13,7 +13,7 @@ while (true) {
 	    $serverip = $array["ip"];
 	    echo $serverip. "\n";
 	    $errs = $array["err"];
-	    echo $err. "\n";
+	    echo $errs. "\n";
 	    $elastic = $array["el"];
 	    echo $elastic. "\n";
 	    $db = $array["db"];
