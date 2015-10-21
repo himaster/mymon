@@ -131,7 +131,7 @@ function rep($serverip) {
     
     return "<a title=\"Click to restart replication\" 
     		 href=\"#\" 
-    		 onclick=\"myAjax('" .$serverip. "')\">
+    		 onclick=\"myAjax(\'" .$serverip. "\')\">
     		 SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		 IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
     		 Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
