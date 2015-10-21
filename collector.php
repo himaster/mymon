@@ -22,7 +22,7 @@ while(! feof($file)) {
     $elastic = $array[3];
     $db = $array[4];
 
-	runtask("la", $serverip);
+	#runtask("la", $serverip);
 	if (isset($db)) runtask("rep", $serverip);
 	if ($errs == 1) runtask("500", $serverip);
 	if ($elastic == 1) runtask("elastic", $serverip);
