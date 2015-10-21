@@ -8,9 +8,31 @@ else die("Task not set.");
 if (isset($argv[2])) $serverip = $argv[2];
 else die("Server IP not set.\n");
 
-runtask($task, $serverip);
+$file = fopen("./servers.conf", "r");
+
+while(! feof($file)) {
+    $line = fgets($file);
+    if ($line[0] == '#') {
+		continue;
+	}
+    $array = explode(" ", $line);
+
+    $serverip = $array[1];
+    $errs = $array[2];
+    $elastic = $array[3];
+    $db = $array[4];
+
+	runtask("la", $serverip);
+	if (isset($db)) runtask("rep", $serverip);
+	if ($errs == 1) runtask("500", $serverip);
+	if ($elastic == 1) runtask("elastic", $serverip);
+}
 
 return(0);
+
+
+
+
 
 function runtask($task, $serverip) {
 	switch ($task) {
