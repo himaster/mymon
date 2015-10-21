@@ -22,10 +22,10 @@ while(! feof($file)) {
     $elastic = $array[3];
     $db = $array[4];
 
-	#runtask("la", $serverip);
-	if (isset($db)) runtask("rep", $serverip);
-	if ($errs == 1) runtask("500", $serverip);
-	if ($elastic == 1) runtask("elastic", $serverip);
+	echo runtask("la", $serverip);
+	if (isset($db)) echo runtask("rep", $serverip);
+	if ($errs == 1) echo runtask("500", $serverip);
+	if ($elastic == 1) echo runtask("elastic", $serverip);
 }
 
 return(0);
@@ -37,16 +37,16 @@ return(0);
 function runtask($task, $serverip) {
 	switch ($task) {
 		case "la":
-			echo la($serverip);
+			return la($serverip);
 			break;
 		case "rep":
-			echo rep($serverip);
+			return rep($serverip);
 			break;
 		case "500":
-			echo err500($serverip);
+			return err500($serverip);
 			break;
 		case "elastic":
-			echo elastic($serverip);
+			return elastic($serverip);
 			break;
 		default:
 			echo "Unknown task.";
