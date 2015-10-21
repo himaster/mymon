@@ -172,23 +172,10 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'elastic':
-				$curTime = microtime(true);
-				$stream = ssh2_exec($connection, "date1=\$((\$(date +'%s%N') / 1000000));
-					curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty;
-					date2=\$((\$(date +'%s%N') / 1000000));
-					delta=\$((\$date2-\$date1));
-					echo \$delta;");
-				$error_stream = ssh2_fetch_stream( $stream, SSH2_STREAM_STDERR );
-				stream_set_blocking( $error_stream, TRUE );
-				stream_set_blocking( $stream, TRUE );
-				$error_output = stream_get_contents( $error_stream );
-				$output = stream_get_contents( $stream );
-				if (empty($error_output)) {
-					$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
-					echo $output;
-				} else {
-					echo "<font color='red'>Timeout</font>";
-				}
+				$query = "SELECT elastic FROM stats WHERE ip=\"{$_GET['serverip']}\" LIMIT 1";
+				$result = mysql_query($query) or die(mysql_error());
+				$row = mysql_fetch_assoc($result);
+				echo $row["elastic"];
 				break;
 
 			case "confirm":
