@@ -53,6 +53,7 @@ while (true) {
 			$sql = mysqli_query($connection, $query) or die(mysqli_error());
 		}
 	}
+	mysqli_free_result($result);
 	mysqli_close($connection);
 
 }
