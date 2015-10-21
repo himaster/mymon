@@ -7,6 +7,7 @@
 
 #if (isset($argv[2])) $serverip = $argv[2];
 #else die("Server IP not set.\n");
+require_once("connect.php");
 
 $file = fopen("./servers.conf", "r");
 $servername = "mymon.pkwteile.de";
@@ -23,12 +24,21 @@ while(! feof($file)) {
     $elastic = $array[3];
     $db = $array[4];
 
-	$sql = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "'";
-	echo $sql;
-	die("End");
-	if (isset($db)) echo runtask("rep", $serverip);
-	if ($errs == 1) echo runtask("500", $serverip);
-	if ($elastic == 1) echo runtask("elastic", $serverip);
+	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "'";
+	$sql = mysql_query($query) or die(mysql_error());
+
+	if (isset($db)) {
+		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "'";
+		$sql = mysql_query($query) or die(mysql_error());
+	}
+	if ($errs == 1) {
+		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "'";
+		$sql = mysql_query($query) or die(mysql_error());
+	}
+	if ($elastic == 1) {
+		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "'";
+		$sql = mysql_query($query) or die(mysql_error());
+	}
 }
 
 return(0);
