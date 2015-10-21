@@ -13,9 +13,9 @@ while (true) {
 	    $serverip = $array["ip"];
 	    echo $serverip. "\n";
 	    $errs = $array["err"];
-	    echo $arr. "\n";
+	    echo $err. "\n";
 	    $elastic = $array["el"];
-	    echo $el. "\n";
+	    echo $elastic. "\n";
 	    $db = $array["db"];
 	    echo $db. "\n";
 
