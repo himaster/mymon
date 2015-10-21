@@ -2,7 +2,7 @@
 
 <?php
 
-include_once("connect.php");
+include("connect.php");
 
 
 $servername = "mymon.pkwteile.de";
