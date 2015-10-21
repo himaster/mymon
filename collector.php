@@ -32,13 +32,10 @@ while (true) {
 	$result = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysqli_error());
 	while($array = mysqli_fetch_assoc($result)) {
 	    $serverip = $array["ip"];
-	    echo $serverip. "\n";
+	    echo $array. "\n";
 	    $errs = $array["err"];
-	    echo $errs. "\n";
 	    $elastic = $array["el"];
-	    echo $elastic. "\n";
 	    $db = $array["db"];
-	    echo $db. "\n";
 
 		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
 		echo $query;
