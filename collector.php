@@ -22,7 +22,7 @@ while(! feof($file)) {
     $elastic = $array[3];
     $db = $array[4];
 
-	$sql = "UPDATE `stats` SET la=`" .runtask("la", $serverip). "` WHERE serverip=" .$serverip;
+	$sql = "UPDATE \"stats\" SET la=\"" .runtask("la", $serverip). "\" WHERE serverip=\"" .$serverip. "\"";
 	echo $sql;
 	die("End");
 	if (isset($db)) echo runtask("rep", $serverip);
@@ -74,16 +74,16 @@ function la($serverip) {
 	$core = stream_get_contents($stream);
 
 	if ($la1 < ($core/2)) {
-		$fontcolor = "<font color='green'>";
+		$fontcolor = "<font color=\"green\">";
 	} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
-		$fontcolor = "<font color='#CAC003'>";
+		$fontcolor = "<font color=\"#CAC003\">";
 	} else {
-		$fontcolor = "<font color='red'>";
+		$fontcolor = "<font color=\"red\">";
 	}
 	unset($connection);
 	return "<a title=\"Click to show processes\" 
 		href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$serverip. "\"
-		target='_blank'>" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
+		target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
 }
 
 function rep($serverip) {
