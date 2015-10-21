@@ -158,34 +158,10 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'rep':
-				$stream = ssh2_exec($connection, "mysql -e 'show slave status\G'");
-	            stream_set_blocking($stream, true);
-	            $str = stream_get_contents($stream);
-	            $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
-	            $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
-	            $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
-	            echo "<a title=\"Click to restart replication\" href=\"#\" onclick=\"myAjax('" .$_GET['serverip']. "')\">";
-	            echo "SQL: ";
-	            if ($sql == "Yes") {
-	                    echo "<font color='green'>";
-	            } else {
-	                    echo "<font color='red'>";
-	            }
-	            echo "<b>" .$sql. "</b>";
-	            echo "</font> IO: ";
-	            if ($io == "Yes") {
-	                    echo "<font color='green'>";
-	            } else {
-	                    echo "<font color='red'>";
-	            }
-	            echo "<b>" .$io. "</b>";
-	            echo "</font> Δ: ";
-	            if ($delta == 0) {
-	                    echo "<font color='green'>";
-	            } else {
-	                    echo "<font color='red'>";
-	            }
-	            echo "<b>" .$delta. "</b></a>";
+				$query = "SELECT rep FROM stats WHERE ip=\"{$_GET['serverip']}\" LIMIT 1";
+				$result = mysql_query($query) or die(mysql_error());
+				$row = mysql_fetch_assoc($result);
+				echo $row["rep"];
 				break;
 
 			case '500':
