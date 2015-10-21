@@ -8,7 +8,7 @@ include_once("connect.php");
 $servername = "mymon.pkwteile.de";
 while (true) {
 	$file = fopen("./servers.conf", "r");
-	while(! feof($file)) {
+	while(!feof($file)) {
 	    $line = fgets($file);
 	    if ($line[0] == '#') {
 			continue;
