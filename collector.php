@@ -11,13 +11,13 @@ while (true) {
 	$sql = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysql_error());
 	while($array = mysqli_fetch_array($sql)) {
 	    $serverip = $array["ip"];
-	    echo $serverip;
+	    echo $serverip. "\n";
 	    $errs = $array["err"];
-	    echo $arr;
+	    echo $arr. "\n";
 	    $elastic = $array["el"];
-	    echo $el;
+	    echo $el. "\n";
 	    $db = $array["db"];
-	    echo $db;
+	    echo $db. "\n";
 
 		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
 		echo $query;
