@@ -55,6 +55,7 @@ while (true) {
 	}
 	mysqli_free_result($result);
 	mysqli_close($connection);
+	unset($connection);
 
 }
 return(0);
