@@ -31,14 +31,13 @@ while (true) {
 	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
 	$result = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysqli_error());
 	while($array = mysqli_fetch_assoc($result)) {
+		print_r($array);
 	    $serverip = $array["ip"];
-	    echo $array. "\n";
 	    $errs = $array["err"];
 	    $elastic = $array["el"];
 	    $db = $array["db"];
 
 		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
-		echo $query;
 		$sql = mysqli_query($connection, $query) or die(mysqli_error());
 
 		if ($db == 1) {
