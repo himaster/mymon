@@ -18,39 +18,36 @@ if (!mysqli_select_db($connection, $dbname)) {
 
 
 $servername = "mymon.pkwteile.de";
-while (true) {
-	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-	$result = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysqli_error($connection));
-	while($array = mysqli_fetch_assoc($result)) {
-		print_r($array);
-	    $serverip = $array["ip"];
-	    $errs = $array["err"];
-	    $elastic = $array["el"];
-	    $db = $array["db"];
+$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
+$result = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysqli_error($connection));
+while($array = mysqli_fetch_assoc($result)) {
+    $serverip = $array["ip"];
+    echo $serverip. "\n";
+    $errs = $array["err"];
+    $elastic = $array["el"];
+    $db = $array["db"];
 
-		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
+	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
+	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+
+	if ($db == 1) {
+		$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
 		$sql = mysqli_query($connection, $query) or die(mysqli_error());
-
-		if ($db == 1) {
-			$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
-			$sql = mysqli_query($connection, $query) or die(mysqli_error());
-		}
-		if ($errs == 1) {
-			$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
-			$sql = mysqli_query($connection, $query) or die(mysqli_error());
-		}
-		if ($elastic == 1) {
-			$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
-			$sql = mysqli_query($connection, $query) or die(mysqli_error());
-		}
 	}
-	mysqli_free_result($result);
-	unset($result);
+	if ($errs == 1) {
+		$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
+		$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	}
+	if ($elastic == 1) {
+		$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
+		$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	}
 }
 
+mysqli_free_result($result);
+unset($result);
+
 return(0);
-
-
 
 
 
