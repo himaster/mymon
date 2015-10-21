@@ -32,6 +32,8 @@ while (true) {
 			$sql = mysql_query($query) or die(mysql_error());
 		}
 	}
+	mysql_close($db);
+
 }
 return(0);
 
