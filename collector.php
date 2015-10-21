@@ -9,17 +9,20 @@ $servername = "mymon.pkwteile.de";
 while (true) {
 	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
 	$sql = mysqli_query($connection, $query) or die(mysql_error());
-	while($array = mysqli_fetch_array($connection, $sql)) {
+	while($array = mysqli_fetch_array($sql)) {
 	    $serverip = $array["ip"];
 	    echo $serverip;
 	    $errs = $array["err"];
+	    echo $arr;
 	    $elastic = $array["el"];
+	    echo $el;
 	    $db = $array["db"];
+	    echo $db;
 
 		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
 		$sql = mysqli_query($connection, $query) or die(mysqli_error());
 
-		if (isset($db)) {
+		if ($db == 1) {
 			$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
 			$sql = mysqli_query($connection, $query) or die(mysqli_error());
 		}
