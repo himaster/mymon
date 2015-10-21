@@ -9,7 +9,7 @@
 #else die("Server IP not set.\n");
 
 $file = fopen("./servers.conf", "r");
-$servername = "mymon.pkwteile.de";
+global $servername = "mymon.pkwteile.de";
 
 while(! feof($file)) {
     $line = fgets($file);
