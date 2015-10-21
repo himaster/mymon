@@ -9,7 +9,6 @@
 #else die("Server IP not set.\n");
 
 $file = fopen("./servers.conf", "r");
-global $servername;
 $servername = "mymon.pkwteile.de";
 
 while(! feof($file)) {
@@ -58,6 +57,7 @@ function runtask($task, $serverip) {
 }
 
 function la($serverip) {
+	global $servername;
 	$connection = ssh2_connect($serverip, 22);
 	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		die("<font color=\"red\">* * *</font>");
@@ -128,6 +128,7 @@ function rep($serverip) {
 }
 
 function err500($serverip) {
+	global $servername;
 	$connection = ssh2_connect($serverip, 22);
 	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		die("<font color=\"red\">* * *</font>");
