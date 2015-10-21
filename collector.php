@@ -6,7 +6,7 @@ include_once("connect.php");
 
 $file = fopen("./servers.conf", "r");
 $servername = "mymon.pkwteile.de";
-
+while (true) {
 while(! feof($file)) {
     $line = fgets($file);
     if ($line[0] == '#') {
@@ -35,7 +35,7 @@ while(! feof($file)) {
 		$sql = mysql_query($query) or die(mysql_error());
 	}
 }
-
+}
 return(0);
 
 
