@@ -28,15 +28,15 @@ while(! feof($file)) {
 	$sql = mysql_query($query) or die(mysql_error());
 
 	if (isset($db)) {
-		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "'";
+		$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "'";
 		$sql = mysql_query($query) or die(mysql_error());
 	}
 	if ($errs == 1) {
-		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "'";
+		$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "'";
 		$sql = mysql_query($query) or die(mysql_error());
 	}
 	if ($elastic == 1) {
-		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "'";
+		$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "'";
 		$sql = mysql_query($query) or die(mysql_error());
 	}
 }
