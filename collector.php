@@ -2,11 +2,11 @@
 
 <?php
 
-if (isset($argv[1])) $task = $argv[1];
-else die("Task not set.");
+#if (isset($argv[1])) $task = $argv[1];
+#else die("Task not set.");
 
-if (isset($argv[2])) $serverip = $argv[2];
-else die("Server IP not set.\n");
+#if (isset($argv[2])) $serverip = $argv[2];
+#else die("Server IP not set.\n");
 
 $file = fopen("./servers.conf", "r");
 
