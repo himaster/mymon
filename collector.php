@@ -8,7 +8,8 @@ include_once("connect.php");
 $servername = "mymon.pkwteile.de";
 while (true) {
 	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-	while($line = mysql_fetch_array($query)) {
+	$sql = mysql_query($query) or die(mysql_error());
+	while($line = mysql_fetch_array($sql)) {
 	    $serverip = $array["ip"];
 	    $errs = $array["err"];
 	    $elastic = $array["el"];
@@ -30,7 +31,6 @@ while (true) {
 			$sql = mysql_query($query) or die(mysql_error());
 		}
 	}
-	fclose($file);
 }
 return(0);
 
