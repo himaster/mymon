@@ -32,3 +32,8 @@ RewriteRule ^(.*)$ /index.php?/$1 [L]
 	Order deny,allow
 	Deny from all
 </Files>
+
+<Files ~ "collector.php">
+	Order deny,allow
+	Deny from all
+</Files>
