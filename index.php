@@ -154,7 +154,7 @@ if (isset($_COOKIE["mymon"])) {
 				$query = "SELECT la FROM stats WHERE ip=\"{$_GET['serverip']}\" LIMIT 1";
 				$result = mysql_query($query) or die(mysql_error());
 				$row = mysql_fetch_assoc($result);
-				print_r($row);
+				echo $row["la"];
 				break;
 
 			case 'rep':
