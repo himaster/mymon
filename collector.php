@@ -22,7 +22,7 @@ while(! feof($file)) {
     $elastic = $array[3];
     $db = $array[4];
 
-	$sql = "UPDATE \"stats\" SET la=\"" .runtask("la", $serverip). "\" WHERE serverip=\"" .$serverip. "\"";
+	$sql = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "'";
 	echo $sql;
 	die("End");
 	if (isset($db)) echo runtask("rep", $serverip);
