@@ -8,7 +8,7 @@ include("connect.php");
 $servername = "mymon.pkwteile.de";
 while (true) {
 	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-	$sql = mysqli_query($connection, $query) or die(mysql_error());
+	$sql = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysql_error());
 	while($array = mysqli_fetch_array($sql)) {
 	    $serverip = $array["ip"];
 	    echo $serverip;
@@ -20,6 +20,7 @@ while (true) {
 	    echo $db;
 
 		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
+		echo $query;
 		$sql = mysqli_query($connection, $query) or die(mysqli_error());
 
 		if ($db == 1) {
