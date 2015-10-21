@@ -17,7 +17,7 @@ while(! feof($file)) {
 	}
     $array = explode(" ", $line);
 
-    $serverip = $array[1];
+    $serverip = $array[0];
     $errs = $array[2];
     $elastic = $array[3];
     $db = $array[4];
