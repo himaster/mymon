@@ -11,6 +11,7 @@ while (true) {
 	$sql = mysql_query($query) or die(mysql_error());
 	while($array = mysql_fetch_array($sql)) {
 	    $serverip = $array["ip"];
+	    echo $serverip;
 	    $errs = $array["err"];
 	    $elastic = $array["el"];
 	    $db = $array["db"];
