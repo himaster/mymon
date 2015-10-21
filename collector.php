@@ -7,32 +7,26 @@ include_once("connect.php");
 
 $servername = "mymon.pkwteile.de";
 while (true) {
-	$file = fopen("./servers.conf", "r");
-	while(!feof($file)) {
-	    $line = fgets($file);
-	    if ($line[0] == '#') {
-			continue;
-		}
-	    $array = explode(" ", $line);
+	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
+	while($line = mysql_fetch_array($query)) {
+	    $serverip = $array["ip"];
+	    $errs = $array["err"];
+	    $elastic = $array["el"];
+	    $db = $array["db"];
 
-	    $serverip = $array[0];
-	    $errs = $array[2];
-	    $elastic = $array[3];
-	    $db = $array[4];
-
-		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "'";
+		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
 		$sql = mysql_query($query) or die(mysql_error());
 
 		if (isset($db)) {
-			$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "'";
+			$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
 			$sql = mysql_query($query) or die(mysql_error());
 		}
 		if ($errs == 1) {
-			$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "'";
+			$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
 			$sql = mysql_query($query) or die(mysql_error());
 		}
 		if ($elastic == 1) {
-			$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "'";
+			$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
 			$sql = mysql_query($query) or die(mysql_error());
 		}
 	}
