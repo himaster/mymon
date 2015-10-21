@@ -8,7 +8,7 @@ include("connect.php");
 $servername = "mymon.pkwteile.de";
 while (true) {
 	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-	$sql = mysqli_query($query) or die(mysql_error());
+	$sql = mysqli_query($db, $query) or die(mysql_error());
 	while($array = mysqli_fetch_array($sql)) {
 	    $serverip = $array["ip"];
 	    echo $serverip;
