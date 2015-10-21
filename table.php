@@ -37,18 +37,18 @@
         echo "<script>";
             echo "$(document).ready(function(){";
                 echo "show(\"$serverip\", \"$server\", \"la\");";
-                echo "setInterval('show(\"$serverip\", \"$server\", \"la\")',15000);";
+                echo "setInterval('show(\"$serverip\", \"$server\", \"la\")',10000);";
                 if (isset($db)) { 
                     echo "show(\"$serverip\", \"$server\", \"rep\");";
-                    echo "setInterval('show(\"$serverip\", \"$server\", \"rep\")',15000);";
+                    echo "setInterval('show(\"$serverip\", \"$server\", \"rep\")',10000);";
                 }
                 if ($errs == 1) {
                     echo "show(\"$serverip\", \"$server\", \"500\");";
-                    echo "setInterval('show(\"$serverip\", \"$server\", \"500\")',15000);";
+                    echo "setInterval('show(\"$serverip\", \"$server\", \"500\")',10000);";
                 }
                 if ($elastic == 1) {
                     echo "show(\"$serverip\", \"$server\", \"elastic\");";
-                    echo "setInterval('show(\"$serverip\", \"$server\", \"elastic\")',15000);";
+                    echo "setInterval('show(\"$serverip\", \"$server\", \"elastic\")',10000);";
                 }
             echo "});";
         echo "</script>";
