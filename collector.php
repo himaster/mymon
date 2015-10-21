@@ -4,37 +4,39 @@
 
 include_once("connect.php");
 
-$file = fopen("./servers.conf", "r");
+
 $servername = "mymon.pkwteile.de";
 while (true) {
-while(! feof($file)) {
-    $line = fgets($file);
-    if ($line[0] == '#') {
-		continue;
-	}
-    $array = explode(" ", $line);
+	$file = fopen("./servers.conf", "r");
+	while(! feof($file)) {
+	    $line = fgets($file);
+	    if ($line[0] == '#') {
+			continue;
+		}
+	    $array = explode(" ", $line);
 
-    $serverip = $array[0];
-    $errs = $array[2];
-    $elastic = $array[3];
-    $db = $array[4];
+	    $serverip = $array[0];
+	    $errs = $array[2];
+	    $elastic = $array[3];
+	    $db = $array[4];
 
-	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "'";
-	$sql = mysql_query($query) or die(mysql_error());
+		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "'";
+		$sql = mysql_query($query) or die(mysql_error());
 
-	if (isset($db)) {
-		$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "'";
-		$sql = mysql_query($query) or die(mysql_error());
+		if (isset($db)) {
+			$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "'";
+			$sql = mysql_query($query) or die(mysql_error());
+		}
+		if ($errs == 1) {
+			$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "'";
+			$sql = mysql_query($query) or die(mysql_error());
+		}
+		if ($elastic == 1) {
+			$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "'";
+			$sql = mysql_query($query) or die(mysql_error());
+		}
 	}
-	if ($errs == 1) {
-		$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "'";
-		$sql = mysql_query($query) or die(mysql_error());
-	}
-	if ($elastic == 1) {
-		$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "'";
-		$sql = mysql_query($query) or die(mysql_error());
-	}
-}
+	fclose($file);
 }
 return(0);
 
