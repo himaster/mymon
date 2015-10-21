@@ -118,14 +118,14 @@ function rep($serverip) {
     $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
     $delta = trim(preg_replace('/\s+/', ' ', $delta));
 
-    if ($sql == "Yes") $sqlfontcolor = "<font color='green'>";
-    else $sqlfontcolor = "<font color='red'>";
+    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
+    else $sqlfontcolor = "<font color=\"red\">";
 
-    if ($io == "Yes") $iofontcolor = "<font color='green'>";
-    else $iofontcolor = "<font color='red'>";
+    if ($io == "Yes") $iofontcolor = "<font color=\"green\">";
+    else $iofontcolor = "<font color=\"red\">";
 
-    if ($delta == 0) $deltafontcolor = "<font color='green'>";
-    else $deltafontcolor = "<font color='red'>";
+    if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
+    else $deltafontcolor = "<font color=\"red\">";
 
     unset($connection);
     
@@ -154,7 +154,7 @@ function err500($serverip) {
 
     return "<a title=\"Click to show 500 errors\" 
     		 href=https://". $servername. "/index.php?task=500err&serverip=" .$serverip. " 
-    		 target='_blank'>" .$str. "\n</a>";
+    		 target=\"_blank\">" .$str. "\n</a>";
 }
 
 function elastic($serverip) {
@@ -175,8 +175,8 @@ function elastic($serverip) {
 	stream_set_blocking( $stream, TRUE );
 	$output = stream_get_contents( $stream );
 
-	if (empty($error_output)) $elasticoutput = "<font color='green'>" .$output. "</font>";
-	else $elasticoutput = "<font color='red'>Timeout</font>";
+	if (empty($error_output)) $elasticoutput = "<font color=\"green\">" .$output. "</font>";
+	else $elasticoutput = "<font color=\"red\">Timeout</font>";
 
 	unset($connection);
 
