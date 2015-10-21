@@ -8,7 +8,7 @@ include("connect.php");
 $servername = "mymon.pkwteile.de";
 while (true) {
 	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-	$sql = mysqli_query($db, $query) or die(mysql_error());
+	$sql = mysqli_query($connection, $query) or die(mysql_error());
 	while($array = mysqli_fetch_array($sql)) {
 	    $serverip = $array["ip"];
 	    echo $serverip;
@@ -17,19 +17,19 @@ while (true) {
 	    $db = $array["db"];
 
 		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
-		$sql = mysqli_query($db, $query) or die(mysqli_error());
+		$sql = mysqli_query($connection, $query) or die(mysqli_error());
 
 		if (isset($db)) {
 			$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
-			$sql = mysqli_query($db, $query) or die(mysqli_error());
+			$sql = mysqli_query($connection, $query) or die(mysqli_error());
 		}
 		if ($errs == 1) {
 			$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
-			$sql = mysqli_query($db, $query) or die(mysqli_error());
+			$sql = mysqli_query($connection, $query) or die(mysqli_error());
 		}
 		if ($elastic == 1) {
 			$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
-			$sql = mysqli_query($db, $query) or die(mysqli_error());
+			$sql = mysqli_query($connection, $query) or die(mysqli_error());
 		}
 	}
 	mysqli_close($db);
