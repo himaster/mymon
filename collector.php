@@ -9,6 +9,7 @@
 #else die("Server IP not set.\n");
 
 $file = fopen("./servers.conf", "r");
+$servername = "mymon.pkwteile.de";
 
 while(! feof($file)) {
     $line = fgets($file);
@@ -82,7 +83,7 @@ function la($serverip) {
 	}
 	unset($connection);
 	return "<a title=\"Click to show processes\" 
-		href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$serverip. "\"
+		href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
 		target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
 }
 
@@ -140,7 +141,7 @@ function err500($serverip) {
     unset($connection);
 
     return "<a title=\"Click to show 500 errors\" 
-    		 href=https://". $SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$serverip. " 
+    		 href=https://". $servername. "/index.php?task=500err&serverip=" .$serverip. " 
     		 target='_blank'>" .$str. "\n</a>";
 }
 
