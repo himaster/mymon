@@ -40,13 +40,13 @@ function runtask($task, $serverip) {
 			echo la($serverip);
 			break;
 		case "rep":
-			rep($serverip);
+			echo rep($serverip);
 			break;
 		case "500":
-			err500($serverip);
+			echo err500($serverip);
 			break;
 		case "elastic":
-			elastic($serverip);
+			echo elastic($serverip);
 			break;
 		default:
 			echo "Unknown task.";
@@ -112,15 +112,15 @@ function rep($serverip) {
 
     if ($delta == 0) $deltafontcolor = "<font color='green'>";
     else $deltafontcolor = "<font color='red'>";
+
+    unset($connection);
     
-    echo "<a title=\"Click to restart replication\" 
+    return "<a title=\"Click to restart replication\" 
     		 href=\"#\" 
     		 onclick=\"myAjax('" .$serverip. "')\">
     		 SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		 IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
     		 Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
-
-    unset($connection);
 }
 
 function err500($serverip) {
@@ -135,11 +135,11 @@ function err500($serverip) {
     $str = stream_get_contents($stream);
     $str = trim(preg_replace('/\s+/', ' ', $str));
     
-    echo "<a title=\"Click to show 500 errors\" 
+    unset($connection);
+
+    return "<a title=\"Click to show 500 errors\" 
     		 href=https://". $SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=500err&serverip=" .$serverip. " 
     		 target='_blank'>" .$str. "\n</a>";
-    
-    unset($connection);
 }
 
 function elastic($serverip) {
@@ -163,5 +163,7 @@ function elastic($serverip) {
 	if (empty($error_output)) $elasticoutput = "<font color='green'>" .$output. "</font>";
 	else $elasticoutput = "<font color='red'>Timeout</font>";
 
-	echo $elasticoutput;
+	unset($connection);
+
+	return $elasticoutput;
 }
