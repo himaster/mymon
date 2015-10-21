@@ -37,7 +37,7 @@ return(0);
 function runtask($task, $serverip) {
 	switch ($task) {
 		case "la":
-			la($serverip);
+			echo la($serverip);
 			break;
 		case "rep":
 			rep($serverip);
@@ -78,10 +78,10 @@ function la($serverip) {
 	} else {
 		$fontcolor = "<font color='red'>";
 	}
-	echo "<a title=\"Click to show processes\" 
+	unset($connection);
+	return "<a title=\"Click to show processes\" 
 		href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$serverip. "\"
 		target='_blank'>" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
-	unset($connection);
 }
 
 function rep($serverip) {
