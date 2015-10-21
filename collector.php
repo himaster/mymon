@@ -9,7 +9,7 @@ $servername = "mymon.pkwteile.de";
 while (true) {
 	$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
 	$sql = mysqli_query($connection, $query) or die(mysql_error());
-	while($array = mysqli_fetch_array($sql)) {
+	while($array = mysqli_fetch_array($connection, $sql)) {
 	    $serverip = $array["ip"];
 	    echo $serverip;
 	    $errs = $array["err"];
@@ -32,7 +32,7 @@ while (true) {
 			$sql = mysqli_query($connection, $query) or die(mysqli_error());
 		}
 	}
-	mysqli_close($db);
+	mysqli_close($connection);
 
 }
 return(0);
