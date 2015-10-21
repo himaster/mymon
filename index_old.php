@@ -151,10 +151,26 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'la':
-				$query = "SELECT la FROM stats WHERE ip=\"{$_GET['serverip']}\" LIMIT 1";
-				$result = mysql_query($query) or die(mysql_error());
-				$row = mysql_fetch_assoc($result);
-				echo $row[1];
+				$stream = ssh2_exec($connection, "/usr/bin/uptime");
+				stream_set_blocking($stream, true);
+				$str = stream_get_contents($stream);
+				$la = substr(strstr($str, 'average:'), 9, strlen($str));
+				$la2 = substr($la, 0, strpos($la, ','));
+				$la1 = intval($la2);
+				$stream = ssh2_exec($connection, "grep -c processor /proc/cpuinfo");
+				stream_set_blocking($stream, true);
+				$core = stream_get_contents($stream);
+				echo "<a title=\"Click to show processes\" 
+						 href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/index.php?task=top&serverip=" .$_GET['serverip']. "\"
+						 target='_blank'>";
+				if ($la1 < ($core/2)) {
+					echo "<font color='green'>";
+				} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
+					echo "<font color='#CAC003'>";
+				} else {
+					echo "<font color='red'>";
+				}
+				echo "<b>" .$la. "</b></font></a>";
 				break;
 
 			case 'rep':

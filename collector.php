@@ -2,12 +2,7 @@
 
 <?php
 
-#if (isset($argv[1])) $task = $argv[1];
-#else die("Task not set.");
-
-#if (isset($argv[2])) $serverip = $argv[2];
-#else die("Server IP not set.\n");
-require_once("connect.php");
+include_once("connect.php");
 
 $file = fopen("./servers.conf", "r");
 $servername = "mymon.pkwteile.de";
@@ -182,3 +177,5 @@ function elastic($serverip) {
 
 	return $elasticoutput;
 }
+
+?>
