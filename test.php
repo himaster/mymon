@@ -9,6 +9,7 @@ if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rs
 
 $str = ssh2_return($connection, "mysql -e 'show slave status\G'");
 
+print_r($str);
 $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
 $sql = trim(preg_replace('/\s+/', ' ', $sql));
 
@@ -28,7 +29,6 @@ if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
 else $deltafontcolor = "<font color=\"red\">";
 
 unset($connection);
-echo "SQL=".$sql;
 echo "<a title=\"Click to restart replication\" 
     	 href=\"#\" 
     	 onclick=\"myAjax(\'" .$serverip. "\')\">
