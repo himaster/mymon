@@ -157,14 +157,11 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case '500':
-				print_r(get_data("500", $_GET['serverip']));
+				echo get_data("500", $_GET['serverip']);
 				break;
 
 			case 'elastic':
-				$query = "SELECT elastic FROM stats WHERE ip=\"{$_GET['serverip']}\" LIMIT 1";
-				$result = mysql_query($query) or die(mysql_error());
-				$row = mysql_fetch_assoc($result);
-				echo $row["elastic"];
+				echo get_data("elastic", $_GET['serverip']);
 				break;
 
 			case "confirm":
