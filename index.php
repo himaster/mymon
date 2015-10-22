@@ -61,8 +61,9 @@ if (isset($_COOKIE["mymon"])) {
 				if (!isset($_GET['serverip'])){
    					die('Server is not defined!');
 				}
-				
+
 			    $backin = array("88.198.182.132","88.198.182.134","88.198.182.146");
+			    $backout = array("217.118.19.156", "217.89.150.114")
 			    if (in_array($_GET['serverip'], $backin)){
 			    	$masterip = "88.198.182.130";
 					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\",
@@ -70,7 +71,7 @@ if (isset($_COOKIE["mymon"])) {
 											   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\",
 											   MASTER_LOG_FILE=\"" .$file. "\",
 											   MASTER_LOG_POS=" .$position. ";";
-			    } elseif ($_GET['serverip'] == "217.118.19.156") {
+			    } elseif (in_array($_GET['serverip']), $backout) {
 			    	$masterip = "88.198.182.130";
 					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.130\",
 											   MASTER_USER=\"replication\",
