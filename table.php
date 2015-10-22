@@ -1,5 +1,6 @@
 <?php 
     include "menu.php";
+    include_once("connect.php");
 ?>
 <table class="main_table">
         <col span="4">
@@ -16,7 +17,7 @@
     flush();
     ob_flush();
     $query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-    $result = mysql_query($db, $query) or die("ERROR!!! :  " .mysql_error());
+    $result = mysql_query($query, $db) or die("ERROR!!! :  " .mysql_error());
     while($array = mysql_fetch_assoc($result)) {
         $serverip = $array["ip"];
         $server = $array["servername"];
