@@ -83,7 +83,7 @@ if (isset($_COOKIE["mymon"])) {
 											   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\",
 											   MASTER_LOG_FILE=\"" .$file. "\",
 											   MASTER_LOG_POS=" .$position. ";";
-			    } elseif ($_GET['serverip'] == "188.138.33.212") {
+			    } elseif ($_GET['serverip'] == "217.118.19.156") {
 			    	$masterip = "88.198.182.130";
 				    $connection_master = ssh2_connect($masterip, 22);
 					if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
