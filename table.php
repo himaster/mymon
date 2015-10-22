@@ -1,6 +1,6 @@
 <?php 
     include "menu.php";
-    include_once("connect.php");
+    include "connect.php";
 ?>
 <table class="main_table">
         <col span="4">
