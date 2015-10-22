@@ -109,7 +109,7 @@ function rep($serverip) {
 
     $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
     $sql = trim(preg_replace('/\s+/', ' ', $sql));
-
+    die("SQL=" .$sql);
     $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
     $io = trim(preg_replace('/\s+/', ' ', $io));
 
