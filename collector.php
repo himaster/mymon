@@ -109,7 +109,7 @@ function rep($serverip) {
 
     $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
     $sql = trim(preg_replace('/\s+/', ' ', $sql));
-    die("SQL=" .$sql);
+
     $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
     $io = trim(preg_replace('/\s+/', ' ', $io));
 
@@ -126,7 +126,7 @@ function rep($serverip) {
     else $deltafontcolor = "<font color=\"red\">";
 
     unset($connection);
-    
+  	die($sql, $io, $delta);  
     return "<a title=\"Click to restart replication\" 
     		 href=\"#\" 
     		 onclick=\"myAjax(\'" .$serverip. "\')\">
