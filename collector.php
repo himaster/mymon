@@ -126,7 +126,6 @@ function rep($serverip) {
     else $deltafontcolor = "<font color=\"red\">";
 
     unset($connection);
-  	die($sql.$io. $delta);  
     return "<a title=\"Click to restart replication\" 
     		 href=\"#\" 
     		 onclick=\"myAjax(\'" .$serverip. "\')\">
