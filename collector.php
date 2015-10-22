@@ -165,7 +165,7 @@ function elastic($serverip) {
 
 	unset($connection);
 
-	return "<font color=\"green\">" .$output. "</font>";
+	return "<font color=\"green\">" .$str. "</font>";
 }
 
 ?>
