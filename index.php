@@ -157,7 +157,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case '500':
-				echo get_data("500", $_GET['serverip']);
+				print_r get_data("500", $_GET['serverip']);
 				break;
 
 			case 'elastic':
