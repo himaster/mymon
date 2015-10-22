@@ -1,5 +1,5 @@
 <?php
-
+$serverip = "136.243.42.200";
 $connection = ssh2_connect($serverip, 22);
 if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 	die("<font color=\"red\">* * *</font>");
