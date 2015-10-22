@@ -126,12 +126,6 @@ function rep($serverip) {
     else $deltafontcolor = "<font color=\"red\">";
 
     unset($connection);
-    echo "<a title=\"Click to restart replication\" 
-    		 href=\"#\" 
-    		 onclick=\"myAjax(\'" .$serverip. "\')\">
-    		 SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
-    		 IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		 Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 
     return "<a title=\"Click to restart replication\" 
     		 href=\"#\" 
@@ -170,8 +164,8 @@ function elastic($serverip) {
 		echo -n \$((\$date2-\$date1));");
 
 	unset($connection);
-
-	return "<font color=\"green\">" .$str. "</font>";
+	if ( $str == "Timeout" ) return "<font color=\"red\">" .$str. "</font>";
+	else return "<font color=\"green\">" .$str. "</font>";
 }
 
 ?>
