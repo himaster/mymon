@@ -36,9 +36,7 @@ if (isset($_COOKIE["mymon"])) {
 				echo("<a href=\"#\" onclick=\"self.close()\">");
 				echo("<img src=\"./images/back.png\"></a>");
 				echo("</div><div class=\"textstyle\">");
-				$stream1 = ssh2_exec($connection, "cat /var/log/500.errs");
-				stream_set_blocking($stream1, true);
-				$str = stream_get_contents($stream1);
+				$str = ssh2_return($connection, "cat /var/log/500.errs");
 				echo nl2br($str);
 				echo "</div>";
 				include "footer.html";
