@@ -25,6 +25,7 @@
         $elastic = $array["el"];
         $db = $array["db"];
         $serverdb = $server . "_db";
+        die("test");
 		echo "<tr>";
         echo "<td>" .$server. "</td>";
 		echo "<td><div id='" .$server. "_la'></div></td>";
