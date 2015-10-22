@@ -28,6 +28,7 @@ if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
 else $deltafontcolor = "<font color=\"red\">";
 
 unset($connection);
+echo $sql;
 echo "<a title=\"Click to restart replication\" 
     	 href=\"#\" 
     	 onclick=\"myAjax(\'" .$serverip. "\')\">
