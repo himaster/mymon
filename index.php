@@ -118,7 +118,6 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'la':
-			 	die("test");
 				echo get_data("la", $_GET['serverip']);
 				break;
 
