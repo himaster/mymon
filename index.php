@@ -49,9 +49,7 @@ if (isset($_COOKIE["mymon"])) {
 				$mass = file($file);
 				$text = file_get_contents($file);
 				if (isset($_POST['text'])) {
-					// save the text contents
 					file_put_contents($file, $_POST['text']);
-					// redirect to form again
 					header("Location: https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 					printf("<a href=\"%s\">Moved</a>.", htmlspecialchars($url));
 					exit();
@@ -151,10 +149,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'la':
-				$query = "SELECT la FROM stats WHERE ip=\"{$_GET['serverip']}\" LIMIT 1";
-				$result = mysql_query($query) or die(mysql_error());
-				$row = mysql_fetch_assoc($result);
-				echo $row["la"];
+				echo get_data("la", $_GET['serverip']);
 				break;
 
 			case 'rep':
