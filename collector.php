@@ -1,6 +1,7 @@
 #!/bin/env php
 
 <?php
+include_once "functions.php";
 
 $dblocation = "localhost";
 $dbname = "mymon";
