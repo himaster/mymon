@@ -15,18 +15,14 @@
     echo str_repeat(' ',1024*128);
     flush();
     ob_flush();
-    $file = fopen("./servers.conf", "r");
-    while(! feof($file)) {
-        $line = fgets($file);
-        if ($line[0] == '#') {
-			continue;
-		}
-        $array = explode(" ", $line);
-        $serverip = $array[0];
-        $server = $array[1];
-        $errs = $array[2];
-        $elastic = $array[3];
-        $db = $array[4];
+    $query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
+    $result = mysql_query($db, $query) or die("ERROR!!! :  " .mysql_error());
+    while($array = mysql_fetch_assoc($result)) {
+        $serverip = $array["ip"];
+        $server = $array["servername"];
+        $errs = $array["err"];
+        $elastic = $array["el"];
+        $db = $array["db"];
         $serverdb = $server . "_db";
 		echo "<tr>";
         echo "<td>" .$server. "</td>";
@@ -53,6 +49,6 @@
             echo "});";
         echo "</script>";
     }
-	fclose($file);
+	mysql_close($db);
 ?>
 </table>
