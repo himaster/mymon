@@ -63,7 +63,7 @@ if (isset($_COOKIE["mymon"])) {
 				}
 
 			    $backin = array("88.198.182.132","88.198.182.134","88.198.182.146");
-			    $backout = array("217.118.19.156","217.89.150.114");
+			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
 			    if (in_array($_GET['serverip'], $backin)){
 			    	$masterip = "88.198.182.130";
 					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\",
@@ -86,7 +86,6 @@ if (isset($_COOKIE["mymon"])) {
 				    						   MASTER_LOG_FILE=\"" .$file. "\",
 				    						   MASTER_LOG_POS=" .$position. ";";
 			    }
-			    die($_GET['serverip']);
 			    $connection_master = ssh2_connect($masterip, 22);
 				if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">Connection to master failed!</font>");
