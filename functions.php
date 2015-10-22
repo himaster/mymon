@@ -25,7 +25,7 @@ function ssh2_return( $connection, $query ) {
 	stream_set_blocking( $stream, TRUE );
 	$output = stream_get_contents( $stream );
 
-	if (!empty($error_output)) return "Timeout";
+	if (!empty($error_output)) return $error_output;
 	else return $output;
 }
 ?>
