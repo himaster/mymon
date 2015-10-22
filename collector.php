@@ -31,18 +31,15 @@ while($array = mysqli_fetch_assoc($result)) {
 	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
 	$sql = mysqli_query($connection, $query) or die(mysqli_error());
 
-	if ($db == 1) {
-		$query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
-		$sql = mysqli_query($connection, $query) or die(mysqli_error());
-	}
-	if ($errs == 1) {
-		$query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
-		$sql = mysqli_query($connection, $query) or die(mysqli_error());
-	}
-	if ($elastic == 1) {
-		$query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
-		$sql = mysqli_query($connection, $query) or die(mysqli_error());
-	}
+	if ($db == 1) $query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
+	else $query = "UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';";
+	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	if ($errs == 1) $query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
+	else $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';";
+	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	if ($elastic == 1) $query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
+	else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
+	$sql = mysqli_query($connection, $query) or die(mysqli_error());
 }
 
 mysqli_free_result($result);
