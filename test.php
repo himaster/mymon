@@ -1,37 +1,53 @@
+#!/bin/env php
+
 <?php
 
-include "functions.php";
-$serverip = "136.243.42.200";
-$connection = ssh2_connect($serverip, 22);
-if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-	die("<font color=\"red\">* * *</font>");
+include_once "functions.php";
+$dblocation = "localhost";
+$dbname = "mymon";
+$dbuser = "mymon";
+$dbpasswd = "eiGo7iek";
+$connection = mysqli_connect($dblocation,$dbuser,$dbpasswd);
+if (!$connection) {
+	echo( "<P> В настоящий момент сервер базы данных не доступен, поэтому корректное отображение страницы невозможно. </P>" );
+	exit();
+}
+if (!mysqli_select_db($connection, $dbname)) {
+	echo( "<P> В настоящий момент база данных не доступна, поэтому корректное отображение страницы невозможно. .</P>" );
+	exit();
 }
 
-$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
+$servername = "mymon.pkwteile.de";
+$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
+$result = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysqli_error($connection));
+$array = mysqli_fetch_assoc($result);
 
-print_r($str);
-$sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
-$sql = trim(preg_replace('/\s+/', ' ', $sql));
+$child_processes = array();
+$pid = getmypid();
+echo "Parent: ".$pid."\n";
+$i = 0;
+while (count($child_processes) < 10) {
+    $pid = pcntl_fork();
+    if ($pid == -1) {
+	die("Child process can't be created");
+    } elseif ($pid) {
+	$child_processes[$pid] = true;
+	parent();
+    } else {
+	child();
+    }
+}
 
-$io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
-$io = trim(preg_replace('/\s+/', ' ', $io));
+exit;
 
-$delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
-$delta = trim(preg_replace('/\s+/', ' ', $delta));
 
-if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
-else $sqlfontcolor = "<font color=\"red\">";
+function parent() {
+	global $i;
+	$i++;
+}
 
-if ($io == "Yes") $iofontcolor = "<font color=\"green\">";
-else $iofontcolor = "<font color=\"red\">";
+function child() {
+	global $i;
+	echo "I= ".$i;
+}
 
-if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
-else $deltafontcolor = "<font color=\"red\">";
-
-unset($connection);
-echo "<a title=\"Click to restart replication\" 
-    	 href=\"#\" 
-    	 onclick=\"myAjax(\'" .$serverip. "\')\">
-    	 SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
-    	 IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    	 Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
