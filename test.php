@@ -24,6 +24,7 @@ while($array = mysqli_fetch_assoc($result)) {
 }
 
 mysqli_close($connection);
+unset($result);
 
 exit;
 
@@ -66,7 +67,6 @@ function child_() {
 
 }
 
-
 function runtask($task, $serverip) {
 	switch ($task) {
 		case "la":
@@ -108,7 +108,9 @@ function la($serverip) {
 	} else {
 		$fontcolor = "<font color=\"red\">";
 	}
+
 	unset($connection);
+	
 	return "<a title=\"Click to show processes\" 
 		href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
 		target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
@@ -179,6 +181,7 @@ function elastic($serverip) {
 		echo -n \$((\$date2-\$date1));");
 
 	unset($connection);
+
 	if ( $str == "Timeout" ) return "<font color=\"red\">" .$str. "</font>";
 	else return "<font color=\"green\">" .$str. "</font>";
 }
