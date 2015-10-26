@@ -194,10 +194,12 @@ function elastic($serverip) {
 
 function sigHandler($signo) {
 	global $stop_server;
+	global $connection;
 	switch($signo) {
 		case SIGTERM: {
 			$stop_server = true;
 			echo getmypid()."EXIT!";
+			unset($connection);
 			break;
 		}
 		default: {
