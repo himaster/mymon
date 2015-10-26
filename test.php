@@ -26,11 +26,10 @@ while($array = mysqli_fetch_assoc($result)) {
     if ($pid == -1) {
 	die("Child process can't be created");
     } elseif ($pid) {
-	parent();
+		parent_();
     } else {
-	child();
-	echo "closed ".getmypid();
-	exit;
+		child_();
+		exit;
     }
 }
 
@@ -38,15 +37,13 @@ mysqli_close($connection);
 
 exit;
 
-function parent_once() {
+
+
+function parent_() {
+
 }
 
-function parent() {
-	global $i;
-	$i++;
-}
-
-function child() {
+function child_() {
 	global $i;
 	global $array;
 
