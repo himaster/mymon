@@ -5,7 +5,7 @@ include_once "functions.php";
 
 declare(ticks=1);
 
-pcntl_signal(SIGTERM, "sig_handler");
+pcntl_signal(SIGTERM, "sigHandler");
 
 $connection = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
 if (!$connection) die( "MySQL server unavailable." );
@@ -197,9 +197,9 @@ function sigHandler($signo) {
 	global $connection;
 	switch($signo) {
 		case SIGTERM: {
-			$stop_server = true;
-			echo getmypid()."EXIT!";
-			unset($connection);
+			#$stop_server = true;
+			#echo getmypid()."EXIT!";
+			echo getmypid().": SIGTERM stop";
 			break;
 		}
 		default: {
