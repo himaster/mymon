@@ -35,8 +35,6 @@ function parent_() {
 
 function child_() {
 	global $array;
-	
-	echo "PID:".getmypid();
 
 	$connection1 = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
 	if (!$connection1) die( "MySQL server unavailable." );
@@ -46,7 +44,7 @@ function child_() {
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
-	echo " - ".$serverip. " - started\n";
+	echo "PID:".getmypid()." - ".$serverip. " - started\n";
 
 	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
 	$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
