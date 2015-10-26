@@ -36,7 +36,7 @@ function parent_() {
 function child_() {
 	global $array;
 	
-	echo -n "PID:".getmypid();
+	echo "PID:".getmypid();
 
 	$connection1 = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
 	if (!$connection1) die( "MySQL server unavailable." );
