@@ -40,6 +40,7 @@ function parent_() {
 
 function child_() {
 	global $array;
+	global $stop_server;
 
 	$connection1 = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
 	if (!$connection1) die( "MySQL server unavailable." );
@@ -196,6 +197,7 @@ function sigHandler($signo) {
 	switch($signo) {
 		case SIGTERM: {
 			$stop_server = true;
+			echo getmypid()."EXIT!";
 			break;
 		}
 		default: {
