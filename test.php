@@ -66,8 +66,6 @@ function child_() {
 	mysqli_close($connection1);
 	unset($result);
 
-	echo "PID:".getmypid()." - ".$serverip. " - ended\n";
-
 }
 
 
