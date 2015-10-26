@@ -1,4 +1,4 @@
-#!/opt/remi/php55/root/usr/bin/php
+#!/usr/bin/php
 
 <?php
 include_once "functions.php";
@@ -29,9 +29,14 @@ while($array = mysqli_fetch_assoc($result)) {
 	parent();
     } else {
 	child();
+	echo "closed ".getmypid();
 	exit;
     }
 }
+
+mysqli_close($connection);
+
+exit;
 
 function parent_once() {
 }
@@ -45,29 +50,45 @@ function child() {
 	global $i;
 	global $array;
 
+	$dblocation = "188.138.234.38";
+	$dbname = "mymon";
+	$dbuser = "mymon";
+	$dbpasswd = "eiGo7iek";
+	$connection1 = mysqli_connect($dblocation,$dbuser,$dbpasswd);
+	if (!$connection1) {
+		echo( "<P> В настоящий момент сервер базы данных не доступен, поэтому корректное отображение страницы невозможно. </P>" );
+		exit();
+	}
+	if (!mysqli_select_db($connection1, $dbname)) {
+		echo( "<P> В настоящий момент база данных не доступна, поэтому корректное отображение страницы невозможно. .</P>" );
+		exit();
+	}
+
 	$serverip = $array["ip"];
-	echo "PID:".getmypid()." - ".$serverip. "\n";
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
+	echo "PID:".getmypid()." - ".$serverip. " - started\n";
 
 	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	$sql = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
 	if ($db == 1) $query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
 	else $query = "UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	$sql = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
 	if ($errs == 1) $query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
 	else $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	$sql = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
 	if ($elastic == 1) $query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
 	else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+	$sql = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
-	mysqli_free_result($result);
-	unset($result);
+	mysqli_close($connection1);
+	unset($sql);
+	echo "PID:".getmypid()." - ".$serverip. " - ended\n";
+
 }
 
 
