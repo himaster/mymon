@@ -3,6 +3,10 @@
 <?php
 include_once "functions.php";
 
+declare(ticks=1);
+
+pcntl_signal(SIGTERM, "sig_handler");
+
 $connection = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
 if (!$connection) die( "MySQL server unavailable." );
 if (!mysqli_select_db($connection, "mymon")) die( "Can't use db." );
@@ -46,7 +50,7 @@ function child_() {
 	$elastic = $array["el"];
 	$db = $array["db"];
 	echo "PID:".getmypid()." - ".$serverip. " - started\n";
-	while (true) {
+	while (!$stop_server) {
 		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
 		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
@@ -62,7 +66,7 @@ function child_() {
 		else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
 		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 	}
-	
+
 	mysqli_close($connection1);
 	unset($result);
 
@@ -187,3 +191,15 @@ function elastic($serverip) {
 	else return "<font color=\"green\">" .$str. "</font>";
 }
 
+function sigHandler($signo) {
+	global $stop_server;
+	switch($signo) {
+		case SIGTERM: {
+			$stop_server = true;
+			break;
+		}
+		default: {
+			//все остальные сигналы
+		}
+	}
+}
