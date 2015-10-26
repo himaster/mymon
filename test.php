@@ -46,22 +46,23 @@ function child_() {
 	$elastic = $array["el"];
 	$db = $array["db"];
 	echo "PID:".getmypid()." - ".$serverip. " - started\n";
+	while (true) {
+		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
-	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
-	$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+		if ($db == 1) $query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
+		else $query = "UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
-	if ($db == 1) $query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
-	else $query = "UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';";
-	$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+		if ($errs == 1) $query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
+		else $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
-	if ($errs == 1) $query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
-	else $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';";
-	$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
-
-	if ($elastic == 1) $query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
-	else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
-	$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
-
+		if ($elastic == 1) $query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
+		else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+	}
+	
 	mysqli_close($connection1);
 	unset($result);
 
