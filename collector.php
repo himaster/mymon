@@ -9,15 +9,14 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, "sigHandler");
 
-$connection = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
-if (!$connection) die( "MySQL server unavailable." );
-if (!mysqli_select_db($connection, "mymon")) die( "Can't use db." );
 $servername = "mymon.pkwteile.de";
-$query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-$result = mysqli_query($connection, $query) or die("MySQL error :  " .mysqli_error($connection));
+
+$connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
+$result = $connection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($connection->error);
+
 $i = 1;
 
-while($array = mysqli_fetch_assoc($result)) {
+while($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
     if ($pid == -1) {
 	die("Child process can't be created");
@@ -28,9 +27,9 @@ while($array = mysqli_fetch_assoc($result)) {
 		exit;
     }
 }
+$result->free();
+$connection->close();
 
-mysqli_close($connection);
-unset($result);
 
 exit;
 
@@ -44,9 +43,7 @@ function child_() {
 	global $array;
 	global $stop_server;
 
-	$connection1 = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
-	if (!$connection1) die( "MySQL server unavailable." );
-	if (!mysqli_select_db($connection1, "mymon")) die( "Can't use db." );
+	$connection1 = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 
 	$serverip = $array["ip"];
 	$errs = $array["err"];
@@ -54,20 +51,21 @@ function child_() {
 	$db = $array["db"];
 	echo "PID:".getmypid()." - ".$serverip. " - started\n";
 	while (!$stop_server) {
-		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
-		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+		#$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
+		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
-		if ($db == 1) $query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
-		else $query = "UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';";
-		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+		if ($db == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
+		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
-		if ($errs == 1) $query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
-		else $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';";
-		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+		if ($errs == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
+		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
-		if ($elastic == 1) $query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
-		else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
-		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+		if ($elastic == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
+		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
 		sleep(10);
 	}
