@@ -61,6 +61,7 @@ if (isset($_COOKIE["mymon"])) {
 				if (!isset($_GET['serverip'])){
    					die('Server is not defined!');
 				}
+				$masterip = "88.198.182.130";
 			    $connection_master = ssh2_connect($masterip, 22);
 				if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">Connection to master failed!</font>");
@@ -69,7 +70,7 @@ if (isset($_COOKIE["mymon"])) {
 			    $file = trim(preg_replace('/\s+/', ' ', $file));
 			    $position = ssh2_return($connection_master,  "mysql -N -e 'show master status;' | awk '{print $2}'");
 			    unset($connection_master);
-			    
+
 			    $backin = array("88.198.182.132","88.198.182.134","88.198.182.146");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
 			    if (in_array($_GET['serverip'], $backin)){
