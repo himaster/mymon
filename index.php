@@ -18,8 +18,8 @@ if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
 	$password = no_injection($_COOKIE["mymon"]["password"]);
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
-	$sql = mysql_query($query) or die(mysql_error());
-	if (mysql_num_rows($sql) == 1) {
+	$return = mysql_query($query) or die(mysql_error());
+	if (mysql_num_rows($return) == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
 			if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
@@ -89,7 +89,7 @@ if (isset($_COOKIE["mymon"])) {
 			    $position = ssh2_return($connection_master,  "mysql -N -e 'show master status;' | awk '{print $2}'");
 			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=\"" .$position. "\";"
 			    unset($connection_master);
-			    
+			    echo $query;
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) {
 			    	ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
@@ -162,8 +162,8 @@ elseif(isset($_POST['auth_submit'])) {
 	$login = no_injection($_POST['login']);
 	$password = md5(no_injection($_POST['password']));
 	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
-	$sql = mysql_query($query) or die(mysql_error());
-	if (mysql_num_rows($sql) == 1) {
+	$return = mysql_query($query) or die(mysql_error());
+	if (mysql_num_rows($return) == 1) {
 		setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 		setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 		include "header.html";
