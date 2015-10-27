@@ -214,12 +214,10 @@ function sigHandler($signo) {
 	switch($signo) {
 		case SIGTERM: {
 			$stop_server = true;
-			#echo getmypid()."EXIT!";
 			echo getmypid().": SIGTERM stop\n";
 			break;
 		}
 		default: {
-			//все остальные сигналы
 		}
 	}
 }
