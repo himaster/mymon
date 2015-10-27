@@ -149,7 +149,7 @@ function rep($serverip) {
 	    if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
 	    else $deltafontcolor = "<font color=\"red\">";
 	} else {
-		$sql = $io = $delta = "*";
+		$sql = $io = $delta = "***";
 		$sqlfontcolor = $iofontcolor = $sqlfontcolor = "<font color=\"red\">";
 	}
 
