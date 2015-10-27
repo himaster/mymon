@@ -213,7 +213,7 @@ function sigHandler($signo) {
 	global $connection;
 	switch($signo) {
 		case SIGTERM: {
-			#$stop_server = true;
+			$stop_server = true;
 			#echo getmypid()."EXIT!";
 			echo getmypid().": SIGTERM stop";
 			break;
