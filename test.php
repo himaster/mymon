@@ -72,9 +72,6 @@ function child_() {
 		sleep(10);
 	}
 
-#	mysqli_close($connection1);
-#	unset($result);
-
 }
 
 function runtask($task, $serverip) {
