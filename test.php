@@ -97,24 +97,26 @@ function runtask($task, $serverip) {
 function la($serverip) {
 	global $servername;
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
-	}
-	$str = ssh2_return($connection, "/usr/bin/uptime");
-	$la = substr(strstr($str, 'average:'), 9, strlen($str));
-	$la = trim(preg_replace('/\s+/', ' ', $la));
-	$la1 = substr($la, 0, strpos($la, ','));
-	$la1 = intval($la1);
-	$la1 = trim(preg_replace('/\s+/', ' ', $la1));
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "/usr/bin/uptime");
+		$la = substr(strstr($str, 'average:'), 9, strlen($str));
+		$la = trim(preg_replace('/\s+/', ' ', $la));
+		$la1 = substr($la, 0, strpos($la, ','));
+		$la1 = intval($la1);
+		$la1 = trim(preg_replace('/\s+/', ' ', $la1));
 
-	$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
+		$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
 
-	if ($la1 < ($core/2)) {
-		$fontcolor = "<font color=\"green\">";
-	} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
-		$fontcolor = "<font color=\"#CAC003\">";
+		if ($la1 < ($core/2)) {
+			$fontcolor = "<font color=\"green\">";
+		} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
+			$fontcolor = "<font color=\"#CAC003\">";
+		} else {
+			$fontcolor = "<font color=\"red\">";
+		}
 	} else {
 		$fontcolor = "<font color=\"red\">";
+		$la = "* * *";
 	}
 
 	unset($connection);
@@ -126,29 +128,30 @@ function la($serverip) {
 
 function rep($serverip) {
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
+
+	    $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
+	    $sql = trim(preg_replace('/\s+/', ' ', $sql));
+
+	    $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
+	    $io = trim(preg_replace('/\s+/', ' ', $io));
+
+	    $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
+	    $delta = trim(preg_replace('/\s+/', ' ', $delta));
+
+	    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
+	    else $sqlfontcolor = "<font color=\"red\">";
+
+	    if ($io == "Yes") $iofontcolor = "<font color=\"green\">";
+	    else $iofontcolor = "<font color=\"red\">";
+
+	    if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
+	    else $deltafontcolor = "<font color=\"red\">";
+	} else {
+		$sql = $io = $delta = "*";
+		$sqlfontcolor = $iofontcolor = $sqlfontcolor = "<font color=\"red\">";
 	}
-
-	$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
-
-    $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
-    $sql = trim(preg_replace('/\s+/', ' ', $sql));
-
-    $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
-    $io = trim(preg_replace('/\s+/', ' ', $io));
-
-    $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
-    $delta = trim(preg_replace('/\s+/', ' ', $delta));
-
-    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
-    else $sqlfontcolor = "<font color=\"red\">";
-
-    if ($io == "Yes") $iofontcolor = "<font color=\"green\">";
-    else $iofontcolor = "<font color=\"red\">";
-
-    if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
-    else $deltafontcolor = "<font color=\"red\">";
 
     unset($connection);
 
@@ -163,13 +166,13 @@ function rep($serverip) {
 function err500($serverip) {
 	global $servername;
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
-	}
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "cat /var/log/500err.log");
+	    $str = trim(preg_replace('/\s+/', ' ', $str));
+    } else {
+    	$str = "***";
+    }
 
-	$str = ssh2_return($connection, "cat /var/log/500err.log");
-    $str = trim(preg_replace('/\s+/', ' ', $str));
-    
     unset($connection);
 
     return "<a title=\"Click to show 500 errors\" 
@@ -179,19 +182,28 @@ function err500($serverip) {
 
 function elastic($serverip) {
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
+										 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
+										 grep 'inet addr:' | 
+										 cut -d: -f2 | 
+										 awk '{ print $1}'`:9200/_cluster/health?pretty;
+										 date2=\$((\$(date +'%s%N') / 1000000));
+										 echo -n \$((\$date2-\$date1));");
+		if ( $str == "Timeout" ) {
+			$str = "***";
+			$fontcolor = "<font color=\"red\">";
+		} else {
+			$fontcolor = "<font color=\"green\">";
+		}
+	} else {
+		$str = "***";
+		$fontcolor = "<font color=\"red\">";
 	}
-	
-	$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
-		curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty;
-		date2=\$((\$(date +'%s%N') / 1000000));
-		echo -n \$((\$date2-\$date1));");
 
 	unset($connection);
 
-	if ( $str == "Timeout" ) return "<font color=\"red\">" .$str. "</font>";
-	else return "<font color=\"green\">" .$str. "</font>";
+	return $fontcolor.$str. "</font>";
 }
 
 function sigHandler($signo) {
