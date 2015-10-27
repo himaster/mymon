@@ -72,8 +72,8 @@ function child_() {
 		sleep(10);
 	}
 
-	mysqli_close($connection1);
-	unset($result);
+#	mysqli_close($connection1);
+#	unset($result);
 
 }
 
@@ -215,7 +215,7 @@ function sigHandler($signo) {
 		case SIGTERM: {
 			$stop_server = true;
 			#echo getmypid()."EXIT!";
-			echo getmypid().": SIGTERM stop";
+			echo getmypid().": SIGTERM stop\n";
 			break;
 		}
 		default: {
