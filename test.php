@@ -226,7 +226,7 @@ function sigHandler($signo) {
 
 function errHandler($errno, $errmsg, $filename, $linenum) {
 	$date = date('Y-m-d H:i:s (T)');
-	$f = fopen('/var/www/netbox.co/mymon/errors.txt', 'a');
+	$f = fopen('/var/log/mymon/errors.txt', 'a');
 	if (!empty($f)) {
 		$filename  =str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
 		$err  = "$date: $errmsg - $filename - $linenum\r\n";
