@@ -80,7 +80,7 @@ if (isset($_COOKIE["mymon"])) {
 				    						   MASTER_USER=\"replication\",
 				    						   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\",";
 			    }
-			    die($masterip);
+			    echo $masterip;
 			    $connection_master = ssh2_connect($masterip, 22);
 				if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">Connection to master failed!</font>");
