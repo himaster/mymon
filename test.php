@@ -5,7 +5,7 @@ include_once "functions.php";
 
 declare(ticks=1);
 
-set_error_handler('err_handler');
+set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, "sigHandler");
 
@@ -224,7 +224,7 @@ function sigHandler($signo) {
 	}
 }
 
-function err_handler($errno, $errmsg, $filename, $linenum) {
+function errHandler($errno, $errmsg, $filename, $linenum) {
 	$date = date('Y-m-d H:i:s (T)');
 	$f = fopen('errors.txt', 'a');
 	if (!empty($f)) {
