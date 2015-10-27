@@ -5,6 +5,8 @@ include_once "functions.php";
 
 declare(ticks=1);
 
+set_error_handler('err_handler');
+
 pcntl_signal(SIGTERM, "sigHandler");
 
 $connection = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
@@ -219,5 +221,16 @@ function sigHandler($signo) {
 		default: {
 			//все остальные сигналы
 		}
+	}
+}
+
+function err_handler($errno, $errmsg, $filename, $linenum) {
+	$date = date('Y-m-d H:i:s (T)');
+	$f = fopen('errors.txt', 'a');
+	if (!empty($f)) {
+		$filename  =str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
+		$err  = "$errmsg = $filename = $linenum\r\n";
+		fwrite($f, $err);
+		fclose($f);
 	}
 }
