@@ -58,7 +58,6 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "replica":
-				die("test");
 				if (!isset($_GET['serverip'])){
    					die('Server is not defined!');
 				}
@@ -90,6 +89,7 @@ if (isset($_COOKIE["mymon"])) {
 			    $position = ssh2_return($connection_master,  "mysql -N -e 'show master status;' | awk '{print $2}'");
 			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=\"" .$position. "\";";
 			    unset($connection_master);
+			    die("test");
 			    echo $query;
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) {
