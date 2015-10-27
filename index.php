@@ -85,6 +85,7 @@ if (isset($_COOKIE["mymon"])) {
 				    						   MASTER_LOG_FILE=\"" .$file. "\",
 				    						   MASTER_LOG_POS=" .$position. ";";
 			    }
+			    echo $query;
 			    $connection_master = ssh2_connect($masterip, 22);
 				if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">Connection to master failed!</font>");
