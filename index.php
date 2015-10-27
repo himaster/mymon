@@ -58,6 +58,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "replica":
+				die("test");
 				if (!isset($_GET['serverip'])){
    					die('Server is not defined!');
 				}
