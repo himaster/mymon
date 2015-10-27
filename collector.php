@@ -1,53 +1,78 @@
-#!/bin/env php
+#!/usr/bin/php
 
 <?php
 include_once "functions.php";
 
-$dblocation = "localhost";
-$dbname = "mymon";
-$dbuser = "mymon";
-$dbpasswd = "eiGo7iek";
-$connection = mysqli_connect($dblocation,$dbuser,$dbpasswd);
-if (!$connection) {
-	echo( "<P> В настоящий момент сервер базы данных не доступен, поэтому корректное отображение страницы невозможно. </P>" );
-	exit();
-}
-if (!mysqli_select_db($connection, $dbname)) {
-	echo( "<P> В настоящий момент база данных не доступна, поэтому корректное отображение страницы невозможно. .</P>" );
-	exit();
-}
+declare(ticks=1);
 
+set_error_handler('errHandler');
+
+pcntl_signal(SIGTERM, "sigHandler");
+
+$connection = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
+if (!$connection) die( "MySQL server unavailable." );
+if (!mysqli_select_db($connection, "mymon")) die( "Can't use db." );
 $servername = "mymon.pkwteile.de";
 $query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-$result = mysqli_query($connection, $query) or die("ERROR!!! :  " .mysqli_error($connection));
+$result = mysqli_query($connection, $query) or die("MySQL error :  " .mysqli_error($connection));
+$i = 1;
+
 while($array = mysqli_fetch_assoc($result)) {
-    $serverip = $array["ip"];
-    echo $serverip. "\n";
-    $errs = $array["err"];
-    $elastic = $array["el"];
-    $db = $array["db"];
-
-	$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
-
-	if ($db == 1) $query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
-	else $query = "UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
-
-	if ($errs == 1) $query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
-	else $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
-
-	if ($elastic == 1) $query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
-	else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
-	$sql = mysqli_query($connection, $query) or die(mysqli_error());
+    $pid = pcntl_fork();
+    if ($pid == -1) {
+	die("Child process can't be created");
+    } elseif ($pid) {
+		parent_();
+    } else {
+		child_();
+		exit;
+    }
 }
 
-mysqli_free_result($result);
+mysqli_close($connection);
 unset($result);
 
-return(0);
+exit;
 
+
+
+function parent_() {
+
+}
+
+function child_() {
+	global $array;
+	global $stop_server;
+
+	$connection1 = mysqli_connect("188.138.234.38", "mymon", "eiGo7iek");
+	if (!$connection1) die( "MySQL server unavailable." );
+	if (!mysqli_select_db($connection1, "mymon")) die( "Can't use db." );
+
+	$serverip = $array["ip"];
+	$errs = $array["err"];
+	$elastic = $array["el"];
+	$db = $array["db"];
+	echo "PID:".getmypid()." - ".$serverip. " - started\n";
+	while (!$stop_server) {
+		$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+
+		if ($db == 1) $query = "UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';";
+		else $query = "UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+
+		if ($errs == 1) $query = "UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';";
+		else $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+
+		if ($elastic == 1) $query = "UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';";
+		else $query = "UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';";
+		$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
+
+		sleep(10);
+	}
+
+}
 
 function runtask($task, $serverip) {
 	switch ($task) {
@@ -71,26 +96,30 @@ function runtask($task, $serverip) {
 function la($serverip) {
 	global $servername;
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
-	}
-	$str = ssh2_return($connection, "/usr/bin/uptime");
-	$la = substr(strstr($str, 'average:'), 9, strlen($str));
-	$la = trim(preg_replace('/\s+/', ' ', $la));
-	$la1 = substr($la, 0, strpos($la, ','));
-	$la1 = intval($la1);
-	$la1 = trim(preg_replace('/\s+/', ' ', $la1));
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "/usr/bin/uptime");
+		$la = substr(strstr($str, 'average:'), 9, strlen($str));
+		$la = trim(preg_replace('/\s+/', ' ', $la));
+		$la1 = substr($la, 0, strpos($la, ','));
+		$la1 = intval($la1);
+		$la1 = trim(preg_replace('/\s+/', ' ', $la1));
 
-	$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
+		$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
 
-	if ($la1 < ($core/2)) {
-		$fontcolor = "<font color=\"green\">";
-	} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
-		$fontcolor = "<font color=\"#CAC003\">";
+		if ($la1 < ($core/2)) {
+			$fontcolor = "<font color=\"green\">";
+		} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
+			$fontcolor = "<font color=\"#CAC003\">";
+		} else {
+			$fontcolor = "<font color=\"red\">";
+		}
 	} else {
 		$fontcolor = "<font color=\"red\">";
+		$la = "* * *";
 	}
+
 	unset($connection);
+	
 	return "<a title=\"Click to show processes\" 
 		href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
 		target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
@@ -98,29 +127,30 @@ function la($serverip) {
 
 function rep($serverip) {
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
+
+	    $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
+	    $sql = trim(preg_replace('/\s+/', ' ', $sql));
+
+	    $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
+	    $io = trim(preg_replace('/\s+/', ' ', $io));
+
+	    $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
+	    $delta = trim(preg_replace('/\s+/', ' ', $delta));
+
+	    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
+	    else $sqlfontcolor = "<font color=\"red\">";
+
+	    if ($io == "Yes") $iofontcolor = "<font color=\"green\">";
+	    else $iofontcolor = "<font color=\"red\">";
+
+	    if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
+	    else $deltafontcolor = "<font color=\"red\">";
+	} else {
+		$sql = $io = $delta = "***";
+		$sqlfontcolor = $iofontcolor = $sqlfontcolor = "<font color=\"red\">";
 	}
-
-	$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
-
-    $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
-    $sql = trim(preg_replace('/\s+/', ' ', $sql));
-
-    $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
-    $io = trim(preg_replace('/\s+/', ' ', $io));
-
-    $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
-    $delta = trim(preg_replace('/\s+/', ' ', $delta));
-
-    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
-    else $sqlfontcolor = "<font color=\"red\">";
-
-    if ($io == "Yes") $iofontcolor = "<font color=\"green\">";
-    else $iofontcolor = "<font color=\"red\">";
-
-    if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
-    else $deltafontcolor = "<font color=\"red\">";
 
     unset($connection);
 
@@ -135,13 +165,13 @@ function rep($serverip) {
 function err500($serverip) {
 	global $servername;
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
-	}
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "cat /var/log/500err.log");
+	    $str = trim(preg_replace('/\s+/', ' ', $str));
+    } else {
+    	$str = "***";
+    }
 
-	$str = ssh2_return($connection, "cat /var/log/500err.log");
-    $str = trim(preg_replace('/\s+/', ' ', $str));
-    
     unset($connection);
 
     return "<a title=\"Click to show 500 errors\" 
@@ -151,18 +181,51 @@ function err500($serverip) {
 
 function elastic($serverip) {
 	$connection = ssh2_connect($serverip, 22);
-	if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		die("<font color=\"red\">* * *</font>");
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+		$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
+										 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
+										 grep 'inet addr:' | 
+										 cut -d: -f2 | 
+										 awk '{ print $1}'`:9200/_cluster/health?pretty;
+										 date2=\$((\$(date +'%s%N') / 1000000));
+										 echo -n \$((\$date2-\$date1));");
+		if ( $str == "Timeout" ) {
+			$str = "***";
+			$fontcolor = "<font color=\"red\">";
+		} else {
+			$fontcolor = "<font color=\"green\">";
+		}
+	} else {
+		$str = "***";
+		$fontcolor = "<font color=\"red\">";
 	}
-	
-	$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
-		curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:9200/_cluster/health?pretty;
-		date2=\$((\$(date +'%s%N') / 1000000));
-		echo -n \$((\$date2-\$date1));");
 
 	unset($connection);
-	if ( $str == "Timeout" ) return "<font color=\"red\">" .$str. "</font>";
-	else return "<font color=\"green\">" .$str. "</font>";
+
+	return $fontcolor.$str. "</font>";
 }
 
-?>
+function sigHandler($signo) {
+	global $stop_server;
+	global $connection;
+	switch($signo) {
+		case SIGTERM: {
+			$stop_server = true;
+			echo getmypid().": SIGTERM stop\n";
+			break;
+		}
+		default: {
+		}
+	}
+}
+
+function errHandler($errno, $errmsg, $filename, $linenum) {
+	$date = date('Y-m-d H:i:s (T)');
+	$f = fopen('/var/log/mymon/errors.txt', 'a');
+	if (!empty($f)) {
+		$filename  = str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
+		$err  = "$date: $errmsg - $filename - $linenum\r\n";
+		fwrite($f, $err);
+		fclose($f);
+	}
+}

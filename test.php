@@ -223,7 +223,7 @@ function errHandler($errno, $errmsg, $filename, $linenum) {
 	$date = date('Y-m-d H:i:s (T)');
 	$f = fopen('/var/log/mymon/errors.txt', 'a');
 	if (!empty($f)) {
-		$filename  =str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
+		$filename  = str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
 		$err  = "$date: $errmsg - $filename - $linenum\r\n";
 		fwrite($f, $err);
 		fclose($f);
