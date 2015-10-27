@@ -226,10 +226,10 @@ function sigHandler($signo) {
 
 function errHandler($errno, $errmsg, $filename, $linenum) {
 	$date = date('Y-m-d H:i:s (T)');
-	$f = fopen('errors.txt', 'a');
+	$f = fopen('/var/www/netbox.co/mymon/errors.txt', 'a');
 	if (!empty($f)) {
 		$filename  =str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
-		$err  = "$errmsg = $filename = $linenum\r\n";
+		$err  = "$date: $errmsg - $filename - $linenum\r\n";
 		fwrite($f, $err);
 		fclose($f);
 	}
