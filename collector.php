@@ -51,21 +51,16 @@ function child_() {
 	$db = $array["db"];
 	echo "PID:".getmypid()." - ".$serverip. " - started\n";
 	while (!$stop_server) {
-		#$query = "UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';";
-		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
 		if ($db == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
-		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
 		if ($errs == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
-		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
 		if ($elastic == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
-		#$result = mysqli_query($connection1, $query) or die($query.mysqli_error($connection1));
 
 		sleep(10);
 	}
@@ -96,14 +91,9 @@ function la($serverip) {
 	$connection = ssh2_connect($serverip, 22);
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "/usr/bin/uptime");
-		$la = substr(strstr($str, 'average:'), 9, strlen($str));
-		$la = trim(preg_replace('/\s+/', ' ', $la));
-		$la1 = substr($la, 0, strpos($la, ','));
-		$la1 = intval($la1);
-		$la1 = trim(preg_replace('/\s+/', ' ', $la1));
-
+		$la = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'average:'), 9, strlen($str))));
+		$la1 = trim(preg_replace('/\s+/', ' ', intval(substr($la, 0, strpos($la, ',')))));
 		$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
-
 		if ($la1 < ($core/2)) {
 			$fontcolor = "<font color=\"green\">";
 		} elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) {
@@ -119,8 +109,8 @@ function la($serverip) {
 	unset($connection);
 	
 	return "<a title=\"Click to show processes\" 
-		href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
-		target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
+			   href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
+			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
 }
 
 function rep($serverip) {
@@ -128,14 +118,9 @@ function rep($serverip) {
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
 
-	    $sql = substr(strstr($str, 'Slave_SQL_Running:'), 19, 3);
-	    $sql = trim(preg_replace('/\s+/', ' ', $sql));
-
-	    $io = substr(strstr($str, 'Slave_IO_Running:'), 18, 3);
-	    $io = trim(preg_replace('/\s+/', ' ', $io));
-
-	    $delta = substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2);
-	    $delta = trim(preg_replace('/\s+/', ' ', $delta));
+	    $sql = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_SQL_Running:'), 19, 3)));
+	    $io = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_IO_Running:'), 18, 3)));
+	    $delta = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2)));
 
 	    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
 	    else $sqlfontcolor = "<font color=\"red\">";
@@ -147,28 +132,26 @@ function rep($serverip) {
 	    else $deltafontcolor = "<font color=\"red\">";
 	} else {
 		$sql = $io = $delta = "***";
-		$sqlfontcolor = $iofontcolor = $sqlfontcolor = "<font color=\"red\">";
+		$sqlfontcolor = $iofontcolor = $deltafontcolor = "<font color=\"red\">";
 	}
 
     unset($connection);
 
     return "<a title=\"Click to restart replication\" 
-    		 href=\"#\" 
-    		 onclick=\"myAjax(\'" .$serverip. "\')\">
-    		 SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
-    		 IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		 Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
+    		   href=\"#\" 
+    		   onclick=\"myAjax(\'" .$serverip. "\')\">
+    		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
+    		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
+    		   Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
 function err500($serverip) {
 	global $servername;
 	$connection = ssh2_connect($serverip, 22);
-	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-		$str = ssh2_return($connection, "cat /var/log/500err.log");
-	    $str = trim(preg_replace('/\s+/', ' ', $str));
-    } else {
+	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))
+	    $str = trim(preg_replace('/\s+/', ' ', ssh2_return($connection, "cat /var/log/500err.log")));
+    else
     	$str = "***";
-    }
 
     unset($connection);
 
