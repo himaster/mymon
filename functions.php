@@ -1,10 +1,8 @@
 <?php
 function no_injection( $str='' ) { 
     $str = stripslashes( $str ); 
-    $str = mysql_real_escape_string( $str ); 
     $str = trim( $str ); 
     $str = htmlspecialchars( $str ); 
-    echo $str;
     return $str; 
 } 
 
@@ -29,4 +27,3 @@ function ssh2_return( $connection, $query ) {
 	if (!empty($error_output)) return "Timeout";
 	else return $output;
 }
-?>
