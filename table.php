@@ -1,6 +1,6 @@
 <?php 
     include "menu.php";
-    $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+    die("Test");
 ?>
 <table class="main_table">
         <col span="4">
@@ -17,7 +17,7 @@
     flush();
     ob_flush();
     $result = $dbconnection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($dbconnection->error());
-    die("Test");
+
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
