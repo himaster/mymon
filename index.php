@@ -91,7 +91,7 @@ if (isset($_COOKIE["mymon"])) {
 
 			    $file = trim(preg_replace('/\s+/', ' ', ssh2_return($connection_master,  "mysql -N -e 'show master status;' | awk '{print $1}'")));
 			    $position = ssh2_return($connection_master,  "mysql -N -e 'show master status;' | awk '{print $2}'");
-			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=\"" .$position."\";";
+			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position.";";
 			    
 			    unset($connection_master);
 			    
