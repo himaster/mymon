@@ -19,7 +19,6 @@ if (isset($_COOKIE["mymon"])) {
 	$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 	echo $login;
 	$result = $dbconnection->query("SELECT id, login, password, email FROM users WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($connection->error());
-	print_r($result);
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
