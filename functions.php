@@ -8,8 +8,8 @@ function no_injection( $str='' ) {
 
 function get_data( $task, $serverip ) {
 	$query = "SELECT `stats`.`" .$task. "` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1";
-	$result = mysql_query( $query ) or die( mysql_error() );
-	$row = mysql_fetch_assoc( $result );
+	$result = $dbconnection->query($query) or die($dbconnection->error());
+	$row = $dbconnection->fetch_assoc( $result );
 	return $row["$task"];
 }
 
