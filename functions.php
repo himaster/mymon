@@ -7,6 +7,7 @@ function no_injection( $str='' ) {
 } 
 
 function get_data( $task, $serverip ) {
+	public $dbconnection;
 	$query = "SELECT `stats`.`" .$task. "` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1";
 	$result = $dbconnection->query($query) or die($dbconnection->error());
 	$row = $dbconnection->fetch_assoc( $result );
