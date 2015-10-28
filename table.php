@@ -17,6 +17,7 @@
     flush();
     ob_flush();
     $result = $dbconnection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($dbconnection->error());
+    die("Test");
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
