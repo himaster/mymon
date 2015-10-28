@@ -66,24 +66,25 @@ function child_() {
 }
 
 function runtask($task, $serverip) {
-	$connection = ssh2_connect($serverip, 22);
-	switch ($task) {
-		case "la":
-			return la($connection, $serverip);
-			break;
-		case "rep":
-			return rep($connection, $serverip);
-			break;
-		case "500":
-			return err500($connection, $serverip);
-			break;
-		case "elastic":
-			return elastic($connection, $serverip);
-			break;
-		default:
-			echo "Unknown task.";
+	if ($connection = ssh2_connect($serverip, 22)) {
+		switch ($task) {
+			case "la":
+				return la($connection, $serverip);
+				break;
+			case "rep":
+				return rep($connection, $serverip);
+				break;
+			case "500":
+				return err500($connection, $serverip);
+				break;
+			case "elastic":
+				return elastic($connection, $serverip);
+				break;
+			default:
+				echo "Unknown task.";
+		}
+		unset($connection);
 	}
-	unset($connection);
 }
 
 function la($connection, $serverip) {
