@@ -102,7 +102,9 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'la':
-				echo get_data("la", $_GET['serverip']);
+				$result = $dbconnection->query("SELECT `la` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
+				$row = $dbconnection->fetch_assoc($result);
+				echo $row["la"];
 				
 				break;
 
