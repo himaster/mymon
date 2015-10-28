@@ -69,16 +69,16 @@ function runtask($task, $serverip) {
 	$connection = ssh2_connect($serverip, 22);
 	switch ($task) {
 		case "la":
-			return la($serverip);
+			return la($connection, $serverip);
 			break;
 		case "rep":
-			return rep($serverip);
+			return rep($connection, $serverip);
 			break;
 		case "500":
-			return err500($serverip);
+			return err500($connection, $serverip);
 			break;
 		case "elastic":
-			return elastic($serverip);
+			return elastic($connection, $serverip);
 			break;
 		default:
 			echo "Unknown task.";
@@ -86,7 +86,7 @@ function runtask($task, $serverip) {
 	unset($connection);
 }
 
-function la($serverip) {
+function la($connection, $serverip) {
 	global $servername;
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "/usr/bin/uptime");
@@ -109,7 +109,7 @@ function la($serverip) {
 			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
 }
 
-function rep($serverip) {
+function rep($connection, $serverip) {
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
 	    $sql = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_SQL_Running:'), 19, 3)));
@@ -136,7 +136,7 @@ function rep($serverip) {
     		   Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
-function err500($serverip) {
+function err500($connection, $serverip) {
 	global $servername;
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))
 	    $str = trim(preg_replace('/\s+/', ' ', ssh2_return($connection, "cat /var/log/500err.log")));
@@ -147,7 +147,7 @@ function err500($serverip) {
     		 target=\"_blank\">" .$str. "\n</a>";
 }
 
-function elastic($serverip) {
+function elastic($connection, $serverip) {
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
 										 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
