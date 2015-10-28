@@ -66,6 +66,7 @@ function child_() {
 }
 
 function runtask($task, $serverip) {
+	$connection = ssh2_connect($serverip, 22);
 	switch ($task) {
 		case "la":
 			return la($serverip);
@@ -82,11 +83,11 @@ function runtask($task, $serverip) {
 		default:
 			echo "Unknown task.";
 	}
+	unset($connection);
 }
 
 function la($serverip) {
 	global $servername;
-	$connection = ssh2_connect($serverip, 22);
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "/usr/bin/uptime");
 		$la = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'average:'), 9, strlen($str))));
@@ -103,19 +104,14 @@ function la($serverip) {
 		$fontcolor = "<font color=\"red\">";
 		$la = "* * *";
 	}
-
-	unset($connection);
-	
 	return "<a title=\"Click to show processes\" 
 			   href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
 			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
 }
 
 function rep($serverip) {
-	$connection = ssh2_connect($serverip, 22);
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
-
 	    $sql = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_SQL_Running:'), 19, 3)));
 	    $io = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_IO_Running:'), 18, 3)));
 	    $delta = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2)));
@@ -132,9 +128,6 @@ function rep($serverip) {
 		$sql = $io = $delta = "***";
 		$sqlfontcolor = $iofontcolor = $deltafontcolor = "<font color=\"red\">";
 	}
-
-    unset($connection);
-
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
     		   onclick=\"myAjax(\'" .$serverip. "\')\">
@@ -145,21 +138,16 @@ function rep($serverip) {
 
 function err500($serverip) {
 	global $servername;
-	$connection = ssh2_connect($serverip, 22);
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))
 	    $str = trim(preg_replace('/\s+/', ' ', ssh2_return($connection, "cat /var/log/500err.log")));
     else
     	$str = "***";
-
-    unset($connection);
-
     return "<a title=\"Click to show 500 errors\" 
     		 href=https://". $servername. "/index.php?task=500err&serverip=" .$serverip. " 
     		 target=\"_blank\">" .$str. "\n</a>";
 }
 
 function elastic($serverip) {
-	$connection = ssh2_connect($serverip, 22);
 	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 		$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
 										 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
@@ -178,9 +166,6 @@ function elastic($serverip) {
 		$str = "***";
 		$fontcolor = "<font color=\"red\">";
 	}
-
-	unset($connection);
-
 	return $fontcolor.$str. "</font>";
 }
 
