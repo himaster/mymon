@@ -89,7 +89,7 @@ function runtask($task, $serverip) {
 
 function la($connection, $serverip) {
 	global $servername;
-	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
 		$str = ssh2_return($connection, "/usr/bin/uptime");
 		$la = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'average:'), 9, strlen($str))));
 		$la1 = trim(preg_replace('/\s+/', ' ', intval(substr($la, 0, strpos($la, ',')))));
@@ -111,7 +111,7 @@ function la($connection, $serverip) {
 }
 
 function rep($connection, $serverip) {
-	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
 		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
 	    $sql = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_SQL_Running:'), 19, 3)));
 	    $io = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_IO_Running:'), 18, 3)));
@@ -139,7 +139,7 @@ function rep($connection, $serverip) {
 
 function err500($connection, $serverip) {
 	global $servername;
-	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))
+	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))
 	    $str = trim(preg_replace('/\s+/', ' ', ssh2_return($connection, "cat /var/log/500err.log")));
     else
     	$str = "***";
@@ -149,7 +149,7 @@ function err500($connection, $serverip) {
 }
 
 function elastic($connection, $serverip) {
-	if (ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
 		$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
 										 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
 										 grep 'inet addr:' | 
