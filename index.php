@@ -102,31 +102,27 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'la':
-				$result = $dbconnection->query("SELECT `la` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
-				$row = $dbconnection->fetch_assoc($result);
-				echo $row["la"];
-				
+				$result = $dbconnection->query("SELECT `la` FROM `stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
+				$array = $result->fetch_assoc();
+				echo $array["la"];
 				break;
 
 			case 'rep':
-				$result = $dbconnection->query("SELECT `rep` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
-				$row = $dbconnection->fetch_assoc($result);
-				echo $row["rep"];
-
+				$result = $dbconnection->query("SELECT `rep` FROM `stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
+				$array = $result->fetch_assoc();
+				echo $array["rep"];
 				break;
 
 			case '500':
-				$result = $dbconnection->query("SELECT `500` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
-				$row = $dbconnection->fetch_assoc($result);
-				echo $row["500"];
-				
+				$result = $dbconnection->query("SELECT `500` FROM `stats` WHERE ip=\"{$_GET[serverip]}\" LIMIT 1") or die($dbconnection->error());
+				$array = $result->fetch_assoc();
+				echo $array["500"];
 				break;
 
 			case 'elastic':
-				$result = $dbconnection->query("SELECT `elastic` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
-				$row = $dbconnection->fetch_assoc($result);
-				echo $row["elastic"];
-				
+				$result = $dbconnection->query("SELECT `elastic` FROM `stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
+				$array = $result->fetch_assoc();
+				echo $array["elastic"];
 				break;
 
 			case "confirm":
