@@ -1,6 +1,5 @@
 <?php 
     include "menu.php";
-    die("Test");
 ?>
 <table class="main_table">
         <col span="4">
