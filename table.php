@@ -1,6 +1,6 @@
 <?php 
     include "menu.php";
-    include "connect.php";
+    $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 ?>
 <table class="main_table">
         <col span="4">
@@ -16,9 +16,8 @@
     echo str_repeat(' ',1024*128);
     flush();
     ob_flush();
-    $query = "SELECT ip, servername, db, err, el FROM `mymon`.`stats`;";
-    $result = mysql_query($query, $db) or die("ERROR!!! :  " .mysql_error());
-    while($array = mysql_fetch_assoc($result)) {
+    $result = $dbconnection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($dbconnection->error());
+    while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
         $errs = $array["err"];
@@ -50,6 +49,6 @@
             echo "});";
         echo "</script>";
     }
-	mysql_close($db);
+	$dbconnection->close();
 ?>
 </table>

@@ -12,14 +12,12 @@ if ($_GET['task'] == "exit") {
 }
 
 include_once("functions.php");
-include_once("connect.php");
 
 if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
 	$password = no_injection($_COOKIE["mymon"]["password"]);
-	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
-	$return = mysql_query($query) or die(mysql_error());
-	if (mysql_num_rows($return) == 1) {
+	$result = $connection->query("SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1") or die($connection->error());
+	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
 			if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
@@ -28,9 +26,6 @@ if (isset($_COOKIE["mymon"])) {
 		}
 		switch ($_GET["task"]) {
 			case "500err":
-				if (!isset($_GET['serverip'])){
-   					die('Server is not defined!');
-				}
 				include "header.html";
 				echo("<div class=\"back_menu\">");
 				echo("<a href=\"#\" onclick=\"self.close()\">");
@@ -60,28 +55,18 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "replica":
-				if (!isset($_GET['serverip'])){
-   					die('Server is not defined!');
-				}
-
 			    $backin = array("88.198.182.132","88.198.182.134","88.198.182.146");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
 
 			    if (in_array($_GET['serverip'], $backin)){
 			    	$masterip = "88.198.182.130";
-					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\",
-											   MASTER_USER=\"replication\",
-											   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
+					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    } elseif (in_array($_GET['serverip'], $backout)) {
 			    	$masterip = "88.198.182.130";
-					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.130\",
-											   MASTER_USER=\"replication\",
-											   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
+					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.130\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    } elseif ($_GET['serverip'] == "136.243.42.200") {
 			    	$masterip = "136.243.43.35";
-				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\",
-				    						   MASTER_USER=\"replication\",
-				    						   MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
+				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    }
 
 			    $connection_master = ssh2_connect($masterip, 22);
@@ -96,19 +81,12 @@ if (isset($_COOKIE["mymon"])) {
 			    unset($connection_master);
 			    
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
-			    if (!empty($query)) {
-			    	ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
-			    }
+			    if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
 			    ssh2_exec($connection, "mysql -N -e 'start slave;'");
-			    
-			    unset($connection);
 			    
 			    break;
 
 			case "top":
-				if (!isset($_GET['serverip'])){
-   					die('Server is not defined!');
-				}
 				header("Refresh: 5");
 				include "header.html";
 				echo "<div class=\"back_menu\">";
@@ -165,9 +143,7 @@ if (isset($_COOKIE["mymon"])) {
 		    	
 		    	break;
 		}
-		if (isset($connection)) {
-			unset($connection);
-		}		
+		if (isset($connection)) unset($connection);
     }
 	else
 		echo 'Неправильное имя или пароль в куках???';
