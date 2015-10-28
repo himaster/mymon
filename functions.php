@@ -6,14 +6,6 @@ function no_injection( $str='' ) {
     return $str; 
 } 
 
-function get_data( $task, $serverip ) {
-	public $dbconnection;
-	$query = "SELECT `stats`.`" .$task. "` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1";
-	$result = $dbconnection->query($query) or die($dbconnection->error());
-	$row = $dbconnection->fetch_assoc( $result );
-	return $row["$task"];
-}
-
 function ssh2_return( $connection, $query ) {
 	$stream = ssh2_exec( $connection, $query );
 

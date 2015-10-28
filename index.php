@@ -109,17 +109,23 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'rep':
-				echo get_data("rep", $_GET['serverip']);
-				
+				$result = $dbconnection->query("SELECT `rep` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
+				$row = $dbconnection->fetch_assoc($result);
+				echo $row["rep"];
+
 				break;
 
 			case '500':
-				echo get_data("500", $_GET['serverip']);
+				$result = $dbconnection->query("SELECT `500` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
+				$row = $dbconnection->fetch_assoc($result);
+				echo $row["500"];
 				
 				break;
 
 			case 'elastic':
-				echo get_data("elastic", $_GET['serverip']);
+				$result = $dbconnection->query("SELECT `elastic` FROM stats WHERE ip=\"{$serverip}\" LIMIT 1") or die($dbconnection->error());
+				$row = $dbconnection->fetch_assoc($result);
+				echo $row["elastic"];
 				
 				break;
 
