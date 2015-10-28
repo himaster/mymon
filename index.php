@@ -10,12 +10,12 @@ if ($_GET['task'] == "exit") {
 }
 
 include_once("functions.php");
+$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 
 if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
 	$password = no_injection($_COOKIE["mymon"]["password"]);
-	$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-	$result = $dbconnection->query("SELECT id, login, password, email FROM users WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($connection->error());
+	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($connection->error());
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
@@ -96,34 +96,34 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'la':
-				$result = $dbconnection->query("SELECT `la` FROM `stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `la` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
 				$array = $result->fetch_assoc();
 				echo $array["la"];
 				break;
 
 			case 'rep':
-				$result = $dbconnection->query("SELECT `rep` FROM `stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `rep` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
 				$array = $result->fetch_assoc();
 				echo $array["rep"];
 				break;
 
 			case '500':
-				$result = $dbconnection->query("SELECT `500` FROM `stats` WHERE ip=\"{$_GET[serverip]}\" LIMIT 1") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `500` FROM `mymon`.`stats` WHERE ip=\"{$_GET[serverip]}\" LIMIT 1") or die($dbconnection->error());
 				$array = $result->fetch_assoc();
 				echo $array["500"];
 				break;
 
 			case 'elastic':
-				$result = $dbconnection->query("SELECT `elastic` FROM `stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `elastic` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
 				$array = $result->fetch_assoc();
 				echo $array["elastic"];
 				break;
 
 			case "confirm":
 				$login = no_injection($_GET["username"]);
-				$query = "UPDATE users SET approvied = '1' WHERE login = '$login'";
+				$query = "UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'";
 				$result = mysql_query($query) or die(mysql_error());
-				$query = "SELECT email FROM users WHERE login = '$login'";
+				$query = "SELECT email FROM `mymon`.`users` WHERE login = '$login'";
 				$result = mysql_query($query) or die(mysql_error());
 				$msg = "Hi! Your login ($login) just confirmed. Try to login on https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 				$msg = wordwrap($msg,70);
@@ -144,13 +144,11 @@ if (isset($_COOKIE["mymon"])) {
     }
 	else
 		echo 'Неправильное имя или пароль в куках???';
-} 
-elseif(isset($_POST['auth_submit'])) {
+} elseif(isset($_POST['auth_submit'])) {
 	$login = no_injection($_POST['login']);
 	$password = md5(no_injection($_POST['password']));
-	$query = "SELECT id, login, password, email FROM users WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1";
-	$return = mysql_query($query) or die(mysql_error());
-	if (mysql_num_rows($return) == 1) {
+	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1") or die($dbconnection->error());
+	if ($result->num_rows == 1) {
 		setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 		setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 		include "header.html";
@@ -161,6 +159,8 @@ elseif(isset($_POST['auth_submit'])) {
 		echo 'Неправильное имя или пароль';
 } 
 else {
-	include "auth.php";
+	include "header.html";
+	include "auth.html";
+	include "footer.html";
 }
 ?>
