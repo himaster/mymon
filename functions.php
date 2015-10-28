@@ -1,4 +1,7 @@
 <?php
+
+$servername = "mymon.pkwteile.de";
+
 function no_injection( $str='' ) { 
     $str = stripslashes( $str ); 
     $str = trim( $str ); 

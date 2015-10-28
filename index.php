@@ -121,14 +121,11 @@ if (isset($_COOKIE["mymon"])) {
 
 			case "confirm":
 				$login = no_injection($_GET["username"]);
-				$query = "UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'";
-				$result = mysql_query($query) or die(mysql_error());
-				$query = "SELECT email FROM `mymon`.`users` WHERE login = '$login'";
-				$result = mysql_query($query) or die(mysql_error());
-				$msg = "Hi! Your login ($login) just confirmed. Try to login on https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-				$msg = wordwrap($msg,70);
+				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login'") or die($dbconnection->error());
+				$msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$servername, 70);
 				$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
-				mail(mysql_fetch_assoc($result)['email'],"Mymon registration",$msg,$headers);
+				mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
 				echo "<p>Профиль успешно обновлен";
 				break;
 

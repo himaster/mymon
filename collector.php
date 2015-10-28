@@ -9,8 +9,6 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, "sigHandler");
 
-$servername = "mymon.pkwteile.de";
-
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($connection->error);
 
