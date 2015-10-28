@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 			$msg = wordwrap("User $login ($email) just registered. Click https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login to confirm.", 70);
 			$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 			mail("himaster@mailer.ag", "Mymon registration", $msg, $headers);
-			echo "Регистрация успешно прошла.<a href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
+			echo "Регистрация успешно прошла. Ожидайте письма с подтверждением.";
 		}
 	}
 }
