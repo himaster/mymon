@@ -4,6 +4,7 @@ function no_injection( $str='' ) {
     $str = mysql_real_escape_string( $str ); 
     $str = trim( $str ); 
     $str = htmlspecialchars( $str ); 
+    echo $str;
     return $str; 
 } 
 
