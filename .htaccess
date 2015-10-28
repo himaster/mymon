@@ -13,11 +13,6 @@ RewriteRule ^(.*)$ /index.php?/$1 [L]
 	Deny from all
 </Files>
 
-<Files ~ "connect.php">
-	Order deny,allow
-	Deny from all
-</Files>
-
 <Files ~ "menu.php">
 	Order deny,allow
 	Deny from all
