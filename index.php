@@ -1,7 +1,5 @@
 <?php
-if ($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") {
-	header("Location: https://mymon.pkwteile.de/");
-}
+if ($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") header("Location: https://mymon.pkwteile.de/");
 
 if ($_GET['task'] == "exit") {
 	setcookie('mymon[login]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
@@ -21,7 +19,7 @@ if (isset($_COOKIE["mymon"])) {
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
-			if (! ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+			if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    				die("<font color=\"red\">* * *</font>");
 			}
 		}
@@ -35,8 +33,7 @@ if (isset($_COOKIE["mymon"])) {
 				$str = ssh2_return($connection, "cat /var/log/500.errs");
 				echo nl2br($str);
 				echo "</div>";
-				include "footer.html";
-				
+				include "footer.html";				
 				break;
 
 			case "editor":
@@ -51,8 +48,7 @@ if (isset($_COOKIE["mymon"])) {
 				}
 				include "header.html";
 				include "editor.php";		
-				include "footer.html";
-				
+				include "footer.html";				
 				break;
 
 			case "replica":
@@ -83,8 +79,7 @@ if (isset($_COOKIE["mymon"])) {
 			    
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
-			    ssh2_exec($connection, "mysql -N -e 'start slave;'");
-			    
+			    ssh2_exec($connection, "mysql -N -e 'start slave;'");		    
 			    break;
 
 			case "top":
@@ -97,8 +92,7 @@ if (isset($_COOKIE["mymon"])) {
 				$str = nl2br($str);
 				echo($str);
 				echo "</div>";
-				include "footer.html";
-				
+				include "footer.html";	
 				break;
 
 			case 'la':
@@ -136,7 +130,6 @@ if (isset($_COOKIE["mymon"])) {
 				$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 				mail(mysql_fetch_assoc($result)['email'],"Mymon registration",$msg,$headers);
 				echo "<p>Профиль успешно обновлен";
-				
 				break;
 
 			default:
@@ -145,7 +138,6 @@ if (isset($_COOKIE["mymon"])) {
 				include "header.html";
 		    	include "table.php";
 		    	include "footer.html";
-		    	
 		    	break;
 		}
 		if (isset($connection)) unset($connection);

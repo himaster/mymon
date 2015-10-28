@@ -15,8 +15,8 @@
     echo str_repeat(' ',1024*128);
     flush();
     ob_flush();
+    
     $result = $dbconnection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($dbconnection->error());
-
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];

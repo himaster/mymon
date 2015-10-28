@@ -18,11 +18,9 @@ $i = 1;
 
 while($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
-    if ($pid == -1) {
-	die("Child process can't be created");
-    } elseif ($pid) {
-		parent_();
-    } else {
+    if ($pid == -1) die("Child process can't be created");
+    elseif ($pid) parent_();
+    else {
 		child_();
 		exit;
     }
