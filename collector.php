@@ -179,7 +179,7 @@ function sigHandler($signo) {
 	switch($signo) {
 		case SIGTERM: {
 			$stop_server = true;
-			echo getmypid().": SIGTERM stop\n";
+			error_log(getmypid().": SIGTERM stop\n");
 			break;
 		}
 		default: {
