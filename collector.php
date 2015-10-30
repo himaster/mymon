@@ -84,7 +84,7 @@ function runtask($task, $serverip) {
 		}
 		unset($connection);
 	} else {
-		common_log($serverip. "Retry #".$i++);
+		common_log($serverip. " - retry #".$i++);
 		goto start;
 	}
 }
