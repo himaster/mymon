@@ -19,3 +19,12 @@ function ssh2_return( $connection, $query ) {
 	if (!empty($error_output)) return "Timeout";
 	else return $output;
 }
+
+function common_log($logmsg) {
+	$date = date('Y-m-d H:i:s (T)');
+	$f = fopen('/var/log/mymon/common.txt', 'a');
+	if (!empty($f)) {
+		fwrite($f, "$date: PID:".getmypid()."  $logmsg\r\n");
+		fclose($f);
+	}
+}

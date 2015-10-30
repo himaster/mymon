@@ -182,7 +182,15 @@ function sigHandler($signo) {
 			common_log("SIGTERM stop");
 			break;
 		}
+		
+		case SIGPIPE: {
+			$stop_server = true;
+			common_log("SIGPIPE stop");
+			break;
+		}
+
 		default: {
+			break;
 		}
 	}
 }
@@ -196,13 +204,3 @@ function errHandler($errno, $errmsg, $filename, $linenum) {
 		fclose($f);
 	}
 }
-
-function common_log($logmsg) {
-	$date = date('Y-m-d H:i:s (T)');
-	$f = fopen('/var/log/mymon/common.txt', 'a');
-	if (!empty($f)) {
-		fwrite($f, "$date: PID:".getmypid()."  $logmsg\r\n");
-		fclose($f);
-	}
-}
-
