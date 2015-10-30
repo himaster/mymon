@@ -85,7 +85,7 @@ function runtask($task, $serverip) {
 				return elastic($connection, $serverip);
 				break;
 			default:
-				echo "Unknown task.";
+				common_log($servername. " - unknown task.");
 		}
 		unset($connection);
 	} else {
