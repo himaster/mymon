@@ -44,7 +44,7 @@ function child_() {
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
-	common_log(" - started");
+	common_log($serverip. " - started");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
@@ -84,7 +84,7 @@ function runtask($task, $serverip) {
 		}
 		unset($connection);
 	} else {
-		common_log("Retry #".$i++);
+		common_log($serverip. "Retry #".$i++);
 		goto start;
 	}
 }
