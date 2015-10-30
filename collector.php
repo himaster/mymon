@@ -64,6 +64,8 @@ function child_() {
 }
 
 function runtask($task, $serverip) {
+	$i = 0;
+	start:
 	if ($connection = ssh2_connect($serverip, 22)) {
 		switch ($task) {
 			case "la":
@@ -82,7 +84,9 @@ function runtask($task, $serverip) {
 				echo "Unknown task.";
 		}
 		unset($connection);
-	}
+	} else {
+		error_log("Retry #".$i++);
+		goto start;
 }
 
 function la($connection, $serverip) {
