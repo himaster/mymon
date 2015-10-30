@@ -58,7 +58,7 @@ function child_() {
 		if ($elastic == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
 
-		common_log($servername. " - stats updated in BD.");
+		common_log($servername. " - stats updated in db.");
 
 		sleep(10);
 	}
