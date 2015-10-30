@@ -45,7 +45,7 @@ function child_() {
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
-	echo "PID:".getmypid()." - ".$serverip. " - started\n";
+	error_log("PID:".getmypid()." - ".$serverip. " - started\n");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
@@ -65,7 +65,7 @@ function child_() {
 
 function runtask($task, $serverip) {
 	$i = 0;
-	a:
+	start:
 	if ($connection = ssh2_connect($serverip, 22)) {
 		switch ($task) {
 			case "la":
@@ -86,7 +86,7 @@ function runtask($task, $serverip) {
 		unset($connection);
 	} else {
 		error_log("Retry #".$i++);
-		goto a;
+		goto start;
 	}
 }
 
