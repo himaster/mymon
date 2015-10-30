@@ -41,10 +41,11 @@ function child_() {
 	$connection1 = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 
 	$serverip = $array["ip"];
+	$servername = $array["servername"];
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
-	common_log($serverip. " - started");
+	common_log($servername. " - started");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
@@ -57,7 +58,7 @@ function child_() {
 		if ($elastic == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
 
-		common_log($serverip. " - stats updated in BD.");
+		common_log($servername. " - stats updated in BD.");
 
 		sleep(10);
 	}
@@ -66,6 +67,7 @@ function child_() {
 }
 
 function runtask($task, $serverip) {
+	global $servername;
 	$i = 1;
 	start:
 	if ($connection = ssh2_connect($serverip, 22)) {
@@ -87,7 +89,7 @@ function runtask($task, $serverip) {
 		}
 		unset($connection);
 	} else {
-		common_log($serverip. " - retry #".$i++);
+		common_log($servername. " - retry #".$i++);
 		goto start;
 	}
 }
