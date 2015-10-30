@@ -26,7 +26,6 @@ while($array = $result->fetch_assoc()) {
 $result->free();
 $connection->close();
 
-
 exit;
 
 
@@ -45,7 +44,7 @@ function child_() {
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
-	common_log($serverip. " - started");
+	common_log(" - started");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
