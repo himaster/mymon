@@ -45,7 +45,7 @@ function child_() {
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
-	common_log("PID:".getmypid()." - ".$serverip. " - started\n");
+	common_log($serverip. " - started");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
@@ -192,8 +192,7 @@ function errHandler($errno, $errmsg, $filename, $linenum) {
 	$f = fopen('/var/log/mymon/errors.txt', 'a');
 	if (!empty($f)) {
 		$filename  = str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
-		$err  = "$date: $errmsg - $filename - $linenum\r\n";
-		fwrite($f, $err);
+		fwrite($f, "$date: PID:".getmypid()."  $errmsg - $filename - $linenum\r\n");
 		fclose($f);
 	}
 }
@@ -202,7 +201,7 @@ function common_log($logmsg) {
 	$date = date('Y-m-d H:i:s (T)');
 	$f = fopen('/var/log/mymon/common.txt', 'a');
 	if (!empty($f)) {
-		fwrite($f, $logmsg);
+		fwrite($f, "$date: PID:".getmypid()."  $logmsg\r\n");
 		fclose($f);
 	}
 }
