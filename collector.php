@@ -45,7 +45,7 @@ function child_() {
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
-	error_log("PID:".getmypid()." - ".$serverip. " - started\n");
+	common_log("PID:".getmypid()." - ".$serverip. " - started\n");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 
@@ -64,7 +64,7 @@ function child_() {
 }
 
 function runtask($task, $serverip) {
-	$i = 0;
+	$i = 1;
 	start:
 	if ($connection = ssh2_connect($serverip, 22)) {
 		switch ($task) {
@@ -85,7 +85,7 @@ function runtask($task, $serverip) {
 		}
 		unset($connection);
 	} else {
-		error_log("Retry #".$i++);
+		common_log("Retry #".$i++);
 		goto start;
 	}
 }
@@ -197,3 +197,13 @@ function errHandler($errno, $errmsg, $filename, $linenum) {
 		fclose($f);
 	}
 }
+
+function common_log($logmsg) {
+	$date = date('Y-m-d H:i:s (T)');
+	$f = fopen('/var/log/mymon/common.txt', 'a');
+	if (!empty($f)) {
+		fwrite($f, $logmsg);
+		fclose($f);
+	}
+}
+
