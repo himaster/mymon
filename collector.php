@@ -94,7 +94,10 @@ function la($connection, $serverip) {
 		if ($la1 < ($core/2)) $fontcolor = "<font color=\"green\">";
 		elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) $fontcolor = "<font color=\"#CAC003\">";
 		else $fontcolor = "<font color=\"red\">";
-	} else $fontcolor = "<font color=\"red\">";
+	} else {
+		common_log($servername." - ssh2_auth_pubkey_file error!");
+		$fontcolor = "<font color=\"red\">";
+	}
 	return "<a title=\"Click to show processes\" 
 			   href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
 			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
@@ -115,7 +118,10 @@ function rep($connection, $serverip) {
 	    else $iofontcolor = "<font color=\"red\">";
 	    if ($data["Seconds_Behind_Master"] == 0) $deltafontcolor = "<font color=\"green\">";
 	    else $deltafontcolor = "<font color=\"red\">";
-	} else $sqlfontcolor = $iofontcolor = $deltafontcolor = "<font color=\"red\">";
+	} else {
+		common_log($servername." - ssh2_auth_pubkey_file error!");
+		$sqlfontcolor = $iofontcolor = $deltafontcolor = "<font color=\"red\">";
+	}
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
     		   onclick=\"myAjax(\'" .$serverip. "\')\">
@@ -129,6 +135,7 @@ function err500($connection, $serverip) {
 	$str = "***";
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))
 	    $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
+	else common_log($servername." - ssh2_auth_pubkey_file error!");
     return "<a title=\"Click to show 500 errors\" 
     		 href=https://". $servername. "/index.php?task=500err&serverip=" .$serverip. " 
     		 target=\"_blank\">" .$str. "\n</a>";
@@ -146,7 +153,10 @@ function elastic($connection, $serverip) {
 										 echo -n \$((\$date2-\$date1));");
 		if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 		else $fontcolor = "<font color=\"green\">";
-	} else $fontcolor = "<font color=\"red\">";
+	} else {
+		common_log($servername." - ssh2_auth_pubkey_file error!");
+		$fontcolor = "<font color=\"red\">";
+	}
 	return $fontcolor.$str. "</font>";
 }
 
