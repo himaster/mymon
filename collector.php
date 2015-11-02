@@ -99,7 +99,7 @@ function la($connection, $serverip) {
 		$fontcolor = "<font color=\"red\">";
 	}
 	return "<a title=\"Click to show processes\" 
-			   href=\"https://" .$servername. "/index.php?task=top&serverip=" .$serverip. "\"
+			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
 			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
 }
 
@@ -137,7 +137,7 @@ function err500($connection, $serverip) {
 	    $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
 	else common_log($servername." - ssh2_auth_pubkey_file error!");
     return "<a title=\"Click to show 500 errors\" 
-    		 href=https://". $servername. "/index.php?task=500err&serverip=" .$serverip. " 
+    		 href=https://". $hostname. "/index.php?task=500err&serverip=" .$serverip. " 
     		 target=\"_blank\">" .$str. "\n</a>";
 }
 

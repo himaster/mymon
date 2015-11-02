@@ -1,6 +1,6 @@
 <?php
 
-$servername = "mymon.pkwteile.de";
+$hostname = "mymon.pkwteile.de";
 
 function no_injection( $str='' ) { 
     $str = stripslashes( $str ); 
