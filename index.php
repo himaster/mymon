@@ -19,8 +19,8 @@ if (isset($_COOKIE["mymon"])) {
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
-			if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-   				die("<font color=\"red\">* * *</font>");
+			if (!ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+   				die("<font color=\"red\">---</font>");
 			}
 		}
 		switch ($_GET["task"]) {
