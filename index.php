@@ -54,7 +54,6 @@ if (isset($_COOKIE["mymon"])) {
 			case "replica":
 			    $backin = array("88.198.182.132","88.198.182.134","88.198.182.146");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
-
 			    if (in_array($_GET['serverip'], $backin)){
 			    	$masterip = "88.198.182.130";
 					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
@@ -65,18 +64,16 @@ if (isset($_COOKIE["mymon"])) {
 			    	$masterip = "136.243.43.35";
 				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    }
-
 			    $connection_master = ssh2_connect($masterip, 22);
 				if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">Connection to master failed!</font>");
 				}
-
-			    $file = trim(preg_replace('/\s+/', ' ', ssh2_return($connection_master,  "mysql -N -e 'show master status;' | awk '{print $1}'")));
-			    $position = ssh2_return($connection_master,  "mysql -N -e 'show master status;' | awk '{print $2}'");
-			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position.";";
-			    
+			    $result = explode("	", ssh2_return($connection_master,  "mysql -N -e 'show master status;'"));
+				$file = $result[0];
+				$position = $result[1];
+			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position.";";  
 			    unset($connection_master);
-			    
+			    die($query);
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
 			    ssh2_exec($connection, "mysql -N -e 'start slave;'");		    
