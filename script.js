@@ -5,10 +5,12 @@ function myAjax(serverip){
 		url: 'index.php?task=replica&serverip=' + serverip,
 		success: function(html){
 			$('#test_div').html('success' + html);
+            document.getElementById('test_div').style.display = 'block';
 			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 		},
 		error: function(){
 			$('#test_div').html('error');
+            document.getElementById('test_div').style.display = 'block';
 			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 		}
     });
