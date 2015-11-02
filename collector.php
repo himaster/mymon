@@ -2,6 +2,7 @@
 
 <?php
 include_once "functions.php";
+
 declare(ticks=1);
 set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
@@ -31,7 +32,7 @@ function parent_() {
 function child_() {
 	global $array;
 	global $stop_server;
-	global $servername;
+	#global $servername;
 	$connection1 = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 	$serverip = $array["ip"];
 	$servername = $array["servername"];
@@ -86,6 +87,7 @@ function runtask($task, $serverip) {
 
 function la($connection, $serverip) {
 	global $servername;
+	global $hostname;
 	$la = "* * *";
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
 		$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
@@ -132,6 +134,7 @@ function rep($connection, $serverip) {
 
 function err500($connection, $serverip) {
 	global $servername;
+	global $hostname;
 	$str = "***";
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))
 	    $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
