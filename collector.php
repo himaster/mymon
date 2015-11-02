@@ -37,6 +37,7 @@ function parent_() {
 function child_() {
 	global $array;
 	global $stop_server;
+	global $servername;
 
 	$connection1 = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 
@@ -48,17 +49,19 @@ function child_() {
 	common_log($servername. " - started");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
+		if (!$result) common_log($servername." - LA not updated!");
 
 		if ($db == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
+		if (!$result) common_log($servername." - REP not updated!");
 
 		if ($errs == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
+		if (!$result) common_log($servername." - 500 not updated!");
 
 		if ($elastic == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
-
-		common_log($servername. " - stats updated in db.");
+		if (!$result) common_log($servername." - ELASTIC not updated!");
 
 		sleep(10);
 	}
@@ -85,11 +88,11 @@ function runtask($task, $serverip) {
 				return elastic($connection, $serverip);
 				break;
 			default:
-				common_log($servername. " - unknown task.");
+				common_log($servername." - unknown task.");
 		}
 		unset($connection);
 	} else {
-		common_log($servername. " - retry #".$i++);
+		common_log($servername." - retry #".$i++);
 		goto start;
 	}
 }
@@ -120,9 +123,14 @@ function la($connection, $serverip) {
 function rep($connection, $serverip) {
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
 		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
-	    $sql = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_SQL_Running:'), 19, 3)));
-	    $io = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Slave_IO_Running:'), 18, 3)));
-	    $delta = trim(preg_replace('/\s+/', ' ', substr(strstr($str, 'Seconds_Behind_Master:'), 23, 2)));
+		$data = array();
+		foreach (explode("\n", $str) as $cLine) {
+			list ($cKey, $cValue) = explode(':', $cLine, 2);
+			$data[trim($cKey)] = trim($cValue);
+		}
+	    $io = $data["Slave_IO_Running"];
+	    $sql = $data["Slave_SQL_Running"];
+	    $delta = $data["Seconds_Behind_Master"];
 
 	    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
 	    else $sqlfontcolor = "<font color=\"red\">";
