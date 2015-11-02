@@ -7,7 +7,7 @@ echo "<table class=\"main_table\">";
 while ($row_user = $result->fetch_assoc()) {
 ?>
 	<tr>
-		<td width="20px"><input width="20px" value="<?php echo trim($row_user['id']) ?>"></td>
+		<td><input value="<?php echo trim($row_user['id']) ?>"></td>
 		<td><input value="<?php echo $row_user['ip'] ?>"></td>
 		<td><input value="<?php echo $row_user['servername'] ?>"></td>
 		<td><input value="<?php echo $row_user['db'] ?>"></td>
