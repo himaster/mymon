@@ -29,9 +29,8 @@ td {
 .editor {
 	margin-left: auto;
   	margin-right: auto;
-  	width: 235px;
-  	color: lightgray;
-  	text-align: center;
+  	width: 1000px;
+  	background-color: lightgray;
 }
 
 .editor textarea {
