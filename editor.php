@@ -3,7 +3,7 @@
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT * FROM `mymon`.`servers`;") or die($connection->error());
 $serverinfo = array();
-echo "<div class=\"container\"><table class=\"table table-striped table-hover\">";
+echo "<div class=\"container\"><table id=class=\"table table-striped editor\">";
 while ($row_user = $result->fetch_assoc()) {
 ?>
 	<tr>

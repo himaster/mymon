@@ -2,7 +2,7 @@
     include "menu.php";
 ?>
 <table class="main_table">
-        <col span="4">
+        <col span="5">
             <tr class="title">
                 <td>Server</td>
                 <td>Load Averages</td>
