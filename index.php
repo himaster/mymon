@@ -37,15 +37,6 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "editor":
-				$file = '/var/www/netbox.co/mymon/servers.conf';
-				$mass = file($file);
-				$text = file_get_contents($file);
-				if (isset($_POST['text'])) {
-					file_put_contents($file, $_POST['text']);
-					header("Location: https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
-					printf("<a href=\"%s\">Moved</a>.", htmlspecialchars($url));
-					exit();
-				}
 				include "header.html";
 				include "editor.php";		
 				include "footer.html";				

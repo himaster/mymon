@@ -1,13 +1,19 @@
+<?php
 
-<div class="left_button">
-	<a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>"><img src="images/back.png"></a>
-</div>
-<div class="editor">
-	<h2>Server list</h2>
-	<h4>IP&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspname&nbspweb&nbspDB</h4>
-	<form action="index.php?task=editor" method="post">
-		<textarea name="text" cols="30" rows="<?php count($mass) ?>"><?php echo htmlspecialchars($text) ?></textarea>
-		<p><input type="submit" value="Сохранить" onClick="window.location.href='https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>'" />
-		<input type="reset" />
-	</form>
-</div>	
+$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+$result = $dbconnection->query("SELECT * FROM `mymon`.`servers`;") or die($connection->error());
+$serverinfo = array();
+echo "<table class=\"table table-striped table-hover\">";
+while ($row_user = $result->fetch_assoc()) {
+?>
+	<tr>
+		<td><input value="<?php echo $row_user['id'] ?>"></td>
+		<td><input value="<?php echo $row_user['ip'] ?>"></td>
+		<td><input value="<?php echo $row_user['servername'] ?>"></td>
+		<td><input value="<?php echo $row_user['db'] ?>"></td>
+		<td><input value="<?php echo $row_user['err'] ?>"></td>
+		<td><input value="<?php echo $row_user['el'] ?>"></td>
+	</tr>
+<?php
+}
+echo ("</table>");
