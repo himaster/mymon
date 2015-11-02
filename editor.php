@@ -7,7 +7,7 @@ echo "<div class=\"container\"><table class=\"table table-striped table-hover\">
 while ($row_user = $result->fetch_assoc()) {
 ?>
 	<tr>
-		<td><input value="<?php echo $row_user['id'] ?>"></td>
+		<td width="20px"><input width="100%" value="<?php echo $row_user['id'] ?>"></td>
 		<td><input value="<?php echo $row_user['ip'] ?>"></td>
 		<td><input value="<?php echo $row_user['servername'] ?>"></td>
 		<td><input value="<?php echo $row_user['db'] ?>"></td>
