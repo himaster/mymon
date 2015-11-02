@@ -100,11 +100,11 @@ function runtask($task, $serverip) {
 function la($connection, $serverip) {
 	global $servername;
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
-		$str = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
-		$la = array_map("trim",explode(",",$str))[0];
+		$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
+		$la1 = intval(array_map("trim",explode(",",$la))[0]);
 		$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
-		if (intval($la) < ($core/2)) $fontcolor = "<font color=\"green\">";
-		elseif ((intval($la) >= ($core/2)) && (intval($la) < ($core * 0.75))) $fontcolor = "<font color=\"#CAC003\">";
+		if ($la1 < ($core/2)) $fontcolor = "<font color=\"green\">";
+		elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) $fontcolor = "<font color=\"#CAC003\">";
 		else $fontcolor = "<font color=\"red\">";
 	} else {
 		$fontcolor = "<font color=\"red\">";
