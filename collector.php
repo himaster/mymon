@@ -123,17 +123,14 @@ function rep($connection, $serverip) {
 			list ($cKey, $cValue) = explode(':', $cLine, 2);
 			$data[trim($cKey)] = trim($cValue);
 		}
-	    $io = $data["Slave_IO_Running"];
-	    $sql = $data["Slave_SQL_Running"];
-	    $delta = $data["Seconds_Behind_Master"];
 
-	    if ($sql == "Yes") $sqlfontcolor = "<font color=\"green\">";
+	    if ($data["Slave_SQL_Running"] == "Yes") $sqlfontcolor = "<font color=\"green\">";
 	    else $sqlfontcolor = "<font color=\"red\">";
 
-	    if ($io == "Yes") $iofontcolor = "<font color=\"green\">";
+	    if ($data["Slave_IO_Running"] == "Yes") $iofontcolor = "<font color=\"green\">";
 	    else $iofontcolor = "<font color=\"red\">";
 
-	    if ($delta == 0) $deltafontcolor = "<font color=\"green\">";
+	    if ($data["Seconds_Behind_Master"] == 0) $deltafontcolor = "<font color=\"green\">";
 	    else $deltafontcolor = "<font color=\"red\">";
 	} else {
 		$sql = $io = $delta = "***";
@@ -142,9 +139,9 @@ function rep($connection, $serverip) {
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
     		   onclick=\"myAjax(\'" .$serverip. "\')\">
-    		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
-    		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		   Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
+    		   SQL: " .$sqlfontcolor. "<b>" .$data["Slave_SQL_Running"]. "</b></font> 
+    		   IO: " .$iofontcolor. "<b>" .$data["Slave_IO_Running"]. "</b></font> 
+    		   Δ: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
 }
 
 function err500($connection, $serverip) {
