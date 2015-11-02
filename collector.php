@@ -88,7 +88,7 @@ function runtask($task, $serverip) {
 function la($connection, $serverip) {
 	global $servername;
 	global $hostname;
-	$la = "* * *";
+	$la = "***";
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
 		$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
 		$la1 = intval(array_map("trim",explode(",",$la))[0]);
