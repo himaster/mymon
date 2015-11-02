@@ -33,18 +33,6 @@ td {
   	background-color: lightgray;
 }
 
-.editor textarea {
-	background-color: lightgray;
-  	height: 450px;
-  	line-height: 1.2em;
-  	width: 100%;
-  	color: black;
-}
-
-.editor input {
-	color: black;
-}
-
 .left_button {
 	position: fixed;
 	top: 20px;
