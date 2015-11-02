@@ -32,7 +32,7 @@ function parent_() {
 function child_() {
 	global $array;
 	global $stop_server;
-	#global $servername;
+	global $servername;
 	$connection1 = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 	$serverip = $array["ip"];
 	$servername = $array["servername"];
