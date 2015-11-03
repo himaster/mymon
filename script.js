@@ -33,7 +33,7 @@ function show(serverip, server, task){
         data: data,
         cache: false,
         success: function(html){
-            addTimeout($("#" + server + "_" + task));
+            $("#" + server + "_" + task).addClass('timeout');
             $("#" + server + "_" + task).html(html);
         },
         error: function(){
