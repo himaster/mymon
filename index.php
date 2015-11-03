@@ -21,7 +21,7 @@ if (isset($_COOKIE["mymon"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
 			start:
 			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
-   				echo "<script>console.log('console log: Reconnecting...');</script>";
+   				console_log("Reconnecting...");
    				goto start;
 			}
 		}
@@ -88,7 +88,6 @@ if (isset($_COOKIE["mymon"])) {
 				$result = $dbconnection->query("SELECT `la` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
 				$array = $result->fetch_assoc();
 				echo $array["la"];
-				console_log("Test");
 				break;
 
 			case 'rep':
