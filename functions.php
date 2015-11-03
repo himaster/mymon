@@ -30,7 +30,7 @@ function common_log($logmsg) {
 }
 
 function console_log($data) {
-    if (is_array($data)) $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-    else $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+    if (is_array($data)) $output = "<script>console.log('console log: " .implode(',', $data). "');</script>";
+    else $output = "<script>console.log('console log: " .$data. "');</script>";
     echo $output;
 }
