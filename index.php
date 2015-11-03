@@ -19,9 +19,9 @@ if (isset($_COOKIE["mymon"])) {
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
-			start:
+			start
 			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
-   				echo "Reconnecting...";
+   				echo "<script>console.log('console log: Reconnecting');</script>";
    				goto start;
 			}
 		}
