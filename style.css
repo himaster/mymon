@@ -169,3 +169,7 @@ td {
 	-webkit-transition: border 60s 0.2s ease;
 	border: 1px solid red !important;
 }
+
+.forceTimeout {
+	border: 1px solid red !important;
+}
