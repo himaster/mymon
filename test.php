@@ -1,19 +1,20 @@
-<?php
-
-$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-$result = $dbconnection->query("SELECT * FROM `mymon`.`servers`;") or die($connection->error());
-$serverinfo = array();
-echo "<table class=\"table table-striped table-hover\">";
-while ($row_user = $result->fetch_assoc()) {
-?>
-	<tr>
-		<td><input value="<?php echo $row_user['id'] ?>"></td>
-		<td><input value="<?php echo $row_user['ip'] ?>"></td>
-		<td><input value="<?php echo $row_user['servername'] ?>"></td>
-		<td><input value="<?php echo $row_user['db'] ?>"></td>
-		<td><input value="<?php echo $row_user['err'] ?>"></td>
-		<td><input value="<?php echo $row_user['el'] ?>"></td>
-	</tr>
-<?php
-}
-echo ("</table>");
+<html>
+	<head>
+		<title></title>
+		<style>
+			#a1 {
+				-moz-transition: color 2s 2s ease;
+				-o-transition: color 2s 2s ease;
+				-webkit-transition: color 2s 2s ease;
+				color:#222;
+			}
+			 
+			#a1:hover {
+			 	color: #1FA2E1;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="a1" name="a1">Test</dev>
+	</body>
+</html>
