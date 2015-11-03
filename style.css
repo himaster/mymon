@@ -164,8 +164,8 @@ td {
 }
 
 .timeout {
-	-moz-transition: border-color 5s 0.2s ease;
-	-o-transition: border-color 5s 0.2s ease;
-	-webkit-transition: border-color 5s 0.2s ease;
-	backgrount-color: red;
+	-moz-transition: border 30s 0.2s ease;
+	-o-transition: border 30s 0.2s ease;
+	-webkit-transition: border 30s 0.2s ease;
+	border: 1px solid red !important;
 }
