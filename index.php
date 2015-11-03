@@ -22,7 +22,7 @@ if (isset($_COOKIE["mymon"])) {
 			start:
 			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
    				echo "<script>console.log('console log: Reconnecting to ".$_GET["serverip"]."');</script>";
-   				die(1);
+   				//die(1);
    				goto start;
 			}
 		}
