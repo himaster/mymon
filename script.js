@@ -39,6 +39,7 @@ function show(serverip, server, task) {
             $("#" + server + "_" + task).html(html);
         },
         error: function(){
+            console.log(serverip + " - reconnecting...");
             $("#" + server + "_" + task).addClass('forceTimeout');
         }
     });
