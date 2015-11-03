@@ -33,10 +33,16 @@ function show(serverip, server, task){
         data: data,
         cache: false,
         success: function(html){
+            addTimeout($("#" + server + "_" + task));
             $("#" + server + "_" + task).html(html);
         },
         error: function(){
             $.ajax(this);
         }
     });
+}
+
+function addTimeout(Object) {
+    Object.removeClass('timeout');
+    window.setTimeout(function(){ Object.addClass('timeout'); }, 100);
 }

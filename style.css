@@ -162,3 +162,10 @@ td {
 	padding-right: 10px;
 	padding-bottom: 1px;
 }
+
+.timeout {
+	-moz-transition: border-color 15s 0.2s ease;
+	-o-transition: border-color 15s 0.2s ease;
+	-webkit-transition: border-color 15s 0.2s ease;
+	border-color: red;
+}
