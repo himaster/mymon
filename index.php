@@ -18,10 +18,12 @@ if (isset($_COOKIE["mymon"])) {
 	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($connection->error());
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
-			$connection = ssh2_connect($_GET["serverip"], 22);
+			if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
+				header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   				die();
+			}
 			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
-   				header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
-   				console_log($_GET["serverip"]." - reconnecting...");
+   				header($_SERVER['SERVER_PROTOCOL'] . ' 502 Internal Server Error', true, 500);
    				die();
 			}
 		}
