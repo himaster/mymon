@@ -118,7 +118,7 @@ function rep($connection, $serverip) {
 	    else $sqlfontcolor = "<font color=\"red\">";
 	    if ($data["Slave_IO_Running"] == "Yes") $iofontcolor = "<font color=\"green\">";
 	    else $iofontcolor = "<font color=\"red\">";
-	    if ($data["Seconds_Behind_Master"] == 0) $deltafontcolor = "<font color=\"green\">";
+	    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
 	    else $deltafontcolor = "<font color=\"red\">";
 	} else {
 		common_log($servername." - ssh2_auth_pubkey_file error!");
