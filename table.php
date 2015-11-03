@@ -26,10 +26,10 @@
         $serverdb = $server . "_db";
 		echo "<tr>";
         echo "<td>" .$server. "</td>";
-		echo "<td><div id='" .$server. "_la'></div></td>";
-		echo "<td><div id='" .$server. "_rep'></div></td>";
-		echo "<td><div id='" .$server. "_500'></div></td>";
-		echo "<td><div id='" .$server. "_elastic'></div></td>";
+		echo "<td id='" .$server. "_la'></td>";
+		echo "<td id='" .$server. "_rep'></td>";
+		echo "<td id='" .$server. "_500'></td>";
+		echo "<td id='" .$server. "_elastic'></td>";
         echo "<script>";
             echo "$(document).ready(function(){";
                 echo "show(\"$serverip\", \"$server\", \"la\");";
