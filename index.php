@@ -88,7 +88,7 @@ if (isset($_COOKIE["mymon"])) {
 				$result = $dbconnection->query("SELECT `la` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
 				$array = $result->fetch_assoc();
 				echo $array["la"];
-				echo "<script>console.log('console log: LA...');</script>";
+				console_log("Test");
 				break;
 
 			case 'rep':
