@@ -7,7 +7,7 @@ function myAjax(serverip) {
 			status(html);
 		},
 		error: function(){
-			status('error');
+			status("Error");
 		}
     });
 };
@@ -23,7 +23,7 @@ function toggle_visibility(id) {
 
 function show(serverip, server, task) {
     var data = "&serverip=" + serverip + 
-                  "&task=" + task;
+               "&task=" + task;
     $.ajax({
         url: "index.php",
         data: data,
@@ -35,7 +35,7 @@ function show(serverip, server, task) {
             $("#" + server + "_" + task).html(html);
         },
         error: function(){
-            console.log(serverip + " - reconnecting...");
+            status(serverip + " - reconnecting...");
             $("#" + server + "_" + task).addClass('forceTimeout');
         }
     });
