@@ -37,7 +37,7 @@ function show(serverip, server, task){
             $("#" + server + "_" + task).html(html);
         },
         error: function(){
-            $.ajax(this);
+            $("#" + server + "_" + task).html("Error");
         }
     });
 }
