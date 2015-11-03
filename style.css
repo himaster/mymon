@@ -171,5 +171,5 @@ td {
 }
 
 .forceTimeout {
-	border: 1px solid red !important;
+	color: gray;
 }
