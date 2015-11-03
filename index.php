@@ -19,11 +19,9 @@ if (isset($_COOKIE["mymon"])) {
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
-			start:
 			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
-   				echo "<script>console.log('console log: Reconnecting to ".$_GET["serverip"]."');</script>";
-   				//die(1);
-   				goto start;
+   				header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+   				die();
 			}
 		}
 		switch ($_GET["task"]) {
