@@ -79,7 +79,7 @@ if (isset($_COOKIE["mymon"])) {
 					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die();
 				}
-				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')
+				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '');
 				header("Refresh: 5");
 				include "header.html";
 				echo "<div class=\"back_menu\">";
