@@ -34,7 +34,7 @@
             echo "$(document).ready(function(){";
                 echo "show(\"$serverip\", \"$server\", \"la\");";
                 echo "setInterval('show(\"$serverip\", \"$server\", \"la\")',10000);";
-                if (isset($db)) { 
+                if ($db == 1) { 
                     echo "show(\"$serverip\", \"$server\", \"rep\");";
                     echo "setInterval('show(\"$serverip\", \"$server\", \"rep\")',10000);";
                 }
