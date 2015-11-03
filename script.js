@@ -4,14 +4,10 @@ function myAjax(serverip) {
     $.ajax({
 		url: 'index.php?task=replica&serverip=' + serverip,
 		success: function(html){
-			$('#test_div').html('success' + html);
-            document.getElementById('test_div').style.display = 'block';
-			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
+			status(html);
 		},
 		error: function(){
-			$('#test_div').html('error');
-            document.getElementById('test_div').style.display = 'block';
-			setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
+			status('error');
 		}
     });
 };
@@ -35,7 +31,7 @@ function show(serverip, server, task) {
         success: function(html){
             $("#" + server + "_" + task).removeClass('timeout');
             $("#" + server + "_" + task).removeClass('forceTimeout');
-            window.setTimeout(function() { $("#" + server + "_" + task).addClass('timeout'); }, 100);
+            timeout = setTimeout(function() { $("#" + server + "_" + task).addClass('timeout'); }, 100);
             $("#" + server + "_" + task).html(html);
         },
         error: function(){
@@ -43,4 +39,10 @@ function show(serverip, server, task) {
             $("#" + server + "_" + task).addClass('forceTimeout');
         }
     });
+}
+
+function status(text) {
+    $('#test_div').html(text);
+    document.getElementById('test_div').style.display = 'block';
+    setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 }
