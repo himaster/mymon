@@ -17,19 +17,14 @@ if (isset($_COOKIE["mymon"])) {
 	$password = no_injection($_COOKIE["mymon"]["password"]);
 	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($connection->error());
 	if ($result->num_rows == 1) {
-		if (isset($_GET["serverip"])) {
-			if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
-				header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-   				die();
-			}
-			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
-   				header($_SERVER['SERVER_PROTOCOL'] . ' 502 Internal Server Error', true, 500);
-   				die();
-			}
-		}
 		switch ($_GET["task"]) {
 			case "500err":
 				include "header.html";
+				if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
+					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   					die();
+				}
+				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '');
 				echo("<div class=\"back_menu\">");
 				echo("<a href=\"#\" onclick=\"self.close()\">");
 				echo("<img src=\"./images/back.png\"></a>");
@@ -59,6 +54,11 @@ if (isset($_COOKIE["mymon"])) {
 			    	$masterip = "136.243.43.35";
 				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    }
+			    if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
+					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   					die();
+				}
+				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '');
 			    $connection_master = ssh2_connect($masterip, 22);
 				if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">Connection to master failed!</font>");
@@ -75,6 +75,11 @@ if (isset($_COOKIE["mymon"])) {
 			    break;
 
 			case "top":
+				if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
+					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   					die();
+				}
+				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')
 				header("Refresh: 5");
 				include "header.html";
 				echo "<div class=\"back_menu\">";
