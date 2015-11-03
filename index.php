@@ -21,6 +21,7 @@ if (isset($_COOKIE["mymon"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
 			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
    				header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+   				console_log($_GET["serverip"]." - reconnecting...");
    				die();
 			}
 		}
