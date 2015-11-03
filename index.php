@@ -19,8 +19,10 @@ if (isset($_COOKIE["mymon"])) {
 	if ($result->num_rows == 1) {
 		if (isset($_GET["serverip"])) {
 			$connection = ssh2_connect($_GET["serverip"], 22);
+			start:
 			if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
-   				die("<font color=\"red\">---</font>");
+   				console_log("Reconnecting...");
+   				goto start;
 			}
 		}
 		switch ($_GET["task"]) {
