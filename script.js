@@ -1,4 +1,4 @@
-function myAjax(serverip){
+function myAjax(serverip) {
     $('#test_div').html('processing...');
     document.getElementById('test_div').style.display = 'block';
     $.ajax({
@@ -25,7 +25,7 @@ function toggle_visibility(id) {
 }
 
 
-function show(serverip, server, task){
+function show(serverip, server, task) {
     var data = "&serverip=" + serverip + 
                   "&task=" + task;
     $.ajax({
@@ -33,16 +33,13 @@ function show(serverip, server, task){
         data: data,
         cache: false,
         success: function(html){
-            addTimeout($("#" + server + "_" + task));
+            $("#" + server + "_" + task).removeClass('timeout');
+            $("#" + server + "_" + task).removeClass('forceTimeout');
+            window.setTimeout(function() { $("#" + server + "_" + task).addClass('timeout'); }, 100);
             $("#" + server + "_" + task).html(html);
         },
         error: function(){
             $("#" + server + "_" + task).addClass('forceTimeout');
         }
     });
-}
-
-function addTimeout(Object) {
-    Object.removeClass('timeout');
-    window.setTimeout(function(){ Object.addClass('timeout'); }, 100);
 }
