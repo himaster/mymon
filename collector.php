@@ -128,13 +128,8 @@ function rep($connection, $serverip) {
 	    	$iofontcolor = "<font color=\"red\">";
 	    	$io = "x";
 	    }
-	    if ($data["Seconds_Behind_Master"] == "0") {
-	    	$deltafontcolor = "<font color=\"green\">";
-	    	$delta = "✓";
-	    } else {
-	    	$deltafontcolor = "<font color=\"red\">";
-	    	$delta = "x";
-	    }
+	    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
+	    else $deltafontcolor = "<font color=\"red\">";
 	} else {
 		common_log($servername." - ssh2_auth_pubkey_file error!");
 		$sqlfontcolor = $iofontcolor = $deltafontcolor = "<font color=\"red\">";
@@ -144,7 +139,7 @@ function rep($connection, $serverip) {
     		   onclick=\"myAjax(\'" .$serverip. "\')\">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		   Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
+    		   Δ: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
 }
 
 function err500($connection, $serverip) {
