@@ -107,19 +107,34 @@ function la($connection, $serverip) {
 
 function rep($connection, $serverip) {
 	$data = array();
-	$data["Slave_SQL_Running"] = $data["Slave_IO_Running"] = $data["Seconds_Behind_Master"] = "***";
+	$sql = $io = $delta = "***";
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
 		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
 		foreach (explode("\n", $str) as $cLine) {
 			list ($cKey, $cValue) = explode(':', $cLine, 2);
 			$data[trim($cKey)] = trim($cValue);
 		}
-	    if ($data["Slave_SQL_Running"] == "Yes") $sqlfontcolor = "<font color=\"green\">";
-	    else $sqlfontcolor = "<font color=\"red\">";
-	    if ($data["Slave_IO_Running"] == "Yes") $iofontcolor = "<font color=\"green\">";
-	    else $iofontcolor = "<font color=\"red\">";
-	    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
-	    else $deltafontcolor = "<font color=\"red\">";
+	    if ($data["Slave_SQL_Running"] == "Yes") {
+	    	$sqlfontcolor = "<font color=\"green\">";
+	    	$sql = "✓";
+	    } else {
+	    	$sqlfontcolor = "<font color=\"red\">";
+	    	$sql = "x";
+	    }
+	    if ($data["Slave_IO_Running"] == "Yes") {
+	    	$iofontcolor = "<font color=\"green\">";
+	    	$io = "✓";
+	    } else {
+	    	$iofontcolor = "<font color=\"red\">";
+	    	$io = "x";
+	    }
+	    if ($data["Seconds_Behind_Master"] == "0") {
+	    	$deltafontcolor = "<font color=\"green\">";
+	    	$delta = "✓";
+	    } else {
+	    	$deltafontcolor = "<font color=\"red\">";
+	    	$delta = "x";
+	    }
 	} else {
 		common_log($servername." - ssh2_auth_pubkey_file error!");
 		$sqlfontcolor = $iofontcolor = $deltafontcolor = "<font color=\"red\">";
@@ -127,9 +142,9 @@ function rep($connection, $serverip) {
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
     		   onclick=\"myAjax(\'" .$serverip. "\')\">
-    		   SQL: " .$sqlfontcolor. "<b>" .$data["Slave_SQL_Running"]. "</b></font> 
-    		   IO: " .$iofontcolor. "<b>" .$data["Slave_IO_Running"]. "</b></font> 
-    		   Δ: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
+    		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
+    		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
+    		   Δ: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
 function err500($connection, $serverip) {
