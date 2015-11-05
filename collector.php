@@ -187,7 +187,7 @@ function elastic($connection, $serverip) {
 
 function locks($connection, $serverip) {
 	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
-		$str = ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\"");
+		$str = ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l");
 	    if (trim($str) == "0") $fontcolor = "<font color=\"green\">";
 	    else $fontcolor = "<font color=\"red\">";
 	} else {
