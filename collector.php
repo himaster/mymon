@@ -194,7 +194,7 @@ function locks($connection, $serverip) {
 		common_log($servername." - ssh2_auth_pubkey_file error!");
 		$fontcolor = "<font color=\"red\">";
 	}
-    return $fontcolor.$str. "</font>";
+    return $fontcolor.trim($str). "</font>";
 }
 
 function sigHandler($signo) {
