@@ -32,7 +32,7 @@
 		echo "<td id='" .$server. "_rep'></td>";
 		echo "<td id='" .$server. "_500'></td>";
 		echo "<td id='" .$server. "_elastic'></td>";
-        echo "<td id='" .$server. "_locks'>M/td>";
+        echo "<td id='" .$server. "_locks'></td>";
         echo "<script>";
             echo "$(document).ready(function(){";
                 echo "show(\"$serverip\", \"$server\", \"la\");";
