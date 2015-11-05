@@ -59,7 +59,7 @@ function child_() {
 		unset($result);
 		if ($mysql == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET locks='" .runtask("locks", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
-		if (!$result) common_log($servername." - LOCKS not updated!");
+		if (!isset($result)) common_log($servername." - LOCKS not updated!");
 		unset($result);
 		sleep(10);
 	}
