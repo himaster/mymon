@@ -116,6 +116,12 @@ if (isset($_COOKIE["mymon"])) {
 				echo $array["elastic"];
 				break;
 
+			case 'locks':
+				$result = $dbconnection->query("SELECT `locks` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
+				$array = $result->fetch_assoc();
+				echo $array["locks"];
+				break;
+
 			case "confirm":
 				$login = no_injection($_GET["username"]);
 				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'") or die($dbconnection->error());

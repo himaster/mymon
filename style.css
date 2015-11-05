@@ -120,6 +120,11 @@ td {
 	color: black;
 }
 
+.main_table td:nth-child(6) {
+	width: 45px;
+	color: black;
+}
+
 .main_table tr:first-child {
   	font-weight: bold;
 }

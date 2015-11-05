@@ -9,6 +9,7 @@
                 <td>Replication</td>
                 <td>500s</td>
                 <td>Elastic</td>
+                <td>Locks</td>
             </tr>
 <?php
     if (ob_get_level() == 0) ob_start();
@@ -16,13 +17,14 @@
     flush();
     ob_flush();
     
-    $result = $dbconnection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($dbconnection->error());
+    $result = $dbconnection->query("SELECT ip, servername, db, mysql, err, el FROM `mymon`.`stats`;") or die($dbconnection->error());
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
         $errs = $array["err"];
         $elastic = $array["el"];
         $db = $array["db"];
+        $mysql = $array["mysql"];
         $serverdb = $server . "_db";
 		echo "<tr>";
         echo "<td>" .$server. "</td>";
@@ -30,6 +32,7 @@
 		echo "<td id='" .$server. "_rep'></td>";
 		echo "<td id='" .$server. "_500'></td>";
 		echo "<td id='" .$server. "_elastic'></td>";
+        echo "<td id='" .$server. "_locks'>M/td>";
         echo "<script>";
             echo "$(document).ready(function(){";
                 echo "show(\"$serverip\", \"$server\", \"la\");";
@@ -45,6 +48,10 @@
                 if ($elastic == 1) {
                     echo "show(\"$serverip\", \"$server\", \"elastic\");";
                     echo "setInterval('show(\"$serverip\", \"$server\", \"elastic\")',10000);";
+                }
+                if ($mysql == 1) {
+                    echo "show(\"$serverip\", \"$server\", \"locks\");";
+                    echo "setInterval('show(\"$serverip\", \"$server\", \"locks\")',10000);";
                 }
             echo "});";
         echo "</script>";
