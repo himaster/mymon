@@ -105,7 +105,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case '500':
-				$result = $dbconnection->query("SELECT `500` FROM `mymon`.`stats` WHERE ip=\"{$_GET[serverip]}\" LIMIT 1") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `500` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
 				$array = $result->fetch_assoc();
 				echo $array["500"];
 				break;
