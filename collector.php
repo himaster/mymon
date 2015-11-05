@@ -7,7 +7,7 @@ declare(ticks=1);
 set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, err, el FROM `mymon`.`stats`;") or die($connection->error);
+$result = $connection->query("SELECT ip, servername, db, mysql, err, el FROM `mymon`.`stats`;") or die($connection->error);
 $i = 1;
 while($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
@@ -39,19 +39,28 @@ function child_() {
 	$errs = $array["err"];
 	$elastic = $array["el"];
 	$db = $array["db"];
+	$mysql = $array["mysql"];
 	common_log($servername. " - started");
 	while (!$stop_server) {
 		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 		if (!$result) common_log($servername." - LA not updated!");
+		unset($result);
 		if ($db == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
 		if (!$result) common_log($servername." - REP not updated!");
+		unset($result);
 		if ($errs == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
 		if (!$result) common_log($servername." - 500 not updated!");
+		unset($result);
 		if ($elastic == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
 		if (!$result) common_log($servername." - ELASTIC not updated!");
+		unset($result);
+		if ($mysql == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET locks='" .runtask("locks", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $connection1->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
+		if (!$result) common_log($servername." - LOCKS not updated!");
+		unset($result);
 		sleep(10);
 	}
 	$connection1->close();
@@ -74,6 +83,9 @@ function runtask($task, $serverip) {
 				break;
 			case "elastic":
 				return elastic($connection, $serverip);
+				break;
+			case "locks":
+				return locks($connection, $serverip);
 				break;
 			default:
 				common_log($servername." - unknown task.");
@@ -171,6 +183,18 @@ function elastic($connection, $serverip) {
 		$fontcolor = "<font color=\"red\">";
 	}
 	return $fontcolor.$str. "</font>";
+}
+
+function locks($connection, $serverip) {
+	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+		$str = ssh2_return($connection, "mysql -Ne 'show open tables where in_use <> 0;' | wc -l");
+	    if ($str == "0") $fontcolor = "<font color=\"green\">";
+	    else $fontcolor = "<font color=\"red\">";
+	} else {
+		common_log($servername." - ssh2_auth_pubkey_file error!");
+		$fontcolor = "<font color=\"red\">";
+	}
+    return $fontcolor.$str. "</font>";
 }
 
 function sigHandler($signo) {
