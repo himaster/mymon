@@ -21,25 +21,25 @@ function toggle_visibility(id) {
 }
 
 
-function show(serverip, server, task) {
-    var data = "&serverip=" + serverip + 
-               "&task=" + task;
+function show() {
     $.ajax({
-        url: "index.php",
-        data: data,
-        cache: false,
-        success: function(html){
-            $("#" + server + "_" + task).removeClass('timeout');
-            $("#" + server + "_" + task).removeClass('forceTimeout');
-            timeout = setTimeout(function() { $("#" + server + "_" + task).addClass('timeout'); }, 100);
-            $("#" + server + "_" + task).html(html);
+        url: 'index.php?task=getdata',
+        dataType: 'json',
+        success: function(json) {
+            json.forEach(function(item, i, arr) {
+                $("#" + item.servername + "_la").html(item['la']);
+                $("#" + item.servername + "_rep").html(item['rep']);
+                $("#" + item.servername + "_500").html(item['500']);
+                $("#" + item.servername + "_elastic").html(item['elastic']);
+                $("#" + item.servername + "_lock").html(item['lock']);
+            });
         },
-        error: function(){
-            status(serverip + " - reconnecting...");
-            $("#" + server + "_" + task).addClass('forceTimeout');
+        error: function() {
+            console.log("error");
         }
     });
 }
+
 
 function status(text) {
     $('#test_div').html(text);

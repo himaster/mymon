@@ -92,34 +92,14 @@ if (isset($_COOKIE["mymon"])) {
 				include "footer.html";	
 				break;
 
-			case 'la':
-				$result = $dbconnection->query("SELECT `la` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
-				$array = $result->fetch_assoc();
-				echo $array["la"];
-				break;
-
-			case 'rep':
-				$result = $dbconnection->query("SELECT `rep` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
-				$array = $result->fetch_assoc();
-				echo $array["rep"];
-				break;
-
-			case '500':
-				$result = $dbconnection->query("SELECT `500` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
-				$array = $result->fetch_assoc();
-				echo $array["500"];
-				break;
-
-			case 'elastic':
-				$result = $dbconnection->query("SELECT `elastic` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
-				$array = $result->fetch_assoc();
-				echo $array["elastic"];
-				break;
-
-			case 'locks':
-				$result = $dbconnection->query("SELECT `locks` FROM `mymon`.`stats` WHERE ip=\"{$_GET['serverip']}\" LIMIT 1") or die($dbconnection->error());
-				$array = $result->fetch_assoc();
-				echo $array["locks"];
+			case 'getdata':
+				$result = $dbconnection->query("SELECT `id`, `servername`, `la`, `rep`, `500`, `elastic`, `locks` FROM `mymon`.`stats`") or die($dbconnection->error());
+				$rows=array();
+				while($array = $result->fetch_assoc()) {
+					$rows[]=$array;
+				}
+				header("Content-Type: application/json; charset=utf-8 ");
+				echo json_encode($rows);
 				break;
 
 			case "confirm":
