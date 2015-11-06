@@ -100,14 +100,14 @@ function rep($connection, $serverip) {
 	}
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
-    	$sql = "✓";
+    	$sql = "&#10003;";
     } else {
     	$sqlfontcolor = "<font color=\"red\">";
     	$sql = "x";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
     	$iofontcolor = "<font color=\"green\">";
-    	$io = "✓";
+    	$io = "&#10003;";
     } else {
     	$iofontcolor = "<font color=\"red\">";
     	$io = "x";
@@ -119,7 +119,7 @@ function rep($connection, $serverip) {
     		   onclick=\"myAjax(\'" .$serverip. "\')\">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		   Δ: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
+    		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
 }
 
 function err500($connection, $serverip) {
