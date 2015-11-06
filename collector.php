@@ -51,19 +51,19 @@ function child_() {
 		$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET la='" .la($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - LA not updated!");
 		unset($result);
-		if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
+		if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='" .rep($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - REP not updated!");
 		unset($result);
-		if ($errs == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
+		if ($errs == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - 500 not updated!");
 		unset($result);
-		if ($elastic == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
+		if ($elastic == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='" .elastic($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - ELASTIC not updated!");
 		unset($result);
-		if ($mysql == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='" .runtask("locks", $serverip). "' WHERE ip='" .$serverip. "';");
+		if ($mysql == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='" .locks($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
 		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - LOCKS not updated!");
 		unset($result);
@@ -119,33 +119,27 @@ function la($connection, $serverip) {
 
 function rep($connection, $serverip) {
 	$data = array();
-	$sql = $io = $delta = "***";
-	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
-		$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
-		foreach (explode("\n", $str) as $cLine) {
-			list ($cKey, $cValue) = explode(':', $cLine, 2);
-			$data[trim($cKey)] = trim($cValue);
-		}
-	    if ($data["Slave_SQL_Running"] == "Yes") {
-	    	$sqlfontcolor = "<font color=\"green\">";
-	    	$sql = "✓";
-	    } else {
-	    	$sqlfontcolor = "<font color=\"red\">";
-	    	$sql = "x";
-	    }
-	    if ($data["Slave_IO_Running"] == "Yes") {
-	    	$iofontcolor = "<font color=\"green\">";
-	    	$io = "✓";
-	    } else {
-	    	$iofontcolor = "<font color=\"red\">";
-	    	$io = "x";
-	    }
-	    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
-	    else $deltafontcolor = "<font color=\"red\">";
-	} else {
-		common_log($servername." - ssh2_auth_pubkey_file error!");
-		$sqlfontcolor = $iofontcolor = $deltafontcolor = "<font color=\"red\">";
+	$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
+	foreach (explode("\n", $str) as $cLine) {
+		list ($cKey, $cValue) = explode(':', $cLine, 2);
+		$data[trim($cKey)] = trim($cValue);
 	}
+    if ($data["Slave_SQL_Running"] == "Yes") {
+    	$sqlfontcolor = "<font color=\"green\">";
+    	$sql = "✓";
+    } else {
+    	$sqlfontcolor = "<font color=\"red\">";
+    	$sql = "x";
+    }
+    if ($data["Slave_IO_Running"] == "Yes") {
+    	$iofontcolor = "<font color=\"green\">";
+    	$io = "✓";
+    } else {
+    	$iofontcolor = "<font color=\"red\">";
+    	$io = "x";
+    }
+    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
+    else $deltafontcolor = "<font color=\"red\">";
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
     		   onclick=\"myAjax(\'" .$serverip. "\')\">
@@ -157,43 +151,29 @@ function rep($connection, $serverip) {
 function err500($connection, $serverip) {
 	global $servername;
 	global $hostname;
-	$str = "***";
-	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))
-	    $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
-	else common_log($servername." - ssh2_auth_pubkey_file error!");
+	$str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
     return "<a title=\"Click to show 500 errors\" 
     		 href=https://". $hostname. "/index.php?task=500err&serverip=" .$serverip. " 
     		 target=\"_blank\">" .$str. "\n</a>";
 }
 
 function elastic($connection, $serverip) {
-	$str = "***";
-	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
-		$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
-										 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
-										 grep 'inet addr:' | 
-										 cut -d: -f2 | 
-										 awk '{ print $1}'`:9200/_cluster/health?pretty;
-										 date2=\$((\$(date +'%s%N') / 1000000));
-										 echo -n \$((\$date2-\$date1));");
-		if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
-		else $fontcolor = "<font color=\"green\">";
-	} else {
-		common_log($servername." - ssh2_auth_pubkey_file error!");
-		$fontcolor = "<font color=\"red\">";
-	}
+	$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
+									 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
+									 grep 'inet addr:' | 
+									 cut -d: -f2 | 
+									 awk '{ print $1}'`:9200/_cluster/health?pretty;
+									 date2=\$((\$(date +'%s%N') / 1000000));
+									 echo -n \$((\$date2-\$date1));");
+	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
+	else $fontcolor = "<font color=\"green\">";
 	return $fontcolor.$str. "</font>";
 }
 
 function locks($connection, $serverip) {
-	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
-		$str = ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l");
-	    if (trim($str) == "0") $fontcolor = "<font color=\"green\">";
-	    else $fontcolor = "<font color=\"red\">";
-	} else {
-		common_log($servername." - ssh2_auth_pubkey_file error!");
-		$fontcolor = "<font color=\"red\">";
-	}
+	$str = ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l");
+    if (trim($str) == "0") $fontcolor = "<font color=\"green\">";
+    else $fontcolor = "<font color=\"red\">";
     return $fontcolor.trim($str). "</font>";
 }
 
