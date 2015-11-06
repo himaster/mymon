@@ -20,7 +20,6 @@ function toggle_visibility(id) {
         e.style.display = 'block';
 }
 
-
 function show() {
     $.ajax({
         url: 'index.php?task=getdata',
@@ -46,3 +45,8 @@ function status(text) {
     document.getElementById('test_div').style.display = 'block';
     setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 }
+
+$(document).ready(function() {
+    show();
+    setInterval('show()',10000);
+});
