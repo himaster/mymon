@@ -41,28 +41,33 @@ function child_() {
 	$mysql = $array["mysql"];
 	common_log($servername. " - started");
 	while (!$stop_server) {
-		$conname = "connection_".$servername;
-		$$conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$conname->connect_errno."\n");
-		$result = $$conname->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
+		$ssh_conname = "ssh_".$servername;
+		if (!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+			common_log("SSH connection or authorisation failed for ".$servername);
+			die();
+		}
+		$mysql_conname = "mysql_".$servername;
+		$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
+		$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET la='" .la($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - LA not updated!");
 		unset($result);
-		if ($db == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$conname->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
+		if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - REP not updated!");
 		unset($result);
-		if ($errs == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
+		if ($errs == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - 500 not updated!");
 		unset($result);
-		if ($elastic == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$conname->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
+		if ($elastic == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - ELASTIC not updated!");
 		unset($result);
-		if ($mysql == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET locks='" .runtask("locks", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$conname->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
+		if ($mysql == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='" .runtask("locks", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - LOCKS not updated!");
 		unset($result);
-		$$conname->close();
+		$$mysql_conname->close();
 		sleep(10);
 	}
 }
@@ -101,18 +106,12 @@ function runtask($task, $serverip) {
 function la($connection, $serverip) {
 	global $servername;
 	global $hostname;
-	$la = "***";
-	if (ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
-		$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
-		$la1 = intval(array_map("trim",explode(",",$la))[0]);
-		$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
-		if ($la1 < ($core/2)) $fontcolor = "<font color=\"green\">";
-		elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) $fontcolor = "<font color=\"#CAC003\">";
-		else $fontcolor = "<font color=\"red\">";
-	} else {
-		common_log($servername." - ssh2_auth_pubkey_file error!");
-		$fontcolor = "<font color=\"red\">";
-	}
+	$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
+	$la1 = intval(array_map("trim",explode(",",$la))[0]);
+	$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
+	if ($la1 < ($core/2)) $fontcolor = "<font color=\"green\">";
+	elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) $fontcolor = "<font color=\"#CAC003\">";
+	else $fontcolor = "<font color=\"red\">";
 	return "<a title=\"Click to show processes\" 
 			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
 			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
