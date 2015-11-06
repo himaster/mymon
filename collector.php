@@ -41,10 +41,13 @@ function child_() {
 	$mysql = $array["mysql"];
 	common_log($servername. " - started");
 	while (!$stop_server) {
+		$i = 1;
 		$ssh_conname = "ssh_".$servername;
+		start:
 		if ((!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))) {
-			common_log("SSH connection or authorisation failed for ".$servername);
-			die();
+			common_log($servername." - retry #".$i++);
+			sleep(1);
+			goto start;
 		}
 		$mysql_conname = "mysql_".$servername;
 		$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
@@ -68,13 +71,14 @@ function child_() {
 		if (!isset($result)) common_log($servername." - LOCKS not updated!");
 		unset($result);
 		$$mysql_conname->close();
+		unset($$ssh_conname);
 		sleep(10);
 	}
 }
 
 function runtask($task, $serverip) {
 	global $servername;
-	$i = 1;
+	
 	start:
 	if ($connection = ssh2_connect($serverip, 22)) {
 		switch ($task) {
