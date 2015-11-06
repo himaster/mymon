@@ -41,30 +41,30 @@ function child_() {
 	$mysql = $array["mysql"];
 	common_log($servername. " - started");
 	while (!$stop_server) {
-		$connection1 = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection1->connect_errno."\n");
-		$result = $connection1->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
+		$conname = "connection_".$servername;
+		$$conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$conname->connect_errno."\n");
+		$result = $$conname->query("UPDATE `mymon`.`stats` SET la='" .runtask("la", $serverip). "' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - LA not updated!");
 		unset($result);
-		if ($db == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $connection1->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
+		if ($db == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET rep='" .runtask("rep", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$conname->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - REP not updated!");
 		unset($result);
-		if ($errs == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $connection1->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
+		if ($errs == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET `500`='" .runtask("500", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - 500 not updated!");
 		unset($result);
-		if ($elastic == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $connection1->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
+		if ($elastic == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET elastic='" .runtask("elastic", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$conname->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - ELASTIC not updated!");
 		unset($result);
-		if ($mysql == 1) $result = $connection1->query("UPDATE `mymon`.`stats` SET locks='" .runtask("locks", $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $connection1->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
+		if ($mysql == 1) $result = $$conname->query("UPDATE `mymon`.`stats` SET locks='" .runtask("locks", $serverip). "' WHERE ip='" .$serverip. "';");
+		else $result = $$conname->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
 		if (!isset($result)) common_log($servername." - LOCKS not updated!");
 		unset($result);
-		$connection1->close();
+		$$conname->close();
 		sleep(10);
 	}
-	
 }
 
 function runtask($task, $serverip) {
