@@ -48,5 +48,5 @@ function status(text) {
 
 $(document).ready(function() {
     show();
-    setInterval('show()',10000);
+    setInterval('show()', 5000);
 });
