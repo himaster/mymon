@@ -71,39 +71,9 @@ function child_() {
 		if (!isset($result)) common_log($servername." - LOCKS not updated!");
 		unset($result);
 		$$mysql_conname->close();
+		unset($$mysql_conname);
 		unset($$ssh_conname);
 		sleep(10);
-	}
-}
-
-function runtask($task, $serverip) {
-	global $servername;
-	
-	start:
-	if ($connection = ssh2_connect($serverip, 22)) {
-		switch ($task) {
-			case "la":
-				return la($connection, $serverip);
-				break;
-			case "rep":
-				return rep($connection, $serverip);
-				break;
-			case "500":
-				return err500($connection, $serverip);
-				break;
-			case "elastic":
-				return elastic($connection, $serverip);
-				break;
-			case "locks":
-				return locks($connection, $serverip);
-				break;
-			default:
-				common_log($servername." - unknown task.");
-		}
-		unset($connection);
-	} else {
-		common_log($servername." - retry #".$i++);
-		goto start;
 	}
 }
 
