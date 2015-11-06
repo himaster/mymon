@@ -42,7 +42,7 @@ function child_() {
 	common_log($servername. " - started");
 	while (!$stop_server) {
 		$ssh_conname = "ssh_".$servername;
-		if (!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+		if ((!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))) {
 			common_log("SSH connection or authorisation failed for ".$servername);
 			die();
 		}
