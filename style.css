@@ -6,6 +6,11 @@ td {
 	text-align: center;
 }
 
+input {
+	width: 100%;
+	background-color: rgb(211, 211, 211);
+}
+
 .title {
 	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }

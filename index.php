@@ -1,6 +1,6 @@
 <?php
 if (($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") and ($_SERVER['HTTP_HOST'] != "mymon.loc")) header("Location: https://mymon.pkwteile.de/");
-
+if (!isset($_GET['task'])) $_GET['task'] = "NULL";
 if ($_GET['task'] == "exit") {
 	setcookie('mymon[login]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 	setcookie('mymon[password]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
@@ -15,7 +15,7 @@ $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or di
 if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
 	$password = no_injection($_COOKIE["mymon"]["password"]);
-	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($connection->error());
+	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($dbconnection->error);
 	if ($result->num_rows == 1) {
 		switch ($_GET["task"]) {
 			case "500err":
@@ -120,7 +120,7 @@ if (isset($_COOKIE["mymon"])) {
 		    	include "footer.html";
 		    	break;
 		}
-		if (isset($connection)) unset($connection);
+		if (isset($dbconnection)) unset($dbconnection);
     }
 	else
 		echo 'Неправильное имя или пароль в куках???';
