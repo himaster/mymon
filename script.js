@@ -30,7 +30,7 @@ function show() {
                 $("#" + item.servername + "_rep").html(item['rep']);
                 $("#" + item.servername + "_500").html(item['500']);
                 $("#" + item.servername + "_elastic").html(item['elastic']);
-                $("#" + item.servername + "_lock").html(item['lock']);
+                $("#" + item.servername + "_locks").html(item['locks']);
             });
         },
         error: function() {
