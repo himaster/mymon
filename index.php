@@ -108,7 +108,7 @@ if (isset($_COOKIE["mymon"])) {
 				$result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login'") or die($dbconnection->error());
 				$msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$servername, 70);
 				$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
-				#mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
+				mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
 				echo "<p>Профиль успешно обновлен";
 				break;
 
