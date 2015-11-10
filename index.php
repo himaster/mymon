@@ -44,29 +44,7 @@ if (isset($_COOKIE["mymon"])) {
 
 			case "replica":
 				die("test");
-			    $backin = array("88.198.182.130","88.198.182.132","88.198.182.146");
-			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
-			    if (in_array($_GET['serverip'], $backin)){
-			    	$masterip = "88.198.182.134";
-					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.3\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
-			    } elseif (in_array($_GET['serverip'], $backout)) {
-			    	$masterip = "88.198.182.134";
-					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.134\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
-			    } elseif ($_GET['serverip'] == "136.243.42.200") {
-			    	$masterip = "136.243.43.35";
-				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
-			    }
-
-			    $connection = ssh2_connect($_GET["serverip"], 22));
-				if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
-				}
-
-			    
-			    //ssh2_exec($connection, "mysql -N -e 'stop slave;'");
-			    //if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
-			    //ssh2_exec($connection, "mysql -N -e 'start slave;'");
-			    echo $query;	    
+			     
 			    break;
 
 			case "top":
