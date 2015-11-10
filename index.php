@@ -45,11 +45,11 @@ if (isset($_COOKIE["mymon"])) {
 			    $backin = array("88.198.182.132","88.198.182.134","88.198.182.146");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
 			    if (in_array($_GET['serverip'], $backin)){
-			    	$masterip = "88.198.182.130";
-					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.1\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
+			    	$masterip = "88.198.182.134";
+					$query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.3\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    } elseif (in_array($_GET['serverip'], $backout)) {
-			    	$masterip = "88.198.182.130";
-					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.130\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
+			    	$masterip = "88.198.182.134";
+					$query = "CHANGE MASTER TO MASTER_HOST=\"88.198.182.134\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    } elseif ($_GET['serverip'] == "136.243.42.200") {
 			    	$masterip = "136.243.43.35";
 				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
