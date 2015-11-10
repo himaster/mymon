@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 if (($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") and ($_SERVER['HTTP_HOST'] != "mymon.loc")) header("Location: https://mymon.pkwteile.de/");
 if (!isset($_GET['task'])) $_GET['task'] = "NULL";
 if ($_GET['task'] == "exit") {
@@ -58,9 +59,13 @@ if (isset($_COOKIE["mymon"])) {
 					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die();
 				}
-				ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''));
+				if (!ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
+				}
 			    $connection_master = ssh2_connect($masterip, 22);
-				ssh2_auth_pubkey_file($connection_master, 'root', 'id_rsa.pub', 'id_rsa', ''));
+				if (!ssh2_auth_pubkey_file($connection_master, 'root', 'id_rsa.pub', 'id_rsa', '')) {
+   					die("<font color=\"red\">SSH key for master not feat!</font>");
+				}
 			    $result = explode("	", ssh2_return($connection_master,  "mysql -N -e 'show master status;'"));
 				$file = $result[0];
 				$position = $result[1];
