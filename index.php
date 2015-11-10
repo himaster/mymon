@@ -59,7 +59,7 @@ if (isset($_COOKIE["mymon"])) {
 					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die();
 				}
-				if (!ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+				if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
 			    $connection_master = ssh2_connect($masterip, 22);
