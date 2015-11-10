@@ -59,9 +59,9 @@ if (isset($_COOKIE["mymon"])) {
    					die();
 				}
 				if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
-					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>")
+					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
-			    	$connection_master = ssh2_connect($masterip, 22);
+			    $connection_master = ssh2_connect($masterip, 22);
 				if (!ssh2_auth_pubkey_file($connection_master, 'root', 'id_rsa.pub', 'id_rsa', '')) {
    					die("<font color=\"red\">SSH key for master not feat!</font>");
 				}
