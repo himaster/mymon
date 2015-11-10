@@ -58,11 +58,7 @@ if (isset($_COOKIE["mymon"])) {
 			    }
 			    die("test");
 			    $connection = ssh2_connect($_GET["serverip"], 22));
-				if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
-				}
-
-			        
+				    
 			    break;
 
 			case "top":
