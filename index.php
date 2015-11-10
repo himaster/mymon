@@ -70,9 +70,9 @@ if (isset($_COOKIE["mymon"])) {
 				$position = $result[1];
 			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position.";";  
 			    unset($connection_master);
-			    //ssh2_exec($connection, "mysql -N -e 'stop slave;'");
-			    //if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
-			    //ssh2_exec($connection, "mysql -N -e 'start slave;'");
+			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
+			    if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
+			    ssh2_exec($connection, "mysql -N -e 'start slave;'");
 			    echo $query;	    
 			    break;
 
