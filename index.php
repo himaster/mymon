@@ -43,7 +43,6 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "replica":
-
 			    $backin = array("88.198.182.130","88.198.182.132","88.198.182.146");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
 			    if (in_array($_GET['serverip'], $backin)){
@@ -56,12 +55,17 @@ if (isset($_COOKIE["mymon"])) {
 			    	$masterip = "136.243.43.35";
 				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    }
-			    $connection = ssh2_connect($_GET["serverip"], 22);
+			    if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
+			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   					die();
+			    }
 				if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
-
-			    $connection_master = ssh2_connect($masterip, 22);
+			    if (!$connection_master = ssh2_connect($masterip, 22)) {
+			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   					die();
+			    }
 				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">SSH key for master not feat!</font>");
 				}
