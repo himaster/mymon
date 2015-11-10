@@ -62,15 +62,7 @@ if (isset($_COOKIE["mymon"])) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
 
-			    $connection_master = ssh2_connect($masterip, 22);
-				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-   					die("<font color=\"red\">SSH key for master not feat!</font>");
-				}
-			    $result = explode("	", ssh2_return($connection_master,  "mysql -N -e 'show master status;'"));
-				$file = $result[0];
-				$position = $result[1];
-			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position.";";  
-			    unset($connection_master);
+			    
 			    //ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    //if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
 			    //ssh2_exec($connection, "mysql -N -e 'start slave;'");
