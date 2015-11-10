@@ -22,7 +22,7 @@ if (isset($_COOKIE["mymon"])) {
 				include "header.html";
 				if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
 					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-   					die();
+   					die("Connection error!");
 				}
 				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '');
 				echo("<div class=\"back_menu\">");
@@ -60,8 +60,8 @@ if (isset($_COOKIE["mymon"])) {
 				}
 				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '');
 			    $connection_master = ssh2_connect($masterip, 22);
-				if (! ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
-   					die("<font color=\"red\">Connection to master failed!</font>");
+				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+   					die("<font color=\"red\">SSH connection to master failed!</font>");
 				}
 			    $result = explode("	", ssh2_return($connection_master,  "mysql -N -e 'show master status;'"));
 				$file = $result[0];
