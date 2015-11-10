@@ -60,7 +60,7 @@ if (isset($_COOKIE["mymon"])) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
 			    $connection_master = ssh2_connect($masterip, 22);
-				if (!ssh2_auth_pubkey_file($connection_master, 'root', 'id_rsa.pub', 'id_rsa', '')) {
+				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">SSH key for master not feat!</font>");
 				}
 			    $result = explode("	", ssh2_return($connection_master,  "mysql -N -e 'show master status;'"));
