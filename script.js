@@ -46,8 +46,8 @@ function status(text) {
     setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 }
 
-function editor(val, name) {
-    alert(name + "=>" + val);
+function editor(name, pos, val) {
+    alert(name + ": " + pos + "=>" + val);
 }
 
 $(document).ready(function() {
