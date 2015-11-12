@@ -47,7 +47,9 @@ function status(text) {
 }
 
 function editor(name, val) {
-    var dataString = '&task=editor_save&name=' + name + '&val=' + val;
+    var servername = name.split('_')[0];
+    var columnname = name.split('_')[1];
+    var dataString = '&task=editor_save&name=' + servername +'&column=' + columnname + '&val=' + val;
     $.ajax({
         url: 'index.php',
         data: dataString,
@@ -59,6 +61,7 @@ function editor(name, val) {
             console.log("error");
         }
     });
+
 }
 
 $(document).ready(function() {

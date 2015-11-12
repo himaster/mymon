@@ -16,7 +16,7 @@ $serverinfo = array();
 
 while ($row_user = $result->fetch_assoc()) {
 	echo "<tr>";
-	echo "<td><input id=\"".trim($row_user['servername'])."_name\" type=\"text\" value=\"".trim($row_user['servername'])."\" onchange=\"javascript: editor(this.id, this.value); this.id = this.value + '_name'\"></td>";
+	echo "<td><input id=\"".trim($row_user['servername'])."_name\" type=\"text\" value=\"".trim($row_user['servername'])."\" onchange=\"javascript: editor(this.id, this.value); \"></td>";
 	echo "<td><input id=\"".trim($row_user['servername'])."_ip\" type=\"text\" value=\"".trim($row_user['ip'])."\" onchange=\"javascript: editor(this.id, this.value); \"></td>";
 	echo "<td><input id=\"".trim($row_user['servername'])."_db\" type=\"checkbox\" ";
 	if (trim($row_user['db']) == 1) echo "checked "; 
