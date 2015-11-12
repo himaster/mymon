@@ -40,41 +40,39 @@ function child_() {
 	$db = $array["db"];
 	$mysql = $array["mysql"];
 	common_log($servername. " - started");
-	while (!$stop_server) {
-		$i = 1;
-		$ssh_conname = "ssh_".$servername;
-		start:
-		if ((!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))) {
-			common_log($servername." - retry #".$i++);
-			sleep(1);
-			goto start;
-		}
-		$mysql_conname = "mysql_".$servername;
-		$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
-		$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET la='" .la($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
-		if (!isset($result)) common_log($servername." - LA not updated!");
-		unset($result);
-		if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='" .rep($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
-		if (!isset($result)) common_log($servername." - REP not updated!");
-		unset($result);
-		if ($errs == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
-		if (!isset($result)) common_log($servername." - 500 not updated!");
-		unset($result);
-		if ($elastic == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='" .elastic($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
-		if (!isset($result)) common_log($servername." - ELASTIC not updated!");
-		unset($result);
-		if ($mysql == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='" .locks($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
-		else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
-		if (!isset($result)) common_log($servername." - LOCKS not updated!");
-		unset($result);
-		$$mysql_conname->close();
-		unset($$mysql_conname);
-		unset($$ssh_conname);
-		sleep(10);
+	$i = 1;
+	$ssh_conname = "ssh_".$servername;
+	start:
+	if ((!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))) {
+		common_log($servername." - retry #".$i++);
+		sleep(1);
+		goto start;
 	}
+	$mysql_conname = "mysql_".$servername;
+	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
+	$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET la='" .la($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
+	if (!isset($result)) common_log($servername." - LA not updated!");
+	unset($result);
+	if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='" .rep($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
+	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET rep='' WHERE ip='" .$serverip. "';");
+	if (!isset($result)) common_log($servername." - REP not updated!");
+	unset($result);
+	if ($errs == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
+	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE ip='" .$serverip. "';");
+	if (!isset($result)) common_log($servername." - 500 not updated!");
+	unset($result);
+	if ($elastic == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='" .elastic($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
+	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET elastic='' WHERE ip='" .$serverip. "';");
+	if (!isset($result)) common_log($servername." - ELASTIC not updated!");
+	unset($result);
+	if ($mysql == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='" .locks($$ssh_conname, $serverip). "' WHERE ip='" .$serverip. "';");
+	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET locks='' WHERE ip='" .$serverip. "';");
+	if (!isset($result)) common_log($servername." - LOCKS not updated!");
+	unset($result);
+	$$mysql_conname->close();
+	unset($$mysql_conname);
+	unset($$ssh_conname);
+	sleep(10);
 }
 
 function la($connection, $serverip) {
