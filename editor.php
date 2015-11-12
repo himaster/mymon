@@ -16,6 +16,7 @@ $serverinfo = array();
 
 while ($row_user = $result->fetch_assoc()) {
 	echo "<tr>";
+	echo "<td><input id=\"name_".trim($row_user['servername']."\" type=\"text\" value=\"".trim($row_user['servername'])."\" onchange=\"javascript: alert(this); \"></td>";
 	
 }
 echo ("</table>");
