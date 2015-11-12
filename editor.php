@@ -23,13 +23,13 @@ while ($row_user = $result->fetch_assoc()) {
 	echo "onchange=\"javascript: alert(this.value); \"></td>";
 	echo "<td><input id=\"mysql_".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['mysql']) == 1) echo "checked ";
-	echo "onchange=\"javascript: alert(this.value); \"></td>";
+	echo "onchange=\"javascript: alert(this.checked); \"></td>";
 	echo "<td><input id=\"err_".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['err']) == 1) echo "checked ";
-	echo "onchange=\"javascript: alert(this.value); \"></td>";
+	echo "onchange=\"javascript: alert(this.checked); \"></td>";
 	echo "<td><input id=\"el_".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['el']) == 1) echo "checked ";
-	echo "onchange=\"javascript: alert(this.value); \"></td>";
+	echo "onchange=\"javascript: alert(this.checked); \"></td>";
 	echo "</tr>";
 }
 echo ("</table>");
