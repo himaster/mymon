@@ -39,12 +39,12 @@ function child_() {
 	$elastic = $array["el"];
 	$db = $array["db"];
 	$mysql = $array["mysql"];
-	common_log($servername. " - started");
+	common_log($servername. " - started.");
 	$i = 1;
 	$ssh_conname = "ssh_".$servername;
 	start:
 	if ((!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', ''))) {
-		common_log($servername." - retry #".$i++);
+		common_log($servername." - retry #".$i++.".");
 		sleep(1);
 		goto start;
 	}
@@ -72,7 +72,7 @@ function child_() {
 	$$mysql_conname->close();
 	unset($$mysql_conname);
 	unset($$ssh_conname);
-	sleep(10);
+	common_log($servername." - ended.");
 }
 
 function la($connection, $serverip) {
