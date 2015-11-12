@@ -45,8 +45,8 @@ if (isset($_COOKIE["mymon"])) {
 			case "editor_save":
 				$namename = $_GET['name'];
 				array($servername, $columnname) = explode("_", $namename);
-				print $servername;
-				print $columnname;
+				print_r($servername);
+				print_r($columnname);
 				$valval = $_GET['val'];
 				echo $namename.": ".$valval;
 				break;
