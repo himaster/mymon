@@ -7,9 +7,6 @@
         <td>Elastic</td>
         <td>Locks</td>
     </tr>
-<?php
-echo "Test"; die();
-?>
 
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
@@ -17,8 +14,21 @@ $result = $dbconnection->query("SELECT `id`, `servername`, `ip`, `db`, `mysql`, 
 $serverinfo = array();
 
 while ($row_user = $result->fetch_assoc()) {
-?>
-
-<?php
+	echo "<tr>";
+		echo "<td><input id=\"name_".trim($row_user['servername']."\" type=\"text\" value=\"".trim($row_user['servername'])."\" onchange=\"javascript: alert(this); \"></td>";
+		echo "<td><input id=\"ip_".trim($row_user['servername']."\" type=\"text\" value=\"".trim($row_user['ip'])."\"></td>";
+		echo "<td><input id=\"db_".trim($row_user['servername']."\" type=\"checkbox\" ";
+		if (trim($row_user['db']) == 1) echo "checked "; 
+		echo "></td>";
+		echo "<td><input id=\"mysql_".trim($row_user['servername']."\" type=\"checkbox\" ";
+		if (trim($row_user['mysql']) == 1) echo "checked ";
+		echo "></td>";
+		echo "<td><input id=\"err_".trim($row_user['servername']."\" type=\"checkbox\" ";
+		if (trim($row_user['err']) == 1) echo "checked ";
+		echo "></td>";
+		echo "<td><input id=\"el_".trim($row_user['servername']."\" type=\"checkbox\" ";
+		if (trim($row_user['el']) == 1) echo "checked ";
+		echo "></td>";
+	echo "</tr>";
 }
 echo ("</table>");
