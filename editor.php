@@ -20,7 +20,7 @@ while ($row_user = $result->fetch_assoc()) {
 	echo "<td><input id=\"ip_".trim($row_user['servername'])."\" type=\"text\" value=\"".trim($row_user['ip'])."\" onchange=\"javascript: alert(this.value); \"></td>";
 	echo "<td><input id=\"db_".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['db']) == 1) echo "checked "; 
-	echo "onchange=\"javascript: alert(this.value); \"></td>";
+	echo "onchange=\"javascript: alert(this.checked); \"></td>";
 	echo "<td><input id=\"mysql_".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['mysql']) == 1) echo "checked ";
 	echo "onchange=\"javascript: alert(this.checked); \"></td>";
