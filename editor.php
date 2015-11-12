@@ -20,9 +20,9 @@ while ($row_user = $result->fetch_assoc()) {
 		<td><input type="text" value="<?php echo trim($row_user['servername']) ?>"></td>
 		<td><input type="text" value="<?php echo trim($row_user['ip']) ?>"></td>
 		<td><input type="checkbox" <?php if (trim($row_user['db']) == 1) echo "checked"; ?>></td>
-		<td><?php echo trim($row_user['mysql']) ?></td>
-		<td><?php echo trim($row_user['err']) ?></td>
-		<td><?php echo trim($row_user['el']) ?></td>
+		<td><input type="checkbox" <?php if (trim($row_user['mysql']) == 1) echo "checked"; ?>></td>
+		<td><input type="checkbox" <?php if (trim($row_user['err']) == 1) echo "checked"; ?>></td>
+		<td><input type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked"; ?>></td>
 	</tr>
 <?php
 }
