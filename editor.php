@@ -17,7 +17,7 @@ $serverinfo = array();
 while ($row_user = $result->fetch_assoc()) {
 ?>
 	<tr>
-		<td><input type="text"><?php echo trim($row_user['servername']) ?></input></td>
+		<td><input type="text" value="<?php echo trim($row_user['servername']) ?>"></td>
 		<td><?php echo trim($row_user['ip']) ?></td>
 		<td><?php echo trim($row_user['db']) ?></td>
 		<td><?php echo trim($row_user['mysql']) ?></td>
