@@ -42,6 +42,13 @@ if (isset($_COOKIE["mymon"])) {
 				include "footer.html";				
 				break;
 
+			case "editor_save":
+				if isset($_GET['name']) $name = $_GET['name'];
+				if isset($_GET['pos']) $pos = $_GET['pos'];
+				if isset($_GET['val']) $name = $_GET['val'];
+				echo $name.": ".$pos."=>".$val);
+				break;
+
 			case "replica":
 			    $backin = array("88.198.182.130","88.198.182.132","88.198.182.134","88.198.182.146");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");

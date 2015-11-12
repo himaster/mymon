@@ -47,7 +47,15 @@ function status(text) {
 }
 
 function editor(name, pos, val) {
-    alert(name + ": " + pos + "=>" + val);
+    $.ajax({
+        url: 'index.php?task=editor_save&name=' + name + '&pos=' + pos + '&val=' + val,
+        success: function(html) {
+            console.log(html);
+        },
+        error: function() {
+            console.log("error");
+        }
+    });
 }
 
 $(document).ready(function() {
