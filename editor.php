@@ -17,12 +17,12 @@ $serverinfo = array();
 while ($row_user = $result->fetch_assoc()) {
 ?>
 	<tr>
-		<td><input id="name_<?php echo trim($row_user['servername']; ?>" type="text" value="<?php echo trim($row_user['servername']) ?>" onchange="javascript: alert(this)"></td>
-		<td><input id="ip_<?php echo trim($row_user['servername']; ?>" type="text" value="<?php echo trim($row_user['ip']) ?>"></td>
-		<td><input id="db_<?php echo trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['db']) == 1) echo "checked"; ?>></td>
-		<td><input id="mysql_<?php echo trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['mysql']) == 1) echo "checked"; ?>></td>
-		<td><input id="err_<?php echo trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['err']) == 1) echo "checked"; ?>></td>
-		<td><input id="el_<?php echo trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked"; ?>></td>
+		<td><input id="<?php echo 'name_'.trim($row_user['servername']; ?>" type="text" value="<?php echo trim($row_user['servername']); ?>" onchange="javascript: alert(this); "></td>
+		<td><input id="<?php echo 'ip_'.trim($row_user['servername']; ?>" type="text" value="<?php echo trim($row_user['ip']); ?>"></td>
+		<td><input id="<?php echo 'db_'.trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['db']) == 1) echo "checked"; ?>></td>
+		<td><input id="<?php echo 'mysql_'.trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['mysql']) == 1) echo "checked"; ?>></td>
+		<td><input id="<?php echo 'err_'.trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['err']) == 1) echo "checked"; ?>></td>
+		<td><input id="<?php echo 'el_'.trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked"; ?>></td>
 	</tr>
 <?php
 }
