@@ -37,6 +37,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "editor":
+				die("test");
 				include "header.html";
 				include "editor.php";		
 				include "footer.html";				
