@@ -46,10 +46,8 @@ if (isset($_COOKIE["mymon"])) {
 				$namename = explode("_", $_GET['name']);
 				$servername = $namename[0];
 				$columnname = $namename[1];
-				echo $servername."\n";
-				echo $columnname."\n";
 				$valval = $_GET['val'];
-				echo $namename.": ".$valval;
+				echo $servername.": ".$columnname." => ".$valval;
 				break;
 
 			case "replica":
