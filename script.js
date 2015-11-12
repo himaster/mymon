@@ -46,6 +46,10 @@ function status(text) {
     setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 }
 
+function editor(val) {
+    alert(val);
+}
+
 $(document).ready(function() {
     show();
     setInterval('show()', 5000);
