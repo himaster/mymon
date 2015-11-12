@@ -46,7 +46,7 @@ if (isset($_COOKIE["mymon"])) {
 				if (isset($_GET['name'])) $name = $_GET['name'];
 				if (isset($_GET['pos'])) $pos = $_GET['pos'];
 				if (isset($_GET['val'])) $name = $_GET['val'];
-				echo $name.": ".$pos."=>".$val;
+				echo $name.": ".$pos." => ".$val;
 				break;
 
 			case "replica":
