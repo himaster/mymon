@@ -49,7 +49,7 @@ function status(text) {
 function editor(name, val) {
     var servername = name.split('_')[0];
     var columnname = name.split('_')[1];
-    if (columnname == 'name') {
+    if (columnname == 'servername') {
         $("#" + servername + "_servername").id = val + "_servername";
         $("#" + servername + "_ip").id = val + "_ip";
         $("#" + servername + "_db").id = val + "_db";
