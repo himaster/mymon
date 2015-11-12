@@ -43,10 +43,10 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "editor_save":
-				$servername = $_GET['name'];
-				$columnname = $_GET['column'];
-				$valval = $_GET['val'];
-				echo $servername.": ".$columnname." => ".$valval;
+				$servername = $_GET['servername'];
+				$columnname = $_GET['columnname'];
+				$val = $_GET['val'];
+				echo $servername.": ".$columnname." => ".$val;
 				break;
 
 			case "replica":

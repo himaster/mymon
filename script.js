@@ -49,7 +49,8 @@ function status(text) {
 function editor(name, val) {
     var servername = name.split('_')[0];
     var columnname = name.split('_')[1];
-    var dataString = '&task=editor_save&name=' + servername +'&column=' + columnname + '&val=' + val;
+    if (columnname == 'name')
+    var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + val;
     $.ajax({
         url: 'index.php',
         data: dataString,
