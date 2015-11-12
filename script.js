@@ -46,7 +46,7 @@ function status(text) {
     setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 }
 
-function editor(val) {
+function editor(val, name) {
     alert(val);
 }
 
