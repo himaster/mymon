@@ -1,4 +1,5 @@
 
+<?php die("test"); ?>
 <table class="main_table"><col span="5">
 	<tr class="title">
         <td>Server</td>
@@ -17,7 +18,7 @@ $serverinfo = array();
 while ($row_user = $result->fetch_assoc()) {
 ?>
 	<tr>
-		<?php die("test"); ?>
+
 		<td><input id="<?php echo 'name_'.trim($row_user['servername']; ?>" type="text" value="<?php echo trim($row_user['servername']); ?>" onchange="javascript: alert(this); "></td>
 		<td><input id="<?php echo 'ip_'.trim($row_user['servername']; ?>" type="text" value="<?php echo trim($row_user['ip']); ?>"></td>
 		<td><input id="<?php echo 'db_'.trim($row_user['servername']; ?>" type="checkbox" <?php if (trim($row_user['db']) == 1) echo "checked"; ?>></td>
