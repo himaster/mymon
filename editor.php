@@ -1,5 +1,3 @@
-
-<?php die("test"); ?>
 <table class="main_table"><col span="5">
 	<tr class="title">
         <td>Server</td>
@@ -10,7 +8,7 @@
         <td>Locks</td>
     </tr>
 <?php
-
+die("test");
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `servername`, `ip`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats`;") or die($dbconnection->error);
 $serverinfo = array();
