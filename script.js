@@ -46,8 +46,8 @@ function status(text) {
     setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
 }
 
-function editor(name, pos, val) {
-    var dataString = '&task=editor_save&name=' + name + '&pos=' + pos + '&val=' + val;
+function editor(name, val) {
+    var dataString = '&task=editor_save&name=' + name + '&val=' + val;
     $.ajax({
         url: 'index.php',
         data: dataString,
