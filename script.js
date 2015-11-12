@@ -47,7 +47,7 @@ function status(text) {
 }
 
 function editor(val, name) {
-    alert(val);
+    alert(name + "=>" + val);
 }
 
 $(document).ready(function() {
