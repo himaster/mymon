@@ -16,20 +16,20 @@ $serverinfo = array();
 
 while ($row_user = $result->fetch_assoc()) {
 	echo "<tr>";
-	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"text\" value=\"".trim($row_user['servername'])."\" onchange=\"javascript: editor(this.value, 'name', this.id); \"></td>";
-	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"text\" value=\"".trim($row_user['ip'])."\" onchange=\"javascript: editor(this.value, 'ip', this.id); \"></td>";
+	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"text\" value=\"".trim($row_user['servername'])."\" onchange=\"javascript: editor(this.id, 'name', this.value); \"></td>";
+	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"text\" value=\"".trim($row_user['ip'])."\" onchange=\"javascript: editor(this.id, 'ip', this.value); \"></td>";
 	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['db']) == 1) echo "checked "; 
-	echo "onchange=\"javascript: editor(this.checked, 'db', this.id); \"></td>";
+	echo "onchange=\"javascript: editor(this.id, 'db', this.checked); \"></td>";
 	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['mysql']) == 1) echo "checked ";
-	echo "onchange=\"javascript: editor(this.checked, 'mysql', this.id); \"></td>";
+	echo "onchange=\"javascript: editor(this.id, 'mysql', this.checked); \"></td>";
 	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['err']) == 1) echo "checked ";
-	echo "onchange=\"javascript: editor(this.checked, 'err', this.id); \"></td>";
+	echo "onchange=\"javascript: editor(this.id, 'err', this.checked); \"></td>";
 	echo "<td><input id=\"".trim($row_user['servername'])."\" type=\"checkbox\" ";
 	if (trim($row_user['el']) == 1) echo "checked ";
-	echo "onchange=\"javascript: editor(this.checked, 'el', this.id); \"></td>";
+	echo "onchange=\"javascript: editor(this.id, 'el', this.checked); \"></td>";
 	echo "</tr>";
 }
 echo ("</table>");
