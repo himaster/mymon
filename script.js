@@ -10,7 +10,7 @@ function myAjax(serverip) {
 			status("Error");
 		}
     });
-};
+}
 
 function toggle_visibility(id) {
     var e = document.getElementById(id);
