@@ -47,9 +47,12 @@ function status(text) {
 }
 
 function editor(name, pos, val) {
+    var dataString = '&task=editor_save&name=' + name + '&pos=' + pos + '&val=' + val;
     console.log(name + ": " + pos + " => " + val);
     $.ajax({
-        url: 'index.php?task=editor_save&name=' + name + '&pos=' + pos + '&val=' + val,
+        url: 'index.php',
+        data: dataString,
+        cache: false,
         success: function(html) {
             console.log("Ajax: " + html);
         },
