@@ -47,10 +47,11 @@ function status(text) {
 }
 
 function editor(name, pos, val) {
+    console.log(name + ": " + pos + " => " + val);
     $.ajax({
         url: 'index.php?task=editor_save&name=' + name + '&pos=' + pos + '&val=' + val,
         success: function(html) {
-            console.log(html);
+            console.log("Ajax: " + html);
         },
         error: function() {
             console.log("error");
