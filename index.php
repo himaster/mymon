@@ -45,7 +45,7 @@ if (isset($_COOKIE["mymon"])) {
 			case "editor_save":
 				$namename = $_GET['name'];
 				$pospos = $_GET['pos'];
-				$valval = $_GET['valval']
+				$valval = $_GET['valval'];
 				echo $namename.": ".$pospos." => ".$valval;
 				break;
 
