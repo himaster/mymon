@@ -44,6 +44,7 @@ if (isset($_COOKIE["mymon"])) {
 
 			case "editor_save":
 				$namename = $_GET['name'];
+				print_r(explode("_", $namename));
 				$valval = $_GET['val'];
 				echo $namename.": ".$valval;
 				break;
