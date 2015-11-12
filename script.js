@@ -49,7 +49,14 @@ function status(text) {
 function editor(name, val) {
     var servername = name.split('_')[0];
     var columnname = name.split('_')[1];
-    if (columnname == 'name')
+    if (columnname == 'name') {
+        $("#" + servername + "_servername").id = val + "_servername";
+        $("#" + servername + "_ip").id = val + "_ip";
+        $("#" + servername + "_db").id = val + "_db";
+        $("#" + servername + "_mysql").id = val + "_mysql";
+        $("#" + servername + "_err").id = val + "_err";
+        $("#" + servername + "_el").id = val + "_el";
+    }
     var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + val;
     $.ajax({
         url: 'index.php',
