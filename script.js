@@ -50,12 +50,12 @@ function editor(name, val) {
     var servername = name.split('_')[0];
     var columnname = name.split('_')[1];
     if (columnname == 'servername') {
-        $("#" + servername + "_servername").id = val + "_servername";
-        $("#" + servername + "_ip").id = val + "_ip";
-        $("#" + servername + "_db").id = val + "_db";
-        $("#" + servername + "_mysql").id = val + "_mysql";
-        $("#" + servername + "_err").id = val + "_err";
-        $("#" + servername + "_el").id = val + "_el";
+        document.getElementById(servername + "_servername").id = val + "_servername";
+        document.getElementById(servername + "_ip").id = val + "_ip";
+        document.getElementById(servername + "_db").id = val + "_db";
+        document.getElementById(servername + "_mysql").id = val + "_mysql";
+        document.getElementById(servername + "_err").id = val + "_err";
+        document.getElementById(servername + "_el").id = val + "_el";
     }
     var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + val;
     $.ajax({
