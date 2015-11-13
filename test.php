@@ -14,8 +14,9 @@ if ((!$$ssh_conname = ssh2_connect($serverip, 22)) or (!ssh2_auth_pubkey_file($$
 }
 $mysql_conname = "mysql_".$servername;
 $$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
-$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='TEST1' WHERE `ip`='" .$serverip. "';");
-print_r($result);
+$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `timestamp`=`CURRENT_TIMESTAMP` WHERE `ip`='" .$serverip. "';");
+$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='TEST' WHERE `ip`='" .$serverip. "';");
+
 if (!isset($result)) die($servername." - LA not updated!");
 unset($result);
 
