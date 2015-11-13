@@ -47,17 +47,21 @@ function status(text) {
 }
 
 function editor(name, val) {
-    var servername = name.split('_')[0];
-    var columnname = name.split('_')[1];
+    var servername = name.split('^')[0];
+    var columnname = name.split('^')[1];
+    if (val == true) var columnval = '1';
+    else if (val == false) var columnval = '0';
+    else var columnval = val;
+    console.log(columnval);
     if (columnname == 'servername') {
-        document.getElementById(servername + "_servername").id = val + "_servername";
-        document.getElementById(servername + "_ip").id = val + "_ip";
-        document.getElementById(servername + "_db").id = val + "_db";
-        document.getElementById(servername + "_mysql").id = val + "_mysql";
-        document.getElementById(servername + "_err").id = val + "_err";
-        document.getElementById(servername + "_el").id = val + "_el";
+        document.getElementById(servername + "^servername").id = columnval + "^servername";
+        document.getElementById(servername + "^ip").id = columnval + "^ip";
+        document.getElementById(servername + "^db").id = columnval + "^db";
+        document.getElementById(servername + "^mysql").id = columnval + "^mysql";
+        document.getElementById(servername + "^err").id = columnval + "^err";
+        document.getElementById(servername + "^el").id = columnval + "^el";
     }
-    var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + val;
+    var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + columnval;
     $.ajax({
         url: 'index.php',
         data: dataString,
