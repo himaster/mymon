@@ -39,7 +39,6 @@ function child_() {
 	$elastic = $array["el"];
 	$db = $array["db"];
 	$mysql = $array["mysql"];
-	common_log($servername. " - started.");
 	$i = 1;
 	$ssh_conname = "ssh_".$servername;
 	start:
@@ -72,7 +71,6 @@ function child_() {
 	$$mysql_conname->close();
 	unset($$mysql_conname);
 	unset($$ssh_conname);
-	common_log($servername." - ended.");
 }
 
 function la($connection, $serverip) {
