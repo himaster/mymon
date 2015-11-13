@@ -1,3 +1,7 @@
+<div class="left_button" style="top: 20px;">
+	<a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>"><img src="images/back.png"></a>
+</div>
+
 <table class="main_table"><col span="5">
 	<tr class="title">
         <td>Server</td>
