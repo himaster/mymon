@@ -112,7 +112,6 @@ function rep($connection, $serverip) {
     }
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
     else $deltafontcolor = "<font color=\"red\">";
-    die("Test");
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
     		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">
