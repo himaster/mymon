@@ -50,7 +50,6 @@ function child_() {
 	}
 	$mysql_conname = "mysql_".$servername;
 	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
-	#$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `timestamp`=`CURRENT_TIMESTAMP` WHERE `ip`='" .$serverip. "';");
 	$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
 	if (!isset($result)) common_log($servername." - LA not updated!");
 	unset($result);
