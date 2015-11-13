@@ -68,10 +68,9 @@ if (isset($_COOKIE["mymon"])) {
 				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    }
 			    if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
-			    #	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-   					#die("Can't connect to slave server");
+			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   					die("Can't connect to slave server");
 			    }
-			    echo "Test"; die();
 				if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
