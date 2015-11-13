@@ -131,10 +131,7 @@ function err500($connection, $serverip) {
 
 function elastic($connection, $serverip) {
 	$str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
-									 curl -sS -o /dev/null -XGET http://`/sbin/ifconfig eth1 | 
-									 grep 'inet addr:' | 
-									 cut -d: -f2 | 
-									 awk '{ print $1}'`:9200/_cluster/health?pretty;
+									 curl -sS -o /dev/null -XGET http://`ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+'`:9200/_cluster/health?pretty;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
