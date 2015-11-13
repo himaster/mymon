@@ -33,6 +33,7 @@ function child_() {
 	global $array;
 	global $stop_server;
 	global $servername;
+	common_log($servername. " - started.");
 	$serverip = $array["ip"];
 	$servername = $array["servername"];
 	$errs = $array["err"];
@@ -72,6 +73,7 @@ function child_() {
 	$$mysql_conname->close();
 	unset($$mysql_conname);
 	unset($$ssh_conname);
+	common_log($servername. " - ended.");
 }
 
 function la($connection, $serverip) {
