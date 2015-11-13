@@ -26,11 +26,21 @@ function show() {
         dataType: 'json',
         success: function(json) {
             json.forEach(function(item, i, arr) {
-                $("#" + item.servername + "_la").html(item['la']);
-                $("#" + item.servername + "_rep").html(item['rep']);
-                $("#" + item.servername + "_500").html(item['500']);
-                $("#" + item.servername + "_elastic").html(item['elastic']);
-                $("#" + item.servername + "_locks").html(item['locks']);
+                var nowTime = ~~(new Date().getTime() / 1000);
+                if (Math.abs(nowTime - item['timestamp']) > 20) {
+                    $("#" + item['servername'] + "_name").addClass('forceTimeout');
+                }
+                else {
+                    $("#" + item['servername'] + "_name").removeClass('timeout');
+                    $("#" + item['servername'] + "_name").removeClass('forceTimeout');
+                    setTimeout(function(){ $("#" + item['servername'] + "_name").addClass('timeout') }, 100);
+                }
+                $("#" + item['servername'] + "_name").html(item['servername']);
+                $("#" + item['servername'] + "_la").html(item['la']);
+                $("#" + item['servername'] + "_rep").html(item['rep']);
+                $("#" + item['servername'] + "_500").html(item['500']);
+                $("#" + item['servername'] + "_elastic").html(item['elastic']);
+                $("#" + item['servername'] + "_locks").html(item['locks']);
             });
         },
         error: function() {

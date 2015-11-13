@@ -54,6 +54,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "replica":
+			    
 			    $backin = array("88.198.182.130","88.198.182.132","88.198.182.134","88.198.182.146");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
 			    if (in_array($_GET['serverip'], $backin)){
@@ -67,24 +68,27 @@ if (isset($_COOKIE["mymon"])) {
 				    $query = "CHANGE MASTER TO MASTER_HOST=\"10.0.0.2\", MASTER_USER=\"replication\", MASTER_PASSWORD=\"ZsppM0H9q1hcKTok7O51\", ";
 			    }
 			    if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
-			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-   					die();
+			    #	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+   					#die("Can't connect to slave server");
 			    }
+			    echo "Test"; die();
 				if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
 			    if (!$connection_master = ssh2_connect($masterip, 22)) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-   					die();
+   					die("Can't connect to master");
 			    }
 				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">SSH key for master not feat!</font>");
 				}
+
 			    $result = explode("	", ssh2_return($connection_master,  "mysql -N -e 'show master status;'"));
 				$file = $result[0];
 				$position = $result[1];
 			    $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position.";";  
 			    unset($connection_master);
+			    
 			    ssh2_exec($connection, "mysql -N -e 'stop slave;'");
 			    if (!empty($query)) ssh2_exec($connection, "mysql -N -e '$query' 2>&1");
 			    ssh2_exec($connection, "mysql -N -e 'start slave;'");
@@ -110,7 +114,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'getdata':
-				$result = $dbconnection->query("SELECT `id`, `servername`, `la`, `rep`, `500`, `elastic`, `locks` FROM `mymon`.`stats`") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks` FROM `mymon`.`stats`") or die($dbconnection->error());
 				$rows=array();
 				while($array = $result->fetch_assoc()) {
 					$rows[]=$array;

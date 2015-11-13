@@ -16,7 +16,7 @@
 					<input type="password" id="password2" name="password2">
 				</div>
 			<p><div id="email_div"> E-Mail:
-					<input type="text" id="email" name="email" value="<?php echo mysql_fetch_assoc($sql)['email'] ?>">
+					<input type="text" id="email" name="email" value="<?php echo $result->fetch_assoc()['email'] ?>">
 				</div>
 			<p><div id="submit_div">
 					<input type="submit" id="submit_edit" name="submit_edit">

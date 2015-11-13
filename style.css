@@ -183,7 +183,3 @@ input {
 .forceTimeout {
 	border: 1px solid red !important;
 }
-
-.forceTimeout font {
-	color: gray !important;
-}

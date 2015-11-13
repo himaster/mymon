@@ -17,7 +17,7 @@
     flush();
     ob_flush();
     
-    $result = $dbconnection->query("SELECT ip, servername, db, mysql, err, el FROM `mymon`.`stats`;") or die($dbconnection->error());
+    $result = $dbconnection->query("SELECT `servername`, `ip`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats`;") or die($dbconnection->error());
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
@@ -27,7 +27,7 @@
         $mysql = $array["mysql"];
         $serverdb = $server . "_db";
 		echo "<tr>";
-        echo "<td>" .$server. "</td>";
+        echo "<td id='" .$server. "_name'>" .$server. "</td>";
 		echo "<td id='" .$server. "_la'></td>";
 		echo "<td id='" .$server. "_rep'></td>";
 		echo "<td id='" .$server. "_500'></td>";
