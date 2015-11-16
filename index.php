@@ -25,7 +25,7 @@ if (isset($_COOKIE["mymon"])) {
 					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die("Connection error!");
 				}
-				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '');
+				ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '');
 				echo("<div class=\"back_menu\">");
 				echo("<a href=\"#\" onclick=\"self.close()\">");
 				echo("<img src=\"./images/back.png\"></a>");
@@ -71,14 +71,14 @@ if (isset($_COOKIE["mymon"])) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die("Can't connect to slave server");
 			    }
-				if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
+				if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
 			    if (!$connection_master = ssh2_connect($masterip, 22)) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die("Can't connect to master");
 			    }
-				if (!ssh2_auth_pubkey_file($connection_master, 'root', 'id_rsa.pub', 'id_rsa', '')) {
+				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">SSH key for master not feat!</font>");
 				}
 
@@ -99,7 +99,7 @@ if (isset($_COOKIE["mymon"])) {
 					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die();
 				}
-				ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '');
+				ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '');
 				header("Refresh: 5");
 				include "header.html";
 				echo "<div class=\"back_menu\">";
