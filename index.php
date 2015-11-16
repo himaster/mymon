@@ -71,14 +71,14 @@ if (isset($_COOKIE["mymon"])) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die("Can't connect to slave server");
 			    }
-				if (!ssh2_auth_pubkey_file($connection, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+				if (!ssh2_auth_pubkey_file($connection, 'root', 'id_rsa.pub', 'id_rsa', '')) {
 					die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
 				}
 			    if (!$connection_master = ssh2_connect($masterip, 22)) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die("Can't connect to master");
 			    }
-				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/root/.ssh/id_rsa.pub', '/root/.ssh/id_rsa', '')) {
+				if (!ssh2_auth_pubkey_file($connection_master, 'root', 'id_rsa.pub', 'id_rsa', '')) {
    					die("<font color=\"red\">SSH key for master not feat!</font>");
 				}
 
@@ -126,7 +126,7 @@ if (isset($_COOKIE["mymon"])) {
 				$login = no_injection($_GET["username"]);
 				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'") or die($dbconnection->error());
 				$result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login'") or die($dbconnection->error());
-				$msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$servername, 70);
+				$msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$hostname, 70);
 				$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 				mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
 				echo "<p>Профиль успешно обновлен";
