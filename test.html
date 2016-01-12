@@ -1,40 +1,14 @@
 <html>
-	<head>
-		<title></title>
-		<SCRIPT type="text/javascript" src="jquery.js"></SCRIPT>
-		<style>
-			.timeout {
-				-moz-transition: border-color 15s 0.2s ease;
-				-o-transition: border-color 15s 0.2s ease;
-				-webkit-transition: border-color 15s 0.2s ease;
-				border-color: red;
-			}
-			
-		</style>
-		<script language="javascript">
-			function addTimeout(Object) {
-				Object.removeClass('timeout');
-				window.setTimeout(function(){ Object.addClass('timeout'); }, 100);
-			}
-			function myAjax(){
-    			$.ajax({
-					url: 'test.php',
-					success: function(html){
-						$('#a1').html(html);
-					},
-					error: function(){
-						$('#a1').html('error');
-					}
-    			});
-			};
-		</script>
-	</head>
-	<body>
-		<table border="solid">
-			<tr>
-				<td id="a1" name="a1"></td>
-			</tr>
-		</table>
-		<p><button onclick="javascript: myAjax();" >Add Test</button>
-	</body>
+<head>
+	<title>test</title>
+</head>
+<body>
+	Click
+	<form href=https://mymon.pkwteile.de//index.php method=get>
+		<inut type=hidden name=task value=confirm>
+		<inut type=hidden name=usernamevalue=testtest>
+		<input type=submit value=here>
+	</form> 
+	to confirm.
+</body>
 </html>
