@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 			$msg .= "<input type='hidden' name='username' value=$login />";
 			$result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
 			while($row = $result->fetch_assoc()) {
-				$msg .= $row['name']." <input type='checkbox' name='".$row['name']."' />";
+				$msg .= "<p>".$row['name']." <input type='checkbox' name='".$row['name']."' />";
 			}
 			$msg .= "Click <input type='submit' value='here' /> to confirm.";
 			$msg .= "</form></body></html>";
