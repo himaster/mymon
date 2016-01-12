@@ -126,17 +126,19 @@ if (isset($_COOKIE["mymon"])) {
 
 			case "confirm":
 				$login = no_injection($_GET["username"]);
-				$result = $dbconnection->query("SELECT id FROM `mymon`.`users` WHERE login ='{$login}' LIMIT 1") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT id FROM `mymon`.`users` WHERE login ='{$login}' LIMIT 1;") or die($dbconnection->error());
 				$uid = $result->fetch_assoc()['id'];
 				echo "uid= ".$uid;
 				$result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
 				while ($row = $result->fetch_assoc()) {
 					$rid = $row['id'];
 					echo "rid= ".$rid;
-					if ($_GET[$row['name']] == "on") $dbconnection->query("INSERT INTO `user_role`(`user_id`, `role_id`) VALUES ('$uid', '$rid'); ") or die($dbconnection->error());
+					if ($_GET[$row['name']] == "on") {
+						$dbconnection->query("INSERT INTO `user_role`(`user_id`, `role_id`) VALUES ('$uid', '$rid');") or die($dbconnection->error());
+					}
 				}
-				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'") or die($dbconnection->error());
-				$result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login'") or die($dbconnection->error());
+				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login';") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login';") or die($dbconnection->error());
 				$msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$hostname, 70);
 				$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 				mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
