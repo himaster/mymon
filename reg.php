@@ -20,16 +20,15 @@ if (isset($_POST['submit'])) {
  		else {
 			$result = $dbconnection->query("INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
 			$msg = "<html><head><title></title></head><body>";
-			$msg .= "User $login ($email) just registered. Click <form action='https://mymon.pkwteile.de/index.php' method='get'>";
-			$msg .= "<input type='hidden' name='task' value='confirm' \>";
-			$msg .= "<input type='hidden' name='username' value=$login \>";
+			$msg .= "User $login ($email) just registered. <form action='https://mymon.pkwteile.de/index.php' method='get'>";
+			$msg .= "<input type='hidden' name='task' value='confirm' />";
+			$msg .= "<input type='hidden' name='username' value=$login />";
 			$result = $dbconnection->query("SELECT `name` FROM `roles`") or die($dbconnection->error());
 			while($row = $result->fetch_assoc()) {
-				$msg .= "<input type='checkbox' name='".$row['name'].">";
+				$msg .= "<input type='checkbox' name='".$row['name']."' />";
 			}
-			$msg .= "<input type='submit' value='here' \>";
-			$msg .= "</form> to confirm.";
-			$msg .= "</body></html>";
+			$msg .= "Click <input type='submit' value='here' /> to confirm.";
+			$msg .= "</form></body></html>";
 			$to = "himaster@mailer.ag";
 			$subject = "Mymon registration";
 			$headers = "From: mymon@pkwteile.de\r\n";
