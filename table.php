@@ -17,7 +17,7 @@
     flush();
     ob_flush();
     $result = $dbconnection->query("SELECT `role_id` FROM `mymon`.`user_roles` WHERE `user_id` = {$uid};");
-    var_dump($result->fetch_all(MYSQLI_NUM));
+    var_dump($result->fetch_all());
     die();
     $result = $dbconnection->query("SELECT `servername`, `ip`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats` ;") or die($dbconnection->error());
     while($array = $result->fetch_assoc()) {
