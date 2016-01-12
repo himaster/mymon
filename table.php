@@ -16,10 +16,7 @@
     echo str_repeat(' ',1024*128);
     flush();
     ob_flush();
-    $result = $dbconnection->query("SELECT `role_id` FROM `mymon`.`user_roles` WHERE `user_id` = {$uid};");
-    var_dump($result->fetch_all());
-    die();
-    $result = $dbconnection->query("SELECT `servername`, `ip`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats` ;") or die($dbconnection->error());
+    $result = $dbconnection->query("SELECT `st`.`servername`, `st`.`ip`, `st`.`db`, `st`.`mysql`, `st`.`err`, `st`.`el` FROM `user_roles` AS `ur` JOIN `stats` AS `st` ON `st`.`role` = `ur`.`role_id` WHERE `ur`.`user_id` = {$uid};") or die($dbconnection->error());
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
