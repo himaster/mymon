@@ -16,7 +16,7 @@
     echo str_repeat(' ',1024*128);
     flush();
     ob_flush();
-    die("test".$result->fetch_assoc()['id']);
+    die("test".$uid);
     $roles = $dbconnection->query("SELECT `role_id` FROM `mymon`.`user_roles` WHERE `user_id` = {$result->fetch_assoc()['id']};");
     die($roles);
     $result = $dbconnection->query("SELECT `servername`, `ip`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats` ;") or die($dbconnection->error());
