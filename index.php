@@ -128,6 +128,7 @@ if (isset($_COOKIE["mymon"])) {
 				$login = no_injection($_GET["username"]);
 				$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1") or die($dbconnection->error());
 				$uid = $result->fetch_assoc()['id'];
+				echo "uid= ".$uid;
 				$result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
 				while ($row = $result->fetch_assoc()) {
 					$rid = $row['id'];
