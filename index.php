@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL);
+
 if (($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") and ($_SERVER['HTTP_HOST'] != "mymon.loc")) header("Location: https://mymon.pkwteile.de/");
 if (!isset($_GET['task'])) $_GET['task'] = "NULL";
 if ($_GET['task'] == "exit") {
