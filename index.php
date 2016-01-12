@@ -126,7 +126,7 @@ if (isset($_COOKIE["mymon"])) {
 
 			case "confirm":
 				$login = no_injection($_GET["username"]);
-				$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT id FROM `mymon`.`users` WHERE login ='{$login}' LIMIT 1") or die($dbconnection->error());
 				$uid = $result->fetch_assoc()['id'];
 				echo "uid= ".$uid;
 				die();
