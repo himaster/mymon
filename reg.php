@@ -19,7 +19,13 @@ if (isset($_POST['submit'])) {
 		if ($result->num_rows > 0) echo 'Такой логин уже существует';
  		else {
 			$result = $dbconnection->query("INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
-			$msg = wordwrap("User $login ($email) just registered. Click <form href=https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php method=get><inut type=hidden name=task value=confirm><inut type=hidden name=username value=$login><input type=submit value=here></form> to confirm.", 70);
+			$msg = "<html><head><title></title></head><body>";
+			$msg .= "User $login ($email) just registered. Click <form action='https://mymon.pkwteile.de/index.php' method='get'>";
+			$msg .= "<input type='hidden' name='task' value='confirm' \>";
+			$msg .= "<input type='hidden' name='username' value='testtest' \>";
+			$msg .= "<input type='submit' value='here' \>";
+			$msg .= "</form> to confirm.";
+			$msg .= "</body></html>";
 			$to = "himaster@mailer.ag";
 			$subject = "Mymon registration";
 			$headers = "From: mymon@pkwteile.de\r\n";
