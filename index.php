@@ -126,7 +126,6 @@ if (isset($_COOKIE["mymon"])) {
 
 			case "confirm":
 				$login = no_injection($_GET["username"]);
-				echo $login;
 				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'") or die($dbconnection->error());
 				$result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login'") or die($dbconnection->error());
 				$msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$hostname, 70);

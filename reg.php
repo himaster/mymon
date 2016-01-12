@@ -23,6 +23,10 @@ if (isset($_POST['submit'])) {
 			$msg .= "User $login ($email) just registered. Click <form action='https://mymon.pkwteile.de/index.php' method='get'>";
 			$msg .= "<input type='hidden' name='task' value='confirm' \>";
 			$msg .= "<input type='hidden' name='username' value=$login \>";
+			$result = $dbconnection->query("SELECT `name` FROM `roles`") or die($dbconnection->error());
+			while($row = $result->fetch_assoc()) {
+				$msg .= "<input type='checkbox' name='".$row['name'].">";
+			}
 			$msg .= "<input type='submit' value='here' \>";
 			$msg .= "</form> to confirm.";
 			$msg .= "</body></html>";
