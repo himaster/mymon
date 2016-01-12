@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
 			$msg = "<html><head><title></title></head><body>";
 			$msg .= "User $login ($email) just registered. Click <form action='https://mymon.pkwteile.de/index.php' method='get'>";
 			$msg .= "<input type='hidden' name='task' value='confirm' \>";
-			$msg .= "<input type='hidden' name='username' value='testtest' \>";
+			$msg .= "<input type='hidden' name='username' value=$login \>";
 			$msg .= "<input type='submit' value='here' \>";
 			$msg .= "</form> to confirm.";
 			$msg .= "</body></html>";
