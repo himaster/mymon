@@ -128,7 +128,6 @@ if (isset($_COOKIE["mymon"])) {
 				$login = no_injection($_GET["username"]);
 				$result = $dbconnection->query("SELECT id FROM `mymon`.`users` WHERE login ='{$login}' LIMIT 1;") or die($dbconnection->error());
 				$uid = $result->fetch_assoc()['id'];
-				echo "uid= ".$uid;
 				$result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
 				while ($row = $result->fetch_assoc()) {
 					if ($_GET[$row['name']] == "on") {

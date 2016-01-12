@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 			while($row = $result->fetch_assoc()) {
 				$msg .= "<p>".$row['name']." <input type='checkbox' name='".$row['name']."' />";
 			}
-			$msg .= "Click <input type='submit' value='here' /> to confirm.";
+			$msg .= "<p>Click <input type='submit' value='here' /> to confirm.";
 			$msg .= "</form></body></html>";
 			$to = "himaster@mailer.ag";
 			$subject = "Mymon registration";
