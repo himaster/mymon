@@ -1,6 +1,17 @@
 <?php
 include_once("functions.php");
 
+$msg = wordwrap("User $login ($email) just registered. Click <a href=https://$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])/index.php?task=confirm&username=$login>href</a> to confirm.", 70);
+
+$to = 'himaster@mailer.ag';
+
+$subject = "Mymon registration";
+
+$headers = "From: mymon@pkwteile.de\r\n";
+$headers .= "Reply-To: himaster@mailer.ag\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 
 if (isset($_POST['submit'])) {
@@ -17,9 +28,7 @@ if (isset($_POST['submit'])) {
 		if ($result->num_rows > 0) echo 'Такой логин уже существует';
  		else {
 			$result = $dbconnection->query("INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
-			$msg = wordwrap("User $login ($email) just registered. Click https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login to confirm.", 70);
-			$headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
-			mail("himaster@mailer.ag", "Mymon registration", $msg, $headers);
+			mail($to, $subject, $msg, $headers);
 			echo "Регистрация успешно прошла. Ожидайте письма с подтверждением.";
 		}
 	}
