@@ -129,10 +129,10 @@ if (isset($_COOKIE["mymon"])) {
 				$result = $dbconnection->query("SELECT id FROM `mymon`.`users` WHERE login ='{$login}' LIMIT 1") or die($dbconnection->error());
 				$uid = $result->fetch_assoc()['id'];
 				echo "uid= ".$uid;
-				die();
 				$result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
 				while ($row = $result->fetch_assoc()) {
 					$rid = $row['id'];
+					echo "rid= ".$rid;
 					if ($_GET[$row['name']] == "on") $dbconnection->query("INSERT INTO `user_role`(`user_id`, `role_id`) VALUES ('$uid', '$rid'); ") or die($dbconnection->error());
 				}
 				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login'") or die($dbconnection->error());
