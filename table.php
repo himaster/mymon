@@ -17,7 +17,8 @@
     flush();
     ob_flush();
     $roles = $dbconnection->query("SELECT `role_id` FROM `mymon`.`user_roles` WHERE `user_id` = {$uid};");
-    die($roles);
+    var_dump($roles);
+    die();
     $result = $dbconnection->query("SELECT `servername`, `ip`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats` ;") or die($dbconnection->error());
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
