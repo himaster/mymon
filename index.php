@@ -134,7 +134,7 @@ if (isset($_COOKIE["mymon"])) {
 					if ($_GET[$row['name']] == "on") {
 						$rid = $row['id'];
 						echo "rid= ".$rid;
-						//$dbconnection->query("INSERT INTO `user_role`(`user_id`, `role_id`) VALUES ('$uid', '$rid');") or die($dbconnection->error());
+						$dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) VALUES ('$uid', '$rid');") or die($dbconnection->error());
 					}
 				}
 				$result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login';") or die($dbconnection->error());
