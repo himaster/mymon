@@ -1,7 +1,7 @@
 <?php
 include_once("functions.php");
 
-$msg = wordwrap("User $login ($email) just registered. Click <a href=https://$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])/index.php?task=confirm&username=$login>href</a> to confirm.", 70);
+$msg = wordwrap("User $login ($email) just registered. Click <a href=https://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/index.php?task=confirm&username=$login>href</a> to confirm.", 70);
 
 $to = 'himaster@mailer.ag';
 
