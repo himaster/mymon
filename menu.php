@@ -4,9 +4,10 @@ if ($result->num_rows == 1) { ?>
 <div class="left_button">
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
-<?php } ?>
-<p><p><p>
+<div class="left_button" style="top: 50px;">
+<?php } else { ?>
 <div class="left_button">
+<?php } ?>
 	<a href="#" onclick="toggle_visibility('my_div')"><img src="images/profile.png"></a>
 </div>
 <div id="my_div" class="menu">
