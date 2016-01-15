@@ -1,6 +1,10 @@
+<?php
+$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
+if ($result->num_rows == 1) { ?>
 <div class="left_button">
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
+<?php } ?>
 <div class="left_button" style="top: 50px;">
 	<a href="#" onclick="toggle_visibility('my_div')"><img src="images/profile.png"></a>
 </div>
