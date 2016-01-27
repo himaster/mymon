@@ -2,15 +2,15 @@
     include "menu.php";
 ?>
 <table class="main_table">
-        <col span="5">
-            <tr class="title">
-                <td>Server</td>
-                <td>Load Averages</td>
-                <td>Replication</td>
-                <td>500s</td>
-                <td>Elastic</td>
-                <td>Locks</td>
-            </tr>
+    <col span="5">
+        <tr class="title">
+            <td>Server</td>
+            <td>Load Averages</td>
+            <td>Replication</td>
+            <td>500s</td>
+            <td>Elastic</td>
+            <td>Locks</td>
+        </tr>
 <?php
     if (ob_get_level() == 0) ob_start();
     echo str_repeat(' ',1024*128);
