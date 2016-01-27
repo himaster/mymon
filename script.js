@@ -66,6 +66,7 @@ function editor(name, val) {
     if (columnname == 'servername') {
         document.getElementById(servername + "^servername").id = columnval + "^servername";
         document.getElementById(servername + "^ip").id = columnval + "^ip";
+        document.getElementById(servername + "^role").id = columnval + "^role";
         document.getElementById(servername + "^db").id = columnval + "^db";
         document.getElementById(servername + "^mysql").id = columnval + "^mysql";
         document.getElementById(servername + "^err").id = columnval + "^err";
