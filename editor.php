@@ -6,6 +6,7 @@
 		<tr class="title">
 	        <td>Server</td>
 	        <td>IP Address</td>
+	        <td>Role</td>
 	        <td>Replication</td>
 	        <td>500s</td>
 	        <td>Elastic</td>
