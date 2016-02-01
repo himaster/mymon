@@ -20,7 +20,8 @@
                                     FROM `user_roles` AS `ur` 
                                     JOIN `stats` AS `st` 
                                     ON `st`.`role` = `ur`.`role_id` 
-                                    WHERE `ur`.`user_id` = {$uid};") or die($dbconnection->error());
+                                    WHERE `ur`.`user_id` = {$uid}
+                                    ORDER BY `st`.`servername`;") or die($dbconnection->error());
     while($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
