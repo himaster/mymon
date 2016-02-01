@@ -14,7 +14,7 @@
 	    </tr>
 <?php
 	$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-	$result = $dbconnection->query("SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats`;") or die($dbconnection->error);
+	$result = $dbconnection->query("SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el` FROM `mymon`.`stats` ORDER BY `servername`;") or die($dbconnection->error);
 	while ($row_user = $result->fetch_assoc()) { ?>
 		<tr>
 		<td><input id="<?php echo trim($row_user['servername']) ?>^servername" type="text" value="<?php echo trim($row_user['servername']) ?>" onchange="javascript: editor(this.id, this.value);"></td>
