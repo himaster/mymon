@@ -25,4 +25,5 @@
 		<td><input id="<?php echo trim($row_user['servername']) ?>^el" type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 		<td><input id="<?php echo trim($row_user['servername']) ?>^mysql" type="checkbox" <?php if (trim($row_user['mysql']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 	</tr>
+	<?php } ?>
 </table>
