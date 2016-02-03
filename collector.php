@@ -144,7 +144,7 @@ function elastic($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
-	return $fontcolor.$str. "ms</font>";
+	return $fontcolor.$str. "<font size='7'>ms</font></font>";
 }
 
 function locks($connection, $serverip) {
