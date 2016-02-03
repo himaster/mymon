@@ -193,3 +193,7 @@ input {
 .forceTimeout {
 	border: 1px solid red !important;
 }
+
+.simple_div {
+	display: inline-block;
+}
