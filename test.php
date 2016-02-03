@@ -1,7 +1,7 @@
 <?php
 
 require_once "functions.php";
-
+die("test");
 $hosts = "mongodb://mongodb";
 $args = "";
 $db = "admin";
