@@ -28,7 +28,7 @@ if ($result->num_rows == 1) { ?>
 				<input type="text" id="email" name="email" value="<?php echo $umail ?>">
 			</div>
 			<p>
-			<div id="simple_view">Test:
+			<div id="simple_div">Test:
 				<input type="checkbox" id="la" <?php if ($ula == 1) echo "checked "; ?> >
 				<input type="checkbox" id="rep" <?php if ($urep == 1) echo "checked "; ?> >
 				<input type="checkbox" id="loc" <?php if ($uloc == 1) echo "checked "; ?> >
@@ -46,7 +46,8 @@ if ($result->num_rows == 1) { ?>
 			<a href="javascript: toggle_visibility('password_div');
 					toggle_visibility('password2_div');
 					toggle_visibility('email_div');
-					toggle_visibility('submit_div');">Edit profile</a>
+					toggle_visibility('submit_div');
+					toggle_visibility('simple_div');">Edit profile</a>
 			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
 			<p><a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">logout</a>
 		</form>
