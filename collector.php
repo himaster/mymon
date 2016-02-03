@@ -40,11 +40,12 @@ function child_() {
 	$i = 1;
 	$ssh_conname = "ssh_".$servername;
 	start:
-	$$ssh_conname = @ssh2_connect($serverip, 22);
-	if ((!$$ssh_conname) or (!@ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
+	$$ssh_conname = ssh2_connect($serverip, 22);
+	if ((!$$ssh_conname) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
 		common_log($servername." - retry #".$i++.".");
 		sleep(1);
-		goto start;
+		if ($i < $retry_num) goto start;
+		else exit(1);
 	}
 	$mysql_conname = "mysql_".$servername;
 	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
