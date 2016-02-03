@@ -7,9 +7,12 @@
             <td>Server</td>
             <td>Load Averages</td>
             <td>Replication</td>
-            <td>500s</td>
-            <td>Elastic</td>
             <td>Locks</td>
+            <td>Nginx</td>
+            <td>Elastic</td>
+            <td>Mongo</td>
+            <td>Redis</td>
+
         </tr>
 <?php
     if (ob_get_level() == 0) ob_start();
@@ -34,9 +37,9 @@
         echo "<td id='" .$server. "_name'>" .$server. "</td>";
 		echo "<td id='" .$server. "_la'></td>";
 		echo "<td id='" .$server. "_rep'></td>";
+        echo "<td id='" .$server. "_locks'></td>";
 		echo "<td id='" .$server. "_500'></td>";
 		echo "<td id='" .$server. "_elastic'></td>";
-        echo "<td id='" .$server. "_locks'></td>";
     }
 	$dbconnection->close();
 ?>
