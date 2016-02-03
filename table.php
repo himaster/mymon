@@ -1,18 +1,20 @@
 <?php 
     include "menu.php";
+    #$result = $dbconnection->query("SELECT ") or die($dbconnection->error());
 ?>
 <table class="main_table">
     <col span="5">
         <tr class="title">
             <td>Server</td>
-            <td>Load Averages</td>
-            <td>Replication</td>
-            <td>Locks</td>
-            <td>500s</td>
-            <td>Elastic</td>
-            <td>Mongo</td>
-            <td>Redis</td>
-
+            <?php 
+            if ($ula == "1") echo "<td>Load Averages</td>";
+            if ($urep == "1") echo "<td>Replication</td>";
+            if ($uloc == "1") echo "<td>Locks</td>";
+            if ($u500 == "1") echo "<td>500s</td>";
+            if ($uel == "1") echo "<td>Elastic</td>";
+            if ($umon == "1") echo "<td>Mongo</td>";
+            if ($ured == "1") echo "<td>Redis</td>";
+            ?>
         </tr>
 <?php
     if (ob_get_level() == 0) ob_start();
@@ -37,13 +39,13 @@
         $serverdb = $server . "_db";
 		echo "<tr>";
         echo "<td id='" .$server. "_name'>" .$server. "</td>";
-		echo "<td id='" .$server. "_la'></td>";
-		echo "<td id='" .$server. "_rep'></td>";
-        echo "<td id='" .$server. "_locks'></td>";
-		echo "<td id='" .$server. "_500'></td>";
-		echo "<td id='" .$server. "_elastic'></td>";
-        echo "<td id='" .$server. "_mongo'></td>";
-        echo "<td id='" .$server. "_redis'></td>";
+		if ($ula == "1") echo "<td id='" .$server. "_la'></td>";
+		if ($urep == "1") echo "<td id='" .$server. "_rep'></td>";
+        if ($uloc == "1") echo "<td id='" .$server. "_locks'></td>";
+		if ($u500 == "1") echo "<td id='" .$server. "_500'></td>";
+		if ($uel == "1") echo "<td id='" .$server. "_elastic'></td>";
+        if ($umon == "1") echo "<td id='" .$server. "_mongo'></td>";
+        if ($ured == "1") echo "<td id='" .$server. "_redis'></td>";
     }
 
 	$dbconnection->close();
