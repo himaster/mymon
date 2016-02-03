@@ -25,7 +25,7 @@ if ($result->num_rows == 1) { ?>
 			</div>
 			<p>
 			<div id="email_div"> E-Mail:
-				<input type="text" id="email" name="email" value="<?php echo "e-mail:".$uemail ?>">
+				<input type="text" id="email" name="email" value="<?php echo "e-mail:".$umail ?>">
 			</div>
 			<p>
 			<div id="submit_div">

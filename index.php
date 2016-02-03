@@ -18,7 +18,6 @@ if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
 	$password = no_injection($_COOKIE["mymon"]["password"]);
 	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1")->fetch_assoc() or die($dbconnection->error);
-#	$result_assoc = $result->fetch_assoc();
 	$uid = $result['id'];
 	$umail = $result['email'];
 	die($umail);
