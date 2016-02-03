@@ -17,9 +17,10 @@ $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or di
 if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
 	$password = no_injection($_COOKIE["mymon"]["password"]);
-	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1")->fetch_assoc() or die($dbconnection->error);
-	$uid = $result['id'];
-	$umail = $result['email'];
+	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($dbconnection->error);
+	$result_assoc = $result->fetch_assoc();
+	$uid = $result_assoc['id'];
+	$umail = $result_assoc['email'];
 	if ($result->num_rows == 1) {
 		switch ($_GET["task"]) {
 			case "500err":
