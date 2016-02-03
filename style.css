@@ -194,6 +194,6 @@ input {
 	border: 1px solid red !important;
 }
 
-.simple_div {
+#simple_div input {
 	display: inline-block;
 }
