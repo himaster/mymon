@@ -64,7 +64,6 @@ elseif (isset($_POST['submit_edit'])) {
 		if (isset($_POST['red'])) $ured = 1;
 		else $ured = 0;
 		$query = "UPDATE users SET password = '$password', email = '$email', la = '$ula', rep = '$urep', loc = '$uloc', `500` = '$u500', el = '$uel', mon = '$umon', red = '$ured' WHERE login = '$login'";
-		die ($query);
 		$result = $dbconnection->query($query) or die(mysql_error());
 		echo "Профиль успешно обновлен.<a href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
 	}
