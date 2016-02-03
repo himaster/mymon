@@ -18,10 +18,10 @@ if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
 	$password = no_injection($_COOKIE["mymon"]["password"]);
 	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($dbconnection->error);
-	print_r($result->fetch_assoc()['email']);die();
+#	print_r($result->fetch_assoc()['email']);die();
 	$uid = $result->fetch_assoc()['id'];
-	$uemail = $result->fetch_assoc()['email'];
-	print_r("email: ".$uemail);
+	$umail = $result->fetch_assoc()['email'];
+	print_r("email: ".$umail);
 	die();
 	if ($result->num_rows == 1) {
 		switch ($_GET["task"]) {
