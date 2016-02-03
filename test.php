@@ -15,4 +15,4 @@ $mongo = new MongoDB($c, $db);
 $mongodb_info = $mongo->command(array('serverStatus'=>true));
 $mongodb_connections = $mongodb_info['connections'];
 
-print_r($mongodb_connections);
+print_r($mongodb_connections['current']);
