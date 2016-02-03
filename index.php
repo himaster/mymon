@@ -21,7 +21,7 @@ if (isset($_COOKIE["mymon"])) {
 #	print_r($result->fetch_assoc()['email']);die();
 	$uid = $result->fetch_assoc()['id'];
 	$umail = $result->fetch_assoc()['email'];
-	print_r("email: ".$umail);
+	print_r("email: ".$result->fetch_assoc()['email']);
 	die();
 	if ($result->num_rows == 1) {
 		switch ($_GET["task"]) {
