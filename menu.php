@@ -28,13 +28,25 @@ if ($result->num_rows == 1) { ?>
 				<input type="text" id="email" name="email" value="<?php echo $umail ?>">
 			</div>
 			<p>
-			<div id="simple_div"> Test:
+			<div class="simple_div">
 				<input type="checkbox" id="la" <?php if ($ula == 1) echo "checked "; ?> >
+			</div>
+			<div class="simple_div">
 				<input type="checkbox" id="rep" <?php if ($urep == 1) echo "checked "; ?> >
+			</div>
+			<div class="simple_div">
 				<input type="checkbox" id="loc" <?php if ($uloc == 1) echo "checked "; ?> >
+			</div>
+			<div class="simple_div">
 				<input type="checkbox" id="500" <?php if ($u500 == 1) echo "checked "; ?> >
+			</div>
+			<div class="simple_div">
 				<input type="checkbox" id="el" <?php if ($uel == 1) echo "checked "; ?> >
+			</div>
+			<div class="simple_div">
 				<input type="checkbox" id="mon" <?php if ($umon == 1) echo "checked "; ?> >
+			</div>
+			<div class="simple_div">
 				<input type="checkbox" id="red" <?php if ($ured == 1) echo "checked "; ?> >
 			</div>
 			<p>
