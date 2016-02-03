@@ -8,7 +8,7 @@
             <td>Load Averages</td>
             <td>Replication</td>
             <td>Locks</td>
-            <td>Nginx</td>
+            <td>500s</td>
             <td>Elastic</td>
             <td>Mongo</td>
             <td>Redis</td>
