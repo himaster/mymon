@@ -6,6 +6,7 @@
 	<tr class="title">
         <td>Server</td>
         <td>Load Averages</td>
+        <td>Role</td>
         <td>Replication</td>
         <td>Locks</td>
         <td>500s</td>
