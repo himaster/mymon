@@ -7,7 +7,7 @@ $hosts = "mongodb";
 $args = "";
 $db = "admin";
 
-$c  = new MongoClient($hosts, $args); // connect
+$c  = new MongoClient($hosts); // connect
 
 
 die("test");
