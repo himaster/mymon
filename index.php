@@ -21,7 +21,7 @@ if (isset($_COOKIE["mymon"])) {
 #	$result_assoc = $result->fetch_assoc();
 	$uid = $result['id'];
 	$umail = $result['email'];
-	die($uid);
+	die($umail);
 	if ($result->num_rows == 1) {
 		switch ($_GET["task"]) {
 			case "500err":
