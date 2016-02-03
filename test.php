@@ -7,11 +7,12 @@ $hosts = "mongodb";
 $args = "";
 $db = "admin";
 
+$datetime1 = new DateTime($val1);
+
 $c  = new MongoClient($hosts); // connect
-
-
 $mongo = new MongoDB($c, $db);
 $mongodb_info = $mongo->command(array('serverStatus'=>true));
 
-$mongodb_connections = $mongodb_info['connections']['current'];
-echo("Conn: ".$mongodb_connections);
+$datetime2 = new DateTime($val2);
+echo($datetime1->diff($datetime2));
+echo("Conn: ".$mongodb_info['connections']['current'];);
