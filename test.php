@@ -10,8 +10,6 @@ $db = "admin";
 $c  = new MongoClient($hosts); // connect
 
 
-die("test");
-
 $mongo = new MongoDB($c, $db);
 
 $mongodb_info = $mongo->command(array('serverStatus'=>true));
