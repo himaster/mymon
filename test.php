@@ -3,11 +3,11 @@ error_reporting(E_ALL);
 
 require_once "functions.php";
 
-$hosts = "mongodb://mongodb";
+$hosts = "mongodb";
 $args = "";
 $db = "admin";
 
-$c  = new \MongoClient($hosts, $args); // connect
+$c  = new MongoClient($hosts, $args); // connect
 
 
 die("test");
