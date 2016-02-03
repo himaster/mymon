@@ -49,7 +49,14 @@ elseif (isset($_POST['submit_edit'])) {
 		$login = no_injection($_POST['login']);
 		$password = md5(no_injection($_POST['password']));
 		$email = no_injection($_POST['email']);
-		$query = "UPDATE users SET password = '$password', email = '$email' WHERE login = '$login'";
+		$ula = no_injection($_POST['la']);
+		$urep = no_injection($_POST['rep']);
+		$uloc = no_injection($_POST['loc']);
+		$u500 = no_injection($_POST['500']);
+		$uel = no_injection($_POST['el']);
+		$umon = no_injection($_POST['mon']);
+		$ured = no_injection($_POST['red']);
+		$query = "UPDATE users SET password = '$password', email = '$email', la = '$ula', rep = '$urep', loc = '$uloc', `500` = '$u500', el = '$uel', mon = '$umon', red = '$ured' WHERE login = '$login'";
 		$result = mysql_query($query) or die(mysql_error());
 		echo "Профиль успешно обновлен.<a href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
 	}
