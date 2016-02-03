@@ -14,21 +14,21 @@ if ($result->num_rows == 1) { ?>
 	
 		<div id="menu_title"><b>Profile</b></div>
 		<form action="reg.php" method="POST">
-			<p>Username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
+			<p>username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
 			<p>
-			<div id="password_div"> Password:
+			<div id="password_div"> password:
 				<input type="password" id="password" name="password">
 			</div>
 			<p>
-			<div id="password2_div"> Repeat:
+			<div id="password2_div"> repeat:
 				<input type="password" id="password2" name="password2">
 			</div>
 			<p>
-			<div id="email_div"> E-Mail:
+			<div id="email_div"> e-mail:
 				<input type="text" id="email" name="email" value="<?php echo $umail ?>">
 			</div>
 			<p>
-			<div id="simple_div">
+			<div id="simple_div"> simple view:
 				<div style="display: inline-block;">
 					<input type="checkbox" id="la" <?php if ($ula == 1) echo "checked "; ?> >
 				</div>
