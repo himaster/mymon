@@ -1,5 +1,3 @@
-#!/usr/bin/php
-
 <?php
 include_once "functions.php";
 
@@ -205,3 +203,4 @@ function errHandler($errno, $errmsg, $filename, $linenum) {
 		fclose($f);
 	}
 }
+

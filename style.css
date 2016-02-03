@@ -85,7 +85,7 @@ input {
 	border-collapse: collapse;
 	border: solid 2px rgb(128, 128, 128);
 	line-height: 1.3;
-	width: 560px;
+	width: 570px;
 	margin-left: auto;
   	margin-right: auto;
 }
@@ -107,11 +107,11 @@ input {
 }
 
 .main_table td:nth-child(2) {
-	width: 140px;
+	width: 180px;
 }
 
 .main_table td:nth-child(3) {
-	width: 130px;
+	width: 140px;
 }
 
 .main_table td:nth-child(4) {
