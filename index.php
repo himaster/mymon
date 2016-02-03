@@ -20,7 +20,6 @@ if (isset($_COOKIE["mymon"])) {
 	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1")->fetch_assoc() or die($dbconnection->error);
 	$uid = $result['id'];
 	$umail = $result['email'];
-	die($umail);
 	if ($result->num_rows == 1) {
 		switch ($_GET["task"]) {
 			case "500err":
