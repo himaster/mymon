@@ -7,7 +7,7 @@ declare(ticks=1);
 set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, mysql, err, el FROM `mymon`.`stats`;") or die($connection->error);
+$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;") or die($connection->error);
 $i = 1;
 while($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
@@ -40,6 +40,8 @@ function child_() {
 	$elastic = $array["el"];
 	$db = $array["db"];
 	$mysql = $array["mysql"];
+	$mon = $array["mon"];
+	$red = $array["red"];
 	$i = 1;
 	$ssh_conname = "ssh_".$servername;
 	start:
@@ -68,6 +70,14 @@ function child_() {
 	if ($mysql == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='" .locks($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
 	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='' WHERE `ip`='" .$serverip. "';");
 	if (!isset($result)) common_log($servername." - LOCKS not updated!");
+	unset($result);
+	if ($mon == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='' WHERE `ip`='" .$serverip. "';");
+	if (!isset($result)) common_log($servername." - MONGO not updated!");
+	unset($result);
+	if ($red == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='" .redis($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='' WHERE `ip`='" .$serverip. "';");
+	if (!isset($result)) common_log($servername." - REDIS not updated!");
 	unset($result);
 	$$mysql_conname->close();
 	unset($$mysql_conname);
