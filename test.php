@@ -13,6 +13,6 @@ $c  = new MongoClient($hosts); // connect
 $mongo = new MongoDB($c, $db);
 
 $mongodb_info = $mongo->command(array('serverStatus'=>true));
-$mongodb_connections = $mongodb_info['connections.current'];
+$mongodb_connections = $mongodb_info['connections'];
 
-die($mongodb_connections);
+print_r($mongodb_connections);
