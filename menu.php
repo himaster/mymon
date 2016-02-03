@@ -28,7 +28,7 @@ if ($result->num_rows == 1) { ?>
 				<input type="text" id="email" name="email" value="<?php echo $umail ?>">
 			</div>
 			<p>
-			<div id="simple_div">Test:
+			<div id="simple_div" class="simple_div"> Test:
 				<input type="checkbox" id="la" <?php if ($ula == 1) echo "checked "; ?> >
 				<input type="checkbox" id="rep" <?php if ($urep == 1) echo "checked "; ?> >
 				<input type="checkbox" id="loc" <?php if ($uloc == 1) echo "checked "; ?> >
