@@ -1,7 +1,7 @@
 <?php
 
 require_once "functions.php";
-die("test");
+
 $hosts = "mongodb://mongodb";
 $args = "";
 $db = "admin";
@@ -14,6 +14,7 @@ catch ( MongoConnectionException $e ) {
     echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
     exit();
 }
+die("test");
 
 $mongo = new MongoDB($c, $db);
 
