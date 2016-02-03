@@ -1,8 +1,6 @@
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
 include_once "functions.php";
-
 declare(ticks=1);
 set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
@@ -20,10 +18,7 @@ while($array = $result->fetch_assoc()) {
 }
 $result->free();
 $connection->close();
-
 exit;
-
-
 
 function parent_() {
 
@@ -198,12 +193,12 @@ function sigHandler($signo) {
 }
 
 function errHandler($errno, $errmsg, $filename, $linenum) {
+	global $servername;
 	$date = date('Y-m-d H:i:s (T)');
 	$f = fopen('/var/log/mymon/errors.txt', 'a');
 	if (!empty($f)) {
 		$filename  = str_replace($_SERVER['DOCUMENT_ROOT'],'',$filename);
-		fwrite($f, "$date: PID:".getmypid()."  $errmsg - $filename - $linenum\r\n");
+		fwrite($f, "$date: server: $servername: $errmsg - $filename - $linenum\r\n");
 		fclose($f);
 	}
 }
-
