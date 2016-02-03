@@ -2,7 +2,10 @@
 include_once("functions.php");
 
 error_reporting(E_ALL);
-
+echo '<pre>';
+print_r( $_POST );
+echo '<pre>';
+die();
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 
 if (isset($_POST['submit'])) {
@@ -56,7 +59,6 @@ elseif (isset($_POST['submit_edit'])) {
 		$uel = no_injection($_POST['el']);
 		$umon = no_injection($_POST['mon']);
 		$ured = no_injection($_POST['red']);
-		die($ula);
 		$query = "UPDATE users SET password = '$password', email = '$email', la = '$ula', rep = '$urep', loc = '$uloc', `500` = '$u500', el = '$uel', mon = '$umon', red = '$ured' WHERE login = '$login'";
 		$result = $dbconnection->query($query) or die(mysql_error());
 		echo "Профиль успешно обновлен.<a href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
