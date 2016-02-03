@@ -3,7 +3,6 @@
 #require_once "functions.php";
 
 $hosts = "mongodb";
-$args = "";
 $db = "admin";
 
 $curTime = microtime(true);
