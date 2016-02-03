@@ -144,7 +144,7 @@ function elastic($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
-	return $fontcolor.$str. "</font>";
+	return $fontcolor.$str. "ms</font>";
 }
 
 function locks($connection, $serverip) {
@@ -161,7 +161,7 @@ function mongo($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
-	return $fontcolor.$str. "</font>";
+	return $fontcolor.$str. "ms</font>";
 }
 
 function redis($connection, $serverip) {
@@ -171,7 +171,7 @@ function redis($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
-	return $fontcolor.$str. "</font>";
+	return $fontcolor.$str. "ms</font>";
 }
 
 function sigHandler($signo) {
