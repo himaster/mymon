@@ -148,10 +148,11 @@ function elastic($connection, $serverip) {
 }
 
 function locks($connection, $serverip) {
-	$str = ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l");
-    if (trim($str) == "0") $fontcolor = "<font color=\"green\">";
+	$locked = trim(ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l"));
+	$conns  = trim(ssh2_return($connection, "mysql -Ne \"SHOW STATUS WHERE variable_name = 'Threads_connected'\""));
+    if (($locked == "0") and ($conns < "1000")) $fontcolor = "<font color=\"green\">";
     else $fontcolor = "<font color=\"red\">";
-    return $fontcolor.trim($str). "</font>";
+    return $fontcolor.$conns. " / " .$locked. "</font>";
 }
 
 function mongo($connection, $serverip) {
