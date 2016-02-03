@@ -161,7 +161,7 @@ function mongo($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
-	return $fontcolor.$str. "ms</font>";
+	return $fontcolor.$str. "<font size=\"2\">ms</font></font>";
 }
 
 function redis($connection, $serverip) {
@@ -171,7 +171,7 @@ function redis($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
-	return $fontcolor.$str. "ms</font>";
+	return $fontcolor.$str. "<font size=\"2\">ms</font></font>";
 }
 
 function sigHandler($signo) {
