@@ -161,6 +161,7 @@ if (isset($_COOKIE["mymon"])) {
 	$password = md5(no_injection($_POST['password']));
 	$result = $dbconnection->query("SELECT id, login, password, email FROM `mymon`.`users` WHERE login ='{$login}' AND password='{$password}' AND approvied='1' LIMIT 1") or die($dbconnection->error());
 	$uid = $result->fetch_assoc()['id'];
+	$uemail = $result->fetch_assoc()['email'];
 	if ($result->num_rows == 1) {
 		setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 		setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
