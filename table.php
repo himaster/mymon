@@ -19,7 +19,7 @@
     echo str_repeat(' ',1024*128);
     flush();
     ob_flush();
-    $result = $dbconnection->query("SELECT `st`.`servername`, `st`.`ip`, `st`.`db`, `st`.`mysql`, `st`.`err`, `st`.`el` 
+    $result = $dbconnection->query("SELECT `st`.`servername`, `st`.`ip`, `st`.`db`, `st`.`mysql`, `st`.`err`, `st`.`el`, `st`.`mongo`, `st`.`redis` 
                                     FROM `user_roles` AS `ur` 
                                     JOIN `stats` AS `st` 
                                     ON `st`.`role` = `ur`.`role_id` 
@@ -30,6 +30,8 @@
         $server = $array["servername"];
         $errs = $array["err"];
         $elastic = $array["el"];
+        $mongo = $array["mongo"];
+        $redis = $array["redis"];
         $db = $array["db"];
         $mysql = $array["mysql"];
         $serverdb = $server . "_db";
@@ -40,8 +42,8 @@
         echo "<td id='" .$server. "_locks'></td>";
 		echo "<td id='" .$server. "_500'></td>";
 		echo "<td id='" .$server. "_elastic'></td>";
-        echo "<td></td>";
-        echo "<td></td>";
+        echo "<td id='" .$server. "_mongo'></td>";
+        echo "<td id='" .$server. "_redis'></td>";
     }
 
 	$dbconnection->close();
