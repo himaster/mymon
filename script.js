@@ -38,9 +38,12 @@ function show() {
                 $("#" + item['servername'] + "_name").html(item['servername']);
                 $("#" + item['servername'] + "_la").html(item['la']);
                 $("#" + item['servername'] + "_rep").html(item['rep']);
+                $("#" + item['servername'] + "_locks").html(item['locks']);
                 $("#" + item['servername'] + "_500").html(item['500']);
                 $("#" + item['servername'] + "_elastic").html(item['elastic']);
-                $("#" + item['servername'] + "_locks").html(item['locks']);
+                $("#" + item['servername'] + "_mongo").html(item['mongo']);
+                $("#" + item['servername'] + "_redis").html(item['redis']);
+
             });
         },
         error: function() {
@@ -71,6 +74,8 @@ function editor(name, val) {
         document.getElementById(servername + "^mysql").id = columnval + "^mysql";
         document.getElementById(servername + "^err").id = columnval + "^err";
         document.getElementById(servername + "^el").id = columnval + "^el";
+        document.getElementById(servername + "^mon").id = columnval + "^mon";
+        document.getElementById(servername + "^red").id = columnval + "^red";
     }
     var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + columnval;
     $.ajax({

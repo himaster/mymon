@@ -115,7 +115,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'getdata':
-				$result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks` FROM `mymon`.`stats`") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis` FROM `mymon`.`stats`") or die($dbconnection->error());
 				$rows=array();
 				while($array = $result->fetch_assoc()) {
 					$rows[]=$array;
