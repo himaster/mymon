@@ -40,7 +40,10 @@
         echo "<td id='" .$server. "_locks'></td>";
 		echo "<td id='" .$server. "_500'></td>";
 		echo "<td id='" .$server. "_elastic'></td>";
+        echo "<td></td>";
+        echo "<td></td>";
     }
+
 	$dbconnection->close();
 ?>
 </table>
