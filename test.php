@@ -7,12 +7,12 @@ $hosts = "mongodb";
 $args = "";
 $db = "admin";
 
-$datetime1 = new DateTime("now");
+$curTime = microtime(true);
 
 $c  = new MongoClient($hosts); // connect
 $mongo = new MongoDB($c, $db);
 $mongodb_info = $mongo->command(array('serverStatus'=>true));
 
-$datetime2 = new DateTime("now");
-var_dump($datetime1->diff($datetime2));
+$timeConsumed = round(microtime(true) - $curTime,3)*1000; 
+echo($timeConsumed);
 echo("Conn: ".$mongodb_info['connections']['current']);
