@@ -25,12 +25,23 @@ if ($result->num_rows == 1) { ?>
 			</div>
 			<p>
 			<div id="email_div"> E-Mail:
-				<input type="text" id="email" name="email" value="<?php echo "e-mail:".$umail ?>">
+				<input type="text" id="email" name="email" value="<?php echo $umail ?>">
+			</div>
+			<p>
+			<div id="simple_view">
+				<input type="checkbox" id="la" <?php if ($ula == 1) echo "checked "; ?> >
+				<input type="checkbox" id="rep" <?php if ($urep == 1) echo "checked "; ?> >
+				<input type="checkbox" id="loc" <?php if ($uloc == 1) echo "checked "; ?> >
+				<input type="checkbox" id="500" <?php if ($u500 == 1) echo "checked "; ?> >
+				<input type="checkbox" id="el" <?php if ($uel == 1) echo "checked "; ?> >
+				<input type="checkbox" id="mon" <?php if ($umon == 1) echo "checked "; ?> >
+				<input type="checkbox" id="red" <?php if ($ured == 1) echo "checked "; ?> >
 			</div>
 			<p>
 			<div id="submit_div">
-				<input type="submit" id="submit_edit" name="submit_edit">
+				<input type="submit" id="submit_edit" name="submit_edit" valus="send">
 			</div>
+			
 			<p>
 			<a href="javascript: toggle_visibility('password_div');
 					toggle_visibility('password2_div');
