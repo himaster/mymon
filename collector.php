@@ -81,8 +81,8 @@ function la($connection, $serverip) {
 	$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
 	$la1 = intval(array_map("trim",explode(",",$la))[0]);
 	$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
-	if ($la1 < ($core/2)) $fontcolor = "<font color=\"green\">";
-	elseif (($la1 >= ($core/2)) && ($la1 < ($core * 0.75))) $fontcolor = "<font color=\"#CAC003\">";
+	if ($la1 < ($core * 0.75)) $fontcolor = "<font color=\"green\">";
+	elseif (($la1 >= ($core * 0.75)) && ($la1 < $core)) $fontcolor = "<font color=\"#CAC003\">";
 	else $fontcolor = "<font color=\"red\">";
 	return "<a title=\"Click to show processes\" 
 			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
