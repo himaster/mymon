@@ -28,6 +28,7 @@ function child_() {
 	global $array;
 	global $stop_server;
 	global $servername;
+	$retry_num = 10;
 	common_log($servername. " - started.");
 	$serverip = $array["ip"];
 	$servername = $array["servername"];
