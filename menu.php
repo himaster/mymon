@@ -53,7 +53,7 @@ if ($result->num_rows == 1) { ?>
 			</div>
 			<p>
 			<div id="submit_div">
-				<input type="submit" id="submit_edit" name="submit_edit" valus="send">
+				<input type="submit" id="submit_edit" name="submit_edit" value="send">
 			</div>
 			
 			<p>
