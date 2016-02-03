@@ -2,10 +2,7 @@
 include_once("functions.php");
 
 error_reporting(E_ALL);
-echo '<pre>';
-print_r( $_POST );
-echo '<pre>';
-die();
+
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 
 if (isset($_POST['submit'])) {
@@ -52,14 +49,22 @@ elseif (isset($_POST['submit_edit'])) {
 		$login = no_injection($_POST['login']);
 		$password = md5(no_injection($_POST['password']));
 		$email = no_injection($_POST['email']);
-		$ula = no_injection($_POST['la']);
-		$urep = no_injection($_POST['rep']);
-		$uloc = no_injection($_POST['loc']);
-		$u500 = no_injection($_POST['500']);
-		$uel = no_injection($_POST['el']);
-		$umon = no_injection($_POST['mon']);
-		$ured = no_injection($_POST['red']);
+		if (isset($_POST['la'])) $ula = 1;
+		else $ula = 0;
+		if (isset($_POST['rep'])) $urep = 1;
+		else $urep = 0;
+		if (isset($_POST['loc'])) $uloc = 1;
+		else $uloc = 0;
+		if (isset($_POST['500'])) $u500 = 1;
+		else $u500 = 0;
+		if (isset($_POST['el'])) $uel = 1;
+		else $uel = 0;
+		if (isset($_POST['mon'])) $umon = 1;
+		else $umon = 0;
+		if (isset($_POST['red'])) $ured = 1;
+		else $ured = 0;
 		$query = "UPDATE users SET password = '$password', email = '$email', la = '$ula', rep = '$urep', loc = '$uloc', `500` = '$u500', el = '$uel', mon = '$umon', red = '$ured' WHERE login = '$login'";
+		die ($query);
 		$result = $dbconnection->query($query) or die(mysql_error());
 		echo "Профиль успешно обновлен.<a href=\"https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']). "/?task=exit\">Войти</a>";
 	}
