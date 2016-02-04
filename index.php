@@ -125,11 +125,13 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'getdata':
-				$result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis` FROM `mymon`.`stats`") or die($dbconnection->error());
 				$rows=array();
+				$result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis` FROM `mymon`.`stats`") or die($dbconnection->error());
 				while($array = $result->fetch_assoc()) {
-					$rows[]=$array;
+					$rows[] = $array;
 				}
+				$result = $dbconnection->query("SELECT `message` FROM `mymon`.`messages` WHERE receiver = '$uid' and isRead = 0 and isDeleted = 0") or die($dbconnection->error());
+				$rows[] = $result->fetch_assoc();
 				header("Content-Type: application/json; charset=utf-8 ");
 				echo json_encode($rows);
 				break;
