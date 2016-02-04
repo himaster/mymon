@@ -318,6 +318,7 @@ input {
 }
 
 .mbclose {
+	color: white;
 	position: fixed;
 	left: 100px;
 	top: 100px;
