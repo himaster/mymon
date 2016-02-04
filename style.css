@@ -322,6 +322,9 @@ input {
 	position: fixed;
 	left: 790px;
 	top: 135px;
+}
+
+.mbclose a {
 	text-decoration: none;
 }
 
@@ -330,5 +333,9 @@ input {
 	position: fixed;
 	left: 560px;
 	top: 318px;
+	text-decoration: none;
+}
+
+.mbclose2 a {
 	text-decoration: none;
 }
