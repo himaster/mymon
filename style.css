@@ -108,14 +108,14 @@ input {
 	border: solid 1px rgb(128, 128, 128);
 }
 
-.la {
+.main_table td:first-child {
   	text-align: left;
   	width: 72px;
   	color: black;
   	padding-left: 2px;
 }
 
-.main_table td:nth-child(2) {
+.la {
 	width: 180px;
 }
 
