@@ -13,11 +13,13 @@ function myAjax(serverip) {
 }
 
 function toggle_visibility(id) {
-    var e = document.getElementById(id);
-    if(e.style.display == 'block')
-        e.style.display = 'none';
-    else
-        e.style.display = 'block';
+    try{
+        var e = document.getElementById(id);
+        if(e.style.display == 'block')
+            e.style.display = 'none';
+        else
+            e.style.display = 'block';
+    }catch(err){}
 }
 
 function show() {
