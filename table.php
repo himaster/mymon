@@ -4,7 +4,7 @@
 <div>
     <div id="messagebox" class="messagebox">
     <a class="mbclose" href="javascript: mbclose();">x</a>
-    <div id="message" class="box effect2"></div>
+    <div id="message" class="box effect2 new"></div>
 </div>
     <table class="main_table" id="main_table">
         <col span="5">
