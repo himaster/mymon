@@ -258,9 +258,9 @@ input {
 	position: fixed;
 	display: none;
 	left: 40%;
-	top: 40%;
-	width: 200px;
-	height: 100px;
+	top: 34%;
+	width: 300px;
+	height: 200px;
 	background-color: lightgray;
 	margin-left: auto;
   	margin-right: auto;
