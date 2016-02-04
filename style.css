@@ -95,6 +95,7 @@ input {
 	-webkit-border-horizontal-spacing: 2px;
 	-webkit-border-vertical-spacing: 2px;
 	background-color: rgb(211, 211, 211);
+	color: black;
 	border-collapse: collapse;
 	border: solid 2px rgb(128, 128, 128);
 	line-height: 1.3;
@@ -104,9 +105,10 @@ input {
 }
 
 .main_table tbody tr:hover {
-    background: #f3bd48; /* Цвет фона при наведении */
+    background-color: #f3bd48; /* Цвет фона при наведении */
     color: #fff; /* Цвет текста при наведении */
    }
+
 .main_table a {
 	text-decoration: none;
 	color: black;
@@ -159,6 +161,7 @@ input {
 
 .main_table tr:first-child {
   	font-weight: bold;
+
 }
 
 .status_bar {
