@@ -46,9 +46,11 @@ function show() {
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
                 if(!item['message']) { 
+                    toggle_visibility('messagebox');
                     $("#messagebox").html("")};
                 } else {
                     $("#messagebox").html(item['message'])};
+                    toggle_visibility('messagebox');
                 }
 
             });
