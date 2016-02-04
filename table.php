@@ -1,6 +1,10 @@
 <?php 
     include "menu.php";
 ?>
+<div id="messagebox" class="messagebox">
+    <a class="mbclose" href="javascript: mbclose();">x</a>
+    <div id="message" class="box effect2"></div>
+</div>
 <table class="main_table" id="main_table">
     <col span="5">
         <tr class="title">
