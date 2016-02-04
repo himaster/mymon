@@ -46,7 +46,7 @@ function show() {
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
                 if (!item['message']) { 
-                    //$("#messagebox").html("")};
+                    $("#messagebox").html("")};
                     //document.getElementById('messagebox').style.display = 'none';
                 } else {
                     //$("#messagebox").html(item['message'])};
