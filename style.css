@@ -266,6 +266,7 @@ a:active {
 }
 
 .messagebox {
+	display: none;
 	position: fixed;
 	left: 24%;
 	top: 11%;
