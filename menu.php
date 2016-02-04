@@ -8,7 +8,17 @@ if ($result->num_rows == 1) { ?>
 <?php } else { ?>
 <div class="left_button">
 <?php } ?>
-	<a href="#" onclick="toggle_visibility('my_div')"><img src="images/profile.png"></a>
+	<a href="#" onclick="toggle_visibility('my_div'); 
+						 toggle_visibility('col1');
+						 toggle_visibility('col2');
+						 toggle_visibility('col3');
+						 toggle_visibility('col4');
+						 toggle_visibility('col5');
+						 toggle_visibility('col6');
+						 toggle_visibility('col7');
+						 ">
+		<img src="images/profile.png">
+	</a>
 </div>
 <div id="my_div" class="menu">
 	
@@ -63,8 +73,9 @@ if ($result->num_rows == 1) { ?>
 								 toggle_visibility('email_div');
 								 toggle_visibility('submit_div');
 								 toggle_visibility('simple_div');
-			">
-			Edit profile</a>
+								 ">
+				Edit profile
+			</a>
 			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
 			<p><a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">logout</a>
 		</form>
