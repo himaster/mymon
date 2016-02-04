@@ -325,7 +325,7 @@ input {
 }
 
 .mbclose2 {
-	color: white;
+	color: darkgray;
 	position: fixed;
 	left: 550px;
 	top: 250px;

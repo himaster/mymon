@@ -46,12 +46,9 @@ function show() {
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
                 if (!item['message']) { 
-                    $("#message").html("<a class=\"mbclose2\" href=\"javascript: mbclose\">x</a>");
                     document.getElementById('messagebox').style.display = 'none';
-                    //document.getElementById('main_table').style.display = 'table';
                 } else {
-                    $("#message").html(item['message'] + "<a class=\"mbclose2\" href=\"javascript: mbclose\">x</a>");
-                    //document.getElementById('main_table').style.display = 'none';
+                    $("#message").html(item['message'] + "<a class=\"mbclose2\" href=\"javascript: mbclose\">Close</a>");
                     document.getElementById('messagebox').style.display = 'block';
                 }
 
