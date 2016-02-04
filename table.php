@@ -7,13 +7,13 @@
         <tr class="title">
             <td>Server</td>
             <?php 
-            if ($ula == "1") echo "<td class=\"la\">Load Averages</td>";
-            if ($urep == "1") echo "<td>Replication</td>";
-            if ($uloc == "1") echo "<td>Locks</td>";
-            if ($u500 == "1") echo "<td>500s</td>";
-            if ($uel == "1") echo "<td>Elastic</td>";
-            if ($umon == "1") echo "<td>Mongo</td>";
-            if ($ured == "1") echo "<td>Redis</td>";
+            if ($ula == "1")  echo "<td class=\"la\">Load Averages</td>";
+            if ($urep == "1") echo "<td class=\"rep\">Replication</td>";
+            if ($uloc == "1") echo "<td class=\"loc\">Locks</td>";
+            if ($u500 == "1") echo "<td class=\"500\">500s</td>";
+            if ($uel == "1")  echo "<td class=\"el\">Elastic</td>";
+            if ($umon == "1") echo "<td class=\"mon\">Mongo</td>";
+            if ($ured == "1") echo "<td class=\"red\">Redis</td>";
             ?>
         </tr>
 <?php

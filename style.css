@@ -119,32 +119,32 @@ input {
 	width: 180px;
 }
 
-.main_table td:nth-child(3) {
+.rep {
 	width: 140px;
 }
 
-.main_table td:nth-child(4) {
+.loc {
 	width: 46px;
 	text-decoration: none;
 	color: black;
 }
 
-.main_table td:nth-child(5) {
+.500 {
 	width: 46px;
 	color: black;
 }
 
-.main_table td:nth-child(6) {
+.el {
 	width: 46px;
 	color: black;
 }
 
-.main_table td:nth-child(7) {
+.mon {
 	width: 46px;
 	color: black;
 }
 
-.main_table td:nth-child(8) {
+.red {
 	width: 46px;
 	color: black;
 }
