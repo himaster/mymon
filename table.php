@@ -1,13 +1,12 @@
 <?php 
     include "menu.php";
-    #$result = $dbconnection->query("SELECT ") or die($dbconnection->error());
 ?>
 <table class="main_table">
     <col span="5">
         <tr class="title">
             <td>Server</td>
             <?php 
-            if ($ula == "1")  echo "<td class=\"la\">Load Averages<div>1<div></td>";
+            if ($ula == "1")  echo "<td class=\"la\">Load Averages</td>";
             if ($urep == "1") echo "<td class=\"rep\">Replication</td>";
             if ($uloc == "1") echo "<td class=\"loc\">Locks</td>";
             if ($u500 == "1") echo "<td class=\"500\">500s</td>";

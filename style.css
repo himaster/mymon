@@ -210,3 +210,9 @@ input {
 .simple_div {
 	width: 225px;
 }
+
+.colons {
+	position: fixed;
+	left: 5px;
+	top: 75px;
+}
