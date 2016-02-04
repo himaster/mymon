@@ -219,11 +219,13 @@ input {
 }
 
 #col1 {
-	left: 158px;
+
+	width: 180px;
 }
 
 #col2 {
-	left: 330px;
+
+	width: 140px;
 }
 
 #col3 {
