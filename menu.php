@@ -49,7 +49,7 @@ if ($result->num_rows == 1) { ?>
 			<div class="simple_div" id="simple_div" name="simple_div"> columns:
 				<p>
 				<div style="display: inline-block;">
-					1<input type="checkbox" id="la" name="la" <?php if ($ula == 1) echo "checked "; ?> >
+					* 1<input type="checkbox" id="la" name="la" <?php if ($ula == 1) echo "checked "; ?> >
 				</div>
 				<div style="display: inline-block;">
 					2<input type="checkbox" id="rep" name="rep" <?php if ($urep == 1) echo "checked "; ?> >
