@@ -105,9 +105,8 @@ input {
 }
 
 .main_table tbody tr:hover {
-    background-color: #f3bd48; /* Цвет фона при наведении */
-    color: #fff; /* Цвет текста при наведении */
-   }
+    background-color: #f3bd48;
+}
 
 .main_table a {
 	text-decoration: none;
