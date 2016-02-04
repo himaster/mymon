@@ -103,6 +103,10 @@ input {
   	margin-right: auto;
 }
 
+.main_table tbody tr:hover {
+    background: #f3bd48; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+   }
 .main_table a {
 	text-decoration: none;
 	color: black;
