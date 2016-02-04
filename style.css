@@ -323,15 +323,15 @@ a:active {
 .mbclose {
 	color: white;
 	position: fixed;
-	left: 790px;
-	top: 135px;
+	left: 515px;
+	top: 40px;
 }
 
 .mbclose2 {
+	color: black;
 	position: fixed;
-	left: 512px;
-	top: 20px;
-	color: white;
+	left: 290px;
+	top: 230px;
 }
 
 .new {
