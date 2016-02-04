@@ -256,12 +256,10 @@ input {
 
 .messagebox {
 	position: fixed;
-	display: none;
-	left: 40%;
-	top: 34%;
-	width: 300px;
+	left: 24%;
+	top: 11%;
+	width: 600px;
 	height: 200px;
-	background-color: lightgray;
 	margin-left: auto;
   	margin-right: auto;
   	margin-top: 20px;
