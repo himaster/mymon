@@ -100,6 +100,10 @@ function editor(name, val) {
 
 }
 
+function mbclose() {
+    document.getElementById('messagebox').style.display = 'none';
+}
+
 $(document).ready(function() {
     show();
     setInterval('show()', 5000);

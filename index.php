@@ -130,7 +130,7 @@ if (isset($_COOKIE["mymon"])) {
 				while($array = $result->fetch_assoc()) {
 					$rows[] = $array;
 				}
-				$result = $dbconnection->query("SELECT `message` FROM `mymon`.`messages` WHERE receiver = '$uid' and isRead = 0 and isDeleted = 0") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `message` FROM `mymon`.`messages` WHERE receiver = '$uid' and isRead = 0 and isDeleted = 0 LIMIT 1") or die($dbconnection->error());
 				$rows[] = $result->fetch_assoc();
 				header("Content-Type: application/json; charset=utf-8 ");
 				echo json_encode($rows);
