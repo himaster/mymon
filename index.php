@@ -154,6 +154,10 @@ if (isset($_COOKIE["mymon"])) {
 				mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
 				echo "<p>Профиль успешно обновлен";
 				break;
+				
+			case "msgred":
+				echo $uid;
+				break;
 
 			default:
 				setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
