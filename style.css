@@ -257,4 +257,10 @@ input {
 .status_bar {
 	width: 200px;
 	height: 100px;
+	background-color: lightgray;
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-top: 20px;
+  	color: black;
+	padding-left: 10px;
 }
