@@ -108,7 +108,7 @@ input {
 	border: solid 1px rgb(128, 128, 128);
 }
 
-.main_table td:first-child {
+.la {
   	text-align: left;
   	width: 72px;
   	color: black;
