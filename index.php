@@ -130,7 +130,7 @@ if (isset($_COOKIE["mymon"])) {
 				while($array = $result->fetch_assoc()) {
 					$rows[] = $array;
 				}
-				$query = "SELECT `message` FROM `mymon`.`messages` WHERE receiver LIKE '%,{$uid}%' and isRead = 0 and isDeleted = 0 LIMIT 1";
+				$query = "SELECT `message` FROM `mymon`.`messages` WHERE receiver LIKE '%,".$uid."%' and isRead = 0 and isDeleted = 0 LIMIT 1";
 				die($query);
 				$result = $dbconnection->query($query) or die($dbconnection->error());
 				$rows[] = $result->fetch_assoc();
