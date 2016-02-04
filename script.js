@@ -48,10 +48,10 @@ function show() {
                 if (!item['message']) { 
                     $("#messagebox").html("");
                     document.getElementById('messagebox').style.display = 'none';
-                    //document.getElementById('main_table').style.display = 'table';
+                    document.getElementById('main_table').style.display = 'table';
                 } else {
                     $("#messagebox").html(item['message']);
-                    //document.getElementById('main_table').style.display = 'none';
+                    document.getElementById('main_table').style.display = 'none';
                     document.getElementById('messagebox').style.display = 'block';
                 }
 
