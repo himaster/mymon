@@ -4,7 +4,7 @@
 <table class="main_table">
     <col span="5">
         <tr class="title">
-            <td>Server</td>
+            <td style="width: 120px;">Server</td>
             <?php 
             if ($ula == "1")  echo "<td class=\"la\">Load Averages<div class=\"colons\" id=\"col1\">1*</div></td>";
             if ($urep == "1") echo "<td class=\"rep\">Replication<div class=\"colons\" id=\"col2\">2*</div></td>";
