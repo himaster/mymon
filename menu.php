@@ -63,13 +63,6 @@ if ($result->num_rows == 1) { ?>
 								 toggle_visibility('email_div');
 								 toggle_visibility('submit_div');
 								 toggle_visibility('simple_div');
-								 toggle_visibility('col1');
-								 toggle_visibility('col2');
-								 toggle_visibility('col3');
-								 toggle_visibility('col4');
-								 toggle_visibility('col5');
-								 toggle_visibility('col6');
-								 toggle_visibility('col7');
 			">
 			Edit profile</a>
 			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
