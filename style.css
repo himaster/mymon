@@ -330,8 +330,12 @@ a:active {
 }
 
 .mbclose2 {
-	color: black;
 	position: fixed;
-	left: 560px;
-	top: 318px;
+	left: 512px;
+	top: 20px;
+	color: white;
+}
+
+.new {
+	border: solid 2px rgb(128, 128, 128);
 }
