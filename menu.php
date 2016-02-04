@@ -4,9 +4,6 @@ if ($result->num_rows == 1) { ?>
 <div class="left_button">
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
-<div class="colons">
-	1
-</div>
 <div class="left_button" style="top: 50px;">
 <?php } else { ?>
 <div class="left_button">
