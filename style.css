@@ -316,3 +316,9 @@ input {
   right: 10px;
   left: auto;
 }
+
+.mbclose {
+	position: fixed;
+	left: 100px;
+	top: 100px;
+}
