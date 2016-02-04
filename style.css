@@ -213,7 +213,7 @@ input {
 
 .colons {
 	position: fixed;
-	background-color: rgba(211, 211, 211, 0.5);
+	background-color: rgba(211, 211, 211, 0);
 	top: -3px;
 	display: none;
 }
