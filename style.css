@@ -11,6 +11,14 @@ input {
 	background-color: rgb(211, 211, 211);
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none !important;
+}
+
 .title {
 	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
@@ -83,10 +91,6 @@ input {
 	margin-left: 5px;
 }
 
-.menu a {
-	text-decoration: none;
-}
-
 .menu input {
 	margin-left: 2px;
 }
@@ -109,7 +113,6 @@ input {
 }
 
 .main_table a {
-	text-decoration: none;
 	color: black;
 }
 
@@ -267,21 +270,15 @@ input {
 	padding-left: 10px;
 }
 
-/*.box h3{
-    text-align:center;
-    position:relative;
-    top:80px;
-}*/
 .box {
     width:70%;
     height:200px;
     background:#FFF;
     margin:40px auto;
+    text-align:center;
+    position:relative;
+    top:80px;
 }
- 
-/*==================================================
- * Effect 2
- * ===============================================*/
 .effect2
 {
   position: relative;
@@ -322,9 +319,6 @@ input {
 	position: fixed;
 	left: 790px;
 	top: 135px;
-}
-.mbclose a:hover {
-	text-decoration: none !important;
 }
 
 .mbclose2 {
