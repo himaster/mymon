@@ -154,9 +154,9 @@ if (isset($_COOKIE["mymon"])) {
 				mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
 				echo "<p>Профиль успешно обновлен";
 				break;
-				
+
 			case "msgred":
-				echo $uid;
+				$result = $dbconnection->query("UPDATE `mymon`.`messages` SET isRead = '1' WHERE receiver = '$uid' LIMIT 1;") or die($dbconnection->error());
 				break;
 
 			default:

@@ -102,6 +102,16 @@ function editor(name, val) {
 
 function mbclose() {
     document.getElementById('messagebox').style.display = 'none';
+    $.ajax({
+        url: 'index.php?task=msgred',
+        cache: false,
+        success: function(html) {
+            console.log("Ajax: " + html);
+        },
+        error: function() {
+            console.log("error");
+        }
+    });
 }
 
 $(document).ready(function() {
