@@ -47,10 +47,10 @@ function show() {
                 $("#" + item['servername'] + "_redis").html(item['redis']);
                 if (!item['message']) { 
                     $("#messagebox").html("");
-                    //document.getElementById('messagebox').style.display = 'none';
+                    document.getElementById('messagebox').style.display = 'none';
                 } else {
                     $("#messagebox").html(item['message']);
-                    //document.getElementById('messagebox').style.display = 'block';
+                    document.getElementById('messagebox').style.display = 'block';
                 }
 
             });
