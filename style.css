@@ -325,7 +325,7 @@ input {
 }
 
 .mbclose a {
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 .mbclose2 {
@@ -333,9 +333,8 @@ input {
 	position: fixed;
 	left: 560px;
 	top: 318px;
-	text-decoration: none;
 }
 
 .mbclose2 a {
-	text-decoration: none;
+	text-decoration: none !important;
 }
