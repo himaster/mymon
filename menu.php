@@ -25,6 +25,14 @@ if ($result->num_rows == 1) { ?>
 		<div id="menu_title"><b>Profile</b></div>
 		<form action="reg.php" method="POST">
 			<p>username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
+			<p><a href="javascript: toggle_visibility('password_div');
+								 toggle_visibility('password2_div');
+								 toggle_visibility('email_div');
+								 toggle_visibility('submit_div');
+								 toggle_visibility('simple_div');
+								 ">
+				Edit profile
+			</a>
 			<p>
 			<div id="password_div"> password:
 				<input type="password" id="password" name="password">
@@ -68,14 +76,6 @@ if ($result->num_rows == 1) { ?>
 			</div>
 			
 			<p>
-			<a href="javascript: toggle_visibility('password_div');
-								 toggle_visibility('password2_div');
-								 toggle_visibility('email_div');
-								 toggle_visibility('submit_div');
-								 toggle_visibility('simple_div');
-								 ">
-				Edit profile
-			</a>
 			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
 			<p><a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">logout</a>
 		</form>
