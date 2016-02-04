@@ -46,11 +46,11 @@ function show() {
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
                 if (!item['message']) { 
-                    $("#messagebox").html("")};
-                    document.getElementById('messagebox').style.display = 'none';
+                    //$("#messagebox").html("")};
+                    //document.getElementById('messagebox').style.display = 'none';
                 } else {
-                    $("#messagebox").html(item['message'])};
-                    document.getElementById('messagebox').style.display = 'block';
+                    //$("#messagebox").html(item['message'])};
+                    //document.getElementById('messagebox').style.display = 'block';
                 }
 
             });
