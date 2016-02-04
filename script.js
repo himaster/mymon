@@ -45,7 +45,11 @@ function show() {
                 $("#" + item['servername'] + "_elastic").html(item['elastic']);
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
-                $("#messagebox").html(item['message']);
+                if(!item['message']) { 
+                    $("#messagebox").html("")};
+                } else {
+                    $("#messagebox").html(item['message'])};
+                }
 
             });
         },
