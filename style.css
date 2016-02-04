@@ -254,7 +254,7 @@ input {
 	width: 3%;
 }
 
-.status_bar {
+.messagebox {
 	width: 200px;
 	height: 100px;
 	background-color: lightgray;
