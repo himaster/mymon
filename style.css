@@ -214,8 +214,33 @@ input {
 .colons {
 	position: fixed;
 	background-color: rgba(211, 211, 211, 0.5);
+	top: -3px;
 }
 
 #col1 {
-	top: 75px;
+	left: 158px;
+}
+
+#col2 {
+	left: 258px;
+}
+
+#col3 {
+	left: 358px;
+}
+
+#col4 {
+	left: 458px;
+}
+
+#col5 {
+	left: 558px;
+}
+
+#col6 {
+	left: 658px;
+}
+
+#col7 {
+	left: 758px;
 }
