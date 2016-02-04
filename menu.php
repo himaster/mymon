@@ -29,6 +29,7 @@ if ($result->num_rows == 1) { ?>
 			</div>
 			<p>
 			<div class="simple_div" id="simple_div" name="simple_div"> columns:
+				<p>
 				<div style="display: inline-block;">
 					<input type="checkbox" id="la" name="la" <?php if ($ula == 1) echo "checked "; ?> >
 				</div>
