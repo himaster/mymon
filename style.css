@@ -215,6 +215,7 @@ input {
 	position: fixed;
 	background-color: rgba(211, 211, 211, 0.5);
 	top: -3px;
+	display: none;
 }
 
 #col1 {

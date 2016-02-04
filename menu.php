@@ -59,10 +59,12 @@ if ($result->num_rows == 1) { ?>
 			
 			<p>
 			<a href="javascript: toggle_visibility('password_div');
-					toggle_visibility('password2_div');
-					toggle_visibility('email_div');
-					toggle_visibility('submit_div');
-					toggle_visibility('simple_div');">Edit profile</a>
+								 toggle_visibility('password2_div');
+								 toggle_visibility('email_div');
+								 toggle_visibility('submit_div');
+								 toggle_visibility('simple_div');
+								 toggle_visibility('colons');">
+			Edit profile</a>
 			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
 			<p><a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">logout</a>
 		</form>

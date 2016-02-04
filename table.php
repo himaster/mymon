@@ -6,13 +6,13 @@
         <tr class="title">
             <td>Server</td>
             <?php 
-            if ($ula == "1")  echo "<td class=\"la\">Load Averages<div class=\"colons\" id=\"col1\">1*</div></td>";
-            if ($urep == "1") echo "<td class=\"rep\">Replication<div class=\"colons\" id=\"col2\">2*</div></td>";
-            if ($uloc == "1") echo "<td class=\"loc\">Locks<div class=\"colons\" id=\"col3\">3*</div></td>";
-            if ($u500 == "1") echo "<td class=\"500\">500s<div class=\"colons\" id=\"col4\">4*</div></td>";
-            if ($uel == "1")  echo "<td class=\"el\">Elastic<div class=\"colons\" id=\"col5\">5*</div></td>";
-            if ($umon == "1") echo "<td class=\"mon\">Mongo<div class=\"colons\" id=\"col6\">6*</div></td>";
-            if ($ured == "1") echo "<td class=\"red\">Redis<div class=\"colons\" id=\"col7\">7*</div></td>";
+            if ($ula == "1")  echo "<td class=\"la\">Load Averages<div id=\"colons\" class=\"colons\" id=\"col1\">1*</div></td>";
+            if ($urep == "1") echo "<td class=\"rep\">Replication<div id=\"colons\" class=\"colons\" id=\"col2\">2*</div></td>";
+            if ($uloc == "1") echo "<td class=\"loc\">Locks<div id=\"colons\" class=\"colons\" id=\"col3\">3*</div></td>";
+            if ($u500 == "1") echo "<td class=\"500\">500s<div id=\"colons\" class=\"colons\" id=\"col4\">4*</div></td>";
+            if ($uel == "1")  echo "<td class=\"el\">Elastic<div id=\"colons\" class=\"colons\" id=\"col5\">5*</div></td>";
+            if ($umon == "1") echo "<td class=\"mon\">Mongo<div id=\"colons\" class=\"colons\" id=\"col6\">6*</div></td>";
+            if ($ured == "1") echo "<td class=\"red\">Redis<div id=\"colons\" class=\"colons\" id=\"col7\">7*</div></td>";
             ?>
         </tr>
 <?php
