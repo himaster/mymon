@@ -265,6 +265,7 @@ input {
   	margin-top: 20px;
   	color: black;
 	padding-left: 10px;
+	text-decoration: none !important;
 }
 
 /*.box h3{
@@ -324,17 +325,9 @@ input {
 	top: 135px;
 }
 
-.mbclose a {
-	text-decoration: none !important;
-}
-
 .mbclose2 {
 	color: black;
 	position: fixed;
 	left: 560px;
 	top: 318px;
-}
-
-.mbclose2 a {
-	text-decoration: none !important;
 }
