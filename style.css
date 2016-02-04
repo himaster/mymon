@@ -320,6 +320,13 @@ input {
 .mbclose {
 	color: white;
 	position: fixed;
-	left: 100px;
-	top: 100px;
+	left: 750px;
+	top: 150px;
+}
+
+.mbclose2 {
+	color: white;
+	position: fixed;
+	left: 550px;
+	top: 250px;
 }
