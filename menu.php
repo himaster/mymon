@@ -31,25 +31,25 @@ if ($result->num_rows == 1) { ?>
 			<div class="simple_div" id="simple_div" name="simple_div"> columns:
 				<p>
 				<div style="display: inline-block;">
-					<input type="checkbox" id="la" name="la" <?php if ($ula == 1) echo "checked "; ?> >
+					1<input type="checkbox" id="la" name="la" <?php if ($ula == 1) echo "checked "; ?> >
 				</div>
 				<div style="display: inline-block;">
-					<input type="checkbox" id="rep" name="rep" <?php if ($urep == 1) echo "checked "; ?> >
+					2<input type="checkbox" id="rep" name="rep" <?php if ($urep == 1) echo "checked "; ?> >
 				</div>
 				<div style="display: inline-block;">
-					<input type="checkbox" id="loc" name="loc" <?php if ($uloc == 1) echo "checked "; ?> >
+					3<input type="checkbox" id="loc" name="loc" <?php if ($uloc == 1) echo "checked "; ?> >
 				</div>
 				<div style="display: inline-block;">
-					<input type="checkbox" id="500" name="500" <?php if ($u500 == 1) echo "checked "; ?> >
+					4<input type="checkbox" id="500" name="500" <?php if ($u500 == 1) echo "checked "; ?> >
 				</div>
 				<div style="display: inline-block;">
-					<input type="checkbox" id="el" name="el" <?php if ($uel == 1) echo "checked "; ?> >
+					5<input type="checkbox" id="el" name="el" <?php if ($uel == 1) echo "checked "; ?> >
 				</div>
 				<div style="display: inline-block;">
-					<input type="checkbox" id="mon" name="mon" <?php if ($umon == 1) echo "checked "; ?> >
+					6<input type="checkbox" id="mon" name="mon" <?php if ($umon == 1) echo "checked "; ?> >
 				</div>
 				<div style="display: inline-block;">
-					<input type="checkbox" id="red" name="red" <?php if ($ured == 1) echo "checked "; ?> >
+					7<input type="checkbox" id="red" name="red" <?php if ($ured == 1) echo "checked "; ?> >
 				</div>
 			</div>
 			<p>
