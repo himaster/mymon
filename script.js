@@ -48,7 +48,7 @@ function show() {
                 if (!item['message']) { 
                     document.getElementById('messagebox').style.display = 'none';
                 } else {
-                    $("#message").html("<h3>System message</h3>" + item['message'] + "<a class=\"mbclose2\" href=\"javascript: mbclose();\">Close</a>");
+                    $("#message").html("<h4>System message</h4>" + item['message'] + "<a class=\"mbclose2\" href=\"javascript: mbclose();\">Close</a>");
                     document.getElementById('messagebox').style.display = 'block';
                 }
 
