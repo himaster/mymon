@@ -253,3 +253,8 @@ input {
 #col7 {
 	width: 3%;
 }
+
+.status_bar {
+	width: 200px;
+	height: 100px;
+}
