@@ -7,11 +7,10 @@
 		require_once "functions.php";
 		$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 		if (isset($_POST['submit'])) {
-			$umessage = $_POST['umessage'];
-			$ulogins = array_merge(array(0 => ' '), $_POST['uselect']);
+			$umessage = no_injection($_POST['umessage']);
+			$ulogins = no_injection(array_merge(array(0 => ' '), $_POST['uselect']));
 			$str = implode(" ,", $ulogins);
 			$query = "INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$str');";
-			die($query);
 			$result = $dbconnection->query($query) or die($dbconnection->error);
 			exit;
 		}
