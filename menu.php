@@ -5,7 +5,7 @@ if ($result->num_rows == 1) { ?>
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
 <div class="left_button" style="top: 70px;">
-	<a href="#"><font color="white">msg</color></a>
+	<a href="javascript: alert(\"Coming soon...\")"><font color="white">msg</color></a>
 </div>
 <div class="left_button" style="top: 50px;">
 <?php } else { ?>
