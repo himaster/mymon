@@ -5,7 +5,7 @@
 <body>
 	<form name="form" method="post" action="/test.php">
 		<textarea name="umessage"></textarea>
-		<select name="uselect">
+		<p><select name="uselect">
 		<?php
 			require_once "functions.php";
 			$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
@@ -17,6 +17,7 @@
 			}
 		?>
 		</select>
+		<p><input type="submit" value="send">
 	</form>
 </body>
 </html>
