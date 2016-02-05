@@ -9,7 +9,7 @@
 			$umessage = $_POST['umessage'];
 			$ulogins = $_POST['uselect'];
 			$compi = array_merge(array(0 => ' ', $ulogins);
-			$str = implode (" ,", $ulogins);
+			$str = implode(" ,", $ulogins);
 			print_r($str);
 			exit;
 		}
