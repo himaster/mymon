@@ -6,7 +6,10 @@
 	<?php
 		require_once "functions.php";
 		if (isset($_POST['submit'])) {
-			print_r($_POST);
+			$umessage = $_POST['umessage'];
+			$ulogins[] = $_POST['ulogin'];
+			print_r($ulogins);
+			exit;
 		}
 		$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
@@ -19,7 +22,6 @@
 				$uid = $array["id"];
 				$ulogin = $array["login"];
 				echo "<option value=\"$uid\">$ulogin</option>";
-		  		#echo "<input type=\"checkbox\" name=\"uselect[]\" value=\"$uid\">$ulogin</option>";
 			}
 		?>
 		</select>
