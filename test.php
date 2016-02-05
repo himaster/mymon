@@ -11,7 +11,6 @@
 			$ulogins = array_merge(array(0 => ' '), $_POST['uselect']);
 			$str = implode(" ,", $ulogins);
 			$query = "INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$str');";
-			die($query);
 			$result = $dbconnection->query($query) or die($dbconnection->error);
 			exit;
 		}
