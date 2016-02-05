@@ -3,13 +3,18 @@
 	<title>Test</title>
 </head>
 <body>
+	<?php
+		require_once "functions.php";
+		if (isset($_POST)) {
+			print_r($_POST);
+		}
+		$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
+	?>	
 	<form name="form" method="post" action="/test.php">
 		<textarea name="umessage"></textarea>
 		<p><select name="uselect">
 		<?php
-			require_once "functions.php";
-			$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-			$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
 			while($array = $result->fetch_assoc()) {
 				$uid = $array["id"];
 				$ulogin = $array["login"];
@@ -17,7 +22,7 @@
 			}
 		?>
 		</select>
-		<p><input type="submit" value="send">
+		<p><input type="submit" name="submit" value="send">
 	</form>
 </body>
 </html>
