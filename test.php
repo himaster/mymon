@@ -13,7 +13,7 @@
 	?>	
 	<form name="form" method="post" action="/test.php">
 		<textarea name="umessage"></textarea>
-		<p><select name="uselect">
+		<p><select multiple name="uselect">
 		<?php
 			while($array = $result->fetch_assoc()) {
 				$uid = $array["id"];
