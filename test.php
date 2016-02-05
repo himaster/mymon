@@ -4,7 +4,7 @@
 </head>
 <body>
 	<form name="form" method="post" action="/test.php">
-		<textarea name="umessage" />
+		<textarea name="umessage"></textarea>
 		<select name="uselect">
 		<?php
 			require_once "functions.php";
