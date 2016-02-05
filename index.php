@@ -154,7 +154,7 @@ if (isset($_COOKIE["mymon"])) {
 				mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
 				echo "<p>Профиль успешно обновлен";
 				break;
-				
+
 			case "sendmsg":
 				if (isset($_POST['submit'])) {
 					$umessage = no_injection($_POST['umessage']);
@@ -169,7 +169,7 @@ if (isset($_COOKIE["mymon"])) {
 				?>	
 				<form method="post">
 					<textarea name="umessage"></textarea>
-					<p><select multiple name="uselect[]">
+					<p><select multiple name="uselect[]" style="overflow-y: scroll;">
 						<?php
 							while($array = $result->fetch_assoc()) {
 								$uid = $array["id"];
