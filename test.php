@@ -12,6 +12,7 @@
 			$str = implode(" ,", $ulogins);
 			$query = "INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$str');";
 			$result = $dbconnection->query($query) or die($dbconnection->error);
+			echo "Message sent.";
 			exit;
 		}
 		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
