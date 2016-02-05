@@ -8,7 +8,7 @@
 		if (isset($_POST['submit'])) {
 			$umessage = $_POST['umessage'];
 			$ulogins = $_POST['uselect'];
-			$combi = array_merge(array(0 => ' ', $ulogins);
+			$combi = array_merge(array(0 => ' '), $ulogins);
 			$str = implode(" ,", $combi);
 			print_r($str);
 			exit;
