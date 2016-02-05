@@ -10,7 +10,7 @@
 			$umessage = $_POST['umessage'];
 			$ulogins = array_merge(array(0 => ' '), $_POST['uselect']);
 			$str = implode(" ,", $ulogins);
-			$result = $dbconnection->query("INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ($umessage, $uid, $str);") or die($dbconnection->error);
+			$result = $dbconnection->query("INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ($umessage, $uid, $str;") or die($dbconnection->error);
 			exit;
 		}
 		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
