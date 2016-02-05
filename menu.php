@@ -4,7 +4,7 @@ if ($result->num_rows == 1) { ?>
 <div class="left_button">
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
-<div class="left_button" style="top: 100px;">
+<div class="left_button" style="top: 70px;">
 	<a href="#"><font color="white">msg</color></a>
 </div>
 <div class="left_button" style="top: 50px;">
