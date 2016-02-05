@@ -5,7 +5,7 @@
 <body>
 	<?php
 		require_once "functions.php";
-		if (isset($_POST)) {
+		if (isset($_POST['submit'])) {
 			print_r($_POST);
 		}
 		$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
