@@ -57,6 +57,7 @@ a:active {
 .left_button {
 	position: fixed;
 	top: 20px;
+	color: white;
 }
 
 .menu {
