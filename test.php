@@ -7,7 +7,7 @@
 		require_once "functions.php";
 		if (isset($_POST['submit'])) {
 			$umessage = $_POST['umessage'];
-			$ulogins[] = $_POST['uselect'];
+			$ulogins = $_POST['uselect'];
 			print_r($ulogins);
 			exit;
 		}
