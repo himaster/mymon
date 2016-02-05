@@ -11,14 +11,15 @@
 		$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
 	?>	
-	<form name="form" method="post" action="/test.php">
+	<form method="post">
 		<textarea name="umessage"></textarea>
-		<p><select multiple name="uselect">
+		<p><select multiple name="uselect[]">
 		<?php
 			while($array = $result->fetch_assoc()) {
 				$uid = $array["id"];
 				$ulogin = $array["login"];
-		  		echo "<option value=\"$uid\">$ulogin</option>";
+				echo "<option value=\"$uid\">$ulogin</option>";
+		  		#echo "<input type=\"checkbox\" name=\"uselect[]\" value=\"$uid\">$ulogin</option>";
 			}
 		?>
 		</select>
