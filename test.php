@@ -8,7 +8,7 @@
 		if (isset($_POST['submit'])) {
 			$umessage = $_POST['umessage'];
 			$ulogins[] = $_POST['ulogin'];
-			print_r($ulogins);
+			print_r($uselect);
 			exit;
 		}
 		$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
