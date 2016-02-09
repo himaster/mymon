@@ -1,12 +1,8 @@
 <?php 
     include "menu.php";
+    include "messagebox.php";
 ?>
 
-<div id="messagebox" class="messagebox">
-    <h5>System message</h5>
-    <a class="mbclose" href="javascript: mbclose();">x</a>
-    <div id="message" class="box effect2 new"></div>
-</div>
     <table class="main_table" id="main_table">
         <col span="5">
             <tr class="title">
