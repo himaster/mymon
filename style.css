@@ -61,7 +61,7 @@ a:active {
 
 .menu {
 	position: fixed;
-	left: 5px;
+	left: 15px;
 	top: 75px;
 	display: none;
 	background-color: rgb(211, 211, 211);
