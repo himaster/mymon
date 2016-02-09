@@ -115,7 +115,6 @@ function mbclose() {
 }
 
 function message_submit(){
-    alert('here!');
     var Serialized =  $("#message_form").serialize();
     $.ajax({
        type: "POST",
