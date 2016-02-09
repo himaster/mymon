@@ -123,10 +123,10 @@ $("#message_submit").click(function(){
         success: function(data) {
             //var obj = jQuery.parseJSON(data); if the dataType is not specified as json uncomment this
             // do what ever you want with the server response
-            $("#message_div").html(data);
+            console.log(data);
         },
    error: function(){
-        alert('error handing here');
+        alert('error handling here');
       }
     });
 });
