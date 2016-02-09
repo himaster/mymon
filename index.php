@@ -156,7 +156,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "sendmsg":
-				die($_POST['umessage']);
+				die($_POST['submit']);
 				if (isset($_POST['submit'])) {
 					$umessage = no_injection($_POST['umessage']);
 					$ulogins = array_merge(array(0 => ' '), $_POST['uselect']);
