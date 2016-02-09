@@ -330,5 +330,6 @@ a:active {
 }
 
 .message_title {
-
+	position: relative;
+    top: 18px;
 }
