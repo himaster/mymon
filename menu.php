@@ -89,7 +89,7 @@ if ($result->num_rows == 1) { ?>
 		<p><select multiple name="uselect[]">
 		<?php
 			while($array = $result1->fetch_assoc()) {
-				echo "<option value=\"$array['id']\">$array['login']</option>";
+			#	echo "<option value=\"$array['id']\">$array['login']</option>";
 			}
 		?>
 		</select>
