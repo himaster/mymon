@@ -1,5 +1,5 @@
 
-<div class="left_button" style="top: 70px;">
+<div class="left_button" style="top: 50px;">
 	<a href="javascript: toggle_visibility('message_div');"><font color="white">msg</font></a>
 </div>
 <div class="left_button">
