@@ -334,3 +334,8 @@ a:active {
 	position: relative;
     top: -200px;
 }
+
+.message_title {
+	position: relative;
+    left: 200px;
+}

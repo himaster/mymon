@@ -49,6 +49,7 @@ function show() {
                     document.getElementById('messagebox').style.display = 'none';
                 } else {
                     $("#message").html(item['message']);
+                    $("#message_from").html(item['sender']);
                     document.getElementById('messagebox').style.display = 'block';
                 }
 
