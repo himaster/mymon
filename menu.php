@@ -82,7 +82,7 @@ if ($result->num_rows == 1) { ?>
 </div>
 <div id="message_div" class="menu">
 	<?php
-		$result1 = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
+		#$result1 = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
 	?>	
 	<form method="post" action="index.php?task=sendmsg">
 		<textarea name="umessage"></textarea>
