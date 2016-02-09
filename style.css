@@ -314,14 +314,13 @@ a:active {
 .mbclose {
 	color: white;
 	position: relative;
-	left: 401px;
+	left: 225px;
 	top: -250px;
 }
 
 .mbclose2 {
 	color: black;
 	position: relative;
-	left: 175px;
 	top: -60px;
 }
 
@@ -333,5 +332,4 @@ a:active {
 .message_title {
 	position: relative;
     top: -200px;
-    left: 145px;
 }
