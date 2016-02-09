@@ -265,18 +265,13 @@ a:active {
 	position: fixed;
 	width: 600px;
 	height: 200px;
-	margin-left: auto;
-  	margin-right: auto;
-  	margin-top: 20px;
   	color: black;
-	padding-left: 10px;
+
 }
 
 .box {
-    width:70%;
     height:200px;
     background:#FFF;
-    margin:40px auto;
     text-align:center;
     position:relative;
 }
