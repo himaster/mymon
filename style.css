@@ -313,18 +313,22 @@ a:active {
 .mbclose {
 	color: white;
 	position: fixed;
-	left: 515px;
-	top: 40px;
+	left: 450px;
+	top: 20px;
 }
 
 .mbclose2 {
 	color: black;
 	position: fixed;
-	left: 290px;
-	top: 230px;
+	left: 47%;
+	top: -30px;
 }
 
 .new {
 	border: solid 2px rgb(128, 128, 128);
 	padding-top: 5px;
+}
+
+.message_title {
+	
 }
