@@ -1,8 +1,9 @@
 <?php 
     include "menu.php";
 ?>
-<div>
-    <div id="messagebox" class="messagebox">
+
+<div id="messagebox" class="messagebox">
+    <h5>System message</h5>
     <a class="mbclose" href="javascript: mbclose();">x</a>
     <div id="message" class="box effect2 new"></div>
 </div>
