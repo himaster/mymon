@@ -263,10 +263,10 @@ a:active {
 .messagebox {
 	display: none;
 	position: fixed;
-	width: 600px;
+	width: 400px;
 	height: 200px;
   	color: black;
-
+  	left: 50px;
 }
 
 .box {
@@ -326,4 +326,5 @@ a:active {
 
 .new {
 	border: solid 2px rgb(128, 128, 128);
+	padding-top: 5px;
 }
