@@ -5,7 +5,7 @@ if ($result->num_rows == 1) { ?>
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
 <div class="left_button" style="top: 70px;">
-	<a href="javascript: alert('Coming soon...')"><font color="white">msg</font></a>
+	<a href="javascript: toggle_visibility('message_div');"><font color="white">msg</font></a>
 </div>
 <div class="left_button" style="top: 50px;">
 <?php } else { ?>
@@ -78,5 +78,23 @@ if ($result->num_rows == 1) { ?>
 		</div>		
 		<p>
 		<p><a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">logout</a>
+	</form>
+</div>
+<div id="message_div" class="menu">
+	<?php
+		$result1 = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
+	?>	
+	<form method="post" action="index.php?task=sendmsg">
+		<textarea name="umessage"></textarea>
+		<p><select multiple name="uselect[]">
+		<?php
+			while($array = $result1->fetch_assoc()) {
+				$uid = $array["id"];
+				$ulogin = $array["login"];
+				echo "<option value=\"$uid\">$ulogin</option>";
+			}
+		?>
+		</select>
+		<p><input type="submit" name="submit" value="send">
 	</form>
 </div>
