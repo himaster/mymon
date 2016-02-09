@@ -114,7 +114,7 @@ function mbclose() {
     });
 }
 
-function message_submit(){
+function msg_submit(){
     var Serialized =  $("#message_form").serialize();
     $.ajax({
        type: "POST",
