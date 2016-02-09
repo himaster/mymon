@@ -88,11 +88,11 @@ if ($result->num_rows == 1) { ?>
 		<textarea name="umessage"></textarea>
 		<p><select multiple name="uselect[]">
 		<?php
-			while($array = $result1->fetch_assoc()) {
-				$uid = $array["id"];
-				$ulogin = $array["login"];
-				echo "<option value=\"$uid\">$ulogin</option>";
-			}
+			#while($array = $result1->fetch_assoc()) {
+			#	$uid = $array["id"];
+			#	$ulogin = $array["login"];
+			#	echo "<option value=\"$uid\">$ulogin</option>";
+			#}
 		?>
 		</select>
 		<p><input type="submit" name="submit" value="send">
