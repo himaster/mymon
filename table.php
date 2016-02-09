@@ -2,7 +2,6 @@
     include "menu.php";
     include "messagebox.php";
 ?>
-
     <table class="main_table" id="main_table">
         <col span="5">
             <tr class="title">
