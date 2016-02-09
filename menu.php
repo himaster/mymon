@@ -82,17 +82,15 @@ if ($result->num_rows == 1) { ?>
 </div>
 <div id="message_div" class="menu">
 	<?php
-		#$result1 = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
+		$result1 = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
 	?>	
 	<form method="post" action="index.php?task=sendmsg">
 		<textarea name="umessage"></textarea>
 		<p><select multiple name="uselect[]">
 		<?php
-			#while($array = $result1->fetch_assoc()) {
-			#	$uid = $array["id"];
-			#	$ulogin = $array["login"];
-			#	echo "<option value=\"$uid\">$ulogin</option>";
-			#}
+			while($array = $result1->fetch_assoc()) {
+				echo "<option value=\"$array['id']\">$array['login']</option>";
+			}
 		?>
 		</select>
 		<p><input type="submit" name="submit" value="send">
