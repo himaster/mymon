@@ -34,9 +34,7 @@ if ($result->num_rows == 1) { ?>
 							 toggle_visibility('email_div');
 							 toggle_visibility('submit_div');
 							 toggle_visibility('simple_div');
-							 ">
-			Edit profile
-		</a>
+							 ">Edit profile</a>
 		<p>
 		<div id="password_div"> password:
 			<input type="password" id="password" name="password">
