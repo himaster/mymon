@@ -106,7 +106,7 @@ function mbclose() {
         url: 'index.php?task=msgred',
         cache: false,
         success: function(html) {
-            console.log("Ajax: " + html);
+            console.log(html);
         },
         error: function() {
             console.log("error");
