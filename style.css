@@ -267,6 +267,7 @@ a:active {
 	height: 200px;
   	color: black;
   	left: 50px;
+  	top: 50px;
 }
 
 .box {
@@ -314,22 +315,23 @@ a:active {
 	color: white;
 	position: relative;
 	left: 401px;
-	top: -216px;
+	top: -250px;
 }
 
 .mbclose2 {
 	color: black;
 	position: relative;
-	left: 180px;
-	top: -30px;
+	left: 175px;
+	top: -60px;
 }
 
 .new {
 	border: solid 2px rgb(128, 128, 128);
-	padding-top: 5px;
+	padding-top: 40px;
 }
 
 .message_title {
 	position: relative;
-    top: 18px;
+    top: -200px;
+    left: 145px;
 }
