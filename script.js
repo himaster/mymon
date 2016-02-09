@@ -116,6 +116,12 @@ function mbclose() {
 
 function msg_submit(){
     var Serialized =  $("#message_form").serialize();
+    var a=document.forms["message_form"]["umessage"].value;
+    
+    if (a==null || a=="") {
+      alert("Please Fill All Required Field");
+      return false;
+    }
     $.ajax({
        type: "POST",
         url: "index.php?task=sendmsg",
