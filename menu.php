@@ -1,16 +1,8 @@
-<?php
-$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
-if ($result->num_rows == 1) { ?>
-<div class="left_button">
-	<a href="index.php?task=editor"><img src="images/button.png"></a>
-</div>
+
 <div class="left_button" style="top: 70px;">
 	<a href="javascript: toggle_visibility('message_div');"><font color="white">msg</font></a>
 </div>
-<div class="left_button" style="top: 50px;">
-<?php } else { ?>
 <div class="left_button">
-<?php } ?>
 	<a href="#" onclick="toggle_visibility('my_div'); 
 						 toggle_visibility('col1');
 						 toggle_visibility('col2');
@@ -23,6 +15,13 @@ if ($result->num_rows == 1) { ?>
 		<img src="images/profile.png">
 	</a>
 </div>
+<?php
+$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
+if ($result->num_rows == 1) { ?>
+<div class="left_button">
+	<a href="index.php?task=editor"><img src="images/button.png"></a>
+</div>
+<?php } ?>
 <div id="my_div" class="menu">
 	<b>Profile</b>
 	<p><p>
