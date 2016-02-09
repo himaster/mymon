@@ -28,7 +28,7 @@ if ($result->num_rows == 1) { ?>
 		<div id="menu_title"><b>Profile</b></div>
 		<form action="reg.php" method="POST">
 			<p>username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
-			<p>IP: <?php echo $_SERVER['REMOTE_ADDR'] ?></p>
+			IP: <?php echo $_SERVER['REMOTE_ADDR'] ?>
 			<p><a href="javascript: toggle_visibility('password_div');
 								 toggle_visibility('password2_div');
 								 toggle_visibility('email_div');
