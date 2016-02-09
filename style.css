@@ -312,14 +312,14 @@ a:active {
 
 .mbclose {
 	color: white;
-	position: fixed;
-	left: 450px;
-	top: 20px;
+	position: relative;
+	left: 401px;
+	top: 216px;
 }
 
 .mbclose2 {
 	color: black;
-	position: fixed;
+	position: relative;
 	left: 47%;
 	top: -30px;
 }
@@ -330,5 +330,5 @@ a:active {
 }
 
 .message_title {
-	
+
 }
