@@ -84,7 +84,7 @@ if ($result->num_rows == 1) { ?>
 	<?php
 		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
 	?>	
-	<form method="post" name="message_form" id="message_form" action="javascript:void(0);">
+	<form method="post" name="message_form" id="message_form" action="javascript:message_submit();">
 		<textarea name="umessage"></textarea>
 		<p><select multiple name="uselect[]">
 		<?php

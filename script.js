@@ -114,8 +114,9 @@ function mbclose() {
     });
 }
 
-$("#message_submit").click(function(){
-   var Serialized =  $("#message_form").serialize();
+function message_submit(){
+    alert('here!');
+    var Serialized =  $("#message_form").serialize();
     $.ajax({
        type: "POST",
         url: "index.php?task=sendmsg",
@@ -129,7 +130,7 @@ $("#message_submit").click(function(){
         alert('error handling here');
       }
     });
-});
+}
 
 $(document).ready(function() {
     show();
