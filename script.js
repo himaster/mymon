@@ -124,6 +124,7 @@ function message_submit(){
             //var obj = jQuery.parseJSON(data); if the dataType is not specified as json uncomment this
             // do what ever you want with the server response
             $("#message_div").html(data);
+            setTimeout("document.getElementById('message_div').style.display = 'none'", 5000);
         },
    error: function(){
         alert('error handling here');
