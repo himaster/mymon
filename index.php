@@ -160,7 +160,7 @@ if (isset($_COOKIE["mymon"])) {
 				#$ulogins = array_merge(array(0 => ','), $_POST['uselect']);
 				$ulogins = $_POST['uselect'];
 				$str = implode(",", $ulogins);
-				var_dump($ulogins);
+				var_dump($str);
 				die();
 				$query = "INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$str');";
 				$result1 = $dbconnection->query($query) or die("Error occured".$dbconnection->error);
