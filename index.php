@@ -159,7 +159,7 @@ if (isset($_COOKIE["mymon"])) {
 				$umessage = no_injection($_POST['umessage']);
 				#$ulogins = array_merge(array(0 => ','), $_POST['uselect']);
 				$ulogins = $_POST['uselect'];
-				$str = implode(",", $ulogins);
+				$str = ",".implode(",", $ulogins).",";
 				var_dump($str);
 				die();
 				$query = "INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$str');";
