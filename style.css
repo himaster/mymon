@@ -276,6 +276,7 @@ a:active {
     background:#FFF;
     text-align:center;
     position:relative;
+    background-color: rgb(211, 211, 211);
 }
 .effect2
 {
@@ -317,6 +318,10 @@ a:active {
 	position: relative;
 	left: 225px;
 	top: -250px;
+	text-shadow: -1px -1px 0 #000,
+				 1px -1px 0 #000,
+				 -1px 1px 0 #000,
+				  1px 1px 0 #000;
 }
 
 .mbclose2 {
