@@ -19,6 +19,16 @@ function toggle_visibility(id) {
             e.style.display = 'none';
         else
             e.style.display = 'block';
+    } catch(err) {}
+}
+
+function toggle_visibility_msg(id) {
+    try{
+        var e = document.getElementById(id);
+        if(e.style.display == 'block')
+            e.style.display = 'none';
+        else
+            e.style.display = 'block';
             document.getElementById('umessage').value = '';
     } catch(err) {}
 }
