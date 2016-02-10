@@ -278,12 +278,10 @@ a:active {
     position:relative;
     background-color: rgb(211, 211, 211);
 }
-.effect2
-{
+.effect2 {
   position: relative;
 }
-.effect2:before, .effect2:after
-{
+.effect2:before, .effect2:after {
   z-index: -1;
   position: absolute;
   content: "";
@@ -302,8 +300,7 @@ a:active {
   -ms-transform: rotate(-3deg);
   transform: rotate(-3deg);
 }
-.effect2:after
-{
+.effect2:after {
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(3deg);
   -o-transform: rotate(3deg);
