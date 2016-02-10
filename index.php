@@ -130,7 +130,7 @@ if (isset($_COOKIE["mymon"])) {
 				while($array = $result->fetch_assoc()) {
 					$rows[] = $array;
 				}
-				$result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`) as `timestamp`, `messages`.`message`, `users`.`login` FROM `mymon`.`messages` JOIN `users` WHERE `messages`.`sender` = `users`.`id` AND `receiver` LIKE '%,".$uid.",%' AND isRead = 0 AND isDeleted = 0 LIMIT 1;") or die($dbconnection->error());
+				$result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`) as `timestamp`, `messages`.`message`, `users`.`login` FROM `mymon`.`messages` JOIN `users` WHERE `messages`.`sender` = `users`.`id` AND `receiver` = '$uid' AND isRead = 0 AND isDeleted = 0 LIMIT 1;") or die($dbconnection->error());
 				$rows[] = $result->fetch_assoc();
 				header("Content-Type: application/json; charset=utf-8 ");
 				echo json_encode($rows);
@@ -164,7 +164,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "msgred":
-				$result = $dbconnection->query("UPDATE `mymon`.`messages` SET isRead = 1 WHERE receiver LIKE '%,".$uid.",%' and isRead = 0 and isDeleted = 0 LIMIT 1;") or die($dbconnection->error());
+				$result = $dbconnection->query("UPDATE `mymon`.`messages` SET isRead = 1 WHERE receiver ='$uid' and isRead = 0 and isDeleted = 0 LIMIT 1;") or die($dbconnection->error());
 				break;
 
 			default:
