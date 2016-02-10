@@ -157,13 +157,8 @@ if (isset($_COOKIE["mymon"])) {
 
 			case "sendmsg":
 				$umessage = no_injection($_POST['umessage']);
-				#$ulogins = array_merge(array(0 => ','), $_POST['uselect']);
-				$ulogins = $_POST['uselect'];
-				$str = ",".implode(",", $ulogins).",";
-				var_dump($str);
-				die();
-				$query = "INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$str');";
-				$result1 = $dbconnection->query($query) or die("Error occured".$dbconnection->error);
+				$ulogins = ",".implode(",", $_POST['uselect']).",";
+				$result = $dbconnection->query("INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$ulogins');") or die("Error occured".$dbconnection->error);
 				echo "Message sent.";
 				break;
 
