@@ -336,3 +336,7 @@ a:active {
 	position: relative;
     top: -200px;
 }
+
+.umessage {
+	max-width: 265px;
+}
