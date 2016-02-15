@@ -1,8 +1,13 @@
 <?php
 error_reporting(E_ALL);
+include_once("functions.php");
 
-if (($_SERVER['HTTP_HOST'] != "mymon.pkwteile.de") and ($_SERVER['HTTP_HOST'] != "mymon.loc")) header("Location: https://mymon.pkwteile.de/");
+if ($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") $env="master";
+elseif ($_SERVER['HTTP_HOST'] == "mymon.loc") $env="dev";
+else header("Location: https://mymon.pkwteile.de/");
+
 if (!isset($_GET['task'])) $_GET['task'] = "NULL";
+
 if ($_GET['task'] == "exit") {
 	setcookie('mymon[login]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 	setcookie('mymon[password]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
@@ -11,8 +16,9 @@ if ($_GET['task'] == "exit") {
 	die();
 }
 
-include_once("functions.php");
-$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+if ($env == "master") $host="127.0.0.1";
+else $host="188.138.234.38";
+$dbconnection = new mysqli($host, "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 
 if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
