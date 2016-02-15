@@ -18,7 +18,6 @@ if ($_GET['task'] == "exit") {
 
 if ($env == "master") $host="127.0.0.1";
 else $host="188.138.234.38";
-die($host);
 $dbconnection = new mysqli($host, "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 
 if (isset($_COOKIE["mymon"])) {
