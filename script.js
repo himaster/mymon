@@ -154,12 +154,12 @@ function on_top(id) {
     $( "#" + id ).addClass("ontop");
 }
 
-$( "#my_div" ).click(function() {
-    on_top('my_div');
+$("#my_div").click(function() {
+    on_top("my_div");
 });
 
-$( "#message_div" ).click(function() {
-    on_top('message_div');
+$("#message_div").click(function() {
+    on_top("message_div");
 });
 
 
