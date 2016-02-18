@@ -344,3 +344,7 @@ a:active {
 #message_div {
 	left: 34px;
 }
+
+.ontop {
+	z-index: 1;
+}
