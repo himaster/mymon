@@ -7,6 +7,7 @@
 						 toggle_visibility('col5');
 						 toggle_visibility('col6');
 						 toggle_visibility('col7');
+						 on_top('my_div');
 						 ">
 		<img src="images/profile.png">
 	</a>

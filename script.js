@@ -150,6 +150,14 @@ function msg_submit(){
     });
 }
 
+function on_top(id) {}
+
+function on_top(id) {
+    var e = document.getElementById(id);
+    $(".ontop div").removeClass("ontop");
+    $( "#" + id ).addClass("ontop");
+}
+
 $(document).ready(function() {
     show();
     setInterval('show()', 5000);
