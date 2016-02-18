@@ -139,8 +139,6 @@ function msg_submit(){
         url: "index.php?task=sendmsg",
         data: Serialized,
         success: function(data) {
-            //var obj = jQuery.parseJSON(data); if the dataType is not specified as json uncomment this
-            // do what ever you want with the server response
             status(data);
             document.getElementById('message_div').style.display = 'none';
         },
@@ -152,7 +150,7 @@ function msg_submit(){
 
 function on_top(id) {
     var e = document.getElementById(id);
-    $(".ontop div").removeClass("ontop");
+    $(".ontop").removeClass("ontop");
     $( "#" + id ).addClass("ontop");
 }
 
