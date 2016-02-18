@@ -19,7 +19,7 @@ function toggle_visibility(id) {
             e.style.display = 'none';
         else
             e.style.display = 'block';
-    } catch(err) {}
+    } catch(err) {console.log(err)}
 }
 
 function toggle_visibility_msg(id) {
@@ -157,12 +157,11 @@ function on_top(id) {
 $(document).ready(function() {
     show();
     setInterval('show()', 5000);
-});
+    $("#my_div").click(function() {
+        on_top("my_div");
+    });
 
-$("#my_div").click(function() {
-    on_top("my_div");
-});
-
-$("#message_div").click(function() {
-    on_top("message_div");
+    $("#message_div").click(function() {
+        on_top("message_div");
+    });
 });
