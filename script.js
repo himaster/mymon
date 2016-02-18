@@ -150,8 +150,6 @@ function msg_submit(){
     });
 }
 
-function on_top(id) {}
-
 function on_top(id) {
     var e = document.getElementById(id);
     $(".ontop div").removeClass("ontop");
