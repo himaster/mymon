@@ -61,8 +61,8 @@ a:active {
 
 .menu {
 	position: fixed;
-	left: 30px;
-	top: 75px;
+	left: 15px;
+	top: 38px;
 	display: none;
 	background-color: rgb(211, 211, 211);
 	border-collapse: separate;
