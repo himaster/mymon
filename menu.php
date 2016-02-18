@@ -13,7 +13,9 @@
 	</a>
 </div>
 <div class="left_button" style="top: 45px;">
-	<a href="javascript: toggle_visibility_msg('message_div');"><font color="white">msg</font></a>
+	<a href="javascript: toggle_visibility_msg('message_div');
+						 on_top('message_div');
+						 "><font color="white">msg</font></a>
 </div>
 <?php
 	$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
