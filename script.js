@@ -154,16 +154,15 @@ function on_top(id) {
     $( "#" + id ).addClass("ontop");
 }
 
+$(document).ready(function() {
+    show();
+    setInterval('show()', 5000);
+});
+
 $("#my_div").click(function() {
     on_top("my_div");
 });
 
 $("#message_div").click(function() {
     on_top("message_div");
-});
-
-
-$(document).ready(function() {
-    show();
-    setInterval('show()', 5000);
 });
