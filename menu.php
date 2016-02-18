@@ -83,7 +83,7 @@
 	</form>
 </div>
 <div id="message_div" class="menu">
-	<b>Profile</b>
+	<b>Messaging</b>
 	<p><p>
 	<?php
 		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
