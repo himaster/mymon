@@ -1,34 +1,40 @@
-<html>
-<head>
-	<title>Test</title>
-</head>
-<body>
-	<?php
-		require_once "functions.php";
-		$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-		if (isset($_POST['submit'])) {
-			$umessage = no_injection($_POST['umessage']);
-			$ulogins = array_merge(array(0 => ' '), $_POST['uselect']);
-			$str = implode(" ,", $ulogins);
-			$query = "INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$str');";
-			$result = $dbconnection->query($query) or die($dbconnection->error);
-			echo "Message sent.";
-			exit;
-		}
-		$result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
-	?>	
-	<form method="post">
-		<textarea name="umessage"></textarea>
-		<p><select multiple name="uselect[]">
-		<?php
-			while($array = $result->fetch_assoc()) {
-				$uid = $array["id"];
-				$ulogin = $array["login"];
-				echo "<option value=\"$uid\">$ulogin</option>";
-			}
-		?>
-		</select>
-		<p><input type="submit" name="submit" value="send">
-	</form>
-</body>
-</html>
+<?php
+
+include "functions.php";
+
+function rep($connection, $serverip) {
+	$data = array();
+	$str = ssh2_return($connection, "mysql -e 'show slave status\G'");
+	foreach (explode("\n", $str) as $cLine) {
+		list ($cKey, $cValue) = explode(':', $cLine, 2);
+		$data[trim($cKey)] = trim($cValue);
+	}
+    if ($data["Slave_SQL_Running"] == "Yes") {
+    	$sqlfontcolor = "<font color=\"green\">";
+    	$sql = "&#10003;";
+    } else {
+    	$sqlfontcolor = "<font color=\"red\">";
+    	$sql = "x";
+    }
+    if ($data["Slave_IO_Running"] == "Yes") {
+    	$iofontcolor = "<font color=\"green\">";
+    	$io = "&#10003;";
+    } else {
+    	$iofontcolor = "<font color=\"red\">";
+    	$io = "x<script type='javascript'>notify('Replication IO problem');</script>";
+    }
+    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
+    else $deltafontcolor = "<font color=\"red\">";
+    return "<a title=\"Click to restart replication\" 
+    		   href=\"#\" 
+    		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">
+    		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
+    		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
+    		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
+}
+
+$servername = "backend4";
+$serverip = "88.198.182.146";
+$ssh_conname = "ssh_".$servername;
+$$ssh_conname = ssh2_connect($serverip, 22);
+echo rep($$ssh_conname, $serverip);
