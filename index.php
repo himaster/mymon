@@ -140,7 +140,7 @@ if (isset($_COOKIE["mymon"])) {
 				if(mysqli_num_rows($result)>0){
 					$test = $result->fetch_assoc();
 					var_dump($test);
-					$rows[] = $test;
+					$rows["msg"] = $test;
 				}
 				header("Content-Type: application/json; charset=utf-8 ");
 				echo json_encode($rows);

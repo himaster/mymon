@@ -38,6 +38,8 @@ function show() {
         url: 'index.php?task=getdata',
         dataType: 'json',
         success: function(json) {
+            console.log(json);
+            return false;
             json.forEach(function(item) {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
@@ -63,10 +65,6 @@ function show() {
                     $("#message").html(item['message']);
                     $("#message_title").html('Message from ' + item['login']);
                     document.getElementById('messagebox').style.display = 'block';
-                    if (!notify_show) {
-                        notify("You have new message");
-                        notify_show = true;
-                    }
                 }
 
             });
