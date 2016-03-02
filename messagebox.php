@@ -1,4 +1,3 @@
-<?php die("Test"); ?>
 <div id="messagebox" class="messagebox">
     <div id="message" class="box effect2 new"></div>
     <div id="message_title" class="message_title"></div>
