@@ -57,13 +57,17 @@ function show() {
                 $("#" + item['servername'] + "_elastic").html(item['elastic']);
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
-                if (typeof item['message'] === 'undefined') { 
-                    document.getElementById('messagebox').style.display = 'none';
+                if (typeof item['message'] === 'undefined') {
+                    if (document.getElementById('messagebox').style.display === 'block') {
+                        document.getElementById('messagebox').style.display = 'none';
+                    }
                 } else {
-                    $("#message").html(item['message']);
-                    $("#message_title").html('Message from ' + item['login']);
-                    document.getElementById('messagebox').style.display = 'block';
-                    notify("You have new message");
+                    if (document.getElementById('messagebox').style.display === 'none') {
+                        $("#message").html(item['message']);
+                        $("#message_title").html('Message from ' + item['login']);
+                        document.getElementById('messagebox').style.display = 'block';
+                        notify("You have new message");
+                    }
                 }
 
             });
