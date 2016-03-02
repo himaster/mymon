@@ -42,11 +42,12 @@ function show() {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
                     $("#" + item['servername'] + "_name").addClass('forceTimeout');
-                    //notify("Some connection problems");
+                    t = setTimeout("notify('Connection problems!')", 2000);
                 }
                 else {
                     $("#" + item['servername'] + "_name").removeClass('timeout');
                     $("#" + item['servername'] + "_name").removeClass('forceTimeout');
+                    clearTimeout(t);
                     setTimeout(function(){ $("#" + item['servername'] + "_name").addClass('timeout') }, 100);
                 }
                 $("#" + item['servername'] + "_name").html(item['servername']);
@@ -67,7 +68,6 @@ function show() {
                     notify("You have new message");
                 }
                 document.getElementById("messagebox").style.display = "block";
-
             }
         },
         error: function() {
