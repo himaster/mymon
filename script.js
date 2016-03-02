@@ -47,7 +47,7 @@ function show() {
                 else {
                     $("#" + item['servername'] + "_name").removeClass('timeout');
                     $("#" + item['servername'] + "_name").removeClass('forceTimeout');
-                    //clearTimeout(t);
+                    clearTimeout(t);
                     setTimeout(function(){ $("#" + item['servername'] + "_name").addClass('timeout') }, 100);
                 }
                 $("#" + item['servername'] + "_name").html(item['servername']);
