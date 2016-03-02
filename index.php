@@ -139,7 +139,7 @@ if (isset($_COOKIE["mymon"])) {
 				$result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`) as `timestamp`, `messages`.`message`, `users`.`login` FROM `mymon`.`messages` JOIN `users` WHERE `messages`.`sender` = `users`.`id` AND `receiver` = '$uid' AND isRead = 0 AND isDeleted = 0 LIMIT 1;") or die($dbconnection->error());
 				if(mysqli_num_rows($result)>0){
 					$test = $result->fetch_assoc();
-					echo $test;
+					echo "<pre>".$test."</pre>";
 					$rows[] = $test;
 				}
 				#header("Content-Type: application/json; charset=utf-8 ");
