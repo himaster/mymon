@@ -42,6 +42,7 @@ function show() {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
                     $("#" + item['servername'] + "_name").addClass('forceTimeout');
+                    notify("Some connection problems");
                 }
                 else {
                     $("#" + item['servername'] + "_name").removeClass('timeout');
@@ -62,6 +63,7 @@ function show() {
                     $("#message").html(item['message']);
                     $("#message_title").html('Message from ' + item['login']);
                     document.getElementById('messagebox').style.display = 'block';
+                    notify("You have new message");
                 }
 
             });
