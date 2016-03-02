@@ -63,7 +63,7 @@ function show() {
             } else {
                 $("#message").html(json.msg.message);
                 $("#message_title").html('Message from ' + json.msg.login);
-                if (document.getElementById("messagebox").style.display === "none") {
+                if (document.getElementById("messagebox").style.display !== "block") {
                     notify("You have new message");
                 }
                 document.getElementById("messagebox").style.display = "block";
