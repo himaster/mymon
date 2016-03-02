@@ -63,9 +63,13 @@ function show() {
             } else {
                 console.log(json.msg.message);
                 return false;
-                $("#message").html(item['message']);
-                $("#message_title").html('Message from ' + item['login']);
+                $("#message").html(json.msg.message);
+                $("#message_title").html('Message from ' + json.msg.login);
+                if (document.getElementById("messagebox").style.display === "none") {
+                    notify("You have new message");
+                }
                 $("#messagebox").css("display: block");
+
             }
         },
         error: function() {
