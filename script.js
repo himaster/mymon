@@ -38,9 +38,7 @@ function show() {
         url: 'index.php?task=getdata',
         dataType: 'json',
         success: function(json) {
-            console.log(json.data);
-            return false;
-            json.forEach(function(item) {
+            json.data.forEach(function(item) {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
                     $("#" + item['servername'] + "_name").addClass('forceTimeout');
@@ -59,15 +57,14 @@ function show() {
                 $("#" + item['servername'] + "_elastic").html(item['elastic']);
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
-                if (typeof item['message'] === 'undefined') {
-                    document.getElementById('messagebox').style.display = 'none';
-                } else {
-                    $("#message").html(item['message']);
-                    $("#message_title").html('Message from ' + item['login']);
-                    document.getElementById('messagebox').style.display = 'block';
-                }
-
             });
+            if (typeof json.msg === 'undefined') {
+                $("#messagebox").css("display: none");
+            } else {
+                $("#message").html(item['message']);
+                $("#message_title").html('Message from ' + item['login']);
+                $("#messagebox").css("display: block");
+            }
         },
         error: function() {
             console.log("error");
