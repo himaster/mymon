@@ -38,9 +38,12 @@ function show() {
         url: 'index.php?task=getdata',
         dataType: 'json',
         success: function(json) {
-            json.forEach(function(item, i, arr) {
+            json.forEach(function(item) {
                 var nowTime = ~~(new Date().getTime() / 1000);
-                if (Math.abs(nowTime - item['timestamp']) > 20) {
+                if (typeof item['timestamp'] === 'undefined') {
+                    console.log(item);
+                }
+                else if (Math.abs(nowTime - item['timestamp']) > 20) {
                     $("#" + item['servername'] + "_name").addClass('forceTimeout');
                 }
                 else {
