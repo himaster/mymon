@@ -142,8 +142,10 @@ if (isset($_COOKIE["mymon"])) {
 					var_dump($test);
 					$rows["msg"] = $test;
 				}
-				header("Content-Type: application/json; charset=utf-8 ");
-				echo json_encode($rows);
+				var_dump($rows);
+				die();
+				#header("Content-Type: application/json; charset=utf-8 ");
+				#echo json_encode($rows);
 				break;
 
 			case "confirm":
