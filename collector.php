@@ -115,10 +115,10 @@ function rep($connection, $serverip) {
     	$sql = "x";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
-    	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"green\">";
+    	$iofontcolor = "<font color=\"green\">";
     	$io = "&#10003;";
     } else {
-    	$iofontcolor = "<font color=\"red\">";
+    	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
     	$io = "x";
     }
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
