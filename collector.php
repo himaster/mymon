@@ -104,7 +104,7 @@ function rep($connection, $serverip) {
 		list ($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
 	}
-	if (typeof($data["Slave_SQL_Running"]) === "undefined") {
+	if (!array_key_exists("Slave_SQL_Running", $data)) {
 		return "Mysql stopped";
 	}
     if ($data["Slave_SQL_Running"] == "Yes") {
