@@ -63,6 +63,7 @@ function show() {
                     }
                 } else {
                     if (document.getElementById('messagebox').style.display !== 'block') {
+                        console.log("document.getElementById('messagebox').style.display=" + document.getElementById('messagebox').style.display);
                         $("#message").html(item['message']);
                         $("#message_title").html('Message from ' + item['login']);
                         document.getElementById('messagebox').style.display = 'block';
