@@ -42,7 +42,7 @@ function show() {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
                     $("#" + item['servername'] + "_name").addClass('forceTimeout');
-                    var t = setTimeout("conn_prob = notify('Connection problems!')", 20000);
+                    //var t = setTimeout("conn_prob = notify('Connection problems!')", 20000);
                 }
                 else {
                     $("#" + item['servername'] + "_name").removeClass('timeout');
