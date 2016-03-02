@@ -2,7 +2,7 @@
 <head>
 	<title>test1</title>
 	<script language="javascript">
-		function notifyMe(message) {
+		function notify(message) {
 		  // Let's check if the browser supports notifications
 		  if (!("Notification" in window)) {
 		    alert("This browser does not support desktop notification");
@@ -30,6 +30,6 @@
 	</script>
 </head>
 <body>
-<button onclick="notifyMe('Test')">Notify me!</button>
+<button onclick="notify('Test')">Notify me!</button>
 </body>
 </html>
