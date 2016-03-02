@@ -61,6 +61,8 @@ function show() {
             if (typeof json.msg === 'undefined') {
                 $("#messagebox").css("display: none");
             } else {
+                console.log(json.msg);
+                return false;
                 $("#message").html(item['message']);
                 $("#message_title").html('Message from ' + item['login']);
                 $("#messagebox").css("display: block");
