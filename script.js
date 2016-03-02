@@ -68,7 +68,7 @@ function show() {
                         $("#message").html(item['message']);
                         $("#message_title").html('Message from ' + item['login']);
                         document.getElementById('messagebox').style.display = 'block';
-                        notify("You have new message");
+                        //notify("You have new message");
                     }
                 }
 
