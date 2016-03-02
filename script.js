@@ -42,7 +42,7 @@ function show() {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
                     $("#" + item['servername'] + "_name").addClass('forceTimeout');
-                    var t = setTimeout("notify('Connection problems!')", 10000);
+                    var t = setTimeout("conn_prob = notify('Connection problems!')", 10000);
                 }
                 else {
                     $("#" + item['servername'] + "_name").removeClass('timeout');
@@ -65,7 +65,7 @@ function show() {
                 $("#message").html(json.msg.message);
                 $("#message_title").html('Message from ' + json.msg.login);
                 if (document.getElementById("messagebox").style.display !== "block") {
-                    notify("You have new message");
+                    new_mes = notify("You have new message");
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
@@ -122,7 +122,7 @@ function mbclose() {
         url: 'index.php?task=msgred',
         cache: false,
         success: function(html) {
-            notification.close();
+            new_mes.close();
             console.log(html);
         },
         error: function() {
@@ -164,12 +164,12 @@ function notify(message) {
         alert("This browser does not support desktop notification");
     }
     else if (Notification.permission === "granted") {
-        window.notification = new Notification(message);
+        return new Notification(message);
     }
     else if (Notification.permission !== 'denied') {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
-                window.notification = new Notification(message);
+                return new Notification(message);
             }
         });
     }
