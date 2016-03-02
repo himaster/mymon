@@ -56,7 +56,7 @@ function show() {
                 $("#" + item['servername'] + "_elastic").html(item['elastic']);
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
-                if (!item['message']) { 
+                if (typeof item['message'] === 'undefined') { 
                     document.getElementById('messagebox').style.display = 'none';
                 } else {
                     $("#message").html(item['message']);
