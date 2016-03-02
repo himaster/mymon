@@ -36,6 +36,7 @@ function rep($connection, $serverip) {
 $servername = "backend4";
 $serverip = "88.198.182.146";
 $ssh_conname = "ssh_".$servername;
+start:
 $$ssh_conname = ssh2_connect($serverip, 22);
 if ((!$$ssh_conname) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
 	common_log($servername." - retry #".$i++.".");
