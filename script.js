@@ -58,7 +58,6 @@ function show() {
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
                 if (typeof item['message'] === 'undefined') {
-                    console.log($("#messagebox").css("display"));
                     if (document.getElementById('messagebox').style.display !== 'none') {
                         document.getElementById('messagebox').style.display = 'none';
                     }
