@@ -111,11 +111,11 @@ function rep($connection, $serverip) {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
     } else {
-    	$sqlfontcolor = "<script type=\"javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
+    	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
     	$sql = "x";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
-    	$iofontcolor = "<script type=\"javascript\">notify(\"Replication IO problem\");</script><font color=\"green\">";
+    	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"green\">";
     	$io = "&#10003;";
     } else {
     	$iofontcolor = "<font color=\"red\">";
