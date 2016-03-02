@@ -28,6 +28,7 @@ function child_() {
 	global $array;
 	global $stop_server;
 	global $servername;
+	$retry_num = 10;
 	common_log($servername. " - started.");
 	$serverip = $array["ip"];
 	$servername = $array["servername"];
@@ -37,11 +38,15 @@ function child_() {
 	$mysql = $array["mysql"];
 	$mon = $array["mon"];
 	$red = $array["red"];
+	$i = 1;
 	$ssh_conname = "ssh_".$servername;
+	start:
 	$$ssh_conname = ssh2_connect($serverip, 22);
 	if ((!$$ssh_conname) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
-		common_log($servername." - error connecting SSH.");
-		exit(1);
+		common_log($servername." - retry #".$i++.".");
+		sleep(1);
+		if ($i < $retry_num) goto start;
+		else exit(1);
 	}
 	$mysql_conname = "mysql_".$servername;
 	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
@@ -99,6 +104,9 @@ function rep($connection, $serverip) {
 		list ($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
 	}
+	if (!array_key_exists("Slave_SQL_Running", $data)) {
+		return "<font color=\"red\">Mysql stopped</font>";
+	}
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
@@ -115,6 +123,7 @@ function rep($connection, $serverip) {
     }
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
     else $deltafontcolor = "<font color=\"red\">";
+
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
     		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">
@@ -137,7 +146,7 @@ function elastic($connection, $serverip) {
 									 curl -sS -o /dev/null -XGET http://`ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+'`:9200/_cluster/health?pretty;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\"><script type='javascript'>notify('Elastic problem');</script>";
+	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
 }
@@ -146,7 +155,7 @@ function locks($connection, $serverip) {
 	$locked = trim(ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l"));
 	$conns  = trim(ssh2_return($connection, "mysql -Nse \"SHOW STATUS WHERE variable_name = 'Threads_connected'\" | awk '{print $2}'"));
     if (($locked == "0") and ($conns < "1000")) $fontcolor = "<font color=\"green\">";
-    else $fontcolor = "<font color=\"red\"><script type='javascript'>notify('DB locks detected');</script>";
+    else $fontcolor = "<font color=\"red\">";
     return $fontcolor.$conns. " / " .$locked. "</font>";
 }
 
@@ -155,7 +164,7 @@ function mongo($connection, $serverip) {
 									 mongo admin --quiet --eval 'printjson(db.serverStatus().connections.current)' 1>/dev/null;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\"><script type='javascript'>notify('Mongo problem');</script>";
+	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
 }
@@ -165,7 +174,7 @@ function redis($connection, $serverip) {
 									 redis-cli info 1>/dev/null;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\"><script type='javascript'>notify('Redis problem');</script>";
+	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
 }

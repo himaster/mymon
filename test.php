@@ -14,14 +14,14 @@ function rep($connection, $serverip) {
     	$sql = "&#10003;";
     } else {
     	$sqlfontcolor = "<font color=\"red\">";
-    	$sql = "x<script type='javascript'>notify('Replication IO problem');</script>";
+    	$sql = "x";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
     	$iofontcolor = "<font color=\"green\">";
     	$io = "&#10003;";
     } else {
     	$iofontcolor = "<font color=\"red\">";
-    	$io = "x<script type='javascript'>notify('Replication IO problem');</script>";
+    	$io = "x";
     }
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
     else $deltafontcolor = "<font color=\"red\">";
