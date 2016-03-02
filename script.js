@@ -59,14 +59,14 @@ function show() {
                 $("#" + item['servername'] + "_redis").html(item['redis']);
             });
             if (typeof json.msg === 'undefined') {
-                $("#messagebox").css("display: none");
+                document.getElementById("messagebox").style.display = "none";
             } else {
                 $("#message").html(json.msg.message);
                 $("#message_title").html('Message from ' + json.msg.login);
                 if (document.getElementById("messagebox").style.display === "none") {
                     notify("You have new message");
                 }
-                $("#messagebox").css("display: block");
+                document.getElementById("messagebox").style.display = "block";
 
             }
         },
