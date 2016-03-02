@@ -58,16 +58,14 @@ function show() {
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
                 if (typeof item['message'] === 'undefined') {
-                    if (document.getElementById('messagebox').style.display !== 'none') {
-                        document.getElementById('messagebox').style.display = 'none';
-                    }
+                    document.getElementById('messagebox').style.display = 'none';
                 } else {
-                    console.log($("#messagebox").css("display"));
-                    if (document.getElementById('messagebox').style.display !== 'block') {
-                        $("#message").html(item['message']);
-                        $("#message_title").html('Message from ' + item['login']);
-                        document.getElementById('messagebox').style.display = 'block';
-                        //notify("You have new message");
+                    $("#message").html(item['message']);
+                    $("#message_title").html('Message from ' + item['login']);
+                    document.getElementById('messagebox').style.display = 'block';
+                    if (!notify_show) {
+                        notify("You have new message");
+                        notify_show = true;
                     }
                 }
 

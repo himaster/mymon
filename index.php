@@ -131,7 +131,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case 'getdata':
-				$rows=array();
+				$rows=[];
 				$result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis` FROM `mymon`.`stats`") or die($dbconnection->error());
 				while($array = $result->fetch_assoc()) {
 					$rows[] = $array;
@@ -142,8 +142,8 @@ if (isset($_COOKIE["mymon"])) {
 					var_dump($test);
 					$rows[] = $test;
 				}
-				#header("Content-Type: application/json; charset=utf-8 ");
-				#echo json_encode($rows);
+				header("Content-Type: application/json; charset=utf-8 ");
+				echo json_encode($rows);
 				break;
 
 			case "confirm":
