@@ -104,6 +104,9 @@ function rep($connection, $serverip) {
 		list ($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
 	}
+	if (typeof $data["Slave_SQL_Running"] === "undefined") {
+		return "Mysql stopped";
+	}
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
