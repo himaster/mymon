@@ -43,7 +43,7 @@ function show() {
             json.forEach(function(item) {
                 i++;
                 if (item === null) {
-                    alert i;
+                    console.log(i);
                 }
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
