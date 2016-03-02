@@ -122,6 +122,7 @@ function mbclose() {
         url: 'index.php?task=msgred',
         cache: false,
         success: function(html) {
+            notification.close();
             console.log(html);
         },
         error: function() {
@@ -163,12 +164,12 @@ function notify(message) {
         alert("This browser does not support desktop notification");
     }
     else if (Notification.permission === "granted") {
-        var notification = new Notification(message);
+        window.notification = new Notification(message);
     }
     else if (Notification.permission !== 'denied') {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
-                var notification = new Notification(message);
+                window.notification = new Notification(message);
             }
         });
     }
