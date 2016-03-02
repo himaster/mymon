@@ -38,7 +38,7 @@ function show() {
         url: 'index.php?task=getdata',
         dataType: 'json',
         success: function(json) {
-            console.log(json);
+            console.log(json.data);
             return false;
             json.forEach(function(item) {
                 var nowTime = ~~(new Date().getTime() / 1000);
