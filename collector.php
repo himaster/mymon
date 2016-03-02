@@ -28,7 +28,6 @@ function child_() {
 	global $array;
 	global $stop_server;
 	global $servername;
-	$retry_num = 10;
 	common_log($servername. " - started.");
 	$serverip = $array["ip"];
 	$servername = $array["servername"];
@@ -38,15 +37,11 @@ function child_() {
 	$mysql = $array["mysql"];
 	$mon = $array["mon"];
 	$red = $array["red"];
-	$i = 1;
 	$ssh_conname = "ssh_".$servername;
-	start:
 	$$ssh_conname = ssh2_connect($serverip, 22);
 	if ((!$$ssh_conname) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
-		common_log($servername." - retry #".$i++.".");
-		sleep(1);
-		if ($i < $retry_num) goto start;
-		else exit(1);
+		common_log($servername." - error connecting SSH.");
+		exit(1);
 	}
 	$mysql_conname = "mysql_".$servername;
 	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
@@ -116,7 +111,7 @@ function rep($connection, $serverip) {
     	$io = "&#10003;";
     } else {
     	$iofontcolor = "<font color=\"red\">";
-    	$io = "x<script type='javascript'>notify('Replication IO problem');</script>";
+    	$io = "x";
     }
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
     else $deltafontcolor = "<font color=\"red\">";

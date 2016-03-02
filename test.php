@@ -14,7 +14,7 @@ function rep($connection, $serverip) {
     	$sql = "&#10003;";
     } else {
     	$sqlfontcolor = "<font color=\"red\">";
-    	$sql = "x";
+    	$sql = "x<script type='javascript'>notify('Replication IO problem');</script>";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
     	$iofontcolor = "<font color=\"green\">";
@@ -45,3 +45,8 @@ if ((!$$ssh_conname) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www
 	else exit(1);
 }
 echo rep($$ssh_conname, $serverip);
+
+if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';");
+if (!isset($result)) common_log($servername." - REP not updated!");
+unset($result);
