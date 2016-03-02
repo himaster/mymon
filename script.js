@@ -57,12 +57,13 @@ function show() {
                 $("#" + item['servername'] + "_elastic").html(item['elastic']);
                 $("#" + item['servername'] + "_mongo").html(item['mongo']);
                 $("#" + item['servername'] + "_redis").html(item['redis']);
-                console.log("document.getElementById('messagebox').style.display=" + document.getElementById('messagebox').style.display);
                 if (typeof item['message'] === 'undefined') {
+                    console.log($("#messagebox").css("display"));
                     if (document.getElementById('messagebox').style.display !== 'none') {
                         document.getElementById('messagebox').style.display = 'none';
                     }
                 } else {
+                    console.log($("#messagebox").css("display"));
                     if (document.getElementById('messagebox').style.display !== 'block') {
                         $("#message").html(item['message']);
                         $("#message_title").html('Message from ' + item['login']);
