@@ -7,7 +7,6 @@ pcntl_signal(SIGTERM, "sigHandler");
 
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;") or die($connection->error);
-#$i = 1;
 $connection->close();
 while($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
@@ -83,7 +82,7 @@ function child_() {
 }
 
 function la($connection, $serverip) {
-	global $servername;
+	#global $servername;
 	global $hostname;
 	$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
 	$la1 = intval(array_map("trim",explode(",",$la))[0]);
@@ -133,7 +132,7 @@ function rep($connection, $serverip) {
 }
 
 function err500($connection, $serverip) {
-	global $servername;
+	#global $servername;
 	global $hostname;
 	$str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
 
@@ -186,7 +185,7 @@ function redis($connection, $serverip) {
 
 function sigHandler($signo) {
 	global $stop_server;
-	global $connection;
+	#global $connection;
 	switch($signo) {
 		case SIGTERM: {
 			$stop_server = true;
@@ -205,7 +204,7 @@ function sigHandler($signo) {
 }
 
 function errHandler($errno, $errmsg, $filename, $linenum) {
-	global $servername;
+	#global $servername;
 	$date = date('Y-m-d H:i:s (T)');
 	$f = fopen('/var/log/mymon/errors.txt', 'a');
 	if (!empty($f)) {
