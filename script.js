@@ -165,16 +165,16 @@ function notify(message) {
         //alert("This browser does not support desktop notification");
     }
     else if (Notification.permission === "granted" && window.create_new_mes === 1) {
-        return new Notification(message);
         window.create_new_mes=0;
         setTimeout("create_new_mes=1;", 10000);
+        return new Notification(message + "window.create_new_mes=" + window.create_new_mes);
     }
     else if (Notification.permission !== 'denied' && window.create_new_mes === 1) {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
-                return new Notification(message);
                 window.create_new_mes=0;
                 setTimeout("create_new_mes=1;", 10000);
+                return new Notification(message + "window.create_new_mes=" + window.create_new_mes);
             }
         });
     }
