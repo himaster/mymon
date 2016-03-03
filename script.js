@@ -180,6 +180,12 @@ function notify(message) {
     }
 }
 
+window.onresize = function()
+{
+    if ((window.outerHeight - window.innerHeight) > 100)
+        alert('Docked inspector was opened');
+}
+
 $(document).ready(function() {
     window.create_new_mes=1;
     show();
