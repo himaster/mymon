@@ -183,7 +183,7 @@ function notify(message) {
 window.onresize = function()
 {
     if ((window.outerHeight - window.innerHeight) > 100)
-        alert('Docked inspector was opened');
+        setTimeout(console.log("Looking in console? Are You developer may be? ;)"), 2000);
 }
 
 $(document).ready(function() {
