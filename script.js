@@ -180,13 +180,14 @@ function notify(message) {
     }
 }
 
-window.onresize = function()
-{
+window.onresize = function() {
     if ((window.outerHeight - window.innerHeight) > 100)
         setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
 }
 
 $(document).ready(function() {
+    if ((window.outerHeight - window.innerHeight) > 100)
+        setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
     show();
     setInterval('show()', 5000);
