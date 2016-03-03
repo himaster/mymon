@@ -101,6 +101,7 @@ function rep($connection, $serverip) {
 	$data = array();
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
 	foreach (explode("\n", $str) as $cLine) {
+		common_log($cLine);
 		if (strpos($cLine, "ERROR") !== false) {
 			common_log("ERROR found.");
 		}
