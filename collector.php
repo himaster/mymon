@@ -100,8 +100,9 @@ function la($connection, $serverip) {
 function rep($connection, $serverip) {
 	$data = array();
 	$str = ssh2_return($connection, "mysql -e 'show slave status\G' | awk 'FNR>1'");
+	common_log(explode("\n", $str));
 	foreach (explode("\n", $str) as $cLine) {
-		list ($cKey, $cValue) = explode(':', $cLine, 2);
+		list($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
 	}
 	if (!array_key_exists("Slave_SQL_Running", $data)) {
