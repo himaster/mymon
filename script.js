@@ -167,14 +167,18 @@ function notify(message) {
     else if (Notification.permission === "granted" && window.create_new_mes === 1) {
         window.create_new_mes=0;
         setTimeout("create_new_mes=1;", 30000);
-        return new Notification(message);
+        new_mes = new Notification(message);
+        setTimeout(new_mes.close.bind(new_mes), 3000);
+        return new_mes;
     }
     else if (Notification.permission !== 'denied' && window.create_new_mes === 1) {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
                 window.create_new_mes=0;
                 setTimeout("create_new_mes=1;", 30000);
-                return new Notification(message);
+                new_mes = new Notification(message);
+                setTimeout(new_mes.close.bind(new_mes), 3000);
+                return new_mes;
             }
         });
     }
