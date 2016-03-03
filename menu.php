@@ -1,12 +1,5 @@
 <div class="left_button">
 	<a href="#" onclick="toggle_visibility('my_div'); 
-						 toggle_visibility('col1');
-						 toggle_visibility('col2');
-						 toggle_visibility('col3');
-						 toggle_visibility('col4');
-						 toggle_visibility('col5');
-						 toggle_visibility('col6');
-						 toggle_visibility('col7');
 						 on_top('my_div');
 						 ">
 		<img src="images/profile.png">
@@ -36,6 +29,13 @@
 							 toggle_visibility('email_div');
 							 toggle_visibility('submit_div');
 							 toggle_visibility('simple_div');
+							 toggle_visibility('col1');
+							 toggle_visibility('col2');
+							 toggle_visibility('col3');
+							 toggle_visibility('col4');
+							 toggle_visibility('col5');
+							 toggle_visibility('col6');
+							 toggle_visibility('col7');
 							 ">Edit profile</a>
 		<p>
 		<div id="password_div"> password:
