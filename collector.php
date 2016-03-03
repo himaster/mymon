@@ -4,9 +4,10 @@ include_once "functions.php";
 declare(ticks=1);
 set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
+
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;") or die($connection->error);
-$i = 1;
+#$i = 1;
 while($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
     if ($pid == -1) die("Child process can't be created");
@@ -20,9 +21,7 @@ $result->free();
 $connection->close();
 exit;
 
-function parent_() {
-
-}
+function parent_() {}
 
 function child_() {
 	global $array;
@@ -92,6 +91,7 @@ function la($connection, $serverip) {
 	if ($la1 < ($core * 0.75)) $fontcolor = "<font color=\"green\">";
 	elseif (($la1 >= ($core * 0.75)) && ($la1 < $core)) $fontcolor = "<font color=\"#CAC003\">";
 	else $fontcolor = "<font color=\"red\">";
+
 	return "<a title=\"Click to show processes\" 
 			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
 			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
@@ -136,6 +136,7 @@ function err500($connection, $serverip) {
 	global $servername;
 	global $hostname;
 	$str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
+
     return "<a title=\"Click to show 500 errors\" 
     		 href=https://". $hostname. "/index.php?task=500err&serverip=" .$serverip. " 
     		 target=\"_blank\">" .$str. "\n</a>";
@@ -148,6 +149,7 @@ function elastic($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
+
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
 }
 
@@ -156,6 +158,7 @@ function locks($connection, $serverip) {
 	$conns  = trim(ssh2_return($connection, "mysql -Nse \"SHOW STATUS WHERE variable_name = 'Threads_connected'\" | awk '{print $2}'"));
     if (($locked == "0") and ($conns < "1000")) $fontcolor = "<font color=\"green\">";
     else $fontcolor = "<font color=\"red\">";
+
     return $fontcolor.$conns. " / " .$locked. "</font>";
 }
 
@@ -166,6 +169,7 @@ function mongo($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
+
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
 }
 
@@ -176,6 +180,7 @@ function redis($connection, $serverip) {
 									 echo -n \$((\$date2-\$date1));");
 	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
+
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
 }
 
