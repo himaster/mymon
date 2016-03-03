@@ -35,10 +35,6 @@ while (true) {
             unset($connects[ array_search($connect, $connects) ]);
             onClose($connect);//вызываем пользовательский сценарий
             continue;
-        } else {
-        	if ($message) {
-        	#	Send($connect, $message);
-        	}
         }
 
         onMessage($connect, $data);//вызываем пользовательский сценарий
@@ -243,11 +239,6 @@ function decode($data)
 function onOpen($connect, $info) {
     echo "open\n";
     fwrite($connect, encode('Привет'));
-}
-
-function Send($connect, $data) {
-	echo "send\n";
-	fwrite($connect, encode($data));
 }
 
 function onClose($connect) {
