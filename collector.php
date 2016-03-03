@@ -27,7 +27,6 @@ function child_() {
 	global $stop_server;
 	global $servername;
 	$retry_num = 10;
-	common_log($servername. " - started.");
 	$serverip = $array["ip"];
 	$servername = $array["servername"];
 	$errs = $array["err"];
@@ -38,6 +37,7 @@ function child_() {
 	$red = $array["red"];
 	$i = 1;
 	$ssh_conname = "ssh_".$servername;
+	common_log($servername. " - started.");
 	start:
 	$$ssh_conname = ssh2_connect($serverip, 22);
 	if ((!$$ssh_conname) or (!ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
