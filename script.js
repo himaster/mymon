@@ -160,7 +160,8 @@ function on_top(id) {
     $( "#" + id ).addClass("ontop");
 }
 
-function notify(message, time = 3000) {
+function notify(message, time) {
+    time = time || 3000;
     if (!("Notification" in window)) {
         //alert("This browser does not support desktop notification");
     }
