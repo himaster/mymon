@@ -66,7 +66,6 @@ function show() {
                 $("#message_title").html('Message from ' + json.msg.login);
                 if (document.getElementById("messagebox").style.display !== "block") {
                     notify("New message from " + json.msg.login + "\n" + json.msg.message, 10000);
-                    setTimeout(new_mes.close.bind(new_mes), 4000);
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
