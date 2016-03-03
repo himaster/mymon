@@ -164,12 +164,12 @@ function notify(message) {
     if (!("Notification" in window)) {
         //alert("This browser does not support desktop notification");
     }
-    else if (Notification.permission === "granted" and window.create_new_mes === 1) {
+    else if (Notification.permission === "granted" && window.create_new_mes === 1) {
         return new Notification(message);
         window.create_new_mes=0;
         setTimeout("create_new_mes=1;", 10000);
     }
-    else if (Notification.permission !== 'denied' and window.create_new_mes === 1) {
+    else if (Notification.permission !== 'denied' && window.create_new_mes === 1) {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
                 return new Notification(message);
