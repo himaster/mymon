@@ -160,7 +160,7 @@ function on_top(id) {
     $( "#" + id ).addClass("ontop");
 }
 
-function notify(message) {
+function notify(message, time = 3000) {
     if (!("Notification" in window)) {
         //alert("This browser does not support desktop notification");
     }
@@ -168,7 +168,7 @@ function notify(message) {
         window.create_new_mes=0;
         setTimeout("create_new_mes=1;", 30000);
         new_mes = new Notification(message);
-        setTimeout(new_mes.close.bind(new_mes), 3000);
+        setTimeout(new_mes.close.bind(new_mes), time);
         return new_mes;
     }
     else if (Notification.permission !== 'denied' && window.create_new_mes === 1) {
@@ -177,7 +177,7 @@ function notify(message) {
                 window.create_new_mes=0;
                 setTimeout("create_new_mes=1;", 30000);
                 new_mes = new Notification(message);
-                setTimeout(new_mes.close.bind(new_mes), 3000);
+                setTimeout(new_mes.close.bind(new_mes), time);
                 return new_mes;
             }
         });
