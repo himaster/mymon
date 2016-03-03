@@ -100,7 +100,7 @@ function la($connection, $serverip) {
 function rep($connection, $serverip) {
 	$data = array();
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
-	common_log(print_r(explode("\n", $str)));
+	common_log(print_r(explode("\n", $str), true));
 	foreach (explode("\n", $str) as $cLine) {
 		if (strpos($cLine, "ERROR") !== false) {
 			common_log("ERROR found.");
@@ -109,7 +109,7 @@ function rep($connection, $serverip) {
 		$data[trim($cKey)] = trim($cValue);
 	}
 	if (!array_key_exists("Slave_SQL_Running", $data)) {
-		return "<script type=\"text/javascript\">if (new_mes = notify(\"Mysql stopped\")) {setTimeout(new_mes.close.bind(new_mes), 2000);}</script><font color=\"red\">Mysql stopped</font>";
+		return "<font color=\"red\">Mysql stopped</font>";
 	}
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
