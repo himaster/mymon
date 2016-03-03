@@ -157,7 +157,7 @@ function locks($connection, $serverip) {
 	$locked = trim(ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l"));
 	$conns  = trim(ssh2_return($connection, "mysql -Nse \"SHOW STATUS WHERE variable_name = 'Threads_connected'\" | awk '{print $2}'"));
     if (($locked == "0") and ($conns < "1000")) $fontcolor = "<font color=\"green\">";
-    else $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"DB locks\");setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
+    else $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"DB locks\");</script><font color=\"red\">";
 
     return $fontcolor.$conns. " / " .$locked. "</font>";
 }
