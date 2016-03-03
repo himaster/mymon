@@ -65,7 +65,7 @@ function show() {
                 $("#message").html(json.msg.message);
                 $("#message_title").html('Message from ' + json.msg.login);
                 if (document.getElementById("messagebox").style.display !== "block") {
-                    notify("New message from " + json.msg.login + "\n" + json.msg.message, 10000);
+                    notify("New message from " + json.msg.login + "\n" + json.msg.message, 10000, true);
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
@@ -159,19 +159,20 @@ function on_top(id) {
     $( "#" + id ).addClass("ontop");
 }
 
-function notify(message, time) {
+function notify(message, time, override) {
     time = time || 3000;
+    override = override || false;
     if (!("Notification" in window)) {
         //alert("This browser does not support desktop notification");
     }
-    else if (Notification.permission === "granted" && window.create_new_mes === 1) {
+    else if (Notification.permission === "granted" && (window.create_new_mes === 1 || override)) {
         window.create_new_mes=0;
         setTimeout("create_new_mes=1;", 30000);
         new_mes = new Notification(message);
         setTimeout(new_mes.close.bind(new_mes), time);
         return new_mes;
     }
-    else if (Notification.permission !== 'denied' && window.create_new_mes === 1) {
+    else if (Notification.permission !== 'denied' && (window.create_new_mes === 1 || override)) {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
                 window.create_new_mes=0;
