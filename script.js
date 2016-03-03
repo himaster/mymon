@@ -181,7 +181,7 @@ function notify(message) {
 }
 
 window.onresize = function() {
-    console.log("clear()");
+    console.log.clear();
     if ((window.outerHeight - window.innerHeight) > 100)
         setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
 }
