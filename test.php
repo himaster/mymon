@@ -37,7 +37,7 @@ while (true) {
             continue;
         } else {
         	if ($message) {
-        		Send($connect, $message);
+        	#	Send($connect, $message);
         	}
         }
 
@@ -218,11 +218,6 @@ function decode($data)
         $dataLength = $payloadLength + $payloadOffset;
     }
 
-    /**
-     * We have to check for large frames here. socket_recv cuts at 1024 bytes
-     * so if websocket-frame is > 1024 bytes we have to wait until whole
-     * data is transferd.
-     */
     if (strlen($data) < $dataLength) {
         return false;
     }
