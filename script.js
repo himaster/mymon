@@ -166,15 +166,15 @@ function notify(message) {
     }
     else if (Notification.permission === "granted" && window.create_new_mes === 1) {
         window.create_new_mes=0;
-        setTimeout("create_new_mes=1;", 10000);
-        return new Notification(message + "window.create_new_mes=" + window.create_new_mes);
+        setTimeout("create_new_mes=1;", 30000);
+        return new Notification(message);
     }
     else if (Notification.permission !== 'denied' && window.create_new_mes === 1) {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
                 window.create_new_mes=0;
-                setTimeout("create_new_mes=1;", 10000);
-                return new Notification(message + "window.create_new_mes=" + window.create_new_mes);
+                setTimeout("create_new_mes=1;", 30000);
+                return new Notification(message);
             }
         });
     }
