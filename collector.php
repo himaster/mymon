@@ -118,7 +118,7 @@ function rep($connection, $serverip) {
     	$iofontcolor = "<font color=\"green\">";
     	$io = "&#10003;";
     } else {
-    	$iofontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Replication IO problem\");setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
+    	$iofontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Replication IO problem\"); setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
     	$io = "x";
     }
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
@@ -147,7 +147,7 @@ function elastic($connection, $serverip) {
 									 curl -sS -o /dev/null -XGET http://`ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+'`:9200/_cluster/health?pretty;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Elastic problem\");setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
+	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Elastic problem\"); setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
@@ -167,7 +167,7 @@ function mongo($connection, $serverip) {
 									 mongo admin --quiet --eval 'printjson(db.serverStatus().connections.current)' 1>/dev/null;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Mongo problem\");setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
+	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Mongo problem\"); setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
@@ -178,7 +178,7 @@ function redis($connection, $serverip) {
 									 redis-cli info 1>/dev/null;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Redis problem\");setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
+	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">new_mes = notify(\"Redis problem\"); setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
 	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
