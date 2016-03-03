@@ -105,7 +105,7 @@ function rep($connection, $serverip) {
 		$data[trim($cKey)] = trim($cValue);
 	}
 	if (!array_key_exists("Slave_SQL_Running", $data)) {
-		return "<font color=\"red\">Mysql stopped</font>";
+		return "<script type=\"text/javascript\">new_mes = notify(\"Mysql stopped\");setTimeout(new_mes.close.bind(new_mes), 2000);</script><font color=\"red\">Mysql stopped</font>";
 	}
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
