@@ -161,22 +161,28 @@ function on_top(id) {
 }
 
 function notify(message) {
+    public create_new_mes;
     if (!("Notification" in window)) {
         //alert("This browser does not support desktop notification");
     }
-    else if (Notification.permission === "granted") {
+    else if (Notification.permission === "granted" and create_new_mes === 1) {
         return new Notification(message);
+        create_new_mes=0;
+        setTimeout("create_new_mes=1;", 10000);
     }
-    else if (Notification.permission !== 'denied') {
+    else if (Notification.permission !== 'denied' and create_new_mes === 1) {
         Notification.requestPermission(function (permission) {
             if (permission === "granted") {
                 return new Notification(message);
+                create_new_mes=0;
+                setTimeout("create_new_mes=1;", 10000);
             }
         });
     }
 }
 
 $(document).ready(function() {
+    var create_new_mes=1;
     show();
     setInterval('show()', 5000);
     $("#my_div").click(function() {
