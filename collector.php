@@ -39,7 +39,7 @@ function child_() {
 	$ssh_conname = "ssh_".$servername;
 	common_log($servername. " - started.");
 	start:
-	#$$ssh_conname = ssh2_connect($serverip, 22);
+	
 	if ((!$$ssh_conname = @ssh2_connect($serverip, 22)) or (!@ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
 		common_log($servername." - retry #".$i++.".");
 		sleep(1);
@@ -48,6 +48,7 @@ function child_() {
 	}
 	$mysql_conname = "mysql_".$servername;
 	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
+	
 	$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
 	if (!isset($result)) common_log($servername." - LA not updated!");
 	unset($result);
