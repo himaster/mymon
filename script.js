@@ -193,9 +193,9 @@ $(document).ready(function() {
     var el = document.getElementById('main_table');
     var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
     var fontSize = parseFloat(style);
-    if (window.innerWidth+10 < main_table.offsetWidth) {
+    if (window.innerWidth-30 < main_table.offsetWidth) {
         el.style.fontSize = (fontSize - 3) + 'px';
-    } else if (window.innerWidth+10 > main_table.offsetWidth) {
+    } else if (window.innerWidth-30 > main_table.offsetWidth) {
         el.style.fontSize = (fontSize + 3) + 'px';
     }
     setInterval('show()', 5000);
