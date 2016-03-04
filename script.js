@@ -185,30 +185,18 @@ function notify(message, time, override) {
     }
 }
 
-times = function(n, iterator) {
-  var accum = Array(Math.max(0, n));
-  for (var i = 0; i < n; i++) accum[i] = iterator.call();
-  return accum;
-};
+$(window).resize(function() {
+    var el = document.getElementById('main_table');
+    el.style.fontSize = Math.round((window.innerWidth-200)/33) + 'px';
+});
 
 $(document).ready(function() {
-    if ((window.outerHeight - window.innerHeight) > 100)
-        setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
+    if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
     show();
     var el = document.getElementById('main_table');
-    times(100, function() {
-        var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
-        var fontSize = parseFloat(style);
-        if (window.innerWidth-150 < main_table.offsetWidth) el.style.fontSize = (fontSize - 1) + 'px';
-        else if (window.innerWidth-150 > main_table.offsetWidth) el.style.fontSize = (fontSize + 1) + 'px';
-        console.log("main_table.offsetWidth=" + main_table.offsetWidth + "\nel.style.fontSize=" + el.style.fontSize);
-    });
+    el.style.fontSize = Math.round((window.innerWidth-200)/33) + 'px';
     setInterval('show()', 5000);
-    $("#my_div").click(function() {
-        on_top("my_div");
-    });
-    $("#message_div").click(function() {
-        on_top("message_div");
-    });
+    $("#my_div").click(function() { on_top("my_div"); });
+    $("#message_div").click(function() { on_top("message_div"); });
 });
