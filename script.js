@@ -202,13 +202,9 @@ function detectmob() {
 
 function reverst() {
     var el = document.getElementById('main_table');
-    if (detectmob()) {
-        el.style.width = '90%';
-    } else {
-        var newFontSize = Math.round((window.innerWidth-200)/33);
-        if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
-        else el.style.fontSize = '15px';
-    }
+    var newFontSize = Math.round((window.innerWidth-200)/33);
+    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+    else el.style.fontSize = '15px';
 }
 
 $(window).resize(function() {

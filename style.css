@@ -1,9 +1,14 @@
+@media only screen and (max-device-width: 480px) {
+	body {
+		width: 90%;
+	}
+
+}
 body {
 	background-color: black;
 	/*width: 630px;*/
 	margin-left: auto;
   	margin-right: auto;
-
 }
 
 td {
