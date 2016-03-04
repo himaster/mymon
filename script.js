@@ -218,7 +218,3 @@ $(document).ready(function() {
         on_top("message_div");
     });
 });
-
-$(document).resize(function() {
-    $('.jtextfill').textfill({ maxFontPixels: 36 });
-});
