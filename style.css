@@ -4,6 +4,10 @@
 		font-size: 11px;
 	}
 
+	.main_table {
+		margin-bottom: 10px;
+	}
+
 }
 body {
 	background-color: black;
