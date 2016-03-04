@@ -185,16 +185,29 @@ function notify(message, time, override) {
     }
 }
 
-window.onresize = function() {
-    console.clear();
-    if ((window.outerHeight - window.innerHeight) > 100)
-        setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
-}
+;(function($) {
+    $.fn.textfill = function(options) {
+        var fontSize = options.maxFontPixels;
+        var ourText = $('span:visible:first', this);
+        var maxHeight = $(this).height();
+        var maxWidth = $(this).width();
+        var textHeight;
+        var textWidth;
+        do {
+            ourText.css('font-size', fontSize);
+            textHeight = ourText.height();
+            textWidth = ourText.width();
+            fontSize = fontSize - 1;
+        } while ((textHeight > maxHeight || textWidth > maxWidth) && fontSize > 3);
+        return this;
+    }
+})(jQuery);
 
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100)
         setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
+    $('.jtextfill').textfill({ maxFontPixels: 36 });
     show();
     setInterval('show()', 5000);
     $("#my_div").click(function() {
@@ -204,4 +217,8 @@ $(document).ready(function() {
     $("#message_div").click(function() {
         on_top("message_div");
     });
+});
+
+$(document).resize(function() {
+    $('.jtextfill').textfill({ maxFontPixels: 36 });
 });
