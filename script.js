@@ -2,13 +2,13 @@ function myAjax(serverip) {
     $('#test_div').html('processing...');
     document.getElementById('test_div').style.display = 'block';
     $.ajax({
-		url: 'index.php?task=replica&serverip=' + serverip,
-		success: function(html){
-			status(html);
-		},
-		error: function(){
-			status("Error");
-		}
+        url: 'index.php?task=replica&serverip=' + serverip,
+        success: function(html){
+            status(html);
+        },
+        error: function(){
+            status("Error");
+        }
     });
 }
 
