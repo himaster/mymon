@@ -202,6 +202,7 @@ $(document).ready(function() {
         var fontSize = parseFloat(style);
         if (window.innerWidth-150 < main_table.offsetWidth) el.style.fontSize = (fontSize - 1) + 'px';
         else if (window.innerWidth-150 > main_table.offsetWidth) el.style.fontSize = (fontSize + 1) + 'px';
+        console.log(el.style.fontSize);
     });
     setInterval('show()', 5000);
     $("#my_div").click(function() {
