@@ -185,30 +185,19 @@ function notify(message, time, override) {
     }
 }
 
-;(function($) {
-    $.fn.textfill = function(options) {
-        var fontSize = options.maxFontPixels;
-        var ourText = $('span:visible:first', this);
-        var maxHeight = $(this).height();
-        var maxWidth = $(this).width();
-        var textHeight;
-        var textWidth;
-        do {
-            ourText.css('font-size', fontSize);
-            textHeight = ourText.height();
-            textWidth = ourText.width();
-            fontSize = fontSize - 1;
-        } while ((textHeight > maxHeight || textWidth > maxWidth) && fontSize > 3);
-        return this;
-    }
-})(jQuery);
-
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100)
         setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
-    $('.jtextfill').textfill({ maxFontPixels: 36 });
     show();
+    var el = document.getElementById('main_table');
+    var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+    var fontSize = parseFloat(style);
+    if (window.innerWidth-20 < main_table.offsetWidth) {
+        el.style.fontSize = (fontSize - 1) + 'px';
+    } else if (window.innerWidth-20 > main_table.offsetWidth) {
+        el.style.fontSize = (fontSize + 1) + 'px';
+    }
     setInterval('show()', 5000);
     $("#my_div").click(function() {
         on_top("my_div");
