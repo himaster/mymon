@@ -40,12 +40,12 @@
     		echo "<tr>";
             echo "<td id='" .$server. "_name'>" .$server. "</td>";
     		if ($ula == "1") echo "<td class=\"la\" id='" .$server. "_la'></td>";
-    		if ($urep == "1") echo "<td id='" .$server. "_rep'></td>";
-            if ($uloc == "1") echo "<td id='" .$server. "_locks'></td>";
-    		if ($u500 == "1") echo "<td id='" .$server. "_500'></td>";
-    		if ($uel == "1") echo "<td id='" .$server. "_elastic'></td>";
-            if ($umon == "1") echo "<td id='" .$server. "_mongo'></td>";
-            if ($ured == "1") echo "<td id='" .$server. "_redis'></td>";
+    		if ($urep == "1") echo "<td class=\"rep\" id='" .$server. "_rep'></td>";
+            if ($uloc == "1") echo "<td class=\"loc\" id='" .$server. "_locks'></td>";
+    		if ($u500 == "1") echo "<td class=\"500\" id='" .$server. "_500'></td>";
+    		if ($uel == "1") echo "<td class=\"el\" id='" .$server. "_elastic'></td>";
+            if ($umon == "1") echo "<td class=\"mon\" id='" .$server. "_mongo'></td>";
+            if ($ured == "1") echo "<td class=\"red\" id='" .$server. "_redis'></td>";
         }
 
     	$dbconnection->close();
