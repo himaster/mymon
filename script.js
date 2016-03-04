@@ -200,8 +200,8 @@ $(document).ready(function() {
     times(100, function() {
         var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
         var fontSize = parseFloat(style);
-        if (window.innerWidth-100 < main_table.offsetWidth) el.style.fontSize = (fontSize - 1) + 'px';
-        else if (window.innerWidth-100 > main_table.offsetWidth) el.style.fontSize = (fontSize + 1) + 'px';
+        if (window.innerWidth < main_table.offsetWidth) el.style.fontSize = (fontSize - 1) + 'px';
+        else if (window.innerWidth > main_table.offsetWidth) el.style.fontSize = (fontSize + 1) + 'px';
     });
     setInterval('show()', 5000);
     $("#my_div").click(function() {
