@@ -194,9 +194,13 @@ $(document).ready(function() {
     var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
     var fontSize = parseFloat(style);
     if (window.innerWidth-20 < main_table.offsetWidth) {
-        el.style.fontSize = (fontSize - 1) + 'px';
+        do {
+            el.style.fontSize = (fontSize - 1) + 'px';
+        } while (window.innerWidth-20 < main_table.offsetWidth)
     } else if (window.innerWidth-20 > main_table.offsetWidth) {
-        el.style.fontSize = (fontSize + 1) + 'px';
+        do {
+            el.style.fontSize = (fontSize + 1) + 'px';
+        } while (window.innerWidth-20 > main_table.offsetWidth)
     }
     setInterval('show()', 5000);
     $("#my_div").click(function() {
