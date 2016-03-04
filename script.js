@@ -191,18 +191,16 @@ $(document).ready(function() {
     window.create_new_mes=1;
     show();
     var el = document.getElementById('main_table');
-    var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
-    var fontSize = parseFloat(style);
-    if (window.innerWidth-30 < main_table.offsetWidth) {
-        el.style.fontSize = (fontSize - 3) + 'px';
-    } else if (window.innerWidth-30 > main_table.offsetWidth) {
-        el.style.fontSize = (fontSize + 3) + 'px';
-    }
+    times(100, function() {
+        var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+        var fontSize = parseFloat(style);
+        if (window.innerWidth-30 < main_table.offsetWidth) el.style.fontSize = (fontSize - 1) + 'px';
+        else if (window.innerWidth-30 > main_table.offsetWidth) el.style.fontSize = (fontSize + 1) + 'px';
+    });
     setInterval('show()', 5000);
     $("#my_div").click(function() {
         on_top("my_div");
     });
-
     $("#message_div").click(function() {
         on_top("message_div");
     });
