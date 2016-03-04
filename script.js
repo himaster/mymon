@@ -187,7 +187,9 @@ function notify(message, time, override) {
 
 $(window).resize(function() {
     var el = document.getElementById('main_table');
-    el.style.fontSize = Math.round((window.innerWidth-200)/33) + 'px';
+    var newFontSize = Math.round((window.innerWidth-200)/33);
+    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+    else el.style.fontSize = '15px';
     console.log(el.style.fontSize);
 });
 
@@ -196,7 +198,9 @@ $(document).ready(function() {
     window.create_new_mes=1;
     show();
     var el = document.getElementById('main_table');
-    el.style.fontSize = Math.round((window.innerWidth-200)/33) + 'px';
+    var newFontSize = Math.round((window.innerWidth-200)/33);
+    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+    else el.style.fontSize = '15px';
     setInterval('show()', 5000);
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
