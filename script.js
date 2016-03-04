@@ -188,6 +188,7 @@ function notify(message, time, override) {
 $(window).resize(function() {
     var el = document.getElementById('main_table');
     el.style.fontSize = Math.round((window.innerWidth-200)/33) + 'px';
+    console.log(el.style.fontSize);
 });
 
 $(document).ready(function() {
