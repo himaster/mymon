@@ -185,11 +185,34 @@ function notify(message, time, override) {
     }
 }
 
-$(window).resize(function() {
+function detectmob() { 
+    if( navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)
+    ){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function reverst() {
     var el = document.getElementById('main_table');
-    var newFontSize = Math.round((window.innerWidth-200)/33);
-    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
-    else el.style.fontSize = '15px';
+    if (detectmob()) {
+        el.style.width = '90%';
+    } else {
+        var newFontSize = Math.round((window.innerWidth-200)/33);
+        if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+        else el.style.fontSize = '15px';
+    }
+}
+
+$(window).resize(function() {
+    reverst();
     console.log(el.style.fontSize);
 });
 
@@ -197,10 +220,7 @@ $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
     show();
-    var el = document.getElementById('main_table');
-    var newFontSize = Math.round((window.innerWidth-200)/33);
-    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
-    else el.style.fontSize = '15px';
+    reverst();
     setInterval('show()', 5000);
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
