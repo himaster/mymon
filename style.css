@@ -4,12 +4,8 @@
 		font-size: 11px;
 		padding-top: 40px;
 	}
-
-	.left_button {
-		top: 0px;
-		left: 20px;
-	}
 }
+
 body {
 	background-color: black;
 	/*width: 630px;*/
