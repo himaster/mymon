@@ -2,7 +2,7 @@
     include "menu.php";
     include "messagebox.php";
 ?>
-    <table class="main_table table-striped jtextfill" id="main_table">
+    <table class="main_table table-striped" id="main_table">
         <col span="5">
             <tr class="title">
                 <td>Server</td>

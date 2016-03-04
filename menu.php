@@ -1,7 +1,6 @@
 <div class="left_button">
 	<a href="#" onclick="toggle_visibility('my_div'); 
-						 on_top('my_div');
-						 ">
+						 on_top('my_div');">
 		<img src="images/profile.png">
 	</a>
 </div>
