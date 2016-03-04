@@ -2,12 +2,14 @@
 	body {
 		width: 90%;
 		font-size: 11px;
+		padding-top: 40px;
 	}
 
-	.main_table {
-		padding-bottom: 10px;
+	.left_button {
+		position: fixed;
+		top: 0px;
+		left: 20px;
 	}
-
 }
 body {
 	background-color: black;
