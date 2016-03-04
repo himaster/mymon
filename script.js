@@ -185,6 +185,12 @@ function notify(message, time, override) {
     }
 }
 
+times = function(n, iterator) {
+  var accum = Array(Math.max(0, n));
+  for (var i = 0; i < n; i++) accum[i] = iterator.call();
+  return accum;
+};
+
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100)
         setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
