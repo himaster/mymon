@@ -94,6 +94,11 @@ a:active {
     border-radius: 3px; /* закругление углов для всех, кто понимает */
 }
 
+.left_button img {
+	max-width: 90%;
+	max-height: 90%;
+}
+
 .left_button2 {
 	position: fixed;
 	top: 45px;
