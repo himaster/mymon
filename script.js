@@ -201,11 +201,10 @@ function detectmob() {
 }
 
 function reverst() {
-    if (detectmob()) var divider = 29;
-    else var divider = 32;
     var el = document.getElementById('main_table');
-    var newFontSize = Math.round((window.innerWidth-200)/divider);
-    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+    var newFontSize = Math.round((window.innerWidth-200)/32);
+    if (detectmob()) el.style.fontSize = '7px';
+    else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
     console.log(el.style.fontSize);
 }
