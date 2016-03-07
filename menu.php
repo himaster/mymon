@@ -2,7 +2,7 @@
 <a href="#" onclick="toggle_visibility('my_div'); 
 					 on_top('my_div');">
 	<div class="left_button">
-		<img src="images/profile.png">
+		<img src="images/profile.png" style="max-width:100%; max-height:100%;">
 	</div>
 </a>
 <a href="javascript: toggle_visibility_msg('message_div');
