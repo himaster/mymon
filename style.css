@@ -6,17 +6,17 @@
 	}
 	.left_button {
 		position: fixed;
-		top: 0px !important;
-		left: 20px !important;
+		top: -3px !important;
+		left: 30px !important;
 	}
 	.left_button2 {
 		position: fixed;
-		top: 0px !important;
-		left: 45px !important;
+		top: 2px !important;
+		left: 55px !important;
 	}
 	.left_button3 {
 		position: fixed;
-		top: 0px !important;
+		top: -3px !important;
 		left: 70px !important;
 	}
 }
@@ -92,7 +92,7 @@ a:active {
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-    text-align: right;
+    /*text-align: right;*/
 }
 
 .left_button img {
@@ -118,7 +118,7 @@ a:active {
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-    text-align: right;
+    /*text-align: right;*/
 }
 
 .left_button3 img {
