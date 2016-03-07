@@ -4,6 +4,11 @@
 		font-size: 11px;
 		padding-top: 40px;
 	}
+	.left_button {
+		position: fixed;
+		top: 0px;
+		left: 50px;
+	}
 }
 
 body {

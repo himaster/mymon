@@ -201,7 +201,7 @@ function detectmob() {
 }
 
 function reverst() {
-    if (detectmob()) var divider = 28;
+    if (detectmob()) var divider = 29;
     else var divider = 32;
     var el = document.getElementById('main_table');
     var newFontSize = Math.round((window.innerWidth-200)/divider);
