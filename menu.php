@@ -5,18 +5,21 @@
 		<img src="images/profile.png">
 	</div>
 </a>
-<div class="left_button2">
-	<a href="javascript: toggle_visibility_msg('message_div');
-						 on_top('message_div');
-						 "><font color="white">msg</font></a>
-</div>
+<a href="javascript: toggle_visibility_msg('message_div');
+					 on_top('message_div');">
+	<div class="left_button2">
+		<font color="white">msg</font>
+	</div>
+</a>
 <?php
 	$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
 	if ($result->num_rows == 1) { 
 ?>
-<div class="left_button3">
-	<a href="index.php?task=editor"><img src="images/button.png"></a>
-</div>
+<a href="index.php?task=editor">
+	<div class="left_button3">
+		<img src="images/button.png">
+	</div>
+</a>
 <?php } ?>
 <div id="my_div" class="menu">
 	<b>Profile</b>
