@@ -4,7 +4,7 @@
 		<img src="images/profile.png">
 	</a>
 </div>
-<div class="left_button" style="top: 45px;">
+<div class="left_button2">
 	<a href="javascript: toggle_visibility_msg('message_div');
 						 on_top('message_div');
 						 "><font color="white">msg</font></a>
@@ -13,7 +13,7 @@
 	$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
 	if ($result->num_rows == 1) { 
 ?>
-<div class="left_button" style="top: 70px;">
+<div class="left_button3">
 	<a href="index.php?task=editor"><img src="images/button.png"></a>
 </div>
 <?php } ?>

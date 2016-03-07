@@ -7,7 +7,17 @@
 	.left_button {
 		position: fixed;
 		top: 0px !important;
-		left: 50px !important;
+		left: 20px !important;
+	}
+	.left_button2 {
+		position: fixed;
+		top: 0px !important;
+		left: 45px !important;
+	}
+	.left_button3 {
+		position: fixed;
+		top: 0px !important;
+		left: 70px !important;
 	}
 }
 
@@ -73,6 +83,18 @@ a:active {
 .left_button {
 	position: fixed;
 	top: 20px;
+	left: 0px;
+}
+
+.left_button2 {
+	position: fixed;
+	top: 45px;
+	left: 0px;
+}
+
+.left_button3 {
+	position: fixed;
+	top: 70px;
 	left: 0px;
 }
 
