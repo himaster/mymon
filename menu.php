@@ -1,9 +1,10 @@
-<div class="left_button">
-	<a href="#" onclick="toggle_visibility('my_div'); 
-						 on_top('my_div');">
+
+<a href="#" onclick="toggle_visibility('my_div'); 
+					 on_top('my_div');">
+	<div class="left_button">
 		<img src="images/profile.png">
-	</a>
-</div>
+	</div>
+</a>
 <div class="left_button2">
 	<a href="javascript: toggle_visibility_msg('message_div');
 						 on_top('message_div');

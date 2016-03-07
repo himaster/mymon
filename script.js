@@ -226,7 +226,6 @@ $(document).ready(function() {
             }, false);
         }
     }
-
     show();
     reverst();
     setInterval('show()', 5000);
