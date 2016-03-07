@@ -84,14 +84,14 @@ a:active {
 	position: fixed;
 	top: 20px;
 	left: -3px;
-	width: 20px; /* Длина фигуры */
- 	height: 20px; /* Высота фигуры */
- 	color: black; /* цвет текста */
- 	background: rgb(255, 255, 255); /* фон блока */
- 	-moz-border-radius: 3px; /* закругление для старых Mozilla Firefox */
-    -webkit-border-radius: 3px; /* закругление для старых Chrome и Safari */
-    -khtml-border-radius: 3px; /* закругл. для браузера Konquerer системы Linux */
-    border-radius: 3px; /* закругление углов для всех, кто понимает */
+	width: 20px;
+ 	height: 20px;
+ 	color: black;
+ 	background: rgb(255, 255, 255);
+ 	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
     text-align: right;
 }
 
@@ -109,7 +109,21 @@ a:active {
 .left_button3 {
 	position: fixed;
 	top: 70px;
-	left: 0px;
+	left: -3px;
+	width: 20px;
+ 	height: 20px;
+ 	color: black;
+ 	background: rgb(255, 255, 255);
+ 	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    text-align: right;
+}
+
+.left_button3 img {
+	max-width: 85%;
+	max-height: 85%;
 }
 
 .menu {

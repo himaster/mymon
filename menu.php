@@ -17,7 +17,7 @@
 ?>
 <a href="index.php?task=editor">
 	<div class="left_button3">
-		<img src="images/button.png">
+		<img src="images/settings.png">
 	</div>
 
 <?php } ?>
