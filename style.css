@@ -83,7 +83,15 @@ a:active {
 .left_button {
 	position: fixed;
 	top: 20px;
-	left: 0px;
+	left: -3px;
+	width: 20px; /* Длина фигуры */
+ 	height: 20px; /* Высота фигуры */
+ 	color: black; /* цвет текста */
+ 	background: rgb(255, 255, 255); /* фон блока */
+ 	-moz-border-radius: 3px; /* закругление для старых Mozilla Firefox */
+    -webkit-border-radius: 3px; /* закругление для старых Chrome и Safari */
+    -khtml-border-radius: 3px; /* закругл. для браузера Konquerer системы Linux */
+    border-radius: 3px; /* закругление углов для всех, кто понимает */
 }
 
 .left_button2 {

@@ -19,7 +19,7 @@
 	<div class="left_button3">
 		<img src="images/button.png">
 	</div>
-</a>
+
 <?php } ?>
 <div id="my_div" class="menu">
 	<b>Profile</b>
