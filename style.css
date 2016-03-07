@@ -122,8 +122,9 @@ a:active {
 }
 
 .left_button3 img {
-	max-width: 85%;
-	max-height: 85%;
+	max-width: 82%;
+	max-height: 82%;
+	vertical-align: sub;
 }
 
 .menu {
