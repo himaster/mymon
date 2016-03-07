@@ -201,14 +201,16 @@ function detectmob() {
 }
 function reverst() {
     var el = document.getElementById('main_table');
-    var newFontSize = Math.round((window.innerWidth-200)/33);
+    var newFontSize = Math.round((window.innerWidth-200)/32);
     if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
     console.log(el.style.fontSize);
 }
+
 $(window).resize(function() {
     reverst();
 });
+
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
