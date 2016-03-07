@@ -203,9 +203,8 @@ function detectmob() {
 function reverst() {
     var el = document.getElementById('main_table');
     var newFontSize = Math.round((window.innerWidth-200)/32);
-    if (detectmob()) exit;
-    else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
-    else el.style.fontSize = '15px';
+    if (newFontSize < 15 and !detectmob()) el.style.fontSize = newFontSize + 'px';
+    else if (!detectmob()) el.style.fontSize = '15px';
     console.log(el.style.fontSize);
 }
 
