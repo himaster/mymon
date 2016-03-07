@@ -92,11 +92,12 @@ a:active {
     -webkit-border-radius: 3px; /* закругление для старых Chrome и Safari */
     -khtml-border-radius: 3px; /* закругл. для браузера Konquerer системы Linux */
     border-radius: 3px; /* закругление углов для всех, кто понимает */
+    text-align: right;
 }
 
 .left_button img {
-	max-width: 90%;
-	max-height: 90%;
+	max-width: 85%;
+	max-height: 85%;
 }
 
 .left_button2 {
