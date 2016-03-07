@@ -199,23 +199,19 @@ function detectmob() {
         return false;
     }
 }
-
 function reverst() {
     var el = document.getElementById('main_table');
     var newFontSize = Math.round((window.innerWidth-200)/33);
     if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
+    console.log(el.style.fontSize);
 }
-
 $(window).resize(function() {
     reverst();
-    console.log(el.style.fontSize);
 });
-
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
-
     if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
         var viewportmeta = document.querySelector('meta[name="viewport"]');
         if (viewportmeta) {
@@ -225,10 +221,10 @@ $(document).ready(function() {
             }, false);
         }
     }
-
     show();
     reverst();
     setInterval('show()', 5000);
-    $("#my_div").click(function() { on_top("my_div"); });
-    $("#message_div").click(function() { on_top("message_div"); });
 });
+
+$("#my_div").click(function() { on_top("my_div"); });
+$("#message_div").click(function() { on_top("message_div"); });

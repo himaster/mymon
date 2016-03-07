@@ -1,7 +1,6 @@
-@media only screen and (max-device-width: 414px) {
+@media only screen and (max-device-width : 640px) {
 	body {
-		width: 90%;
-		font-size: 11px;
+		width: 95%;
 		padding-top: 40px;
 	}
 }
