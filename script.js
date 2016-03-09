@@ -249,9 +249,7 @@ $(document).ready(function() {
     });
 });
 
-$(window).bind('orientationchange', function(e) {alert('test!');} );
-
-window.onorientationchange = function() {
+$(window).bind('orientationchange', function(e) {
     console.log("Orientation changed ;)");
     $.mobile.changePage(window.location.href, {
         allowSamePageTransition: true,
@@ -260,5 +258,5 @@ window.onorientationchange = function() {
     });
     if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
     else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
-}
+});
 
