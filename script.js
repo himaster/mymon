@@ -237,15 +237,15 @@ $(document).ready(function() {
         var popup = document.getElementById("my_div");
         if (popup.style.display !== "block") {
             if ($(this).css("left") > 5) {
-                $(this).animate({"top", "5px"}, {duration : 200, easing: 'swing'});
+                $(this).animate({top: "5px"}, {duration : 200, easing: 'swing'});
             } else {
-                $(this).animate({"left", "5px"}, {duration : 200, easing: 'swing'});
+                $(this).animate({left: "5px"}, {duration : 200, easing: 'swing'});
             }
         } else {
             if ($(this).css("left") > 5) {
-                $(this).animate({"top", "-3px"}, {duration : 200, easing: 'swing'});
+                $(this).animate({top: "-3px"}, {duration : 200, easing: 'swing'});
             } else {
-                $(this).animate({"left", "-3px"}, {duration : 200, easing: 'swing'});
+                $(this).animate({left: "-3px"}, {duration : 200, easing: 'swing'});
             }
             
         }
