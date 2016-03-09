@@ -209,7 +209,7 @@ function reverst() {
     console.log(el.style.fontSize);
 }
 
-function button_animation() {
+function button_animation(this) {
     if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
     else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
     if (!window.expanded) {
