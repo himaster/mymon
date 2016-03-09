@@ -209,20 +209,6 @@ function reverst() {
     console.log(el.style.fontSize);
 }
 
-function button_animation(this) {
-    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
-    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
-    if (!window.expanded) {
-        console.log(animation[0]);
-        $(this).animate(animation[0], {duration : 200, easing: 'swing'});
-        window.expanded = true;
-    } else {
-        console.log(animation[1]);
-        $(this).animate(animation[1], {duration: 200, easing: 'swing'});
-        window.expanded = false;
-    }
-}
-
 $(window).resize(function() {
     reverst();
 });
@@ -230,6 +216,7 @@ $(window).resize(function() {
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
+
     if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
         var viewportmeta = document.querySelector('meta[name="viewport"]');
         if (viewportmeta) {
@@ -239,13 +226,26 @@ $(document).ready(function() {
             }, false);
         }
     }
+
     show();
     reverst();
     setInterval('show()', 5000);
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
-    window.expanded = false;
-    $('#left_button').click(button_animation());
+    var expanded = false;
+    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
+    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
+    $('#left_button').click(function() {
+        if (!expanded) {
+            console.log(animation[0]);
+            $(this).animate(animation[0], {duration : 200, easing: 'swing'});
+            expanded = true;
+        } else {
+            console.log(animation[1]);
+            $(this).animate(animation[1], {duration: 200, easing: 'swing'});
+            expanded = false;
+        }
+    });
 });
 
 
