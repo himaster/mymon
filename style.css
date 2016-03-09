@@ -18,12 +18,14 @@
 		position: fixed;
 		top: 2px;
 		left: 75px;
-		font-size: 20px;
+		font-size: 20px !important;
 	}
 	.left_button3 {
 		position: fixed;
 		top: -3px;
 		left: 125px;
+		width: 40px !important;
+		height: 40px !important;
 	}
 	.main_table {
 		width:100%;
