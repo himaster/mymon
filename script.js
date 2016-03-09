@@ -227,17 +227,16 @@ $(document).ready(function() {
             }, false);
         }
     }
-
     show();
-    reverst();
     setInterval('show()', 5000);
+    reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
-    var expanded = false;
-    if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-    else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
     $('#left_button').click(function() {
-        if (!expanded) {
+        var popstate = document.getElementById("my_div").style;
+        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
+        else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
+        if (popstate.display !== "block") {
             console.log(window.animation[0]);
             $(this).animate(window.animation[0], {duration : 200, easing: 'swing'});
             expanded = true;
@@ -249,13 +248,6 @@ $(document).ready(function() {
     });
 });
 
-window.addEventListener('orientationchange', function () {
-    var originalBodyStyle = getComputedStyle(document.body).getPropertyValue('display');
-    document.body.style.display='none';
-    setTimeout(function () {
-      document.body.style.display = originalBodyStyle;
-    }, 10);
-});
 
 /*$(window).bind('orientationchange', function(e) {
     alert("Orientation changed ;)");
