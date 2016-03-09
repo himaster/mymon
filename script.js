@@ -210,14 +210,14 @@ function reverst() {
 }
 
 function button_animation() {
-    if (!expanded) {
+    if (!window.expanded) {
         console.log(animation[0]);
         $(this).animate(animation[0], {duration : 200, easing: 'swing'});
-        expanded = true;
+        window.expanded = true;
     } else {
         console.log(animation[1]);
         $(this).animate(animation[1], {duration: 200, easing: 'swing'});
-        expanded = false;
+        window.expanded = false;
     }
 }
 
@@ -242,7 +242,7 @@ $(document).ready(function() {
     setInterval('show()', 5000);
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
-    var expanded = false;
+    window.expanded = false;
     if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
     else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
     $('#left_button').click(button_animation());
