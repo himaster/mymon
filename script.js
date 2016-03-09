@@ -243,7 +243,7 @@ $(document).ready(function() {
         } else {
             console.log(window.animation[1]);
             $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
-            $(this).removeAttr("style");
+            setTimeout($(this).removeAttr("style"),200);
             expanded = false;
         }
     });
