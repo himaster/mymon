@@ -35,7 +35,7 @@
   and (orientation: portrait) {
   	body {
 		width: 99%;
-		font-size: 9px;
+		font-size: 6px;
 		padding-top: 30px;
 	}
 	.left_button {
