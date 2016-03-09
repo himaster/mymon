@@ -214,6 +214,7 @@ $(window).resize(function() {
 });
 
 $(document).ready(function() {
+    console.log("Page ready.");
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
 
@@ -249,10 +250,12 @@ $(document).ready(function() {
 });
 
 $(window).on('orientationchange', function(e) {
-     $.mobile.changePage(window.location.href, {
+    $.mobile.changePage(window.location.href, {
         allowSamePageTransition: true,
         transition: 'none',
         reloadPage: true
     });
+    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
+    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
 });
 
