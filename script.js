@@ -235,14 +235,14 @@ $(document).ready(function() {
 
 $(function() {
     var expanded = false;
-    if (detectmob()) var animation = [['top', '-3px'], ['top', '5px']];
-    else var animation = [['left', '-3px'], ['left', '5px']];
+    if (detectmob()) var animation = [{'top' : '-3px'}, {'top' : '5px'}];
+    else var animation = [{'left' : '-3px'}, {'left' : '5px'}];
     $('#left_button').click(function() {
         if (!expanded) {
-            $(this).animate({ animation[0][0] : animation[0][1]}, {duration : 400});
+            $(this).animate(animation[0], {duration : 400});
             expanded = true;
         } else {
-            $(this).animate({ animation[1][0] : animation[1][1]}, {duration: 400});
+            $(this).animate(animation[1], {duration: 400});
             expanded = false;
         }
     });
