@@ -1,14 +1,8 @@
-/* iPhone 6+ */
+/* All mobiles */
 @media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
+  and (min-device-width: 320px)
+  and (max-device-width: 736px)
   and (orientation: portrait) {
-	body {
-		width: 99%;
-		font-size: 9px;
-		padding-top: 30px;
-	}
 	.left_button {
 		position: fixed;
 		top: -3px;
@@ -26,6 +20,19 @@
 	}
 	.main_table {
 		width:100%;
+	}
+}
+
+/* iPhone 6+ */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+	body {
+		width: 99%;
+		font-size: 9px;
+		padding-top: 30px;
 	}
 }
 
@@ -40,24 +47,6 @@
 		font-size: 8px;
 		padding-top: 30px;
 	}
-	.left_button {
-		position: fixed;
-		top: -3px;
-		left: 30px;
-	}
-	.left_button2 {
-		position: fixed;
-		top: 2px;
-		left: 55px;
-	}
-	.left_button3 {
-		position: fixed;
-		top: -3px;
-		left: 85px;
-	}
-	.main_table {
-		width:100%;
-	}
 }
 
 /* iPhone 5 and 5s */
@@ -70,24 +59,6 @@
 		width: 99%;
 		font-size: 6px;
 		padding-top: 30px;
-	}
-	.left_button {
-		position: fixed;
-		top: -3px;
-		left: 30px;
-	}
-	.left_button2 {
-		position: fixed;
-		top: 2px;
-		left: 55px;
-	}
-	.left_button3 {
-		position: fixed;
-		top: -3px;
-		left: 85px;
-	}
-	.main_table {
-		width:100%;
 	}
 }
 
@@ -102,26 +73,8 @@
 		font-size: 7px;
 		padding-top: 30px;
 	}
-	.left_button {
-		position: fixed;
-		top: -3px;
-		left: 30px;
-	}
-	.left_button2 {
-		position: fixed;
-		top: 2px;
-		left: 55px;
-	}
-	.left_button3 {
-		position: fixed;
-		top: -3px;
-		left: 85px;
-	}
-	.main_table {
-		width:100%;
-	}
 }
-/* Desktops */
+/* All desktops */
 @media (min-width:600px) {
 	.left_button {
 		top: 20px;
