@@ -235,8 +235,8 @@ $(document).ready(function() {
 
 $(function() {
     var expanded = false;
-    if (detectmob()) var animation = [{'top' : '-3px'}, {'top' : '5px'}];
-    else var animation = [{'left' : '-3px'}, {'left' : '5px'}];
+    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
+    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
     $('#left_button').click(function() {
         if (!expanded) {
             $(this).animate(animation[0], {duration : 400});
