@@ -252,7 +252,6 @@ $(document).ready(function() {
 
 
 $(window).bind('orientationchange', function(e) {
-    alert("Orientation changed ;)");
     window.location.reload();
 });
 
