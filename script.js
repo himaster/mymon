@@ -234,20 +234,18 @@ $(document).ready(function() {
     $("#message_div").click(function() { on_top("message_div"); });
     $('#left_button').click(function() {
         $(this).removeAttr("style");
-        var popup = document.getElementById("my_div");
-        if (popup.style.display !== "block") {
-            if ($(this).css("left") > 5) {
-                $(this).animate({top: "5px"}, {duration : 200, easing: 'swing'});
-            } else {
-                $(this).animate({left: "5px"}, {duration : 200, easing: 'swing'});
-            }
+        var popstate = document.getElementById("my_div").style;
+        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
+        else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
+        if (popstate.display !== "block") {
+            console.log(window.animation[0]);
+            $(this).animate(window.animation[0], {duration : 200, easing: 'swing'});
+            expanded = true;
         } else {
-            if ($(this).css("left") > 5) {
-                $(this).animate({top: "-3px"}, {duration : 200, easing: 'swing'});
-            } else {
-                $(this).animate({left: "-3px"}, {duration : 200, easing: 'swing'});
-            }
-            setTimeout($(this).removeAttr("style"), 10);
+            console.log(window.animation[1]);
+            $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
+            $(this).removeAttr("style");
+            expanded = false;
         }
     });
 });
