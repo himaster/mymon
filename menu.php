@@ -8,7 +8,7 @@
 <a href="javascript: toggle_visibility_msg('message_div');
 					 on_top('message_div');">
 	<div id="left_button2" class="left_button2">
-		<font color="white">msg</font>
+		<font color="white" size="2">msg</font>
 	</div>
 </a>
 <?php
