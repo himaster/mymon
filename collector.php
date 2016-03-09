@@ -150,7 +150,7 @@ function elastic($connection, $serverip) {
 	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">notify(\"Elastic problem\");</script><font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
-	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
+	return $fontcolor.$str. " ms</font>";
 }
 
 function locks($connection, $serverip) {
@@ -170,7 +170,7 @@ function mongo($connection, $serverip) {
 	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">notify(\"Mongo problem\");</script><font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
-	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
+	return $fontcolor.$str. " ms</font>";
 }
 
 function redis($connection, $serverip) {
@@ -181,7 +181,7 @@ function redis($connection, $serverip) {
 	if ( $str == "Timeout" ) $fontcolor = "<script type=\"text/javascript\">notify(\"Redis problem\");</script><font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
-	return $fontcolor.$str. "<font size=\"1\"> ms</font></font>";
+	return $fontcolor.$str. " ms</font>";
 }
 
 function sigHandler($signo) {
