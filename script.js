@@ -234,16 +234,16 @@ $(document).ready(function() {
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     var expanded = false;
-    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
-    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
+    if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
+    else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
     $('#left_button').click(function() {
         if (!expanded) {
-            console.log(animation[0]);
-            $(this).animate(animation[0], {duration : 200, easing: 'swing'});
+            console.log(window.animation[0]);
+            $(this).animate(window.animation[0], {duration : 200, easing: 'swing'});
             expanded = true;
         } else {
-            console.log(animation[1]);
-            $(this).animate(animation[1], {duration: 200, easing: 'swing'});
+            console.log(window.animation[1]);
+            $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
             expanded = false;
         }
     });
@@ -255,7 +255,7 @@ $(window).on('orientationchange', function(e) {
         transition: 'none',
         reloadPage: true
     });
-    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
-    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
+    if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
+    else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
 });
 
