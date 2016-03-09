@@ -43,7 +43,7 @@
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) {
 	body {
-		font-size: 9px;
+		font-size: 10px;
 	}
 }
 
