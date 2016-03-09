@@ -28,6 +28,36 @@
 	}
 }
 
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  	body {
+		width: 99%;
+		font-size: 9px;
+		padding-top: 30px;
+	}
+	.left_button {
+		position: fixed;
+		top: -3px !important;
+		left: 30px !important;
+	}
+	.left_button2 {
+		position: fixed;
+		top: 2px !important;
+		left: 55px !important;
+	}
+	.left_button3 {
+		position: fixed;
+		top: -3px !important;
+		left: 81px !important;
+	}
+	.main_table {
+		width:100%;
+	}
+}
+
 body {
 	background-color: black;
 	margin-left: auto;
