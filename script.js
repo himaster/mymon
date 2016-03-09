@@ -229,6 +229,7 @@ $(document).ready(function() {
 
     show();
     reverst();
+    window.addEventListener('orientationchange', location.reload());
     setInterval('show()', 5000);
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
@@ -247,5 +248,4 @@ $(document).ready(function() {
         }
     });
 });
-
 
