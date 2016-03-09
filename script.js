@@ -247,7 +247,7 @@ $(document).ready(function() {
             } else {
                 $(this).animate({left: "-3px"}, {duration : 200, easing: 'swing'});
             }
-            
+            setTimeout($(this).removeAttr("style"), 10);
         }
     });
 });
