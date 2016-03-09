@@ -249,6 +249,8 @@ $(document).ready(function() {
     });
 });
 
+$(window).bind('orientationchange', function(e) {alert('test!');} );
+
 window.onorientationchange = function() {
     console.log("Orientation changed ;)");
     $.mobile.changePage(window.location.href, {
