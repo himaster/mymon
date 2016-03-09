@@ -30,7 +30,7 @@ function toggle_visibility_msg(id) {
         else
             e.style.display = 'block';
             document.getElementById('umessage').value = '';
-    } catch(err) {}
+    } catch(err) {console.log(err)}
 }
 
 function show() {
@@ -232,3 +232,21 @@ $(document).ready(function() {
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
 });
+
+$(function()
+{
+    var expanded = false;
+    $('#left_button').click(function() {
+        if (!expanded)
+        {
+          $(this).animate({'top' : '-3px'}, {duration : 400});
+          expanded = true;
+        }
+        else
+        {
+         $(this).animate({'top' : '5px'}, {duration: 400});
+          expanded = false;
+        }
+    });
+});
+

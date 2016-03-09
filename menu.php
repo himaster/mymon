@@ -1,13 +1,13 @@
 
 <a href="#" onclick="toggle_visibility('my_div'); 
 					 on_top('my_div');">
-	<div class="left_button">
+	<div id="left_button" class="left_button">
 		<img src="images/profile.png">
 	</div>
 </a>
 <a href="javascript: toggle_visibility_msg('message_div');
 					 on_top('message_div');">
-	<div class="left_button2">
+	<div id="left_button2" class="left_button2">
 		<font color="white">msg</font>
 	</div>
 </a>
@@ -16,7 +16,7 @@
 	if ($result->num_rows == 1) { 
 ?>
 <a href="index.php?task=editor">
-	<div class="left_button3">
+	<div id="left_button3" class="left_button3">
 		<img src="images/settings.png">
 	</div>
 
