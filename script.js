@@ -240,10 +240,10 @@ $(function() {
     $('#left_button').click(function() {
         console.log(animation);
         if (!expanded) {
-            $(this).animate(animation[0], {duration : 400});
+            $(this).animate(animation[0], {duration : 200, easing: 'swing'});
             expanded = true;
         } else {
-            $(this).animate(animation[1], {duration: 400});
+            $(this).animate(animation[1], {duration: 200, easing: 'swing'});
             expanded = false;
         }
     });
