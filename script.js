@@ -250,12 +250,7 @@ $(document).ready(function() {
 });
 
 $(window).bind('orientationchange', function(e) {
-    console.log("Orientation changed ;)");
-    $.mobile.changePage(window.location.href, {
-        allowSamePageTransition: true,
-        transition: 'none',
-        reloadPage: true
-    });
+    alert("Orientation changed ;)");
     if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
     else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
 });
