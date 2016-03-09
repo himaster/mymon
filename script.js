@@ -249,9 +249,16 @@ $(document).ready(function() {
     });
 });
 
-$(window).bind('orientationchange', function(e) {
-    alert("Orientation changed ;)");
-    if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-    else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
+window.addEventListener('orientationchange', function () {
+    var originalBodyStyle = getComputedStyle(document.body).getPropertyValue('display');
+    document.body.style.display='none';
+    setTimeout(function () {
+      document.body.style.display = originalBodyStyle;
+    }, 10);
 });
+
+/*$(window).bind('orientationchange', function(e) {
+    alert("Orientation changed ;)");
+    window.location.reload();
+});*/
 
