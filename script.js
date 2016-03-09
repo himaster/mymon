@@ -210,6 +210,8 @@ function reverst() {
 }
 
 function button_animation() {
+    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
+    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
     if (!window.expanded) {
         console.log(animation[0]);
         $(this).animate(animation[0], {duration : 200, easing: 'swing'});
@@ -243,8 +245,6 @@ $(document).ready(function() {
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     window.expanded = false;
-    if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
-    else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
     $('#left_button').click(button_animation());
 });
 
