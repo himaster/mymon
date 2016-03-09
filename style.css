@@ -47,28 +47,6 @@
 	}
 }
 
-/* iPhone 6 */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-	body {
-		font-size: 8px;
-	}
-}
-
-/* Galaxy S5 */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: portrait) {
-  	body {
-		font-size: 7px;
-	}
-}
-
 /* iPhone 5 and 5s */
 @media only screen 
   and (min-device-width: 320px) 
