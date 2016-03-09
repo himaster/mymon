@@ -233,19 +233,18 @@ $(document).ready(function() {
     $("#message_div").click(function() { on_top("message_div"); });
 });
 
-$(function()
-{
+$(function() {
     var expanded = false;
+    if (detectmob()) var animation = [['top', '-3px'], ['top', '5px']];
+    else var animation = [['left', '-3px'], ['left', '5px']];
     $('#left_button').click(function() {
-        if (!expanded)
-        {
-          $(this).animate({'top' : '-3px'}, {duration : 400});
-          expanded = true;
-        }
-        else
-        {
-         $(this).animate({'top' : '5px'}, {duration: 400});
-          expanded = false;
+        if (!expanded) {
+            console.log(animation[1])
+            $(this).animate({animation[0][0] : animation[0][1]}, {duration : 400});
+            expanded = true;
+        } else {
+            $(this).animate({animation[1][0] : animation[1][1]}, {duration: 400});
+            expanded = false;
         }
     });
 });
