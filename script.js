@@ -239,7 +239,7 @@ $(function() {
     else var animation = [['left', '-3px'], ['left', '5px']];
     $('#left_button').click(function() {
         if (!expanded) {
-            console.log(animation[1])
+            console.log(animation[1]);
             $(this).animate({animation[0][0] : animation[0][1]}, {duration : 400});
             expanded = true;
         } else {
