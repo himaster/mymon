@@ -203,9 +203,21 @@ function detectmob() {
 function reverst() {
     var el = document.getElementById('main_table');
     var newFontSize = Math.round((window.innerWidth-200)/32);
-    if (newFontSize < 15 && !detectmob()) el.style.fontSize = newFontSize + 'px';
-    else if (!detectmob()) el.style.fontSize = '15px';
+    if (detectmob()) $("#main_table").removeAttr("style");
+    else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+    else el.style.fontSize = '15px';
     console.log(el.style.fontSize);
+}
+
+function but_anim() {
+    console.log(animation);
+    if (!expanded) {
+        $(this).animate(animation[0], {duration : 200, easing: 'swing'});
+        expanded = true;
+    } else {
+        $(this).animate(animation[1], {duration: 200, easing: 'swing'});
+        expanded = false;
+    }
 }
 
 $(window).resize(function() {
@@ -237,15 +249,6 @@ $(function() {
     var expanded = false;
     if (detectmob()) var animation = [{'top' : '5px'}, {'top' : '-3px'}];
     else var animation = [{'left' : '5px'}, {'left' : '-3px'}];
-    $('#left_button').click(function() {
-        console.log(animation);
-        if (!expanded) {
-            $(this).animate(animation[0], {duration : 200, easing: 'swing'});
-            expanded = true;
-        } else {
-            $(this).animate(animation[1], {duration: 200, easing: 'swing'});
-            expanded = false;
-        }
-    });
+    $('#left_button').click(but_anim());
 });
 
