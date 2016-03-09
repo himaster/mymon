@@ -3,6 +3,10 @@
   and (min-device-width: 320px)
   and (max-device-width: 736px)
   and (orientation: portrait) {
+  	body {
+  		width: 99%;
+  		padding-top: 40px;
+  	}
 	.left_button {
 		position: fixed;
 		top: -3px;
@@ -13,12 +17,12 @@
 	.left_button2 {
 		position: fixed;
 		top: 2px;
-		left: 55px;
+		left: 75px;
 	}
 	.left_button3 {
 		position: fixed;
 		top: -3px;
-		left: 85px;
+		left: 125px;
 	}
 	.main_table {
 		width:100%;
@@ -32,9 +36,7 @@
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) {
 	body {
-		width: 99%;
 		font-size: 9px;
-		padding-top: 30px;
 	}
 }
 
@@ -45,22 +47,7 @@
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
 	body {
-		width: 99%;
 		font-size: 8px;
-		padding-top: 30px;
-	}
-}
-
-/* iPhone 5 and 5s */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-  	body {
-		width: 99%;
-		font-size: 6px;
-		padding-top: 30px;
 	}
 }
 
@@ -71,11 +58,21 @@
   and (-webkit-device-pixel-ratio: 3) 
   and (orientation: portrait) {
   	body {
-		width: 99%;
 		font-size: 7px;
-		padding-top: 30px;
 	}
 }
+
+/* iPhone 5 and 5s */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  	body {
+		font-size: 6px;
+	}
+}
+
 /* All desktops */
 @media (min-width:600px) {
 	.left_button {
