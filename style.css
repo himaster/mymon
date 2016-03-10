@@ -489,7 +489,11 @@ a:active {
 	left: 76px;
 	top: 50px;
 }
-
+#text {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
 .ontop {
 	z-index: 1;
 }
