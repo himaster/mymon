@@ -508,4 +508,7 @@ a:active {
 	position: absolute;
 	left: 90%;
 	top: 10px;
+	-webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
