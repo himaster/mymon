@@ -464,7 +464,7 @@ a:active {
 	text-shadow: -1px -1px 0 #000,
 				 1px -1px 0 #000,
 				 -1px 1px 0 #000,
-				  1px 1px 0 #000;
+				 1px 1px 0 #000;
 }
 
 .mbclose2 {
@@ -496,6 +496,8 @@ a:active {
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
+	font-family: cursive;
+    font-weight: bold;
 }
 .ontop {
 	z-index: 1;
