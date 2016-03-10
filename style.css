@@ -9,21 +9,21 @@
   	}
 	.left_button {
 		position: fixed;
-		top: -3px;
-		left: 30px;
+		top: -3px !important;
+		left: 30px !important;
 		width: 40px !important;
 		height: 40px !important;
 	}
 	.left_button2 {
 		position: fixed;
-		top: 2px;
-		left: 75px;
+		top: 2px !important;
+		left: 75px !important;
 		font-size: 20px !important;
 	}
 	.left_button3 {
 		position: fixed;
-		top: -3px;
-		left: 125px;
+		top: -3px !important;
+		left: 125px !important;
 		width: 40px !important;
 		height: 40px !important;
 	}
