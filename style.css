@@ -51,11 +51,17 @@
 		left: 125px;
 	}
 	.main_table {
-		width:100%;
+		width: 100%;
 	}
 	.main_table td {
 	  	padding-left: 1px !important;
 	    padding-right: 1px !important;
+	}
+	#logo {
+		position: absolute;
+		left: 50%;
+		top: 0px;
+	    z-index: -1;
 	}
 }
 
@@ -63,6 +69,15 @@
 /* All desktops */
 @media only screen
   and (min-device-width: 415px) {
+	 #logo {
+		position: absolute;
+		left: 80%;
+		top: 60px;
+		-webkit-transform: rotate(90deg);
+	    -ms-transform: rotate(90deg);
+	    transform: rotate(90deg);
+	    z-index: -1;
+	}
 	.left_button {
 		top: 30px;
 		left: -3px;
