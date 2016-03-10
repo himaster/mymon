@@ -211,6 +211,7 @@ function reverst() {
     }
     if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
+    console.log(el.style.fontSize);
 }
 
 $(window).resize(function() {
