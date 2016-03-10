@@ -59,8 +59,7 @@
 }
 
 /* All desktops */
-@media only screen 
-  and (orientation : landscape)
+@media only screen
   and (max-width: 1024px) {
 	.left_button {
 		top: 20px;
