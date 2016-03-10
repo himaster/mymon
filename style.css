@@ -64,16 +64,16 @@
 @media only screen
   and (min-device-width: 415px) {
 	.left_button {
-		top: 20px;
+		top: 30px;
 		left: -3px;
 	}
 	.left_button2 {
-		top: 45px;
+		top: 75px;
 		left: 0px;
 		font-size: 13px;
 	}
 	.left_button3 {
-		top: 70px;
+		top: 125px;
 		left: -3px;
 	}
 }
