@@ -220,12 +220,14 @@ a:active {
 	display: block;
 }
 
+.menu a {
+    color: black !important;
+}
 .menu div {
 	display: none;
 	text-align: right;
 	margin-left: 5px;
 }
-
 .menu input {
 	margin-left: 2px;
 }
@@ -488,6 +490,7 @@ a:active {
 #message_div {
 	left: 76px;
 	top: 50px;
+	width: 199px;
 }
 #text {
 	position: relative;
