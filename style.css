@@ -33,8 +33,7 @@
 }
 /* All mobiles */
 @media only screen 
-  and (max-device-width: 415px)
-  and (orientation: portrait) {
+  and (max-device-width: 415px) {
   	body {
   		width: 99%;
  		padding-top: 40px;
