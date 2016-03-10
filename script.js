@@ -213,9 +213,9 @@ function reverst() {
     else el.style.fontSize = '15px';
 }
 
-/*$(window).resize(function() {
+$(window).resize(function() {
     reverst();
-});*/
+});
 
 $(document).ready(function() {
     console.log("Page ready.");
