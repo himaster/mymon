@@ -206,11 +206,11 @@ function reverst() {
     if (detectmob()) $("#main_table").removeAttr("style");
     else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
-    console.log(el.style.fontSize);
 }
 
 $(window).resize(function() {
     reverst();
+    console.log(window.innerWidth)
 });
 
 $(document).ready(function() {
@@ -237,13 +237,10 @@ $(document).ready(function() {
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
         else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
         if (popstate.display !== "block") {
-            console.log(window.animation[0]);
             $(this).animate(window.animation[0], {duration : 200, easing: 'swing'});
             expanded = true;
         } else {
-            console.log(window.animation[1]);
             $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
-            /*setTimeout($(this).removeAttr("style"), 1000);*/
             expanded = false;
         }
     });
