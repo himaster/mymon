@@ -68,7 +68,7 @@
 			</div>
 			<div style="display: inline-block;">
 				4<input type="checkbox" id="500" name="500" <?php if ($u500 == 1) echo "checked "; ?> >
-			</div>
+			</div><p>
 			<div style="display: inline-block;">
 				5<input type="checkbox" id="el" name="el" <?php if ($uel == 1) echo "checked "; ?> >
 			</div>
