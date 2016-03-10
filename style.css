@@ -6,7 +6,7 @@
  	}
 }
 @media only screen 
-  and (min-device-width: 320px)
+  and (min-device-width: 321px)
   and (max-device-width: 351px)
   and (orientation: portrait) {
   	body {
@@ -14,7 +14,7 @@
  	}
 }
 @media only screen 
-  and (min-device-width: 350px)
+  and (min-device-width: 351px)
   and (max-device-width: 381px)
   and (orientation: portrait) {
   	body {
@@ -23,7 +23,7 @@
 }
 
 @media only screen 
-  and (min-device-width: 380px)
+  and (min-device-width: 381px)
   and (max-device-width: 414px)
   and (orientation: portrait) {
   	body {
