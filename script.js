@@ -216,6 +216,9 @@ function reverst() {
 
 $(window).resize(function() {
 /*    reverst();*/
+    var el = document.getElementById('main_table');
+    var style = window.getComputedStyle(el, null);
+    console.log(style);
 });
 
 $(document).ready(function() {
