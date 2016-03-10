@@ -184,8 +184,8 @@ a:active {
 
 .menu {
 	position: fixed;
-	left: 25px;
-	top: 50px;
+	left: 57px;
+	top: 30px;
 	display: none;
 	background-color: rgb(211, 211, 211);
 	border-collapse: separate;
@@ -477,7 +477,8 @@ a:active {
 }
 
 #message_div {
-	left: 34px;
+	left: 76px;
+	top: 50px;
 }
 
 .ontop {
