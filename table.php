@@ -7,7 +7,7 @@
             <tr class="title">
                 <td>Server</td>
                 <?php 
-                if ($ula == "1")  echo "<td class=\"la\">Load Averages<div class=\"colons\" id=\"col1\">1*</div></td>";
+                if ($ula == "1")  echo "<td class=\"la\">LA<div class=\"colons\" id=\"col1\">1*</div></td>";
                 if ($urep == "1") echo "<td class=\"rep\">Replication<div class=\"colons\" id=\"col2\">2*</div></td>";
                 if ($uloc == "1") echo "<td class=\"loc\">Locks<div class=\"colons\" id=\"col3\">3*</div></td>";
                 if ($u500 == "1") echo "<td class=\"500\">500s<div class=\"colons\" id=\"col4\">4*</div></td>";
