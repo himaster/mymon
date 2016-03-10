@@ -58,9 +58,9 @@
 	    padding-right: 1px !important;
 	}
 	#logo {
-		position: absolute;
+		position: fixed;
 		left: 45%;
-		top: -45px;
+		top: 0px;
 	    z-index: -1;
 	}
 }
