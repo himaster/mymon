@@ -244,6 +244,18 @@ $(document).ready(function() {
             expanded = false;
         }
     });
+    $('#left_button2').click(function() {
+        var popstate = document.getElementById("message_div").style;
+        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
+        else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
+        if (popstate.display !== "block") {
+            $(this).animate(window.animation[0], {duration : 200, easing: 'swing'});
+            expanded = true;
+        } else {
+            $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
+            expanded = false;
+        }
+    });
 });
 
 
