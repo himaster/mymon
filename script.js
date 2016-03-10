@@ -163,7 +163,7 @@ function notify(message, time, override) {
     time = time || 3000;
     override = override || false;
     if (!("Notification" in window)) {
-        //alert("This browser does not support desktop notification");
+        console.log("This browser does not support desktop notification");
     }
     else if (Notification.permission === "granted" && (window.create_new_mes === 1 || override)) {
         window.create_new_mes=0;
@@ -215,7 +215,7 @@ function reverst() {
 }
 
 $(window).resize(function() {
-    reverst();
+//    reverst();
 });
 
 $(document).ready(function() {
@@ -234,7 +234,7 @@ $(document).ready(function() {
     }
     show();
     setInterval('show()', 5000);
-    reverst();
+    //reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     $('#left_button').click(function() {
