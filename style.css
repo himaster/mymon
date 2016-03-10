@@ -366,8 +366,8 @@ a:active {
 	border: 1px solid red !important;
 }
 
-.simple_div {
-	width: 255px;
+.simple_div input[type=checkbox] {
+    zoom: 1.9;
 }
 
 .colons {
