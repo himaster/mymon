@@ -63,8 +63,10 @@
 
 
 /* All desktops */
-@media only screen
-  and (orientation: landscape) {
+@media not only screen 
+  and (min-device-width: 0px)
+  and (max-device-width: 414px)
+  and (orientation: portrait) {
 	.left_button {
 		top: 20px;
 		left: -3px;
