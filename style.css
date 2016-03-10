@@ -7,14 +7,14 @@
 }
 @media only screen 
   and (min-device-width: 320px)
-  and (max-device-width: 360px)
+  and (max-device-width: 349px)
   and (orientation: portrait) {
   	body {
  		font-size: 8px;
  	}
 }
 @media only screen 
-  and (min-device-width: 361px)
+  and (min-device-width: 350px)
   and (max-device-width: 390px)
   and (orientation: portrait) {
   	body {
