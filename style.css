@@ -11,21 +11,16 @@
 		position: fixed;
 		top: -3px;
 		left: 30px;
-		width: 40px !important;
-		height: 40px !important;
 	}
 	.left_button2 {
 		position: fixed;
 		top: 2px;
 		left: 75px;
-		font-size: 20px !important;
 	}
 	.left_button3 {
 		position: fixed;
 		top: -3px;
 		left: 125px;
-		width: 40px !important;
-		height: 40px !important;
 	}
 	.main_table {
 		width:100%;
@@ -136,8 +131,8 @@ a:active {
 
 .left_button {
 	position: fixed;
-	width: 20px;
- 	height: 20px;
+	width: 40px;
+ 	height: 40px;
  	color: black;
  	background: rgb(255, 255, 255);
  	-moz-border-radius: 3px;
@@ -158,8 +153,8 @@ a:active {
 
 .left_button3 {
 	position: fixed;
-	width: 20px;
- 	height: 20px;
+	width: 40px;
+ 	height: 40px;
  	color: black;
  	background: rgb(255, 255, 255);
  	-moz-border-radius: 3px;
