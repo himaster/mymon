@@ -503,3 +503,9 @@ a:active {
 .ontop {
 	z-index: 1;
 }
+
+#logo {
+	position: absolute;
+	left: 50px;
+	top: 10px;
+}
