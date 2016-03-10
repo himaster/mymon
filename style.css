@@ -1,3 +1,27 @@
+@media only screen 
+  and (max-device-width: 320px)
+  and (orientation: portrait) {
+  	body {
+ 		font-size: 7px;
+ 	}
+}
+@media only screen 
+  and (min-device-width: 321px)
+  and (max-device-width: 360)
+  and (orientation: portrait) {
+  	body {
+ 		font-size: 8px;
+ 	}
+}
+@media only screen 
+  and (min-device-width: 361px)
+  and (max-device-width: 390)
+  and (orientation: portrait) {
+  	body {
+ 		font-size: 9px;
+ 	}
+}
+
 /* All mobiles */
 @media only screen 
   and (min-device-width: 320px)
@@ -5,8 +29,8 @@
   and (orientation: portrait) {
   	body {
   		width: 99%;
-  		padding-top: 40px;
-  	}
+ 		padding-top: 40px;
+ 	}
 	.left_button {
 		top: -3px;
 		left: 30px;
