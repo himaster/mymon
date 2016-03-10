@@ -202,16 +202,20 @@ function detectmob() {
 
 function reverst() {
     var el = document.getElementById('main_table');
-    var newFontSize = Math.round((window.innerWidth-200)/32);
-    if (detectmob()) el.style.fontSize = '10px'
-    else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+    if (detectmob()) {
+        var newFontSize = Math.round((window.innerWidth-200)/25);
+        console.log("Mobile portrait");
+    } else {
+        var newFontSize = Math.round((window.innerWidth-200)/32);
+        console.log("Not mobile portrait");
+    }
+    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
 }
 
-$(window).resize(function() {
+/*$(window).resize(function() {
     reverst();
-    console.log(window.innerWidth)
-});
+});*/
 
 $(document).ready(function() {
     console.log("Page ready.");
