@@ -221,7 +221,7 @@ a:active {
 }
 
 .menu a {
-    color: black !important;
+    color: black;
 }
 .menu div {
 	display: none;
