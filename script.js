@@ -215,7 +215,7 @@ function reverst() {
 }
 
 $(window).resize(function() {
-//    reverst();
+/*    reverst();*/
 });
 
 $(document).ready(function() {
@@ -234,7 +234,7 @@ $(document).ready(function() {
     }
     show();
     setInterval('show()', 5000);
-    //reverst();
+    /*reverst();*/
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     $('#left_button').click(function() {
