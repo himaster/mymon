@@ -59,7 +59,7 @@
 }
 
 /* All desktops */
-@media (min-width:600px) {
+@media all and (not handheld) {
 	.left_button {
 		top: 20px;
 		left: -3px;
