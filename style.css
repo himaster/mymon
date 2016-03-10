@@ -1,5 +1,5 @@
 @media only screen 
-  and (max-device-width: 0px)
+  and (min-device-width: 0px)
   and (max-device-width: 321px)
   and (orientation: portrait) {
   	body {
@@ -33,6 +33,7 @@
 }
 /* All mobiles */
 @media only screen 
+  and (min-device-width: 0px)
   and (max-device-width: 414px)
   and (orientation: portrait) {
   	body {

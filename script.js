@@ -202,23 +202,15 @@ function detectmob() {
 
 function reverst() {
     var el = document.getElementById('main_table');
-    if (detectmob()) {
-        var newFontSize = Math.round((window.innerWidth-220)/18);
-        console.log("Mobile portrait");
-    } else {
-        var newFontSize = Math.round((window.innerWidth-200)/32);
-        console.log("Not mobile portrait");
-    }
-    if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
+    var newFontSize = Math.round((window.innerWidth-200)/32);
+    if (detectmob()) $("#main_table").removeAttr("style");
+    else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
     console.log(el.style.fontSize);
 }
 
 $(window).resize(function() {
-/*    reverst();*/
-    var el = document.getElementById('main_table');
-    var fontsize = window.getComputedStyle(el, null).fontSize;
-    console.log(fontsize);
+    reverst();
 });
 
 $(document).ready(function() {
@@ -237,7 +229,7 @@ $(document).ready(function() {
     }
     show();
     setInterval('show()', 5000);
-    /*reverst();*/
+    reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     $('#left_button').click(function() {
