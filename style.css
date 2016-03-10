@@ -518,13 +518,3 @@ a:active {
 .ontop {
 	z-index: 1;
 }
-
-#logo {
-	position: absolute;
-	left: 80%;
-	top: 60px;
-	-webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    z-index: -1;
-}
