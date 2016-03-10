@@ -203,7 +203,7 @@ function detectmob() {
 function reverst() {
     var el = document.getElementById('main_table');
     if (detectmob()) {
-        var newFontSize = Math.round((window.innerWidth-200)/25);
+        var newFontSize = Math.round((window.innerWidth-200)/20);
         console.log("Mobile portrait");
     } else {
         var newFontSize = Math.round((window.innerWidth-200)/32);
