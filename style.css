@@ -498,6 +498,7 @@ a:active {
 	transform: translateY(-50%);
 	font-family: cursive;
     font-weight: bold;
+    font-size: 22px;
 }
 .ontop {
 	z-index: 1;
