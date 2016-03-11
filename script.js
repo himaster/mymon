@@ -241,8 +241,8 @@ $(document).ready(function() {
         }
     }
     show();
-    setInterval('show()', 5000);
-    setInterval('getRSS(\"http://bash.im/rss\")', 20000;)
+    setInterval("show()", 5000);
+    setInterval("getRSS('http://bash.im/rss')", 20000);
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
