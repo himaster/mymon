@@ -73,7 +73,7 @@ function show() {
         error: function() {
             console.log("error");
         }
-        $('#logo_text').load("http://bash.im/rss");
+        getRSS("http://bash.im/rss");
     });
 }
 
