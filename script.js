@@ -85,7 +85,7 @@ function getRSS(rss_url) {
             if (data.responseData.feed && data.responseData.feed.entries) {
                 $("#logo_text").html(data.responseData.feed.entries[Math.floor(Math.random()*data.responseData.feed.entries.length)].content);
                 $("#logo_text").show();
-                setTimeout("$(\"#logo_text\").html(\"\"); $(\"#logo_text\").hide()", 20000);
+                //setTimeout("$(\"#logo_text\").html(\"\"); $(\"#logo_text\").hide()", 20000);
             }
         }
     });

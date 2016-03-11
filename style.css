@@ -80,7 +80,6 @@
 	    text-align: center;
 	    border: double 1px rgb(255, 255, 255);
 		border-radius: 5px;
-
 	}
 }
 
@@ -97,6 +96,26 @@
 	    transform: rotate(90deg);
 	    z-index: -1;
 	}
+	#logo img{
+	    z-index: -1;
+	}
+
+	#logo_text {
+		display: none;
+		position: absolute;
+	    left: 109px;
+	    top: 0px;
+	    width: 165px;
+	    background-color: black;
+	    color: rgb(255, 255, 255);
+	    text-align: center;
+	    border: double 1px rgb(255, 255, 255);
+		border-radius: 5px;
+		-webkit-transform: rotate(-90deg);
+	    -ms-transform: rotate(-90deg);
+	    transform: rotate(-90deg);
+	}
+	
 	.left_button {
 		top: 30px;
 		left: -3px;
