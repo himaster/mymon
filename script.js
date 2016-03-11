@@ -73,9 +73,19 @@ function show() {
         error: function() {
             console.log("error");
         }
+        getRSS("http://bash.im/rss");
     });
 }
 
+function getRSS(rss_url) {
+    jQuery.getFeed({
+       url     : rss_url,
+       success : function (feed) {
+          console.log(feed.title);
+          // do more stuff here
+       }
+    });
+}
 
 function status(text) {
     $('#test_div').html(text);
