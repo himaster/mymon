@@ -58,17 +58,17 @@
 	    padding-right: 1px !important;
 	}
 
-	#logo {
+	div#logo {
 		position: fixed;
 		left: 30%;
 		top: 0px;
 	    z-index: -1;
 	}
-	#logo img{
+	div#logo img{
 	    z-index: -1;
 	}
 
-	#logo_text {
+	div#logo_text {
 		display: none;
 		position: absolute;
 	    left: 109px;
@@ -88,7 +88,7 @@
 /* All desktops */
 @media only screen
   and (min-device-width: 415px) {
-	 #logo {
+	 div#logo {
 		position: absolute;
 		left: 73%;
 		top: 60px;
@@ -97,10 +97,10 @@
 	    transform: rotate(90deg);
 	    z-index: -1;
 	}
-	#logo img{
+	div#logo img{
 	    z-index: -1;
 	}
-	#logo_text {
+	div#logo_text {
 		display: none;
 		position: absolute;
 	    left: 147px;
