@@ -73,8 +73,9 @@ function show() {
         error: function() {
             console.log("error");
         }
-        getRSS("http://bash.im/rss");
+        
     });
+    getRSS("http://bash.im/rss");
 }
 
 function getRSS(rss_url) {
