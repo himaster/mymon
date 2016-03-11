@@ -5,6 +5,9 @@
   	body {
  		font-size: 7px !important;
  	}
+ 	div#logo_text {
+ 		width: 130px;
+ 	}
 }
 @media only screen 
   and (min-device-width: 320px)
@@ -12,6 +15,9 @@
   and (orientation: portrait) {
   	body {
  		font-size: 8px !important;
+ 	}
+ 	div#logo_text {
+ 		width: 140px;
  	}
 }
 @media only screen 
@@ -21,6 +27,9 @@
   	body {
  		font-size: 9px !important;
  	}
+ 	div#logo_text {
+ 		width: 150px;
+ 	}
 }
 
 @media only screen 
@@ -29,6 +38,9 @@
   and (orientation: portrait) {
   	body {
  		font-size: 10px !important;
+ 	}
+ 	div#logo_text {
+ 		width: 160px;
  	}
 }
 /* All mobiles */
@@ -73,7 +85,7 @@
 		position: absolute;
 	    left: 109px;
 	    top: 0px;
-	    width: 165px;
+	    /*width: 165px;*/
 	    /*height: 120px;*/
 	    background-color: black;
 	    color: rgb(255, 255, 255);
