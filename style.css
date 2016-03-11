@@ -2,7 +2,7 @@
   and (min-device-width: 0px)
   and (max-device-width: 321px)
   and (orientation: portrait) {
-  	.body {
+  	body {
  		font-size: 7px;
  	}
 }
@@ -10,7 +10,7 @@
   and (min-device-width: 320px)
   and (max-device-width: 351px)
   and (orientation: portrait) {
-  	.body {
+  	body {
  		font-size: 8px;
  	}
 }
@@ -18,7 +18,7 @@
   and (min-device-width: 350px)
   and (max-device-width: 391px)
   and (orientation: portrait) {
-  	.body {
+  	body {
  		font-size: 9px;
  	}
 }
@@ -71,15 +71,16 @@
 	#logo_text {
 		display: none;
 		position: absolute;
-	    left: 108px;
+	    left: 109px;
 	    top: 0px;
-	    width: 160px;
+	    width: 165px;
 	    height: 120px;
 	    background-color: black;
 	    color: rgb(255, 255, 255);
 	    text-align: center;
 	    border: double 1px rgb(255, 255, 255);
 		border-radius: 5px;
+
 	}
 }
 
