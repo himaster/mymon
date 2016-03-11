@@ -548,6 +548,8 @@ a:active {
 
 .umessage {
 	max-width: 265px;
+	height: 48px;
+    width: 160px;
 }
 
 #message_div {
