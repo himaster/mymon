@@ -59,13 +59,13 @@
 	}
 	#logo {
 		position: fixed;
-		left: 45%;
+		left: 30%;
 		top: 0px;
 	    z-index: -1;
 	}
 	#logo_text {
 		position: absolute;
-	    left: 109px;
+	    left: 108px;
 	    top: 0px;
 	    width: 160px;
 	    height: 50px;
