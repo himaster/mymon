@@ -78,13 +78,7 @@ function show() {
 }
 
 function getRSS(rss_url) {
-    jQuery.getFeed({
-       url     : rss_url,
-       success : function (feed) {
-          console.log(feed.title);
-          // do more stuff here
-       }
-    });
+    $('#logo_text').load(rss_url);
 }
 
 function status(text) {
