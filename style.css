@@ -57,21 +57,27 @@
 	  	padding-left: 1px !important;
 	    padding-right: 1px !important;
 	}
+	
 	#logo {
 		position: fixed;
 		left: 30%;
 		top: 0px;
 	    z-index: -1;
 	}
+	#logo img{
+	    z-index: -1;
+	}
+
 	#logo_text {
 		position: absolute;
 	    left: 108px;
 	    top: 0px;
 	    width: 160px;
-	    height: 50px;
+	    height: 120px;
 	    background-color: black;
 	    color: rgb(255, 255, 255);
 	    text-align: center;
+
 	}
 }
 
