@@ -84,7 +84,7 @@ function getRSS(rss_url) {
         success  : function (data) {
             if (data.responseData.feed && data.responseData.feed.entries) {
                 $("#logo_text").html(data.responseData.feed.entries[Math.floor(Math.random()*data.responseData.feed.entries.length)].content);
-                setTimeout("$(\"#logo_text\").html(\"\")", 10000);
+                setTimeout("$(\"#logo_text\").html(\"\")", 20000);
             }
         }
     });
@@ -242,7 +242,7 @@ $(document).ready(function() {
     }
     show();
     setInterval("show()", 5000);
-    setInterval("getRSS('http://bash.im/rss')", 20000);
+    setInterval("getRSS('http://bash.im/rss')", 30000);
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
