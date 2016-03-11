@@ -99,13 +99,12 @@
 	}
 	#logo img{
 	    z-index: -1;
-	    position: absolute;
 	}
 	#logo_text {
 		display: none;
 		position: absolute;
 	    left: 147px;
-	    top: -202%;
+	    top: -200%;
 	    width: 165px;
 	    background-color: black;
 	    color: rgb(255, 255, 255);
