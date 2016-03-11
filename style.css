@@ -3,7 +3,7 @@
   and (max-device-width: 321px)
   and (orientation: portrait) {
   	body {
- 		font-size: 7px;
+ 		font-size: 7px !important;
  	}
 }
 @media only screen 
@@ -11,7 +11,7 @@
   and (max-device-width: 351px)
   and (orientation: portrait) {
   	body {
- 		font-size: 8px;
+ 		font-size: 8px !important;
  	}
 }
 @media only screen 
@@ -19,7 +19,7 @@
   and (max-device-width: 391px)
   and (orientation: portrait) {
   	body {
- 		font-size: 9px;
+ 		font-size: 9px !important;
  	}
 }
 
@@ -28,7 +28,7 @@
   and (max-device-width: 415px)
   and (orientation: portrait) {
   	body {
- 		font-size: 10px;
+ 		font-size: 10px !important;
  	}
 }
 /* All mobiles */
