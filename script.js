@@ -84,7 +84,8 @@ function getRSS(rss_url) {
         success  : function (data) {
             if (data.responseData.feed && data.responseData.feed.entries) {
                 $("#logo_text").html(data.responseData.feed.entries[Math.floor(Math.random()*data.responseData.feed.entries.length)].content);
-                setTimeout("$(\"#logo_text\").html(\"\")", 20000);
+                $("#logo_text").show();
+                setTimeout("$(\"#logo_text\").html(\"\"); $(\"#logo_text\").hide()", 20000);
             }
         }
     });

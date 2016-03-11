@@ -57,7 +57,7 @@
 	  	padding-left: 1px !important;
 	    padding-right: 1px !important;
 	}
-	
+
 	#logo {
 		position: fixed;
 		left: 30%;
@@ -69,6 +69,7 @@
 	}
 
 	#logo_text {
+		display: none;
 		position: absolute;
 	    left: 108px;
 	    top: 0px;
