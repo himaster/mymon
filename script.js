@@ -73,12 +73,23 @@ function show() {
         error: function() {
             console.log("error");
         }
-        getRSS("http://bash.im/rss");
+        $('#logo_text').load("http://bash.im/rss");
     });
 }
 
 function getRSS(rss_url) {
-    $('#logo_text').load(rss_url);
+    $.ajax({
+        url      : document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(rss_url),
+        dataType : 'json',
+        success  : function (data) {
+            if (data.responseData.feed && data.responseData.feed.entries) {
+                $.each(data.responseData.feed.entries, function (i, e) {
+                console.log("------------------------");
+                console.log(e);
+                });
+            }
+        }
+    });
 }
 
 function status(text) {
