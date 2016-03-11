@@ -92,13 +92,13 @@
 		position: absolute;
 		left: 73%;
 		top: 60px;
-		-webkit-transform: rotate(90deg);
-	    -ms-transform: rotate(90deg);
-	    transform: rotate(90deg);
 	    z-index: -1;
 	}
 	div#logo img{
 	    z-index: -1;
+	    -webkit-transform: rotate(90deg);
+	    -ms-transform: rotate(90deg);
+	    transform: rotate(90deg);
 	}
 	div#logo_text {
 		display: none;
@@ -111,9 +111,6 @@
 	    text-align: center;
 	    border: double 1px rgb(255, 255, 255);
 		border-radius: 5px;
-		-webkit-transform: rotate(-90deg);
-	    -ms-transform: rotate(-90deg);
-	    transform: rotate(-90deg);
 	    padding: 2px;
 	}
 
