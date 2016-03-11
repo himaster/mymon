@@ -84,10 +84,7 @@ function getRSS(rss_url) {
         dataType : 'json',
         success  : function (data) {
             if (data.responseData.feed && data.responseData.feed.entries) {
-                $.each(data.responseData.feed.entries, function (i, e) {
-                console.log("------------------------");
-                console.log(e);
-                });
+                $("#logo_text").html(data.responseData.feed.entries[Math.floor(Math.random()*data.responseData.feed.entries.length)].content);
             }
         }
     });
