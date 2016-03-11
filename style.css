@@ -6,7 +6,7 @@
  		font-size: 7px !important;
  	}
  	div#logo_text {
- 		width: 130px;
+ 		width: 100px;
  	}
 }
 @media only screen 
@@ -17,7 +17,7 @@
  		font-size: 8px !important;
  	}
  	div#logo_text {
- 		width: 140px;
+ 		width: 110px;
  	}
 }
 @media only screen 
@@ -28,7 +28,7 @@
  		font-size: 9px !important;
  	}
  	div#logo_text {
- 		width: 150px;
+ 		width: 135px;
  	}
 }
 
