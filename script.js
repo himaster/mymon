@@ -15,10 +15,10 @@ function myAjax(serverip) {
 function toggle_visibility(id) {
     try{
         var e = document.getElementById(id);
-        if(e.style.display == 'block')
+        if(e.style.display == 'block') {
             e.style.display = 'none';
             document.getElementById("profile_edit").click();
-        else
+        } else
             e.style.display = 'block';
     } catch(err) {console.log(err)}
 }
