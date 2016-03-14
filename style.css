@@ -57,13 +57,33 @@
 	  	padding-left: 1px !important;
 	    padding-right: 1px !important;
 	}
-
 	div#logo {
 		position: fixed;
 		left: 30%;
 		top: 0px;
 	    z-index: 1;
 	}
+	#col1 {
+		top: 40px;
+	}
+	#col2 {
+		top: 40px;
+	}
+	#col3 {
+		top: 40px;
+	}
+	#col4 {
+		top: 40px;
+	}
+	#col5 {
+		top: 40px;
+	}
+	#col6 {
+		top: 40px;
+	}
+	#col7 {
+		top: 40px;
+	}						 
 }
 
 
