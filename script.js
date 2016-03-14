@@ -77,20 +77,6 @@ function show() {
     });
 }
 
-function getRSS(rss_url) {
-    $.ajax({
-        url      : document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(rss_url),
-        dataType : 'json',
-        success  : function (data) {
-            if (data.responseData.feed && data.responseData.feed.entries) {
-                $("#logo_text").html(data.responseData.feed.entries[Math.floor(Math.random()*data.responseData.feed.entries.length)].content);
-                $("#logo_text").show();
-                setTimeout("$(\"#logo_text\").html(\"\"); $(\"#logo_text\").hide()", 30000);
-            }
-        }
-    });
-}
-
 function status(text) {
     $('#test_div').html(text);
     document.getElementById('test_div').style.display = 'block';
@@ -220,7 +206,7 @@ function reverst() {
     if (detectmob()) $("#main_table").removeAttr("style");
     else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
-    console.log(el.style.fontSize);
+    //console.log(el.style.fontSize);
 }
 
 $(window).resize(function() {
@@ -241,7 +227,6 @@ $(document).ready(function() {
     }
     show();
     setInterval("show()", 5000);
-    setInterval("getRSS('http://bash.im/rss')", 50000);
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
