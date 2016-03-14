@@ -247,7 +247,7 @@ $(document).ready(function() {
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
-    $('#left_button').click(function() {
+    $("#left_button").click(function() {
         var popstate = document.getElementById("my_div").style;
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
         else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
@@ -259,7 +259,7 @@ $(document).ready(function() {
             expanded = false;
         }
     });
-    $('#left_button2').click(function() {
+    $("#left_button2").click(function() {
         var popstate = document.getElementById("message_div").style;
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
         else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];

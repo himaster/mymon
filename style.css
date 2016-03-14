@@ -296,6 +296,7 @@ a:active {
 }
 
 .main_table {
+	position: relative;
 	-webkit-border-horizontal-spacing: 2px;
 	-webkit-border-vertical-spacing: 2px;
 	background-color: rgb(211, 211, 211);
