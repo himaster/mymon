@@ -74,10 +74,7 @@
 		position: fixed;
 		left: 30%;
 		top: 0px;
-	    z-index: -1;
-	}
-	div#logo img{
-	    z-index: -1;
+	    z-index: 1;
 	}
 
 	div#logo_text {
@@ -305,6 +302,7 @@ a:active {
 	line-height: 1.3;
 	margin-left: auto;
   	margin-right: auto;
+  	z-index: 10;
 }
 
 .main_table tbody tr:hover {
