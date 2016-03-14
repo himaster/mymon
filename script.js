@@ -272,12 +272,12 @@ $(document).ready(function() {
     $("#logo_text").click(function() {
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
         else window.animation = [{'left' : '100px'}, {'left' : '147px'}];
-        if (expanded) {
+        if (window.expanded) {
             $(this).animate(window.animation[0], {duration : 400, easing: 'swing'});
-            expanded = true;
+            window.expanded = true;
         } else {
             $(this).animate(window.animation[1], {duration: 400, easing: 'swing'});
-            expanded = false;
+            window.expanded = false;
         }
     });
 });
