@@ -5,9 +5,6 @@
   	body {
  		font-size: 7px !important;
  	}
- 	div#logo_text {
- 		width: 100px;
- 	}
 }
 @media only screen 
   and (min-device-width: 320px)
@@ -15,9 +12,6 @@
   and (orientation: portrait) {
   	body {
  		font-size: 8px !important;
- 	}
- 	div#logo_text {
- 		width: 110px;
  	}
 }
 @media only screen 
@@ -27,9 +21,6 @@
   	body {
  		font-size: 9px !important;
  	}
- 	div#logo_text {
- 		width: 135px;
- 	}
 }
 
 @media only screen 
@@ -38,9 +29,6 @@
   and (orientation: portrait) {
   	body {
  		font-size: 10px !important;
- 	}
- 	div#logo_text {
- 		width: 160px;
  	}
 }
 /* All mobiles */
@@ -76,21 +64,6 @@
 		top: 0px;
 	    z-index: 1;
 	}
-
-	div#logo_text {
-		display: none;
-		position: absolute;
-	    left: 109px;
-	    top: 0px;
-	    /*width: 165px;*/
-	    /*height: 120px;*/
-	    background-color: black;
-	    color: rgb(255, 255, 255);
-	    text-align: center;
-	    border: double 1px rgb(255, 255, 255);
-		border-radius: 5px;
-		padding: 2px;
-	}
 }
 
 
@@ -107,19 +80,6 @@
 	    -webkit-transform: rotate(90deg);
 	    -ms-transform: rotate(90deg);
 	    transform: rotate(90deg);
-	}
-	div#logo_text {
-		display: none;
-		position: absolute;
-	    left: 147px;
-	    top: 65px;
-	    width: 200px;
-	    background-color: black;
-	    color: rgb(255, 255, 255);
-	    text-align: center;
-	    border: double 1px rgb(255, 255, 255);
-		border-radius: 5px;
-	    padding: 2px;
 	}
 
 	.left_button {

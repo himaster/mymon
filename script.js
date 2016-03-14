@@ -269,19 +269,6 @@ $(document).ready(function() {
             expanded = false;
         }
     });
-    $("#logo_text").click(function() {
-        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-        else window.animation = [{'left' : '147px'}, {'left' : '0px'}];
-        if (window.expanded) {
-            $(this).animate(window.animation[0], {duration : 400, easing: 'swing'});
-            $(this).css('z-index', 0);
-            window.expanded = false;
-        } else {
-            $(this).css('z-index', 100);
-            $(this).animate(window.animation[1], {duration: 400, easing: 'swing'});
-            window.expanded = true;
-        }
-    });
 });
 
 
