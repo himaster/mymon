@@ -271,7 +271,7 @@ $(document).ready(function() {
     });
     $("#logo_text").click(function() {
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-        else window.animation = [{'left' : '147px'}, {'left' : '50px'}];
+        else window.animation = [{'left' : '147px'}, {'left' : '0px'}];
         if (window.expanded) {
             $(this).animate(window.animation[0], {duration : 400, easing: 'swing'});
             window.expanded = false;
