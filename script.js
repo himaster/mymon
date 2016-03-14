@@ -228,10 +228,8 @@ $(window).resize(function() {
 });
 
 $(document).ready(function() {
-    console.log("Page ready.");
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     window.create_new_mes=1;
-
     if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
         var viewportmeta = document.querySelector('meta[name="viewport"]');
         if (viewportmeta) {
@@ -268,6 +266,18 @@ $(document).ready(function() {
             expanded = true;
         } else {
             $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
+            expanded = false;
+        }
+    });
+    $("#logo_text").click(function() {
+        var popstate = document.getElementById("logo_text").style;
+        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
+        else window.animation = [{'left' : '100px'}, {'left' : '147px'}];
+        if (popstate.display !== "block") {
+            $(this).animate(window.animation[0], {duration : 400, easing: 'swing'});
+            expanded = true;
+        } else {
+            $(this).animate(window.animation[1], {duration: 400, easing: 'swing'});
             expanded = false;
         }
     });
