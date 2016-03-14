@@ -1,5 +1,5 @@
 
-<a href="#" onclick="toggle_visibility('my_div'); 
+<a href="#" onclick="toggle_visibility_menu('my_div'); 
 					 on_top('my_div');">
 	<div id="left_button" class="left_button">
 		<img src="images/profile.png">

@@ -15,9 +15,19 @@ function myAjax(serverip) {
 function toggle_visibility(id) {
     try{
         var e = document.getElementById(id);
+        if(e.style.display == 'block')
+            e.style.display = 'none';
+        else
+            e.style.display = 'block';
+    } catch(err) {console.log(err)}
+}
+
+function toggle_visibility_menu(id) {
+    try{
+        var e = document.getElementById(id);
         if(e.style.display == 'block') {
             e.style.display = 'none';
-            document.getElementById("profile_edit").click();
+            document.getElementById('profile_edit').click();
         } else
             e.style.display = 'block';
     } catch(err) {console.log(err)}
