@@ -17,6 +17,7 @@ function toggle_visibility(id) {
         var e = document.getElementById(id);
         if(e.style.display == 'block')
             e.style.display = 'none';
+            document.getElementById("profile_edit").click();
         else
             e.style.display = 'block';
     } catch(err) {console.log(err)}
