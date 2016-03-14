@@ -270,10 +270,9 @@ $(document).ready(function() {
         }
     });
     $("#logo_text").click(function() {
-        var popstate = document.getElementById("logo_text").style;
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
         else window.animation = [{'left' : '100px'}, {'left' : '147px'}];
-        if (popstate.display !== "block") {
+        if (expanded) {
             $(this).animate(window.animation[0], {duration : 400, easing: 'swing'});
             expanded = true;
         } else {
