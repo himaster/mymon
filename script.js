@@ -25,9 +25,11 @@ function toggle_visibility(id) {
 function toggle_visibility_menu(id) {
     try{
         var e = document.getElementById(id);
+        var i = document.getElementById('col1');
         if(e.style.display == 'block') {
             e.style.display = 'none';
-            document.getElementById('profile_edit').click();
+            if (i.style.display == 'block')
+                document.getElementById('profile_edit').click();
         } else
             e.style.display = 'block';
     } catch(err) {console.log(err)}
