@@ -271,13 +271,13 @@ $(document).ready(function() {
     });
     $("#logo_text").click(function() {
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-        else window.animation = [{'left' : '100px'}, {'left' : '147px'}];
+        else window.animation = [{'left' : '147px'}, {'left' : '50px'}];
         if (window.expanded) {
             $(this).animate(window.animation[0], {duration : 400, easing: 'swing'});
-            window.expanded = true;
+            window.expanded = false;
         } else {
             $(this).animate(window.animation[1], {duration: 400, easing: 'swing'});
-            window.expanded = false;
+            window.expanded = true;
         }
     });
 });
