@@ -83,7 +83,6 @@ function child_() {
 }
 
 function la($connection, $serverip) {
-	#global $servername;
 	global $hostname;
 	$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
 	$la1 = intval(array_map("trim",explode(",",$la))[0]);
@@ -133,7 +132,6 @@ function rep($connection, $serverip) {
 }
 
 function err500($connection, $serverip) {
-	#global $servername;
 	global $hostname;
 	$str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
 
@@ -156,6 +154,8 @@ function elastic($connection, $serverip) {
 function locks($connection, $serverip) {
 	$locked = trim(ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l"));
 	$conns  = trim(ssh2_return($connection, "mysql -Nse \"SHOW STATUS WHERE variable_name = 'Threads_connected'\" | awk '{print $2}'"));
+	if ($locked == "Timeout") $locked == "T";
+	if ($conns == "Timeout") $locked == "T";
     if (($locked == "0") and ($conns < "5000")) $fontcolor = "<font color=\"green\">";
     else $fontcolor = "<script type=\"text/javascript\">notify(\"DB locks\");</script><font color=\"red\">";
 
@@ -186,7 +186,6 @@ function redis($connection, $serverip) {
 
 function sigHandler($signo) {
 	global $stop_server;
-	#global $connection;
 	switch($signo) {
 		case SIGTERM: {
 			$stop_server = true;
@@ -205,7 +204,6 @@ function sigHandler($signo) {
 }
 
 function errHandler($errno, $errmsg, $filename, $linenum) {
-	#global $servername;
 	$date = date('Y-m-d H:i:s (T)');
 	$f = fopen('/var/log/mymon/errors.txt', 'a');
 	if (!empty($f)) {
