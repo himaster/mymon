@@ -222,6 +222,7 @@ a:active {
     -khtml-border-radius: 3px;
     border-radius: 3px;
     text-align: center;
+    z-index: 15;
 }
 
 .left_button3 img {
