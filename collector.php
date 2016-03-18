@@ -101,7 +101,7 @@ function rep($connection, $serverip) {
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
 	foreach (explode("\n", $str) as $cLine) {
 		if (strpos($cLine, "Timeout") !== false) {
-			return "<font color=\"red\">Mysql stopped</font>";
+			return "<font color=\"red\">stopped</font>";
 		}
 		list($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
