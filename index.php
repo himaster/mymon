@@ -94,7 +94,7 @@ if (isset($_COOKIE["mymon"])) {
 				}
 			    if (!$connection_master = ssh2_connect($masterip, 22)) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-   					die("Can't connect to master");
+   					die("Can't connect to master $masterip");
 			    }
 				if (!ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
    					die("<font color=\"red\">SSH key for master not feat!</font>");
