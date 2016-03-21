@@ -158,7 +158,7 @@ function locks($connection, $serverip) {
 		$locked = "T";
 	}
 	if ( $conns === "Timeout" ) {
-		$locked = "T";
+		$conns = "T";
 	}
     if (($locked == "0") and ($conns < "5000")) $fontcolor = "<font color=\"green\">";
     else $fontcolor = "<script type=\"text/javascript\">notify(\"DB locks\");</script><font color=\"red\">";
