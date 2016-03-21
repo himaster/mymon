@@ -2,6 +2,9 @@
     include "menu.php";
     include "messagebox.php";
 ?>
+    <div id="logo">
+        <img src="mymon.png">
+    </div>
     <table class="main_table table-striped" id="main_table">
         <col span="5">
             <tr class="title">
