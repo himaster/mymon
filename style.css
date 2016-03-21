@@ -187,6 +187,7 @@ a:active {
     border-radius: 3px;
     text-align: center;
     z-index: 15;
+    border: 1px solid black;
 }
 
 .left_button img {
@@ -209,6 +210,7 @@ a:active {
     border-radius: 3px;
     text-align: center;
     z-index: 15;
+    border: 1px solid black;
 }
 
 .left_button3 {
@@ -223,6 +225,7 @@ a:active {
     border-radius: 3px;
     text-align: center;
     z-index: 15;
+    border: 1px solid black;
 }
 
 .left_button3 img {
