@@ -125,7 +125,7 @@ function rep($connection, $serverip) {
 
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
-    		   onclick=\"javascript: if(event.ctrlKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
+    		   onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
     		   						 else { if(confirm(\'Want to REPAIR replication?\')) { replica_repair(\'" .$serverip. "\'); } } \">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
