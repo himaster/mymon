@@ -123,12 +123,15 @@ function rep($connection, $serverip) {
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
     else $deltafontcolor = "<font color=\"red\">";
 
-    return "<select><option value=\"$\"><a title=\"Click to restart replication\" 
-    		   href=\"#\" 
-    		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">
+    return "<select><option value=\"$\">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a></value>";
+    		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</option>
+    		   <option value=\"repair\"><a title=\"Click to repair replication\" href=\"#\" 
+    		   onclick=\"javascript: if(confirm(\'Want to repair replication?\')) replica_repair(\'" .$serverip. "\'); \">repair</a></optin>
+    		   <option value=\"reset\"><a title=\"Click to restart replication\" href=\"#\" 
+    		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">reset</a></optin>
+    		</select>";
 }
 
 function err500($connection, $serverip) {

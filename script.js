@@ -12,6 +12,20 @@ function myAjax(serverip) {
     });
 }
 
+function replica_repair(serverip) {
+    $('#test_div').html('processing...');
+    document.getElementById('test_div').style.display = 'block';
+    $.ajax({
+        url: 'index.php?task=replica_repair&serverip=' + serverip,
+        success: function(html){
+            status(html);
+        },
+        error: function(){
+            status("Error");
+        }
+    });
+}
+
 function toggle_visibility(id) {
     try{
         var e = document.getElementById(id);

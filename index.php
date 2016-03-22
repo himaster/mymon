@@ -71,7 +71,7 @@ if (isset($_COOKIE["mymon"])) {
 				echo "Successfully edited";
 				break;
 
-			case "replica":
+			case "replica_repair":
 			    if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
    					die("Can't connect to slave server");
@@ -86,7 +86,7 @@ if (isset($_COOKIE["mymon"])) {
 			    echo "successful.";
 			    break;
 			
-			case "replica_start":			    
+			case "replica":			    
 			    $backin = array("88.198.182.130","88.198.182.132","88.198.182.134","88.198.182.146","88.198.182.160","88.198.182.162");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz");
 			    if (in_array($_GET['serverip'], $backin)){
