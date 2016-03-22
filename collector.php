@@ -125,7 +125,8 @@ function rep($connection, $serverip) {
 
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
-    		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">
+    		   onclick=\"javascript: if(confirm(\'Want to repair replication?\')) replica_repair(\'" .$serverip. "\'); \"
+    		   ondblclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
     		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
