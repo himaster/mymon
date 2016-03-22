@@ -101,35 +101,34 @@ function rep($connection, $serverip) {
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
 	foreach (explode("\n", $str) as $cLine) {
 		if (strpos($cLine, "Timeout") !== false) {
-			return "<span style=\"color: red\">stopped</span>";
+			return "<font color=\"red\">stopped</font>";
 		}
 		list($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
 	}
     if ($data["Slave_SQL_Running"] == "Yes") {
-    	$sqlfontcolor = "<span style=\"color: green\">";
+    	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
     } else {
-    	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><span style=\"color: red\">";
+    	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
     	$sql = "x";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
-    	$iofontcolor = "<span style=\"color: green\">";
+    	$iofontcolor = "<font color=\"green\">";
     	$io = "&#10003;";
     } else {
-    	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><span style=\"color: red\">";
+    	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
     	$io = "x";
     }
-    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<span style=\"color: green\">";
-    else $deltafontcolor = "<span style=\"color: red\">";
+    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
+    else $deltafontcolor = "<font color=\"red\">";
 
-    return "<select onChange=\"javascript: eval( this.value )();\"><option value=\"$\">
-    		   SQL: $sqlfontcolor<b>$sql</b></span> 
-    		   IO: $iofontcolor<b>$io</b></span> 
-    		   &#916;: $deltafontcolor<b>" .$data["Seconds_Behind_Master"]. "</b></span>\n</option>
-    		   <option value=\"if(confirm(\'Want to repair replication?\')) replica_repair(\'" .$serverip. "\');\">repair</optin>
-    		   <option value=\"if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\');\">reset</optin>
-    		</select>";
+    return "<a title=\"Click to restart replication\" 
+    		   href=\"#\" 
+    		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">
+    		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
+    		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
+    		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
 }
 
 function err500($connection, $serverip) {
