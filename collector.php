@@ -123,10 +123,10 @@ function rep($connection, $serverip) {
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
     else $deltafontcolor = "<font color=\"red\">";
 
-    return "<select onChange=\"javascript: eval( this.value )();\"><option value=\"\">
-    		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
-    		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</option>
+    return "<select onChange=\"javascript: eval( this.value )();\"><option value=\"$\">
+    		   SQL: $sqlfontcolor<b>$sql</b></font> 
+    		   IO: $iofontcolor<b>$io</b></font> 
+    		   &#916;: $deltafontcolor<b>$data['Seconds_Behind_Master']</b></font>\n</option>
     		   <option value=\"if(confirm(\'Want to repair replication?\')) replica_repair(\'" .$serverip. "\');\">repair</optin>
     		   <option value=\"if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\');\">reset</optin>
     		</select>";
