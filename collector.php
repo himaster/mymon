@@ -123,7 +123,7 @@ function rep($connection, $serverip) {
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
     else $deltafontcolor = "<font color=\"red\">";
 
-    return "<select onChange=\"javascript: eval( this.value )();\"><option value=\"$\">
+    return "<select onChange=\"javascript: eval( this.value )();\"><option value=\"$.noop\">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
     		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</option>
