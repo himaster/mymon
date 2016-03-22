@@ -127,10 +127,10 @@ function rep($connection, $serverip) {
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
     		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</option>
-    		   <option value=\"repair\"><a title=\"Click to repair replication\" href=\"#\" 
-    		   onclick=\"javascript: if(confirm(\'Want to repair replication?\')) replica_repair(\'" .$serverip. "\'); \">repair</a></optin>
-    		   <option value=\"reset\"><a title=\"Click to restart replication\" href=\"#\" 
-    		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">reset</a></optin>
+    		   <option value=\"repair\"
+    		   onclick=\"javascript: if(confirm(\'Want to repair replication?\')) replica_repair(\'" .$serverip. "\'); \">repair</optin>
+    		   <option value=\"reset\"
+    		   onclick=\"javascript: if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\'); \">reset</optin>
     		</select>";
 }
 
