@@ -87,13 +87,13 @@ function la($connection, $serverip) {
 	$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
 	$la1 = intval(array_map("trim",explode(",",$la))[0]);
 	$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
-	if ($la1 < ($core * 0.75)) $fontcolor = "<font color=\"green\">";
-	elseif (($la1 >= ($core * 0.75)) && ($la1 < $core)) $fontcolor = "<font color=\"#CAC003\">";
-	else $fontcolor = "<font color=\"red\">";
+	if ($la1 < ($core * 0.75)) $fontcolor = "<span style=\"color: green;\">";
+	elseif (($la1 >= ($core * 0.75)) && ($la1 < $core)) $fontcolor = "<span style=\"color: #CAC003\">";
+	else $fontcolor = "<span style=\"color: red\">";
 
 	return "<a title=\"Click to show processes\" 
 			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
-			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></font>\n</a>";
+			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></span>\n</a>";
 }
 
 function rep($connection, $serverip) {
@@ -101,32 +101,32 @@ function rep($connection, $serverip) {
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
 	foreach (explode("\n", $str) as $cLine) {
 		if (strpos($cLine, "Timeout") !== false) {
-			return "<font color=\"red\">stopped</font>";
+			return "<span style=\"color: red\">stopped</span>";
 		}
 		list($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
 	}
     if ($data["Slave_SQL_Running"] == "Yes") {
-    	$sqlfontcolor = "<font color=\"green\">";
+    	$sqlfontcolor = "<span style=\"color: green\">";
     	$sql = "&#10003;";
     } else {
-    	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
+    	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><span style=\"color: red\">";
     	$sql = "x";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
-    	$iofontcolor = "<font color=\"green\">";
+    	$iofontcolor = "<span style=\"color: green\">";
     	$io = "&#10003;";
     } else {
-    	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
+    	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><span style=\"color: red\">";
     	$io = "x";
     }
-    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
-    else $deltafontcolor = "<font color=\"red\">";
+    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<span style=\"color: green\">";
+    else $deltafontcolor = "<span style=\"color: red\">";
 
     return "<select onChange=\"javascript: eval( this.value )();\"><option value=\"$\">
-    		   SQL: $sqlfontcolor<b>$sql</b></font> 
-    		   IO: $iofontcolor<b>$io</b></font> 
-    		   &#916;: $deltafontcolor<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</option>
+    		   SQL: $sqlfontcolor<b>$sql</b></span> 
+    		   IO: $iofontcolor<b>$io</b></span> 
+    		   &#916;: $deltafontcolor<b>" .$data["Seconds_Behind_Master"]. "</b></span>\n</option>
     		   <option value=\"if(confirm(\'Want to repair replication?\')) replica_repair(\'" .$serverip. "\');\">repair</optin>
     		   <option value=\"if(confirm(\'Want to restart replication?\')) myAjax(\'" .$serverip. "\');\">reset</optin>
     		</select>";
