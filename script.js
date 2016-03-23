@@ -231,7 +231,7 @@ function detectmob() {
 function reverst() {
     var el = document.body;
     var status = document.getElementById("main_table");
-    var newFontSize = Math.round((window.innerWidth-200)/32);
+    var newFontSize = Math.round((window.innerWidth-150)/32);
     if (detectmob()) $("#main_table").removeAttr("style");
     else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
