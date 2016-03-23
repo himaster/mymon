@@ -192,6 +192,8 @@ function notify(message, time, override) {
     if (!("Notification" in window)) {
         console.log("This browser does not support desktop notification");
     }
+    if (document.getElementById("notify").checked === true) window.create_new_mes = 1;
+    else window.create_new_mes = 0;
     else if (Notification.permission === "granted" && (window.create_new_mes === 1 || override)) {
         window.create_new_mes=0;
         setTimeout("create_new_mes=1;", 30000);
