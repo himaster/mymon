@@ -100,7 +100,7 @@ function la($connection, $serverip) {
 	global $hostname;
 	$la = intval(array_map("trim",explode(",",substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1)))[0]);
 	$core = intval(ssh2_return($connection, "grep -c processor /proc/cpuinfo"));
-	$percent = $la%$core*100;
+	$percent = ($la*100)%$core;
 	if ($percent < 75) $fontcolor = "<span style=\"color: green;\">";
 	elseif (($percent >= 75) && ($percent < 100)) $fontcolor = "<span style=\"color: #CAC003\">";
 	else $fontcolor = "<span style=\"color: red\">";
