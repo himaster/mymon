@@ -476,6 +476,7 @@ a:active {
   	left: 50px;
   	top: 50px;
   	text-align: center;
+  	z-index: 15;
 }
 
 .box {
