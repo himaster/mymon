@@ -34,3 +34,8 @@ function console_log($data) {
     else $output = "<script>console.log('console log: " .$data. "');</script>";
     echo $output;
 }
+
+function notify( $message ) {
+	global $notify;
+	if ($notify == 1) return "<script type=\"text/javascript\">notify(\"$message\");</script>";
+}
