@@ -36,6 +36,6 @@ function console_log($data) {
 }
 
 function notify( $message ) {
-	global $notify;
-	if ($notify == 1) return "<script type=\"text/javascript\">notify(\"$message\");</script>";
+	global $unotify;
+	if ($unotify == 1) return "<script type=\"text/javascript\">notify(\"$message\");</script>";
 }
