@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 		$login = no_injection($_POST['login']);
 		$password = md5(no_injection($_POST['password']));
 		$email = no_injection($_POST['email']);
-		$result = $dbconnection->query("SELECT `id` FROM `users` WHERE `login`='{$login}' AND `password`='{$password}'") or die($dbconnection->error());
+		$result = $dbconnection->query("SELECT `id` FROM `users` WHERE `login`='{$login}'") or die($dbconnection->error());
 		if ($result->num_rows > 0) echo 'Такой логин уже существует';
  		else {
 			$result = $dbconnection->query("INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
