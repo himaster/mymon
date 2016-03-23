@@ -189,8 +189,7 @@ function on_top(id) {
 function notify(message, time, override) {
     time = time || 3000;
     override = override || false;
-    if (document.getElementById("notify").checked === true) window.create_new_mes = 1;
-    else window.create_new_mes = 0;
+
     if (!("Notification" in window)) {
         console.log("This browser does not support desktop notification");
     }
@@ -245,7 +244,8 @@ $(window).resize(function() {
 
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
-    window.create_new_mes=1;
+    if (document.getElementById("notify").checked === true &&) window.create_new_mes = 1;
+    else window.create_new_mes = 0;
     if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
         var viewportmeta = document.querySelector('meta[name="viewport"]');
         if (viewportmeta) {
