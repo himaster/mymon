@@ -79,6 +79,10 @@
 				7<input type="checkbox" id="red" name="red" <?php if ($ured == 1) echo "checked "; ?> >
 			</div>
 		</div>
+		<div>
+			Notifications: 
+			<input type="checkbox" id="notify" name="notify" <?php if ($unotify == 1) echo "checked "; ?> >
+		</div>
 		<p>
 		<div id="submit_div">
 			<input type="submit" id="submit_edit" name="submit_edit" value="send">
