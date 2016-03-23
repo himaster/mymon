@@ -30,7 +30,6 @@
 		IP: <?php echo $_SERVER['REMOTE_ADDR'] ?>
 		<p>username:<input class="username" type="text" id="login" name="login" value="<?php echo $login ?>" readonly>
 		<p><a id="profile_edit" href="javascript: toggle_visibility('password_div');
-							 toggle_visibility('password2_div');
 							 toggle_visibility('email_div');
 							 toggle_visibility('submit_div');
 							 toggle_visibility('simple_div');
