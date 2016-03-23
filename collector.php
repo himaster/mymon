@@ -98,14 +98,15 @@ function child_() {
 
 function la($connection, $serverip) {
 	global $hostname;
-	$la = intval(array_map("trim",explode(",",substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1)))[0]);
+	$la_string = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
+	$la = intval(array_map("trim",explode(",",$la_string))[0]);
 	$core = intval(ssh2_return($connection, "grep -c processor /proc/cpuinfo"));
 	$percent = intval($la/$core*100);
 	if ($percent < 75) $fontcolor = "<span style=\"color: green;\">";
 	elseif (($percent >= 75) && ($percent < 100)) $fontcolor = "<span style=\"color: #CAC003\">";
 	else $fontcolor = "<span style=\"color: red\">";
 
-	return "<a title=\"Click to show processes\" 
+	return "<a title=\"" .$la_string. "\" 
 			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
 			   target=\"_blank\">" .$fontcolor. "<b>" .$percent. "%</b></span>\n</a>";
 }
