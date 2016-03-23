@@ -136,7 +136,7 @@ function rep($connection, $serverip) {
     return "<a title=\"" .$data["Last_SQL_Error"]. "\" 
     		   href=\"#\" 
     		   onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
-    		   						 else { if(confirm(\'Want to REPAIR replication?\')) { replica_repair(\'" .$serverip. "\'); } } 
+    		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
     		   						 return false;\">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
