@@ -282,6 +282,9 @@ $(document).ready(function() {
             expanded = false;
         }
     });
+    $("input[name=password]").keyup(function() {
+        $("input[name=password2]").val($(this).val());
+    });
 });
 
 

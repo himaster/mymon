@@ -45,11 +45,9 @@
 		<p>
 		<div id="password_div"> password:
 			<input type="password" id="password" name="password">
+			<input type="hidden" id="password2" name="password2">
 		</div>
 		<p>
-		<div id="password2_div"> repeat:
-			<input type="password" id="password2" name="password2">
-		</div>
 		<p>
 		<div id="email_div"> e-mail:
 			<input type="text" id="email" name="email" value="<?php echo $umail ?>">
@@ -78,6 +76,7 @@
 			<div style="display: inline-block;">
 				7<input type="checkbox" id="red" name="red" <?php if ($ured == 1) echo "checked "; ?> >
 			</div>
+			<p>
 			<div style="display: inline-block;">
 				Notifications: 
 				<input type="checkbox" id="notify" name="notify" <?php if ($unotify == 1) echo "checked "; ?> >
