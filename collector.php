@@ -125,7 +125,7 @@ function rep($connection, $serverip) {
     if ($data["Seconds_Behind_Master"] == "0") {
     	$deltafontcolor = "<font color=\"green\">";
     	$delta = "0";
-    } elseif (is_null($data["Seconds_Behind_Master"])) {
+    } elseif ($data["Seconds_Behind_Master"] == "NULL") {
     	$deltafontcolor = "<font color=\"red\">";
     	$delta = "x";
     } else {
