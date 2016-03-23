@@ -45,7 +45,7 @@
 		<p>
 		<div id="password_div"> password:
 			<input type="password" id="password" name="password">
-			<input type="hidden" id="password2" name="password2">
+			<input type="password" id="password2" name="password2" style="display: none;">
 		</div>
 		<p>
 		<p>
