@@ -6,7 +6,7 @@ set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
 
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;") or die($connection->error);
+$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red, notify FROM `mymon`.`stats`;") or die($connection->error);
 $connection->close();
 while($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
@@ -35,6 +35,7 @@ function child_() {
 	$mysql = $array["mysql"];
 	$mon = $array["mon"];
 	$red = $array["red"];
+	$notify = $array["notify"];
 	$i = 1;
 	$ssh_conname = "ssh_".$servername;
 	common_log($servername. " - started.");
@@ -110,14 +111,14 @@ function rep($connection, $serverip) {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
     } else {
-    	$sqlfontcolor = "<font color=\"red\">";
+    	$sqlfontcolor = notify("Replication SQL problem")."<font color=\"red\">";
     	$sql = "x";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
     	$iofontcolor = "<font color=\"green\">";
     	$io = "&#10003;";
     } else {
-    	$iofontcolor = "<font color=\"red\">";
+    	$iofontcolor = notify("Replication IO problem")."<font color=\"red\">";
     	$io = "x";
     }
     if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
@@ -147,7 +148,7 @@ function elastic($connection, $serverip) {
 									 curl -sS -o /dev/null -XGET http://`ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+'`:9200/_cluster/health?pretty;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
+	if ( $str == "Timeout" ) $fontcolor = notify("Elastic problem")."<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
 	return $fontcolor.$str. " ms</font>";
@@ -163,7 +164,7 @@ function locks($connection, $serverip) {
 		$conns = "T";
 	}
     if (($locked == "0") and ($conns < "5000")) $fontcolor = "<font color=\"green\">";
-    else $fontcolor = "<font color=\"red\">";
+    else $fontcolor = notify("DB locks")."<font color=\"red\">";
 
     return $fontcolor.$conns. " / " .$locked. "</font>";
 }
@@ -173,7 +174,7 @@ function mongo($connection, $serverip) {
 									 mongo admin --quiet --eval 'printjson(db.serverStatus().connections.current)' 1>/dev/null;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
+	if ( $str == "Timeout" ) $fontcolor = notify("Mongo problem")."<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
 	return $fontcolor.$str. " ms</font>";
@@ -184,7 +185,7 @@ function redis($connection, $serverip) {
 									 redis-cli info 1>/dev/null;
 									 date2=\$((\$(date +'%s%N') / 1000000));
 									 echo -n \$((\$date2-\$date1));");
-	if ( $str == "Timeout" ) $fontcolor = "<font color=\"red\">";
+	if ( $str == "Timeout" ) $fontcolor = notify("Redis problem")."<font color=\"red\">";
 	else $fontcolor = "<font color=\"green\">";
 
 	return $fontcolor.$str. " ms</font>";
