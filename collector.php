@@ -82,20 +82,6 @@ function child_() {
 	common_log($servername. " - ended.");
 }
 
-/*function la($connection, $serverip) {
-	global $hostname;
-	$la = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
-	$la1 = intval(array_map("trim",explode(",",$la))[0]);
-	$core = ssh2_return($connection, "grep -c processor /proc/cpuinfo");
-	if ($la1 < ($core * 0.75)) $fontcolor = "<span style=\"color: green;\">";
-	elseif (($la1 >= ($core * 0.75)) && ($la1 < $core)) $fontcolor = "<span style=\"color: #CAC003\">";
-	else $fontcolor = "<span style=\"color: red\">";
-
-	return "<a title=\"Click to show processes\" 
-			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
-			   target=\"_blank\">" .$fontcolor. "<b>" .$la. "</b></span>\n</a>";
-}*/
-
 function la($connection, $serverip) {
 	global $hostname;
 	$la_string = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
@@ -135,8 +121,17 @@ function rep($connection, $serverip) {
     	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
     	$io = "x";
     }
-    if ($data["Seconds_Behind_Master"] == "0") $deltafontcolor = "<font color=\"green\">";
-    else $deltafontcolor = "<font color=\"red\">";
+
+    if ($data["Seconds_Behind_Master"] == "0") {
+    	$deltafontcolor = "<font color=\"green\">";
+    	$delta = "0";
+    } elseif (is_null($data["Seconds_Behind_Master"])) {
+    	$deltafontcolor = "<font color=\"red\">";
+    	$delta = "x";
+    } else {
+    	$deltafontcolor = "<font color=\"red\">";
+    	$delta = $data["Seconds_Behind_Master"];
+    }
 
     return "<a title=\"Click to restart replication\" 
     		   href=\"#\" 
@@ -145,7 +140,7 @@ function rep($connection, $serverip) {
     		   						 return false;\">
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
-    		   &#916;: " .$deltafontcolor. "<b>" .$data["Seconds_Behind_Master"]. "</b></font>\n</a>";
+    		   &#916;: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
 function err500($connection, $serverip) {
