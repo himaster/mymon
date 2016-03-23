@@ -2,6 +2,7 @@
 
 function notify( $message ) {
     global $notify;
+    echo "\$notify=".$notify;
     if ($notify == 1) return "<script type=\"text/javascript\">notify(\"$message\");</script>";
 }
 
