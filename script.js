@@ -33,7 +33,7 @@ function toggle_visibility(id) {
             e.style.display = 'none';
         else
             e.style.display = 'block';
-    } catch(err) {console.log(err)}
+    } catch(err) {console.log(err + "id=" + id)}
 }
 
 function toggle_visibility_menu(id) {
