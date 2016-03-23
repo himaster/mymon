@@ -85,7 +85,7 @@ function child_() {
 function la($connection, $serverip) {
 	global $hostname;
 	$la_string = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"),":"),1);
-	$la = intval(array_map("trim",explode(",",$la_string))[0]);
+	$la = floatval(array_map("trim",explode(",",$la_string))[0]);
 	$core = intval(ssh2_return($connection, "grep -c processor /proc/cpuinfo"));
 	$percent = intval($la/$core*100);
 	if ($percent < 75) $fontcolor = "<span style=\"color: green;\">";
