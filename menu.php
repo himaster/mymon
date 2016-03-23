@@ -78,10 +78,10 @@
 			<div style="display: inline-block;">
 				7<input type="checkbox" id="red" name="red" <?php if ($ured == 1) echo "checked "; ?> >
 			</div>
-		</div>
-		<div class="simple_div" style="display: inline-block;">
-			Notifications: 
-			<input type="checkbox" id="notify" name="notify" <?php if ($unotify == 1) echo "checked "; ?> >
+			<div style="display: inline-block;">
+				Notifications: 
+				<input type="checkbox" id="notify" name="notify" <?php if ($unotify == 1) echo "checked "; ?> >
+			</div>
 		</div>
 		<p>
 		<div id="submit_div">
