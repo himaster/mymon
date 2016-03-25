@@ -100,13 +100,13 @@ function la($connection, $serverip) {
 function rep($connection, $serverip) {
 	$data = array();
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
-	common_log($servername. " - " .$str);
 	foreach (explode("\n", $str) as $cLine) {
 		if (strpos($cLine, "Timeout") !== false) {
 			return "<font color=\"red\">stopped</font>";
 		}
 		list($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
+		common_log($servername. " - \$data[trim($cKey)]=" .$data[trim($cKey)];
 	}
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
