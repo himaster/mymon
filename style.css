@@ -241,7 +241,7 @@ a:active {
 	left: 57px;
 	top: 53px;
 	display: none;
-	background-color: rgb(211, 211, 211);
+	background-color: rgb(249, 249, 249);
 	border-collapse: separate;
 	border: double 4px rgb(128, 128, 128);
 	border-radius: 6px;
@@ -259,6 +259,10 @@ a:active {
   margin-top: 0px;
   width: 10px;
   height: 10px;
+}
+
+.menu input[type=textarea] {
+	background-color: white;
 }
 
 .menu_title {
