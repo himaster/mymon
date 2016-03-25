@@ -24,7 +24,7 @@
 				<p><td colspan="2"><input type="submit" value="OK" name="submit" ></td>
 			</tr>
 			<tr>
-				<td><a href="/"><input type="text" value="Login"></a></td>
+				<a href="/"><input type="text" value="Login"></a>
 			</tr>
 		</form>
 	</table>
