@@ -216,7 +216,7 @@ a:active {
 	display: none;
 	background-color: rgb(249, 249, 249);
 	border-collapse: separate;
-	border: solid 1px rgb(150,150,150);
+	border: solid 1px rgb(150, 150, 150);
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 5px;
@@ -230,7 +230,7 @@ a:active {
 .menu input {
 	margin-left: 2px;
 	background-color: white;
-	border: solid 1px rgb(150,150,150);
+	border: solid 1px rgb(150, 150, 150);
 }
 
 .menu input[type=checkbox] {
@@ -458,7 +458,7 @@ a:active {
     background:#FFF;
     text-align:center;
     position:relative;
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(249, 249, 249);
 }
 .effect2 {
   position: relative;
