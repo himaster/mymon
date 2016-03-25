@@ -133,7 +133,7 @@ function rep($connection, $serverip) {
     	$delta = $data["Seconds_Behind_Master"];
     }
 
-    return "<a title=\"" .mysql_escape_string($data["Last_SQL_Error"]). "\" 
+    return "<a title=\"" .mysql_real_escape_string($data["Last_SQL_Error"]). "\" 
     		   href=\"#\" 
     		   onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
     		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
