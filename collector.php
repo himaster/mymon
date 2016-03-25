@@ -134,7 +134,7 @@ function rep($connection, $serverip) {
     	$delta = $data["Seconds_Behind_Master"];
     }
 
-	common_log($servername. " - SQL:" .$sql. "; IO:". $io);
+	common_log($serverip. " - SQL:" .$sql. "; IO:". $io);
     return "<a title=\"" .$data["Last_SQL_Error"]. "\" 
     		   href=\"#\" 
     		   onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
