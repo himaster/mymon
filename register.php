@@ -23,11 +23,9 @@
 			<tr>
 				<p><td colspan="2"><input type="submit" value="OK" name="submit" ></td>
 			</tr>
-			<tr>
-				<a href="/"><input type="text" value="Login"></a>
-			</tr>
 		</form>
 	</table>
+	<a href="/"><input type="text" value="Login"></a>
 </div>
 <?php
 	include "footer.html";
