@@ -50,6 +50,7 @@ function child_() {
 	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
 	
 	$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+	common_log($servername. " - " .$result);
 	if (!isset($result)) common_log($servername." - LA not updated!");
 	unset($result);
 	if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
@@ -134,7 +135,6 @@ function rep($connection, $serverip) {
     	$delta = $data["Seconds_Behind_Master"];
     }
 
-	common_log($serverip. " - SQL:" .$sql. "; IO:". $io);
     return "<a title=\"" .$data["Last_SQL_Error"]. "\" 
     		   href=\"#\" 
     		   onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
