@@ -371,7 +371,9 @@ a:active {
 }
 
 .register input {
-	color: black;
+	background-color: white;
+    border: solid 2px black;
+    color: black;
 }
 
 .register td {
