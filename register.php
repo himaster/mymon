@@ -23,6 +23,9 @@
 			<tr>
 				<p><td colspan="2"><input type="submit" value="OK" name="submit" ></td>
 			</tr>
+			<tr>
+				<td><a href="/">Login</a></td>
+			</tr>
 		</form>
 	</table>
 </div>
