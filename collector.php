@@ -100,6 +100,7 @@ function la($connection, $serverip) {
 function rep($connection, $serverip) {
 	$data = array();
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
+	common_log($servername. " - " .$str);
 	foreach (explode("\n", $str) as $cLine) {
 		if (strpos($cLine, "Timeout") !== false) {
 			return "<font color=\"red\">stopped</font>";
