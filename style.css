@@ -215,7 +215,7 @@ a:active {
 	display: none;
 	background-color: rgb(249, 249, 249);
 	border-collapse: separate;
-	border: double 4px rgb(128, 128, 128);
+	border: solid 1px rgb(150,150,150);
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 5px;
@@ -224,6 +224,12 @@ a:active {
 	text-align: left;
 	width: 244px;
 	z-index: 20;
+}
+
+.menu input {
+	margin-left: 2px;
+	background-color: white;
+	border: solid 1px rgb(150,150,150);
 }
 
 .menu input[type=checkbox] {
@@ -245,10 +251,6 @@ a:active {
 	display: none;
 	text-align: right;
 	margin-left: 5px;
-}
-.menu input {
-	margin-left: 2px;
-	background-color: white;
 }
 
 .main_table {
