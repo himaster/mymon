@@ -358,10 +358,7 @@ a:active {
 }
 
 .username {
-	background-color: lightgray;
-	border: none;
 	font-weight: bold;
-	width: 65px;
 }
 
 .register {
