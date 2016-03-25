@@ -455,7 +455,6 @@ a:active {
 
 .box {
     height:200px;
-    background:#FFF;
     text-align:center;
     position:relative;
     background-color: rgb(249, 249, 249);
@@ -494,9 +493,9 @@ a:active {
 
 .mbclose {
 	color: white;
-	position: relative;
-	left: 234px;
-	top: -240px;
+	position: fixed;
+    left: 435px;
+    top: 50px;
 	text-shadow: -1px -1px 0 #000,
 				 1px -1px 0 #000,
 				 -1px 1px 0 #000,
@@ -508,6 +507,9 @@ a:active {
 	position: relative;
 	top: -60px;
 }
+.mbclose2 button {
+    background-color: rgb(249, 249, 249);
+}
 
 .new {
 	border: solid 2px rgb(128, 128, 128);
@@ -517,6 +519,9 @@ a:active {
 .message_title {
 	position: relative;
     top: -200px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .umessage {
