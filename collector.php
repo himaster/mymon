@@ -51,10 +51,12 @@ function child_() {
 	$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
 	if (!isset($result)) common_log($servername." - LA not updated!");
 	unset($result);
-	$query = "UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-	if ($db == 1) $result = $$mysql_conname->query($query);
+	if ($db == 1) {
+		$query = "UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+		common_log($servername. " - " .$query);
+		$result = $$mysql_conname->query($query);
+	}
 	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';");
-	common_log($servername. " - " .$query);
 	if (!isset($result)) common_log($servername." - REP not updated!");
 	unset($result);
 	if ($errs == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
