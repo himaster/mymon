@@ -7,7 +7,7 @@
 </a>
 <a href="javascript: toggle_visibility_msg('message_div');
 					 on_top('message_div');">
-	<div id="left_button2" class="left_button2">
+	<div id="left_button2" class="left_button">
 		<div id="text">
 			msg
 		</div>
@@ -18,7 +18,7 @@
 	if ($result->num_rows == 1) { 
 ?>
 <a href="index.php?task=editor">
-	<div id="left_button3" class="left_button3">
+	<div id="left_button3" class="left_button">
 		<img src="images/settings.png">
 	</div>
 
