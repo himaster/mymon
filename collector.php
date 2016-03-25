@@ -98,6 +98,7 @@ function la($connection, $serverip) {
 
 function rep($connection, $serverip) {
 	global $mysql_conname;
+	global $$mysql_conname;
 	$data = array();
 	$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
 	foreach (explode("\n", $str) as $cLine) {
