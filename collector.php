@@ -108,7 +108,6 @@ function rep($connection, $serverip) {
 		$data[trim($cKey)] = trim($cValue);
 
 	}
-	common_log($servername. " - \$data[\"Slave_SQL_Running\"]=" .$data["Slave_SQL_Running"]);
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
@@ -135,6 +134,7 @@ function rep($connection, $serverip) {
     	$delta = $data["Seconds_Behind_Master"];
     }
 
+	common_log($servername. " - SQL:" .$sql. "; IO:". $io);
     return "<a title=\"" .$data["Last_SQL_Error"]. "\" 
     		   href=\"#\" 
     		   onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
