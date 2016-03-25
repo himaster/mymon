@@ -134,6 +134,7 @@ td {
 input {
 	width: 101%;
 	background-color: rgb(211, 211, 211);
+	border: 0px;
 }
 
 a:link {
