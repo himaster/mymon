@@ -261,10 +261,6 @@ a:active {
   height: 10px;
 }
 
-.menu input[type=textarea] {
-	background-color: white;
-}
-
 .menu_title {
 	text-align: center;
 	display: block;
@@ -280,6 +276,7 @@ a:active {
 }
 .menu input {
 	margin-left: 2px;
+	background-color: white;
 }
 
 .main_table {
