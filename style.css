@@ -202,42 +202,8 @@ a:active {
 	transform: translateY(-50%);
 }
 
-.left_button2 {
-	position: fixed;
-	width: 40px;
- 	height: 40px;
- 	color: black;
- 	background: rgb(255, 255, 255);
- 	-moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
-    text-align: center;
-    z-index: 15;
-    border: 1px solid black;
-}
-
-.left_button3 {
-	position: fixed;
-	width: 40px;
- 	height: 40px;
- 	color: black;
- 	background: rgb(255, 255, 255);
- 	-moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
-    text-align: center;
-    z-index: 15;
-    border: 1px solid black;
-}
-
-.left_button3 img {
-	max-width: 82%;
-	max-height: 82%;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+#back_button a {
+	color: black;
 }
 
 .menu {
