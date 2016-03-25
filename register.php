@@ -25,7 +25,7 @@
 			</tr>
 		</form>
 	</table>
-	<a href="/"><input type="text" value="Login"></a>
+	<a href="/">Login</a>
 </div>
 <?php
 	include "footer.html";
