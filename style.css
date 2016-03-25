@@ -443,14 +443,16 @@ a:active {
 
 .messagebox {
 	display: none;
-	position: fixed;
-	width: 400px;
-	height: 200px;
-  	color: black;
-  	left: 50px;
-  	top: 50px;
-  	text-align: center;
-  	z-index: 15;
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    color: black;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    z-index: 15;
+    margin-left: -200px;
+    margin-top: -100px;
 }
 
 .box {
@@ -493,9 +495,9 @@ a:active {
 
 .mbclose {
 	color: white;
-	position: fixed;
-    left: 435px;
-    top: 50px;
+	position: relative;
+    left: 216px;
+    top: -225px;
 	text-shadow: -1px -1px 0 #000,
 				 1px -1px 0 #000,
 				 -1px 1px 0 #000,
@@ -505,7 +507,7 @@ a:active {
 .mbclose2 {
 	color: black;
 	position: relative;
-	top: -60px;
+	top: -70px;
 }
 .mbclose2 button {
     background-color: rgb(249, 249, 249);
