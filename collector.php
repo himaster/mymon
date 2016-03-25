@@ -48,13 +48,12 @@ function child_() {
 	}
 	$mysql_conname = "mysql_".$servername;
 	$$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($$mysql_conname->connect_errno."\n");
-	$query = "UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-	$result = $$mysql_conname->query($query);
-	common_log($servername. " - " .$query);
+	$result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
 	if (!isset($result)) common_log($servername." - LA not updated!");
 	unset($result);
 	if ($db == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
 	else $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';");
+	common_log($servername. " - " .$result);
 	if (!isset($result)) common_log($servername." - REP not updated!");
 	unset($result);
 	if ($errs == 1) $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
