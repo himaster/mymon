@@ -106,8 +106,9 @@ function rep($connection, $serverip) {
 		}
 		list($cKey, $cValue) = explode(':', $cLine, 2);
 		$data[trim($cKey)] = trim($cValue);
-		common_log($servername. " - \$data[trim($cKey)]=" .$data[trim($cKey)]);
+
 	}
+	common_log($servername. " - \$data[\"Slave_SQL_Running\"]=" .$data["Slave_SQL_Running"]);
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
