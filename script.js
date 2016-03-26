@@ -261,7 +261,7 @@ $(document).ready(function() {
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     $("#left_button").click(function() {
-        var popstate = document.getElementById("message_div").style;
+        var popstate = document.getElementById("my_div").style;
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
         else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
         if (popstate.display !== "block") {
@@ -283,13 +283,6 @@ $(document).ready(function() {
             $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
             expanded = false;
         }
-    });
-    $("#message_submit").click(function() {
-        var popstate = document.getElementById("message_div").style;
-        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-        else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
-        $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
-        expanded = false;
     });
     $("input[name=password]").keyup(function() {
         $("input[name=password2]").val($(this).val());
