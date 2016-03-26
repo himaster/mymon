@@ -284,7 +284,7 @@ $(document).ready(function() {
     $("#message_submit").click(function() {
         $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
         expanded = false;
-    }
+    });
     $("input[name=password]").keyup(function() {
         $("input[name=password2]").val($(this).val());
     });
