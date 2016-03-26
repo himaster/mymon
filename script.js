@@ -173,6 +173,7 @@ function msg_submit(){
         success: function(data) {
             status(data);
             document.getElementById('message_div').style.display = 'none';
+            toggle_visibility_msg('message_div');
         },
    error: function(){
         alert('error handling here');

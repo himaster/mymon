@@ -104,6 +104,6 @@
 			}
 		?>
 		</select>
-		<p><input type="submit" name="message_submit" id="message_submit" value="send" onclick="javascript: toggle_visibility_msg('message_div');">
+		<p><input type="submit" name="message_submit" id="message_submit" value="send">
 	</form>
 </div>
