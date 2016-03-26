@@ -1,6 +1,9 @@
 <?php
 	include "header.html";
 ?>
+<div id="logo">
+    <img src="mymon.png">
+</div>
 <div class="register">
 	<table>
 		<form action="reg.php" method="POST">
