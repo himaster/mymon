@@ -231,6 +231,7 @@ a:active {
 	margin-left: 2px;
 	background-color: white;
 	border: solid 1px rgb(150, 150, 150);
+	height: 30px;
 }
 
 .menu input[type=checkbox] {
