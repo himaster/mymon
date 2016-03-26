@@ -13,7 +13,7 @@
 				<td><input type="password" name="password"></td>
 			</tr>
 			<tr>
-				<td>Еще разок</td>
+				<td>Повтор</td>
 				<td><input type="password" name="password2"></td>
 			</tr>
 			<tr>

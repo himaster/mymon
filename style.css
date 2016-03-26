@@ -378,6 +378,7 @@ a:active {
 	background-color: white;
     border: solid 2px black;
     color: black;
+    height: 30px;
 }
 
 .register td {
