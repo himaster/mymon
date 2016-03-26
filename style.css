@@ -239,6 +239,9 @@ a:active {
   width: 10px;
   height: 10px;
 }
+.menu input:focus {
+    outline: 0;
+}
 
 .menu_title {
 	text-align: center;
