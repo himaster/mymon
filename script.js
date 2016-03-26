@@ -173,7 +173,6 @@ function msg_submit(){
         success: function(data) {
             status(data);
             document.getElementById('message_div').style.display = 'none';
-            toggle_visibility_msg('message_div');
         },
    error: function(){
         alert('error handling here');
@@ -261,10 +260,10 @@ $(document).ready(function() {
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
+    var popstate = document.getElementById("message_div").style;
+    if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
+    else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
     $("#left_button").click(function() {
-        var popstate = document.getElementById("my_div").style;
-        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-        else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
         if (popstate.display !== "block") {
             $(this).animate(window.animation[0], {duration : 200, easing: 'swing'});
             expanded = true;
@@ -274,9 +273,6 @@ $(document).ready(function() {
         }
     });
     $("#left_button2").click(function() {
-        var popstate = document.getElementById("message_div").style;
-        if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
-        else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
         if (popstate.display !== "block") {
             $(this).animate(window.animation[0], {duration : 200, easing: 'swing'});
             expanded = true;
@@ -285,6 +281,10 @@ $(document).ready(function() {
             expanded = false;
         }
     });
+    $("#message_submit").click(function() {
+        $(this).animate(window.animation[1], {duration: 200, easing: 'swing'});
+        expanded = false;
+    }
     $("input[name=password]").keyup(function() {
         $("input[name=password2]").val($(this).val());
     });
