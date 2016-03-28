@@ -228,7 +228,6 @@ a:active {
 }
 
 .menu input {
-	margin-left: 2px;
 	background-color: white;
 	border: solid 1px rgb(150, 150, 150);
 	height: 30px;
@@ -363,6 +362,9 @@ a:active {
 
 .username {
 	font-weight: bold;
+    border: none !important;
+    background-color: inherit !important;
+    width: 130px;
 }
 
 .register {
