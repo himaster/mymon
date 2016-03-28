@@ -405,8 +405,9 @@ a:active {
 }
 
 .colons {
-	position: fixed;
-	background-color: rgba(211, 211, 211, 0);
+	position: absolute;
+	background-color: rgba(249, 249, 249, 0);
+	color: red;
 	top: -3px;
 	display: none;
 }
