@@ -67,7 +67,8 @@ elseif (isset($_POST['submit_edit'])) {
 		else $unotify = 0;
 		$query = "UPDATE users SET password = '$password', email = '$email', la = '$ula', rep = '$urep', loc = '$uloc', `500` = '$u500', el = '$uel', mon = '$umon', red = '$ured', notify = '$unotify' WHERE login = '$login'";
 		$result = $dbconnection->query($query) or die(mysql_error());
-		header("Refresh:0; url=index.php");
+		if ($result) echo "Finished.";
+		//header("Refresh:0; url=index.php");
 	}
 }
 else {
