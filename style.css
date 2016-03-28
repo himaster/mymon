@@ -522,13 +522,12 @@ a:active {
 
 .new {
 	border: solid 2px rgb(128, 128, 128);
-	padding-top: 40px;
+	padding-top: 50px;
 }
 
 .message_title {
 	position: relative;
-    top: -200px;
-    font-family: monospace;
+    top: -190px;
     font-weight: bold;
     font-size: 20px;
 }
