@@ -501,20 +501,18 @@ a:active {
 }
 
 .mbclose {
-	color: white;
-	position: relative;
-    left: 216px;
-    top: -225px;
-	text-shadow: -1px -1px 0 #000,
-				 1px -1px 0 #000,
-				 -1px 1px 0 #000,
-				 1px 1px 0 #000;
+    color: black;
+    position: relative;
+    left: 273px;
+    top: -230px;
 }
 
 .mbclose2 {
-	color: black;
-	position: relative;
-	top: -70px;
+	color: black !important;
+    position: relative;
+    top: -63px;
+    border: black double 2px !important;
+    width: 40%;
 }
 .mbclose2 button {
     background-color: rgb(249, 249, 249);
