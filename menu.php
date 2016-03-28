@@ -28,7 +28,7 @@
 	<p><p>
 	<form action="reg.php" method="POST">
 		IP: <?php echo $_SERVER['REMOTE_ADDR'] ?>
-		<p>username:<span class="username" id="login" name="login"><?php echo $login ?></span>
+		<p>username:<input class="username" id="login" name="login" value="<?php echo $login ?>">
 		<p><a id="profile_edit" href="javascript: toggle_visibility('password_div');
 							 toggle_visibility('email_div');
 							 toggle_visibility('submit_div');
