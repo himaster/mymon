@@ -567,5 +567,6 @@ a:active {
 }
 
 img#message_logo {
-	filter: invert(100%);
+	-webkit-filter: invert(1);
+	filter: invert(1);
 }
