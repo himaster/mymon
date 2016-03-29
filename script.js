@@ -90,7 +90,7 @@ function show() {
                 document.getElementById("messagebox").style.display = "none";
             } else {
                 $("#message").html(json.msg.message);
-                $("#message_title").html('<h4>Message from ' + json.msg.login + '</h4>');
+                $("#message_title").html('<h4><b>Message from ' + json.msg.login + '</b></h4>');
                 if (document.getElementById("messagebox").style.display !== "block") {
                     notify("New message from " + json.msg.login + "\n" + json.msg.message, 10000);
                 }
