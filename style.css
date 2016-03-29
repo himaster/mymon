@@ -565,3 +565,7 @@ a:active {
     background-color: black;
     opacity: 0.5;
 }
+
+img#message_logo {
+	filter: invert(100%);
+}
