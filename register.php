@@ -2,7 +2,7 @@
 	include "header.html";
 ?>
 <div id="logo">
-    <img src="mymon.png">
+    <img src="images/mymon.png">
 </div>
 <div class="register">
 	<table>

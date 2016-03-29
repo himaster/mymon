@@ -3,7 +3,7 @@
     include "messagebox.php";
 ?>
     <div id="logo">
-        <img src="mymon.png">
+        <img src="images/mymon.png">
     </div>
     <table class="main_table table-striped" id="main_table">
         <col span="5">
