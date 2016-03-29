@@ -1,6 +1,6 @@
 <div id="messagebox" class="messagebox">
 	<div id="fade" class="fading"></div>
-	<img id="message_logo" src="images/mymon.png">
+	<img id="message_logo" src="images/mymon_mini.png">
     <div id="message" class="box effect2 new"></div>
     <div id="message_title" class="message_title"></div>
     <a class="mbclose" href="javascript: mbclose();">x</a>
