@@ -568,5 +568,9 @@ a:active {
 
 img#message_logo {
 	-webkit-filter: invert(1);
-	filter: invert(1);
+    filter: invert(1);
+    position: relative;
+    left: -160px;
+    top: 90px;
+    z-index: 1;
 }
