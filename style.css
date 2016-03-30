@@ -573,15 +573,14 @@ a:active {
     left: 0px;
     top: 0px;
     background-color: black;
-    opacity: 0.5;
     z-index: 100;
 }
 .load_fading img {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -5%;
-    margin-top: -5%;
+	margin-left: -75px;
+    margin-top: -75px;
 }
 
 img#message_logo {
