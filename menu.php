@@ -40,7 +40,7 @@
 							 toggle_visibility('col5');
 							 toggle_visibility('col6');
 							 toggle_visibility('col7');
-							 "><input type="button" value="Edit profile"></a>
+							 "><input type="button" value="edit profile"></a>
 		<p>
 		<div id="password_div"> password:
 			<input type="password" id="password" name="password">
@@ -83,7 +83,7 @@
 		</div>
 		<p>
 		<div id="submit_div">
-			<input type="submit" id="submit_edit" name="submit_edit" value="send">
+			<input type="submit" id="submit_edit" name="submit_edit" value="save">
 		</div>		
 		<p>
 		<p><a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit"><input type="button" value="logout"></a>
