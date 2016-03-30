@@ -303,5 +303,5 @@ $(window).bind('orientationchange', function(e) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-   console.log("Ready");
+   $("#load_fade").hide();
 }, false);
