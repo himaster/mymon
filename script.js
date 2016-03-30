@@ -301,3 +301,7 @@ $(window).bind('orientationchange', function(e) {
     window.location.reload();
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+   console.log("Ready");
+}, false);
