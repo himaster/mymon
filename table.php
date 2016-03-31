@@ -1,8 +1,8 @@
+    <div id="load_fade" class="load_fading"></div>
 <?php 
     include "menu.php";
     include "messagebox.php";
 ?>
-    <div id="load_fade" class="load_fading"></div>
     <div id="logo">
         <img src="images/mymon.png">
     </div>
