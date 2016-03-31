@@ -579,8 +579,8 @@ a:active {
     position: absolute;
     top: 50%;
     left: 50%;
-	margin-left: -75px;
-    margin-top: -75px;
+	margin-left: -50px;
+    margin-top: -50px;
 }
 
 img#message_logo {
