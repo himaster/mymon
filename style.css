@@ -572,7 +572,7 @@ a:active {
     height: 100%;
     left: 0px;
     top: 0px;
-    background: #000 url('http://files.mimoymima.com/images/loading.gif') no-repeat center center;
+    background: #000 url('images/loading.gif') no-repeat center center;
     z-index: 100;
 }
 .load_fading img {
