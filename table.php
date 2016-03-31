@@ -2,6 +2,7 @@
     include "menu.php";
     include "messagebox.php";
 ?>
+    <div id="load_fade" class="load_fading"><img src="images/loading.gif?<?php echo time();?>" loop=infinite></div>
     <div id="logo">
         <img src="images/mymon.png">
     </div>
