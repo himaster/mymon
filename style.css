@@ -574,6 +574,7 @@ a:active {
     top: 0px;
     background: #000 url('images/loading.gif') no-repeat center center;
     z-index: 100;
+    overflow: visible;
 }
 .load_fading img {
     position: absolute;
