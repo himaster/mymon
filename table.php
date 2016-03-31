@@ -1,4 +1,4 @@
-    <div id="load_fade" class="load_fading"></div>
+    <div id="load_fade" class="load_fading"><img src="images/loading.gif"></div>
     <div id="logo">
         <img src="images/mymon.png">
     </div>
