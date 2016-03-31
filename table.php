@@ -1,8 +1,4 @@
     <div id="load_fade" class="load_fading"></div>
-<?php 
-    include "menu.php";
-    include "messagebox.php";
-?>
     <div id="logo">
         <img src="images/mymon.png">
     </div>
@@ -25,6 +21,8 @@
         echo str_repeat(' ',1024*128);
         flush();
         ob_flush();
+        include "menu.php";
+        include "messagebox.php";
         $result = $dbconnection->query("SELECT `st`.`servername`, `st`.`ip`, `st`.`db`, `st`.`mysql`, `st`.`err`, `st`.`el`, `st`.`mongo`, `st`.`redis` 
                                         FROM `user_roles` AS `ur` 
                                         JOIN `stats` AS `st` 
