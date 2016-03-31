@@ -96,6 +96,7 @@ function show() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
+            $("#load_fade").hide();
         },
         error: function() {
             console.log("error");
@@ -302,6 +303,6 @@ $(window).bind('orientationchange', function(e) {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-   $("#load_fade").hide();
-}, false);
+//document.addEventListener('DOMContentLoaded', function() {
+//   $("#load_fade").hide();
+//}, false);
