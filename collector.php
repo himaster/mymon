@@ -112,16 +112,24 @@ function rep($connection, $serverip) {
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
+    	$onclick = "";
     } else {
     	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
     	$sql = "x";
+    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
+    		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
+    		   						 return false;\"";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
     	$iofontcolor = "<font color=\"green\">";
     	$io = "&#10003;";
+    	$onclick = "";
     } else {
     	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
     	$io = "x";
+    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
+    		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
+    		   						 return false;\"";
     }
 
     if ($data["Seconds_Behind_Master"] == "0") {
@@ -136,10 +144,7 @@ function rep($connection, $serverip) {
     }
 
     return "<a title=\"" .mysql_escape_string($data["Last_SQL_Error"]). "\" 
-    		   href=\"#\" 
-    		   onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
-    		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
-    		   						 return false;\">
+    		   href=\"#\"". $onclick . " >
     		   SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
     		   IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
     		   &#916;: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
