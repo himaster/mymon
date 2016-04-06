@@ -109,10 +109,10 @@ function rep($connection, $serverip) {
 		$data[trim($cKey)] = trim($cValue);
 
 	}
+	$onclick = "";
     if ($data["Slave_SQL_Running"] == "Yes") {
     	$sqlfontcolor = "<font color=\"green\">";
     	$sql = "&#10003;";
-    	$onclick = "";
     } else {
     	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
     	$sql = "x";
@@ -126,6 +126,9 @@ function rep($connection, $serverip) {
     } else {
     	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
     	$io = "x";
+    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
+    		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
+    		   						 return false;\"";
     }
 
     if ($data["Seconds_Behind_Master"] == "0") {
