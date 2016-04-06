@@ -123,13 +123,9 @@ function rep($connection, $serverip) {
     if ($data["Slave_IO_Running"] == "Yes") {
     	$iofontcolor = "<font color=\"green\">";
     	$io = "&#10003;";
-    	$onclick = "";
     } else {
     	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
     	$io = "x";
-    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
-    		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
-    		   						 return false;\"";
     }
 
     if ($data["Seconds_Behind_Master"] == "0") {
