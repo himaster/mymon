@@ -13,10 +13,11 @@
         <td class="el">Elastic</td>
         <td class="mon">Mongo</td>
         <td class="red">Redis</td>
+        <td class="color">Color</td>
     </tr>
 <?php
 	$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-	$result = $dbconnection->query("SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el`, `mon`, `red` FROM `mymon`.`stats` ORDER BY `servername`;") or die($dbconnection->error);
+	$result = $dbconnection->query("SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el`, `mon`, `red`, `color` FROM `mymon`.`stats` ORDER BY `servername`;") or die($dbconnection->error);
 	while ($row_user = $result->fetch_assoc()) { ?>
 	<tr>
 		<td class="serv"><input id="<?php echo trim($row_user['servername']) ?>^servername" type="text" value="<?php echo trim($row_user['servername']) ?>" onchange="javascript: editor(this.id, this.value);"></td>
@@ -28,6 +29,7 @@
 		<td class="el"><input id="<?php echo trim($row_user['servername']) ?>^el" type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 		<td class="mon"><input id="<?php echo trim($row_user['servername']) ?>^mon" type="checkbox" <?php if (trim($row_user['mon']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 		<td class="red"><input id="<?php echo trim($row_user['servername']) ?>^red" type="checkbox" <?php if (trim($row_user['red']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
+		<td class="color"><input id="<?php echo trim($row_user['servername']) ?>^color" type="color" <?php if (trim($row_user['color']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.value);"></td>
 	</tr>
 	<?php } ?>
 </table>
