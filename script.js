@@ -152,13 +152,13 @@ function users_editor(name, val) {
     else if (val === false) var columnval = '0';
     else var columnval = escape(val);
     if (columnname == 'login') {
-        document.getElementById(servername + "^uid").id = columnval + "^uid";
-        document.getElementById(servername + "^login").id = columnval + "^login";
-        document.getElementById(servername + "^email").id = columnval + "^email";
-        document.getElementById(servername + "^role").id = columnval + "^role";
-        document.getElementById(servername + "^approvied").id = columnval + "^approvied";
+        document.getElementById(username + "^uid").id = columnval + "^uid";
+        document.getElementById(username + "^login").id = columnval + "^login";
+        document.getElementById(username + "^email").id = columnval + "^email";
+        document.getElementById(username + "^role").id = columnval + "^role";
+        document.getElementById(username + "^approvied").id = columnval + "^approvied";
     }
-    var dataString = '&task=users_editor_save&userrname=' + username +'&columnname=' + columnname + '&val=' + columnval;
+    var dataString = '&task=users_editor_save&username=' + username +'&columnname=' + columnname + '&val=' + columnval;
     console.log(dataString);
     $.ajax({
         url: 'index.php',
