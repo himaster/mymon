@@ -80,9 +80,14 @@ if (isset($_COOKIE["mymon"])) {
 				$columnname = $_GET['columnname'];
 				$val = $_GET['val'];
 				if ($columnname == "role") {
-					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = (SELECT `id` FROM `mymon`.`users` WHERE `login` = '$username');";
+					$user_id = "SELECT `id` FROM `mymon`.`users` WHERE `login` = '$username';";
+					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = '$user_id'; ";
 					$roles_array = explode(',',$val);
-					print_r($roles_array);
+					foreach ($roles_array as $item) {
+					    $query += "INSERT INTO `mymon`.`user_roles`(`user_id`, `role_id`) VALUES ('$user_id', '$item'); "
+					}
+					print_r($query);
+					die();
 				}
 				else {
 					$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
