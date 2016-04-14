@@ -90,7 +90,7 @@ if (isset($_COOKIE["mymon"])) {
 				else {
 					$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
 				}
-				$result = $dbconnection->query($query) or die($dbconnection->error());
+				$result = $dbconnection->query($query) or die($dbconnection->connect_error);
 				echo "Successfully edited";
 				break;
 
