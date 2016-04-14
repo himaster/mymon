@@ -92,7 +92,7 @@ if (isset($_COOKIE["mymon"])) {
 				}
 				//die($query);
 				if ($result = $dbconnection->query($query)) echo "Successfully edited";
-				else print_r($dbconnection->error);
+				else print_r("<pre>", $dbconnection->error, "</pre>");
 				break;
 
 			case "replica_repair":
