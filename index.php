@@ -81,10 +81,10 @@ if (isset($_COOKIE["mymon"])) {
 				$val = $_GET['val'];
 				if ($columnname == "role") {
 					$user_id = "(SELECT `id` FROM `mymon`.`users` WHERE `login` = '$username')";
-					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = '$user_id'; ";
+					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = $user_id; ";
 					$roles_array = explode(',',$val);
 					foreach ($roles_array as $item) {
-					    $query .= "INSERT INTO `mymon`.`user_roles`(`user_id`, `role_id`) VALUES ('$user_id', '$item'); ";
+					    $query .= "INSERT INTO `mymon`.`user_roles`(`user_id`, `role_id`) VALUES ($user_id, '$item'); ";
 					}
 					print_r($query);
 					die();
