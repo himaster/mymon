@@ -23,7 +23,7 @@
         ob_flush();
         include "menu.php";
         include "messagebox.php";
-        $result = $dbconnection->query("SELECT `st`.`servername`, `st`.`ip`, `st`.`db`, `st`.`mysql`, `st`.`err`, `st`.`el`, `st`.`mongo`, `st`.`redis` 
+        $result = $dbconnection->query("SELECT `st`.`servername`, `st`.`ip`, `st`.`db`, `st`.`mysql`, `st`.`err`, `st`.`el`, `st`.`mongo`, `st`.`redis`, `st`.`color`
                                         FROM `user_roles` AS `ur` 
                                         JOIN `stats` AS `st` 
                                         ON `st`.`role` = `ur`.`role_id` 
@@ -36,10 +36,11 @@
             $elastic = $array["el"];
             $mongo = $array["mongo"];
             $redis = $array["redis"];
+            $color = $array["color"];
             $db = $array["db"];
             $mysql = $array["mysql"];
             $serverdb = $server . "_db";
-    		echo "<tr>";
+    		echo "<tr style=\"background-color: ". $color ."\">";
             echo "<td id='" .$server. "_name'>" .$server. "</td>";
     		if ($ula == "1") echo "<td class=\"la\" id='" .$server. "_la'></td>";
     		if ($urep == "1") echo "<td class=\"rep\" id='" .$server. "_rep'></td>";
