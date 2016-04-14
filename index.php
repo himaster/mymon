@@ -86,8 +86,6 @@ if (isset($_COOKIE["mymon"])) {
 					foreach ($roles_array as $item) {
 					    $query .= "INSERT INTO `mymon`.`user_roles`(`user_id`, `role_id`) VALUES ($user_id, '$item'); ";
 					}
-					print_r($query);
-					die();
 				}
 				else {
 					$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
