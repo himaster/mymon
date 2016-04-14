@@ -168,7 +168,7 @@ function users_editor(name, val) {
             status(html);
             console.log("Ajax: " + html);
         },
-        error: function() {
+        error: function(html) {
             status("Error!");
             console.log("Error:" + html);
         }
