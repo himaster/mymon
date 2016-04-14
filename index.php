@@ -67,7 +67,6 @@ if (isset($_COOKIE["mymon"])) {
 				$query = "UPDATE `mymon`.`stats` SET `$columnname` = '$val' WHERE `servername` = '$servername'";
 				echo $query;
 				$result = $dbconnection->query($query) or die($dbconnection->error());
-				print_r($result);
 				echo "Successfully edited";
 				break;
 
