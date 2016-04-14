@@ -82,7 +82,7 @@ if (isset($_COOKIE["mymon"])) {
 				if ($columnname == "role") {
 					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = (SELECT `id` FROM `mymon`.`users` WHERE `login` = '$username');";
 					$roles_array = explode(',',$val);
-					die($roles_array);
+					print_r($roles_array);
 				}
 				else {
 					$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
