@@ -351,17 +351,23 @@ a:active {
 }
 
 .serv {
-	/*width: 46px;*/
+	width: 100px;
 	padding-left: 5px;
     padding-right: 5px;
 	color: black;
 }
 
 .role {
-	/*width: 46px;*/
+	width: 46px;
 	padding-left: 5px;
     padding-right: 5px;
 	color: black;
+}
+
+.ipaddr {
+	width: 150px;
+	padding-left: 15px;
+    padding-right: 15px;
 }
 
 .status_bar {

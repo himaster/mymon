@@ -20,7 +20,7 @@
 	while ($row_user = $result->fetch_assoc()) { ?>
 	<tr>
 		<td class="serv"><input id="<?php echo trim($row_user['servername']) ?>^servername" type="text" value="<?php echo trim($row_user['servername']) ?>" onchange="javascript: editor(this.id, this.value);"></td>
-		<td class="la"><input id="<?php echo trim($row_user['servername']) ?>^ip" type="text" value="<?php echo trim($row_user['ip']) ?>" onchange="javascript: editor(this.id, this.value); "></td>
+		<td class="ipaddr"><input id="<?php echo trim($row_user['servername']) ?>^ip" type="text" value="<?php echo trim($row_user['ip']) ?>" onchange="javascript: editor(this.id, this.value); "></td>
 		<td class="role"><input id="<?php echo trim($row_user['servername']) ?>^role" type="text" value="<?php echo trim($row_user['role']) ?>" onchange="javascript: editor(this.id, this.value); "></td>
 		<td class="rep"><input id="<?php echo trim($row_user['servername']) ?>^db" type="checkbox" <?php if (trim($row_user['db']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 		<td class="loc"><input id="<?php echo trim($row_user['servername']) ?>^mysql" type="checkbox" <?php if (trim($row_user['mysql']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
