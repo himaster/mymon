@@ -114,6 +114,7 @@ function status(text) {
 function editor(name, val) {
     var servername = name.split('^')[0];
     var columnname = name.split('^')[1];
+    console.log("Editor: " + val);
     if (val == true) var columnval = '1';
     else if (val == false) var columnval = '0';
     else var columnval = val;
