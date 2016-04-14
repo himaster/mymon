@@ -29,7 +29,7 @@
 		<td class="el"><input id="<?php echo trim($row_user['servername']) ?>^el" type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 		<td class="mon"><input id="<?php echo trim($row_user['servername']) ?>^mon" type="checkbox" <?php if (trim($row_user['mon']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 		<td class="red"><input id="<?php echo trim($row_user['servername']) ?>^red" type="checkbox" <?php if (trim($row_user['red']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
-		<td class="color"><input id="<?php echo trim($row_user['servername']) ?>^color" type="color" <?php if (trim($row_user['color']) == 1) echo "checked "; ?> oninput="javascript: editor(this.id, this.value);"></td>
+		<td class="color"><input id="<?php echo trim($row_user['servername']) ?>^color" type="color" value="<?php echo trim($row_user['color']) ?>" oninput="javascript: editor(this.id, this.value);"></td>
 	</tr>
 	<?php } ?>
 </table>
