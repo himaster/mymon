@@ -71,8 +71,8 @@ if (isset($_COOKIE["mymon"])) {
 				$columnname = $_GET['columnname'];
 				$val = $_GET['val'];
 				$query = "UPDATE `mymon`.`stats` SET `$columnname` = '$val' WHERE `servername` = '$servername'";
-				$result = $dbconnection->query($query) or die($dbconnection->error());
-				echo "Successfully edited";
+				if ($result = $dbconnection->query($query)) echo "Successfully edited";
+				else print_r($dbconnection->error);
 				break;
 
 			case "users_editor_save":
@@ -92,7 +92,7 @@ if (isset($_COOKIE["mymon"])) {
 				}
 				//die($query);
 				if ($result = $dbconnection->query($query)) echo "Successfully edited";
-				else echo $dbconnection->error;
+				else print_r($dbconnection->error);
 				break;
 
 			case "replica_repair":
