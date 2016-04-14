@@ -245,8 +245,10 @@ $(window).resize(function() {
 
 $(document).ready(function() {
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
-    if (document.getElementById("notify").checked === true) window.create_new_mes = 1;
-    else window.create_new_mes = 0;
+    if (document.getElementById("notify") !== null ) {
+        if (document.getElementById("notify").checked === true) window.create_new_mes = 1;
+        else window.create_new_mes = 0;
+    }
     if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
         var viewportmeta = document.querySelector('meta[name="viewport"]');
         if (viewportmeta) {
