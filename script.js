@@ -169,7 +169,8 @@ function users_editor(name, val) {
             console.log("Ajax: " + html);
         },
         error: function() {
-            console.log("error");
+            status("Error!");
+            console.log("Error:" + html);
         }
     });
 }
