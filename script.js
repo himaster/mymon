@@ -117,7 +117,6 @@ function editor(name, val) {
     if (val === true) var columnval = '1';
     else if (val === false) var columnval = '0';
     else var columnval = val;
-    console.log("Editor: " + columnval);
     if (columnname == 'servername') {
         document.getElementById(servername + "^servername").id = columnval + "^servername";
         document.getElementById(servername + "^ip").id = columnval + "^ip";
@@ -131,6 +130,7 @@ function editor(name, val) {
         document.getElementById(servername + "^red").id = columnval + "^color";
     }
     var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + columnval;
+    console.log(dataString);
     $.ajax({
         url: 'index.php',
         data: dataString,
