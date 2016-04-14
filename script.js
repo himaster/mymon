@@ -128,6 +128,7 @@ function editor(name, val) {
         document.getElementById(servername + "^el").id = columnval + "^el";
         document.getElementById(servername + "^mon").id = columnval + "^mon";
         document.getElementById(servername + "^red").id = columnval + "^red";
+        document.getElementById(servername + "^red").id = columnval + "^color";
     }
     var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + columnval;
     $.ajax({
