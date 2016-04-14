@@ -75,6 +75,15 @@ if (isset($_COOKIE["mymon"])) {
 				echo "Successfully edited";
 				break;
 
+			case "users_editor_save":
+				$username = $_GET['username'];
+				$columnname = $_GET['columnname'];
+				$val = $_GET['val'];
+				$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `username` = '$username'";
+				$result = $dbconnection->query($query) or die($dbconnection->error());
+				echo "Successfully edited";
+				break;
+
 			case "replica_repair":
 			    if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
 			    	header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);

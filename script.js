@@ -127,7 +127,7 @@ function editor(name, val) {
         document.getElementById(servername + "^el").id = columnval + "^el";
         document.getElementById(servername + "^mon").id = columnval + "^mon";
         document.getElementById(servername + "^red").id = columnval + "^red";
-        document.getElementById(servername + "^red").id = columnval + "^color";
+        document.getElementById(servername + "^color").id = columnval + "^color";
     }
     var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + columnval;
     console.log(dataString);
@@ -143,7 +143,35 @@ function editor(name, val) {
             console.log("error");
         }
     });
+}
 
+function users_editor(name, val) {
+    var username = name.split('^')[0];
+    var columnname = name.split('^')[1];
+    if (val === true) var columnval = '1';
+    else if (val === false) var columnval = '0';
+    else var columnval = escape(val);
+    if (columnname == 'login') {
+        document.getElementById(servername + "^uid").id = columnval + "^uid";
+        document.getElementById(servername + "^login").id = columnval + "^login";
+        document.getElementById(servername + "^email").id = columnval + "^email";
+        document.getElementById(servername + "^role").id = columnval + "^role";
+        document.getElementById(servername + "^approvied").id = columnval + "^approvied";
+    }
+    var dataString = '&task=users_editor_save&userrname=' + username +'&columnname=' + columnname + '&val=' + columnval;
+    console.log(dataString);
+    $.ajax({
+        url: 'index.php',
+        data: dataString,
+        cache: false,
+        success: function(html) {
+            status(html);
+            console.log("Ajax: " + html);
+        },
+        error: function() {
+            console.log("error");
+        }
+    });
 }
 
 function mbclose() {
