@@ -116,7 +116,7 @@ function editor(name, val) {
     var columnname = name.split('^')[1];
     if (val === true) var columnval = '1';
     else if (val === false) var columnval = '0';
-    else var columnval = val;
+    else var columnval = escape(val);
     if (columnname == 'servername') {
         document.getElementById(servername + "^servername").id = columnval + "^servername";
         document.getElementById(servername + "^ip").id = columnval + "^ip";
