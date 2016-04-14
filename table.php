@@ -36,7 +36,8 @@
             $elastic = $array["el"];
             $mongo = $array["mongo"];
             $redis = $array["redis"];
-            $color = $array["color"];
+            if ($array["color"] == "#ffffff") $color = "";
+            else $color = $array["color"];
             $db = $array["db"];
             $mysql = $array["mysql"];
             $serverdb = $server . "_db";
