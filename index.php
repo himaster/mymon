@@ -18,7 +18,7 @@ if ($_GET['task'] == "exit") {
 
 if ($env == "master") $host="127.0.0.1";
 else $host="188.138.234.38";
-$dbconnection = new mysqli($host, "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+$dbconnection = @new mysqli($host, "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 
 if (isset($_COOKIE["mymon"])) {
  	$login = no_injection($_COOKIE["mymon"]["login"]);
@@ -90,8 +90,8 @@ if (isset($_COOKIE["mymon"])) {
 				else {
 					$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
 				}
-				$result = $dbconnection->query($query) or die($dbconnection->connect_error);
-				echo "Successfully edited";
+				if ($result = $dbconnection->query($query)) echo "Successfully edited";
+				else echo "Error!!!";
 				break;
 
 			case "replica_repair":
