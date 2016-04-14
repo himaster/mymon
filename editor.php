@@ -5,7 +5,7 @@
 	<col span="5">
 	<tr class="title">
         <td>Server</td>
-        <td>Load Averages</td>
+        <td>IP address</td>
         <td>Role</td>
         <td>Replication</td>
         <td>Locks</td>
@@ -20,14 +20,14 @@
 	while ($row_user = $result->fetch_assoc()) { ?>
 	<tr>
 		<td><input id="<?php echo trim($row_user['servername']) ?>^servername" type="text" value="<?php echo trim($row_user['servername']) ?>" onchange="javascript: editor(this.id, this.value);"></td>
-		<td><input id="<?php echo trim($row_user['servername']) ?>^ip" type="text" value="<?php echo trim($row_user['ip']) ?>" onchange="javascript: editor(this.id, this.value); "></td>
+		<td class=\"la\"><input id="<?php echo trim($row_user['servername']) ?>^ip" type="text" value="<?php echo trim($row_user['ip']) ?>" onchange="javascript: editor(this.id, this.value); "></td>
 		<td><input id="<?php echo trim($row_user['servername']) ?>^role" type="text" value="<?php echo trim($row_user['role']) ?>" onchange="javascript: editor(this.id, this.value); "></td>
-		<td><input id="<?php echo trim($row_user['servername']) ?>^db" type="checkbox" <?php if (trim($row_user['db']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
-		<td><input id="<?php echo trim($row_user['servername']) ?>^mysql" type="checkbox" <?php if (trim($row_user['mysql']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
-		<td><input id="<?php echo trim($row_user['servername']) ?>^err" type="checkbox" <?php if (trim($row_user['err']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
-		<td><input id="<?php echo trim($row_user['servername']) ?>^el" type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
-		<td><input id="<?php echo trim($row_user['servername']) ?>^mon" type="checkbox" <?php if (trim($row_user['mon']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
-		<td><input id="<?php echo trim($row_user['servername']) ?>^red" type="checkbox" <?php if (trim($row_user['red']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
+		<td class=\"rep\"><input id="<?php echo trim($row_user['servername']) ?>^db" type="checkbox" <?php if (trim($row_user['db']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
+		<td class=\"loc\"><input id="<?php echo trim($row_user['servername']) ?>^mysql" type="checkbox" <?php if (trim($row_user['mysql']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
+		<td class=\"500\"><input id="<?php echo trim($row_user['servername']) ?>^err" type="checkbox" <?php if (trim($row_user['err']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
+		<td class=\"el\"><input id="<?php echo trim($row_user['servername']) ?>^el" type="checkbox" <?php if (trim($row_user['el']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
+		<td class=\"mon\"><input id="<?php echo trim($row_user['servername']) ?>^mon" type="checkbox" <?php if (trim($row_user['mon']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
+		<td class=\"red\"><input id="<?php echo trim($row_user['servername']) ?>^red" type="checkbox" <?php if (trim($row_user['red']) == 1) echo "checked "; ?> onchange="javascript: editor(this.id, this.checked);"></td>
 	</tr>
 	<?php } ?>
 </table>
