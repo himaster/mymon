@@ -117,7 +117,6 @@ function editor(name, val) {
     if (val == true) var columnval = '1';
     else if (val == false) var columnval = '0';
     else var columnval = val;
-    console.log(columnval);
     if (columnname == 'servername') {
         document.getElementById(servername + "^servername").id = columnval + "^servername";
         document.getElementById(servername + "^ip").id = columnval + "^ip";
@@ -136,6 +135,7 @@ function editor(name, val) {
         data: dataString,
         cache: false,
         success: function(html) {
+            status(html);
             console.log("Ajax: " + html);
         },
         error: function() {
