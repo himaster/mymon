@@ -82,7 +82,7 @@ if (isset($_COOKIE["mymon"])) {
 				if ($columnname == "role") {
 					$result = $dbconnection->query("SELECT `id` FROM `mymon`.`users` WHERE `login` = '$username'");
 					$user_id = $result->fetch_assoc()['id'];
-					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = '$user_id;' ";
+					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = '$user_id;'; ";
 					$roles_array = explode(',',$val);
 					foreach ($roles_array as $item) {
 					    $query .= "INSERT INTO `mymon`.`user_roles`(`user_id`, `role_id`) VALUES ('$user_id', '$item'); ";
