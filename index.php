@@ -91,8 +91,8 @@ if (isset($_COOKIE["mymon"])) {
 					$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
 				}
 				die($query);
-				if ($result = $dbconnection->query($query)) echo "Successfully edited";
-				else var_dump($dbconnection->error);
+				//if ($result = $dbconnection->query($query)) echo "Successfully edited";
+				//else var_dump($dbconnection->error);
 				break;
 
 			case "replica_repair":
