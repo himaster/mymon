@@ -114,10 +114,10 @@ function status(text) {
 function editor(name, val) {
     var servername = name.split('^')[0];
     var columnname = name.split('^')[1];
-    console.log("Editor: " + val);
     if (val === true) var columnval = '1';
     else if (val === false) var columnval = '0';
     else var columnval = val;
+    console.log("Editor: " + columnval);
     if (columnname == 'servername') {
         document.getElementById(servername + "^servername").id = columnval + "^servername";
         document.getElementById(servername + "^ip").id = columnval + "^ip";
