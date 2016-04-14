@@ -60,6 +60,12 @@ if (isset($_COOKIE["mymon"])) {
 				include "footer.html";				
 				break;
 
+			case "users_editor":
+				include "header.html";
+				include "users.php";		
+				include "footer.html";				
+				break;
+
 			case "editor_save":
 				$servername = $_GET['servername'];
 				$columnname = $_GET['columnname'];

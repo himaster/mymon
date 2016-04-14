@@ -1,6 +1,8 @@
-<div class="left_button" id="back_button">
-	<a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>"><</a>
-</div>
+<a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>">
+	<div class="left_button" id="back_button">
+		<
+	</div>
+</a>
 <table class="main_table">
 	<col span="5">
 	<tr class="title">
