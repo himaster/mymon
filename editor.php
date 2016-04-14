@@ -1,6 +1,6 @@
 <a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>">
 	<div class="left_button" id="back_button">
-		<
+		<img src="images/back.png">
 	</div>
 </a>
 <table class="main_table">
