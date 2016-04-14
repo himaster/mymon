@@ -79,7 +79,14 @@ if (isset($_COOKIE["mymon"])) {
 				$username = $_GET['username'];
 				$columnname = $_GET['columnname'];
 				$val = $_GET['val'];
-				$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
+				if ($columnname == "role") {
+					$query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = (SELECT `id` FROM `mymon`.`users` WHERE `login` = '$username');";
+					$roles_array = explode(',',$val);
+					die($roles_array);
+				}
+				else {
+					$query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
+				}
 				$result = $dbconnection->query($query) or die($dbconnection->error());
 				echo "Successfully edited";
 				break;
