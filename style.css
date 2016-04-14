@@ -350,6 +350,20 @@ a:active {
 	color: black;
 }
 
+.serv {
+	/*width: 46px;*/
+	padding-left: 5px;
+    padding-right: 5px;
+	color: black;
+}
+
+.role {
+	/*width: 46px;*/
+	padding-left: 5px;
+    padding-right: 5px;
+	color: black;
+}
+
 .status_bar {
 	display: none;
 	width: 492px;
