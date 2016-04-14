@@ -194,7 +194,6 @@ if (isset($_COOKIE["mymon"])) {
 				setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 				include "header.html";
 		    	include "table.php";
-		    	echo "<script type=\"text/javascript\" src=\"script.js\"></script>";
 		    	include "footer.html";
 		    	break;
 		}
@@ -222,7 +221,6 @@ if (isset($_COOKIE["mymon"])) {
 		setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 		include "header.html";
     	include "table.php";
-    	echo "<script type=\"text/javascript\" src=\"script.js\"></script>";
     	include "footer.html";
     }
 	else

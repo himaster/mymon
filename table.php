@@ -54,3 +54,8 @@
     ?>
     </table>
 </div>
+<div id="test_div" class="status_bar"></div>
+<script type="text/javascript" src="jquery-2.2.2.min.js"></script>
+<script type="text/javascript" src="jquery-ui.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
