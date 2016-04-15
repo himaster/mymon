@@ -54,6 +54,10 @@
 		top: -3px;
 		left: 172px;
 	}
+	#back_button {
+		top: -3px;
+		left: 172px;
+	}
 	.main_table {
 		width: 100%;
 	}
@@ -191,7 +195,7 @@ a:active {
   	background-color: lightgray;
 }
 
-#left_button {
+.left_button {
 	position: fixed;
 	width: 40px;
  	height: 40px;
@@ -206,7 +210,7 @@ a:active {
     border: 1px solid black;
 }
 
-#left_button img {
+.left_button img {
 	max-width: 85%;
 	max-height: 85%;
 	position: relative;
