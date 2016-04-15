@@ -206,7 +206,7 @@ a:active {
     border: 1px solid black;
 }
 
-.left_button img {
+#left_button img {
 	max-width: 85%;
 	max-height: 85%;
 	position: relative;
