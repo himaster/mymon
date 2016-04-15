@@ -22,6 +22,11 @@
 		<img src="images/settings.png">
 	</div>
 </a>
+<a href="index.php?task=users_editor">
+	<div id="left_button4" class="left_button">
+		<img src="images/users.png">
+	</div>
+</a>
 <?php } ?>
 <div id="my_div" class="menu">
 	<b>Profile</b>
