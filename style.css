@@ -52,7 +52,7 @@
 	}
 	#left_button4 {
 		top: -3px;
-		left: 163px;
+		left: 172px;
 	}
 	.main_table {
 		width: 100%;
@@ -63,7 +63,7 @@
 	}
 	div#logo {
 		position: fixed;
-		left: 30%;
+		left: 40%;
 		top: 0px;
 	    z-index: 1;
 	}
