@@ -1,4 +1,4 @@
-$(".wrap").scroll(function() {
+window.addEventListener("scroll", function() {
   var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-  document.getElementById('showScroll').innerHTML = scrolled + 'px';
+  console.log( scrolled + 'px' );
 });
