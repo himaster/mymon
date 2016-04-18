@@ -1,11 +1,4 @@
-$('.scrollable').pullToRefresh({
-    callback: function() {
-        var def = $.Deferred();
-
-        setTimeout(function() {
-            def.resolve();      
-        }, 3000); 
-
-        return def.promise();
-    }
-});
+window.onscroll = function() {
+  var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+  document.getElementById('showScroll').innerHTML = scrolled + 'px';
+}
