@@ -270,6 +270,11 @@ function reverst() {
     document.getElementById('test_div').style.width = document.getElementById('main_table').clientWidth + "px";
 }
 
+function is_touch_device() {
+  return 'ontouchstart' in window        // works on most browsers 
+      || navigator.maxTouchPoints;       // works on IE10/11 and Surface
+};
+
 $(window).resize(function() {
     reverst();
 });
