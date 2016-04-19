@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 include_once("functions.php");
 
-if ($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") $env="master";
+if (($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") || ($_SERVER['HTTP_HOST'] == "tmymon.pkwteile.de")) $env="master";
 elseif ($_SERVER['HTTP_HOST'] == "mymon.loc") $env="dev";
 else header("Location: https://mymon.pkwteile.de/");
 
