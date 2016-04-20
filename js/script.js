@@ -65,6 +65,7 @@ function show() {
         url: 'index.php?task=getdata',
         dataType: 'json',
         success: function(json) {
+            $('div#loader').show();
             json.data.forEach(function(item) {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
@@ -96,6 +97,7 @@ function show() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
+            $('div#loader').hide();
             $("#load_fade").hide();
         },
         error: function() {
@@ -349,7 +351,7 @@ document.body.addEventListener('touchmove', function(e) {
 });
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
-    if (swipeY<=-50) {
+    if (swipeY<=-70) {
         alert("Restart");
     }
 });
