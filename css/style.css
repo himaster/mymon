@@ -103,6 +103,8 @@
 		left: 83%;
 		top: 60px;
 	    z-index: 1;
+	    height: 20px;
+	    width: 20px;
 	}
 	div#logo {
 		position: absolute;
