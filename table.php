@@ -2,6 +2,9 @@
 <div id="logo">
     <img src="images/mymon.png">
 </div>
+<div id="loader">
+    <img src="images/loader.png">
+</div>
     <table class="main_table table-striped" id="main_table">
         <col span="5">
             <tr class="title">

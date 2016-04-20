@@ -98,7 +98,13 @@
 /* All desktops */
 @media only screen
   and (min-device-width: 415px) {
-	 div#logo {
+	div#loader {
+		position: absolute;
+		left: 83%;
+		top: 60px;
+	    z-index: 1;
+	}
+	div#logo {
 		position: absolute;
 		left: 73%;
 		top: 60px;

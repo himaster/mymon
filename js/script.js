@@ -345,7 +345,7 @@ document.body.addEventListener('touchstart', function(e) {
 });
 document.body.addEventListener('touchmove', function(e) {
     swipeY = startY - e.changedTouches[0].screenY;
-    console.log(swipeY);
+    
 });
 document.body.addEventListener('touchend', function(e) {
     if (swipeY<=-30) {
