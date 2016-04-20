@@ -340,7 +340,7 @@ $(window).bind('orientationchange', function(e) {
 });
 
 document.body.addEventListener('touchstart', function(e) {
-    e.preventDefault();
+    //e.preventDefault();
     startY = e.touches[0].screenY;
 });
 document.body.addEventListener('touchmove', function(e) {
