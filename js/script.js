@@ -340,18 +340,18 @@ $(window).bind('orientationchange', function(e) {
 });
 
 document.body.addEventListener('touchstart', function(e) {
-    startY = e.touches[0].screenY;
+    window.startY = e.touches[0].screenY;
     $('div#loader').show();
 });
 document.body.addEventListener('touchmove', function(e) {
-    swipeY = 360 - (startY - e.changedTouches[0].screenY);
-    console.log(swipeY);
+    window.swipeY = 360 - (window.startY - e.changedTouches[0].screenY);
+    console.log(window.swipeY);
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
-    console.log(swipeY);
-    if (swipeY<=-70) {
+    console.log(window.swipeY);
+    if (window.swipeY<=-70) {
         console.log("Test");
         setTimeout(show_all(), 1000);
     }
