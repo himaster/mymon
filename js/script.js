@@ -63,6 +63,7 @@ function toggle_visibility_msg(id) {
 function show_all() {
     $("div#loader").addClass("wheel");
     $("div#loader").show();
+    window.loading = true;
     $.ajax({
         url: 'index.php?task=getdata',
         dataType: 'json',
@@ -98,11 +99,13 @@ function show_all() {
             }
             setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); }, 1000);
             $("#load_fade").hide();
+            window.loading = false;
         },
         error: function() {
             console.log("error");
             setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); }, 1000);
             $("#load_fade").hide();
+            window.loading = false;
         }   
     });
 }
@@ -344,7 +347,7 @@ $(window).bind('orientationchange', function(e) {
 document.body.addEventListener('touchstart', function(e) {
     window.swiped = true;
     startY = e.touches[0].screenY;
-    $("div#loader").show();
+    if (!window.loading) { $("div#loader").show(); }
 });
 document.body.addEventListener('touchmove', function(e) {
     swipeY = startY - e.changedTouches[0].screenY;
@@ -352,7 +355,7 @@ document.body.addEventListener('touchmove', function(e) {
 });
 document.body.addEventListener('touchend', function(e) {
     $("div#loader").hide();
-    if (swipeY<=-70) {
+    if ((swipeY<=-70) && (!window.loading)) {
         console.log("Reloading");
         show_all();
     }
