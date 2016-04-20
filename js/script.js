@@ -61,7 +61,6 @@ function toggle_visibility_msg(id) {
 }
 
 function show_all() {
-    console.log("Show");
     $("div#loader").show();
     $.ajax({
         url: 'index.php?task=getdata',
@@ -102,6 +101,8 @@ function show_all() {
         },
         error: function() {
             console.log("error");
+            setTimeout(function() { $("div#loader").hide(); }, 1000);
+            $("#load_fade").hide();
         }   
     });
 }
