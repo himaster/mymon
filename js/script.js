@@ -294,7 +294,7 @@ $(document).ready(function() {
             }, false);
         }
     }
-    show();
+    async(show());
     setInterval("show()", 5000);
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
