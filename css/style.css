@@ -67,6 +67,7 @@
 	}
 
 	div#loader {
+		display: none;
 		position: absolute;
 		left: 80%;
 		top: 10px;
@@ -112,6 +113,7 @@
 @media only screen
   and (min-device-width: 415px) {
 	div#loader {
+		display: none;
 		position: absolute;
 		left: 83%;
 		top: 60px;

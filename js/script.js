@@ -340,14 +340,15 @@ $(window).bind('orientationchange', function(e) {
 });
 
 document.body.addEventListener('touchstart', function(e) {
-    //e.preventDefault();
     startY = e.touches[0].screenY;
+    $('div#loader').show();
 });
 document.body.addEventListener('touchmove', function(e) {
     swipeY = startY - e.changedTouches[0].screenY;
-    
+    $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
+    $('div#loader').hide();
     if (swipeY<=-30) {
         alert("Restart");
     }
