@@ -335,7 +335,6 @@ $(document).ready(function() {
     });
 });
 
-
 $(window).bind('orientationchange', function(e) {
     window.location.reload();
 });
