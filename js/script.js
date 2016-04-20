@@ -345,19 +345,25 @@ $(window).bind('orientationchange', function(e) {
 });
 
 document.body.addEventListener('touchstart', function(e) {
-    window.swiped = true;
-    startY = e.touches[0].screenY;
-    if (!window.loading) { $("div#loader").show(); }
+    if (!window.loading) { 
+        window.swiped = true;
+        startY = e.touches[0].screenY;
+        $("div#loader").show(); 
+    }
 });
 document.body.addEventListener('touchmove', function(e) {
-    swipeY = startY - e.changedTouches[0].screenY;
-    $('div#loader img').css('transform','rotate(' + (360 - swipeY) + 'deg)');
+    if (!window.loading) { 
+        swipeY = startY - e.changedTouches[0].screenY;
+        $('div#loader img').css('transform','rotate(' + (360 - swipeY) + 'deg)');
+    }
 });
 document.body.addEventListener('touchend', function(e) {
-    $("div#loader").hide();
-    if ((swipeY<=-70) && (!window.loading)) {
-        console.log("Reloading");
-        show_all();
+    if (!window.loading) { 
+        $("div#loader").hide();
+        if (swipeY<=-70) {
+            console.log("Reloading");
+            show_all();
+        }
+        window.swiped = false;
     }
-    window.swiped = false;
 });
