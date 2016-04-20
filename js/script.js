@@ -349,7 +349,7 @@ document.body.addEventListener('touchmove', function(e) {
 });
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
-    if (swipeY<=-30) {
+    if (swipeY<=-50) {
         alert("Restart");
     }
 });
