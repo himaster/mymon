@@ -1,7 +1,7 @@
 <?php
 
 $hostname = $_SERVER['HTTP_HOST'];
-
+die($hostname);
 function no_injection( $str='' ) { 
     $str = stripslashes( $str ); 
     $str = trim( $str ); 
