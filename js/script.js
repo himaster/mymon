@@ -61,10 +61,8 @@ function toggle_visibility_msg(id) {
 }
 
 function show() {
-    $("div#loader").show();
     $.ajax({
         url: 'index.php?task=getdata',
-        async: true,
         dataType: 'json',
         success: function(json) {
             json.data.forEach(function(item) {
@@ -348,9 +346,10 @@ document.body.addEventListener('touchmove', function(e) {
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
-    //$('div#loader').hide();
+    $('div#loader').hide();
     if (swipeY<=-70) {
-        show();
+        $("div#loader").show();
+        setTimeout(show(), 100);
     }
 });
 //document.addEventListener('DOMContentLoaded', function() {
