@@ -69,7 +69,7 @@
 	div#loader {
 		display: none;
 		position: fixed;
-		left: 80%;
+		left: 10px;
 		top: 10px;
 	    z-index: 1;
 	    height: 20px;
