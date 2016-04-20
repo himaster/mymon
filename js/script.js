@@ -342,6 +342,7 @@ $(window).bind('orientationchange', function(e) {
 
 document.body.addEventListener('touchstart', function(e) {
     startY = e.touches[0].screenY;
+    $("div#loader").show();
 });
 document.body.addEventListener('touchmove', function(e) {
     swipeY = startY - e.changedTouches[0].screenY;
