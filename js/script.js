@@ -61,8 +61,8 @@ function toggle_visibility_msg(id) {
 }
 
 function show_all() {
-    $("div#loader").show();
     console.log("Show");
+    $("div#loader").show();
     $.ajax({
         url: 'index.php?task=getdata',
         dataType: 'json',
@@ -96,6 +96,7 @@ function show_all() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
+            console.log("Hide");
             $("div#loader").hide();
             $("#load_fade").hide();
         },
@@ -354,7 +355,7 @@ document.body.addEventListener('touchend', function(e) {
         console.log("Test");
         setTimeout(show_all(), 1000);
     }
-    $('div#loader').hide();
+    //$('div#loader').hide();
 });
 //document.addEventListener('DOMContentLoaded', function() {
 //   $("#load_fade").hide();
