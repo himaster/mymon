@@ -92,7 +92,7 @@ function la($connection, $serverip) {
 	else $fontcolor = "<span style=\"color: red\">";
 
 	return "<a title=\"" .$la_string. "\" 
-			   href=\"https://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
+			   href=\"" .host_scheme(). "://" .$hostname. "/index.php?task=top&serverip=" .$serverip. "\"
 			   target=\"_blank\">" .$fontcolor. "<b>" .$percent. "%</b></span>\n</a>";
 }
 
@@ -154,7 +154,7 @@ function err500($connection, $serverip) {
 	$str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
 
     return "<a title=\"Click to show 500 errors\" 
-    		 href=https://". $hostname. "/index.php?task=500err&serverip=" .$serverip. " 
+    		 href=" .host_scheme(). "://". $hostname. "/index.php?task=500err&serverip=" .$serverip. " 
     		 target=\"_blank\">" .$str. "\n</a>";
 }
 

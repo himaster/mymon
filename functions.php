@@ -34,3 +34,11 @@ function console_log($data) {
     else $output = "<script>console.log('console log: " .$data. "');</script>";
     echo $output;
 }
+
+function host_scheme() {
+	$isSecure = false;
+	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+    	$isSecure = true;
+	}
+	return $isSecure ? 'https' : 'http';
+}

@@ -91,7 +91,7 @@
 			<input type="submit" id="submit_edit" name="submit_edit" value="save">
 		</div>		
 		<p>
-		<p><a href="https://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit"><input type="button" value="logout"></a>
+		<p><a href="<?php echo host_scheme() ?>://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit"><input type="button" value="logout"></a>
 	</form>
 </div>
 <div id="message_div" class="menu">

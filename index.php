@@ -4,7 +4,7 @@ include_once("functions.php");
 
 if (($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") || ($_SERVER['HTTP_HOST'] == "tmymon.pkwteile.de")) $env="master";
 elseif ($_SERVER['HTTP_HOST'] == "mymon.loc") $env="dev";
-else header("Location: https://mymon.pkwteile.de/");
+else header("Location: " .host_scheme(). "://mymon.pkwteile.de/");
 
 if (!isset($_GET['task'])) $_GET['task'] = "NULL";
 
@@ -12,7 +12,7 @@ if ($_GET['task'] == "exit") {
 	setcookie('mymon[login]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 	setcookie('mymon[password]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
 	unset($_COOKIE['mymon']);
-	header("Location: https://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+	header("Location: " .host_scheme(). "://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 	die();
 }
 
