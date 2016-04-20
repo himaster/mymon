@@ -60,7 +60,7 @@ function toggle_visibility_msg(id) {
     } catch(err) {console.log(err)}
 }
 
-function show() {
+function show_all() {
     $("div#loader").show();
     console.log("Show");
     $.ajax({
@@ -294,8 +294,8 @@ $(document).ready(function() {
             }, false);
         }
     }
-    show();
-    setInterval("show()", 5000);
+    show_all();
+    setInterval("show_all()", 5000);
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
@@ -350,7 +350,7 @@ document.body.addEventListener('touchmove', function(e) {
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
     if (swipeY<=-70) {
-        setTimeout(show(), 1000);
+        setTimeout(show_all(), 1000);
     }
 });
 //document.addEventListener('DOMContentLoaded', function() {
