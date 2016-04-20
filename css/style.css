@@ -68,7 +68,7 @@
 
 	div#loader {
 		display: none;
-		position: absolute;
+		position: fixed;
 		left: 80%;
 		top: 10px;
 	    z-index: 1;
@@ -114,7 +114,7 @@
   and (min-device-width: 415px) {
 	div#loader {
 		display: none;
-		position: absolute;
+		position: fixed;
 		left: 83%;
 		top: 60px;
 	    z-index: 1;
