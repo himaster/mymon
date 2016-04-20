@@ -340,10 +340,9 @@ $(window).bind('orientationchange', function(e) {
     window.location.reload();
 });
 
-$("div.main_table").bind('swipe', function(e){
+$("table#main_table").bind('swipe', function(e){
     console.log("Swipe.");
     alert("Swipe");
-    return false;
 });
 //document.addEventListener('DOMContentLoaded', function() {
 //   $("#load_fade").hide();
