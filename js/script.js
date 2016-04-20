@@ -61,6 +61,7 @@ function toggle_visibility_msg(id) {
 }
 
 function show_all() {
+    $("div#loader").addClass("wheel");
     $("div#loader").show();
     $.ajax({
         url: 'index.php?task=getdata',
@@ -100,7 +101,7 @@ function show_all() {
         },
         error: function() {
             console.log("error");
-            setTimeout(function() { $("div#loader").hide(); }, 1000);
+            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); }, 1000);
             $("#load_fade").hide();
         }   
     });
