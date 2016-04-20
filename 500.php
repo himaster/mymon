@@ -10,7 +10,7 @@
 			<img src="images/back.png">
 		</div>
 	</a>
-	<div class=\"textstyle\">"
+	<div class="textstyle">
 <?php
 	$str = ssh2_return($connection, "cat /var/log/500.errs");
 	echo nl2br($str);
