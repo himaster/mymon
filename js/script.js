@@ -97,15 +97,13 @@ function show_all() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
-            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); }, 1000);
+            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); window.loading = false; }, 1000);
             $("#load_fade").hide();
-            window.loading = false;
         },
         error: function() {
             console.log("error");
-            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); }, 1000);
+            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); window.loading = false; }, 1000);
             $("#load_fade").hide();
-            window.loading = false;
         }   
     });
 }
