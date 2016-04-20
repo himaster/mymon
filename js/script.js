@@ -94,7 +94,7 @@ function show() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
-            hide1(getElementById("loader"));
+            hide1(document.getElementById("loader"));
             $("#load_fade").hide();
         },
         error: function() {
