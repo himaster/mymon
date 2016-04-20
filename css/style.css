@@ -121,6 +121,10 @@
 	    height: 20px;
 	    width: 20px;
 	}
+	div#loader img {
+	    height: 100%;
+	    width: 100%;
+	}
 	div#logo {
 		position: absolute;
 		left: 73%;
