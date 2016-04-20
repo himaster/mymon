@@ -349,12 +349,12 @@ document.body.addEventListener('touchmove', function(e) {
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
-    $('div#loader').hide();
     console.log(window.swipeY);
-    if (window.swipeY<=-70) {
+    if (window.swipeY>=410) {
         console.log("Test");
         setTimeout(show_all(), 1000);
     }
+    $('div#loader').hide();
 });
 //document.addEventListener('DOMContentLoaded', function() {
 //   $("#load_fade").hide();
