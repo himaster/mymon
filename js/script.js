@@ -61,7 +61,8 @@ function toggle_visibility_msg(id) {
 }
 
 function show() {
-    $('div#loader').show();
+    async(
+    $("div#loader").show();
     $.ajax({
         url: 'index.php?task=getdata',
         async: false,
@@ -71,12 +72,10 @@ function show() {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
                     $("#" + item['servername'] + "_name").addClass('forceTimeout');
-                    //var t = setTimeout("conn_prob = notify('Connection problems!')", 20000);
                 }
                 else {
                     $("#" + item['servername'] + "_name").removeClass('timeout');
                     $("#" + item['servername'] + "_name").removeClass('forceTimeout');
-                    //clearTimeout(t);
                     setTimeout(function(){ $("#" + item['servername'] + "_name").addClass('timeout') }, 100);
                 }
                 $("#" + item['servername'] + "_name").html(item['servername']);
@@ -98,13 +97,13 @@ function show() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
-            $('div#loader').hide();
+            $("div#loader").hide();
             $("#load_fade").hide();
         },
         error: function() {
             console.log("error");
         }
-        
+    );    
     });
 }
 
