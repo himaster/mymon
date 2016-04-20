@@ -39,18 +39,7 @@ if (isset($_COOKIE["mymon"])) {
 		switch ($_GET["task"]) {
 			case "500err":
 				include "header.html";
-				if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
-					header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-   					die("Connection error!");
-				}
-				ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '');
-				echo("<div class=\"back_menu\">");
-				echo("<a href=\"#\" onclick=\"self.close()\">");
-				echo("<img src=\"./images/back.png\"></a>");
-				echo("</div><div class=\"textstyle\">");
-				$str = ssh2_return($connection, "cat /var/log/500.errs");
-				echo nl2br($str);
-				echo "</div>";
+				include "500.php";
 				include "footer.html";				
 				break;
 
