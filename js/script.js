@@ -339,9 +339,18 @@ $(window).bind('orientationchange', function(e) {
     window.location.reload();
 });
 
-$("table#main_table").bind('swipe', function(e){
-    console.log("Swipe.");
-    alert("Swipe");
+document.body.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    startY = e.touches[0].screenY;
+});
+document.body.addEventListener('touchmove', function(e) {
+    swipeY = startY - e.changedTouches[0].screenY;
+    console.log(swipeY);
+});
+document.body.addEventListener('touchend', function(e) {
+    if (swipeY<=-30) {
+        alert("Restart");
+    }
 });
 //document.addEventListener('DOMContentLoaded', function() {
 //   $("#load_fade").hide();
