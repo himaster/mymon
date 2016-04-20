@@ -340,7 +340,7 @@ $(window).bind('orientationchange', function(e) {
     window.location.reload();
 });
 
-$("#main_table").bind('swipe', function(e){
+$("div.main_table").bind('swipe', function(e){
     console.log("Swipe.");
     alert("Swipe");
     return false;
