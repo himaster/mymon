@@ -350,7 +350,7 @@ document.body.addEventListener('touchmove', function(e) {
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
-    $('div#loader').hide();
+    //$('div#loader').hide();
     if (swipeY<=-70) {
         show();
     }
