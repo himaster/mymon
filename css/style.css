@@ -69,8 +69,8 @@
 	div#loader {
 		display: none;
 		position: fixed;
-		left: 10px;
-		top: 10px;
+		left: 5px;
+		top: 5px;
 	    z-index: 1;
 	    height: 30px;
 	    width: 30px;
