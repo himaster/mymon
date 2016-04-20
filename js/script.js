@@ -296,7 +296,7 @@ $(document).ready(function() {
         }
     }
     show_all();
-    setInterval("show_all()", 5000);
+    setInterval(function() { if(!window.swiped) { show_all()}}, 5000);
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
@@ -341,6 +341,7 @@ $(window).bind('orientationchange', function(e) {
 });
 
 document.body.addEventListener('touchstart', function(e) {
+    window.swiped = true;
     startY = e.touches[0].screenY;
     $("div#loader").show();
 });
@@ -353,4 +354,5 @@ document.body.addEventListener('touchend', function(e) {
     if (swipeY<=-70) {
         show_all();
     }
+    window.swiped = false;
 });
