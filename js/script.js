@@ -350,8 +350,9 @@ document.body.addEventListener('touchmove', function(e) {
     $('div#loader img').css('transform','rotate(' + (360 - swipeY) + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
-    console.log(swipeY);
+    $("div#loader").hide();
     if (swipeY<=-70) {
+        console.log("Reloading");
         show_all();
     }
     window.swiped = false;
