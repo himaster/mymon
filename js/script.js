@@ -95,7 +95,6 @@ function show_all() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
-            console.log("Reloaded");
             setTimeout(function() { $("div#loader").hide(); }, 1000);
             $("#load_fade").hide();
         },
@@ -350,6 +349,7 @@ document.body.addEventListener('touchmove', function(e) {
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
+    console.log(window.swipeY);
     if (window.swipeY>=410) {
         show_all();
     }
