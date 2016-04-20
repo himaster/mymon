@@ -61,11 +61,10 @@ function toggle_visibility_msg(id) {
 }
 
 function show() {
-    async(
     $("div#loader").show();
     $.ajax({
         url: 'index.php?task=getdata',
-        async: false,
+        async: true,
         dataType: 'json',
         success: function(json) {
             json.data.forEach(function(item) {
@@ -102,8 +101,7 @@ function show() {
         },
         error: function() {
             console.log("error");
-        }
-    );    
+        }   
     });
 }
 
