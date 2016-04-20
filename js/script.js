@@ -97,7 +97,7 @@ function show_all() {
                 document.getElementById("messagebox").style.display = "block";
             }
             console.log("Reloaded");
-            setTimeout($("div#loader").hide(), 1000);
+            $("div#loader").hide();
             $("#load_fade").hide();
         },
         error: function() {
