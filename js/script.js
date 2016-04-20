@@ -61,11 +61,11 @@ function toggle_visibility_msg(id) {
 }
 
 function show() {
+    $('div#loader').show();
     $.ajax({
         url: 'index.php?task=getdata',
         dataType: 'json',
         success: function(json) {
-            $('div#loader').show();
             json.data.forEach(function(item) {
                 var nowTime = ~~(new Date().getTime() / 1000);
                 if (Math.abs(nowTime - item['timestamp']) > 20) {
