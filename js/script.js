@@ -346,8 +346,8 @@ document.body.addEventListener('touchstart', function(e) {
     $('div#loader').show();
 });
 document.body.addEventListener('touchmove', function(e) {
-    swipeY = startY - e.changedTouches[0].screenY;
-    $('div#loader img').css('transform','rotate(-' + swipeY + 'deg)');
+    swipeY = 360 - startY - e.changedTouches[0].screenY;
+    $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
