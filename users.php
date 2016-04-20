@@ -6,7 +6,7 @@
 <table class="main_table table-striped">
 	<col span="5">
 	<tr class="title">
-        <td>UID</td>
+        <td class="loc">UID</td>
         <td>Login</td>
         <td>Email</td>
         <td>Role</td>
