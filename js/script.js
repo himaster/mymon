@@ -97,7 +97,7 @@ function show_all() {
                 document.getElementById("messagebox").style.display = "block";
             }
             console.log("Reloaded");
-            $("div#loader").hide();
+            setTimeout(function() { $("div#loader").hide(); }, 1000);
             $("#load_fade").hide();
         },
         error: function() {
@@ -349,12 +349,7 @@ document.body.addEventListener('touchmove', function(e) {
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
-    console.log("swipey: " + window.swipeY);
     if (window.swipeY>=410) {
         show_all();
     }
-    //$('div#loader').hide();
 });
-//document.addEventListener('DOMContentLoaded', function() {
-//   $("#load_fade").hide();
-//}, false);
