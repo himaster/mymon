@@ -64,6 +64,7 @@ function show() {
     $('div#loader').show();
     $.ajax({
         url: 'index.php?task=getdata',
+        async: false,
         dataType: 'json',
         success: function(json) {
             json.data.forEach(function(item) {
