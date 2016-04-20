@@ -61,6 +61,8 @@ function toggle_visibility_msg(id) {
 }
 
 function show() {
+    $("div#loader").show();
+    console.log("Show");
     $.ajax({
         url: 'index.php?task=getdata',
         dataType: 'json',
@@ -348,8 +350,7 @@ document.body.addEventListener('touchmove', function(e) {
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
     if (swipeY<=-70) {
-        $("div#loader").show();
-        setTimeout(show(), 100);
+        setTimeout(show(), 1000);
     }
 });
 //document.addEventListener('DOMContentLoaded', function() {
