@@ -297,7 +297,7 @@ $(document).ready(function() {
         }
     }
     show_all();
-    setInterval(function() { if(!window.swiped) { show_all()}}, 5000);
+    setInterval(function() { if(!window.swiped) { show_all()}}, 10000);
     reverst();
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
