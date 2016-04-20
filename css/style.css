@@ -81,7 +81,7 @@
 	}
 	div#logo {
 		position: fixed;
-		left: 40%;
+		left: 45%;
 		top: 0px;
 	    z-index: 1;
 	}
@@ -115,7 +115,7 @@
 	div#loader {
 		display: none;
 		position: fixed;
-		left: 83%;
+		left: 10px;
 		top: 60px;
 	    z-index: 1;
 	    height: 20px;
