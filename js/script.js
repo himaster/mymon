@@ -350,6 +350,7 @@ document.body.addEventListener('touchmove', function(e) {
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
     if (swipeY<=-70) {
+        console.log("Test");
         setTimeout(show_all(), 1000);
     }
 });
