@@ -344,12 +344,12 @@ document.body.addEventListener('touchstart', function(e) {
     startY = e.touches[0].screenY;
 });
 document.body.addEventListener('touchmove', function(e) {
-    swipeY = 360 - (startY - e.changedTouches[0].screenY);
-    $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
+    swipeY = startY - e.changedTouches[0].screenY;
+    $('div#loader img').css('transform','rotate(' + (360 - swipeY) + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
     console.log(swipeY);
-    if (swipeY>=410) {
+    if (swipeY<=-70) {
         show_all();
     }
 });
