@@ -94,7 +94,7 @@ function show() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
-            $("div#loader").hide();
+            hide1(getElementById("loader"));
             $("#load_fade").hide();
         },
         error: function() {
@@ -273,6 +273,13 @@ function is_touch_device() {
       || navigator.maxTouchPoints;       // works on IE10/11 and Surface
 };
 
+function hide1(el) {
+    if (!el.getAttribute('displayOld')) {
+        el.setAttribute("displayOld", el.style.display)
+    }
+    el.style.display = "none"
+}
+
 $(window).resize(function() {
     reverst();
 });
@@ -348,8 +355,8 @@ document.body.addEventListener('touchmove', function(e) {
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
     if (swipeY<=-70) {
-        $("div#loader").show();
-        setTimeout(show(), 100);
+        setTimeout($("div#loader").show();
+        setTimeout(show(), 1000);
     }
 });
 //document.addEventListener('DOMContentLoaded', function() {
