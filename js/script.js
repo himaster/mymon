@@ -96,7 +96,7 @@ function show_all() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
-            setTimeout(function() { $("div#loader").hide(); }, 1000);
+            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); }, 1000);
             $("#load_fade").hide();
         },
         error: function() {
