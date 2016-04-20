@@ -341,15 +341,15 @@ $(window).bind('orientationchange', function(e) {
 });
 
 document.body.addEventListener('touchstart', function(e) {
-    window.startY = e.touches[0].screenY;
+    startY = e.touches[0].screenY;
 });
 document.body.addEventListener('touchmove', function(e) {
-    window.swipeY = 360 - (window.startY - e.changedTouches[0].screenY);
+    swipeY = 360 - (startY - e.changedTouches[0].screenY);
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
-    console.log(window.swipeY);
-    if (window.swipeY>=410) {
+    console.log(swipeY);
+    if (swipeY>=410) {
         show_all();
     }
 });
