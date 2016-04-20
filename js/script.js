@@ -352,7 +352,7 @@ document.body.addEventListener('touchmove', function(e) {
 document.body.addEventListener('touchend', function(e) {
     $('div#loader').hide();
     if (swipeY<=-70) {
-        alert("Restart");
+        show();
     }
 });
 //document.addEventListener('DOMContentLoaded', function() {
