@@ -345,11 +345,11 @@ document.body.addEventListener('touchstart', function(e) {
 });
 document.body.addEventListener('touchmove', function(e) {
     window.swipeY = 360 - (window.startY - e.changedTouches[0].screenY);
-    console.log(window.swipeY);
+    //console.log(window.swipeY);
     $('div#loader img').css('transform','rotate(' + swipeY + 'deg)');
 });
 document.body.addEventListener('touchend', function(e) {
-    console.log(window.swipeY);
+    console.log("swipey: " + window.swipeY);
     if (window.swipeY>=410) {
         console.log("Test");
         setTimeout(show_all(), 1000);
