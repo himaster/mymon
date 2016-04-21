@@ -133,7 +133,6 @@ function editor(name, val) {
         document.getElementById(servername + "^color").id = columnval + "^color";
     }
     var dataString = '&task=editor_save&servername=' + servername +'&columnname=' + columnname + '&val=' + columnval;
-    console.log(dataString);
     $.ajax({
         url: 'index.php',
         data: dataString,
@@ -162,7 +161,6 @@ function users_editor(name, val) {
         document.getElementById(username + "^approvied").id = columnval + "^approvied";
     }
     var dataString = '&task=users_editor_save&username=' + username +'&columnname=' + columnname + '&val=' + columnval;
-    console.log(dataString);
     $.ajax({
         url: 'index.php',
         data: dataString,
