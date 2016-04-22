@@ -34,7 +34,9 @@
 			<td><select id="<?php echo trim($row_user['login']) ?>^role" multiple onchange="javascript: users_editor(this.id, this.value); ">
 			<?php
 				$user_roles = explode(",", $row_user['roles']);
+				echo "<pre>";
 				var_dump($user_roles);
+				echo "</pre>";
 				die();
 				foreach ($roles as $key => $value) {
 					echo "<option value=\"$key\">$value\n";
