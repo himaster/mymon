@@ -34,11 +34,9 @@ function buttonshowhide(button, popup) {
     if (popstate.display !== "block") {
         $('#' + button).animate(window.animation[0], {duration : 200, easing: 'swing'});
         expanded = true;
-        console.log(button + " expanded");
     } else {
         $('#' + button).animate(window.animation[1], {duration: 200, easing: 'swing'});
         expanded = false;
-        console.log(button + " not expanded");
     }
 }
 function toggle_visibility(id) {
@@ -324,7 +322,6 @@ $(document).ready(function() {
         buttonshowhide(this.id, "my_div");
         toggle_visibility_menu('my_div');
         if ($('#message_div').is(':visible') && $('#my_div').is(':visible')) {
-            console.log("#message_div is visible");
             $('#left_button2').trigger('click');;
         }
     });
@@ -332,7 +329,6 @@ $(document).ready(function() {
         buttonshowhide(this.id, "message_div");
         toggle_visibility_msg('message_div');
         if ($('#message_div').is(':visible') && $('#my_div').is(':visible')) {
-            console.log("#my_div is visible");
             $('#left_button').trigger('click');;
         }
     });
