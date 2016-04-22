@@ -758,6 +758,6 @@ img#message_logo {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: inherit;
+	border: 1px solid #cccccc;
 	background: inherit;
 }
