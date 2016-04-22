@@ -323,7 +323,7 @@ $(document).ready(function() {
     $("#left_button").click(function() {
         buttonshowhide(this.id, "my_div");
         toggle_visibility_menu('my_div');
-        if ($('#message_div').is(':visible')) {
+        if ($('#message_div').is(':visible') && $('#my_div').is(':visible')) {
             console.log("#message_div is visible");
             $('#left_button2').trigger('click');;
         }
@@ -331,7 +331,7 @@ $(document).ready(function() {
     $("#left_button2").click(function() {
         buttonshowhide(this.id, "message_div");
         toggle_visibility_msg('message_div');
-        if ($('#my_div').is(':visible')) {
+        if ($('#message_div').is(':visible') && $('#my_div').is(':visible')) {
             console.log("#my_div is visible");
             $('#left_button').trigger('click');;
         }
