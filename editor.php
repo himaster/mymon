@@ -7,7 +7,7 @@
 	<col span="5">
 	<tr class="title">
         <td class="serv">server</td>
-        <td class="la">IP address</td>
+        <td class="ipaddr">IP address</td>
         <td class="role">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server&nbsp;role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td class="rep">replication</td>
         <td class="loc">locks</td>
