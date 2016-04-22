@@ -526,10 +526,18 @@ a:active {
 	padding-left: 5px;
     padding-right: 5px;
 }
+.login input {
+    width: 100%;
+}
+
 .email {
 	padding-left: 5px;
     padding-right: 5px;
 }
+.email input {
+    width: 100%;
+}
+
 .role {
 
 }
