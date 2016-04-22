@@ -710,7 +710,7 @@ img#message_logo {
 	background: inherit !important;
 	color: inherit !important;
 	border: inherit !important;
-	font-weight: inherit;
+	font-weight: inherit !important;
 }
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
@@ -723,4 +723,9 @@ img#message_logo {
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
 	border: 1px solid darkgray !important;
 	background: darkgray !important;
+}
+
+.ui-widget-header {
+    border: 1px solid darkgray !important;
+    background: darkgray !important;
 }
