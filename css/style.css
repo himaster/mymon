@@ -760,7 +760,7 @@ img#message_logo {
 .ui-state-focus,
 .ui-widget-header 
 .ui-state-focus {
-	border: 0px !important;
+	border: inherit !important;
 	background: inherit !important;
 }
 
