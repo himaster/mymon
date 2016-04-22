@@ -107,7 +107,7 @@ if (isset($_COOKIE["mymon"])) {
 			    echo "successful.";
 			    break;
 			
-			case "replica":			    
+			case "replica_restart":			    
 			    $backin = array("88.198.182.130","88.198.182.132","88.198.182.134","88.198.182.146","88.198.182.160","88.198.182.162");
 			    $backout = array("217.118.19.156","pkwteile.no-ip.biz","188.138.234.38");
 			    if (in_array($_GET['serverip'], $backin)){

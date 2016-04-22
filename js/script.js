@@ -1,8 +1,8 @@
-function myAjax(serverip) {
-    $('#test_div').html('processing...');
-    document.getElementById('test_div').style.display = 'block';
+function replica_restart(serverip) {
+    $('#status_div').html('processing...');
+    document.getElementById('status_div').style.display = 'block';
     $.ajax({
-        url: 'index.php?task=replica&serverip=' + serverip,
+        url: 'index.php?task=replica_restart&serverip=' + serverip,
         success: function(html){
             status(html);
         },
@@ -13,8 +13,8 @@ function myAjax(serverip) {
 }
 
 function replica_repair(serverip) {
-    $('#test_div').html('processing...');
-    document.getElementById('test_div').style.display = 'block';
+    $('#status_div').html('processing...');
+    document.getElementById('status_div').style.display = 'block';
     $.ajax({
         url: 'index.php?task=replica_repair&serverip=' + serverip,
         success: function(html){
@@ -119,9 +119,9 @@ function show_all() {
 }
 
 function status(text) {
-    $('#test_div').html(text);
-    document.getElementById('test_div').style.display = 'block';
-    setTimeout("document.getElementById('test_div').style.display = 'none'", 5000);
+    $('#status_div').html(text);
+    document.getElementById('status_div').style.display = 'block';
+    setTimeout("document.getElementById('status_div').style.display = 'none'", 5000);
 }
 
 function editor(name, val) {
@@ -278,7 +278,7 @@ function reverst() {
     if (detectmob()) $("#main_table").removeAttr("style");
     else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
-    document.getElementById('test_div').style.width = document.getElementById('main_table').clientWidth + "px";
+    document.getElementById('status_div').style.width = document.getElementById('main_table').clientWidth + "px";
 }
 
 function is_touch_device() {

@@ -116,7 +116,7 @@ function rep($connection, $serverip) {
     } else {
     	$sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
     	$sql = "x";
-    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
+    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { replica_restart(\'" .$serverip. "\'); } }
     		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
     		   						 return false;\"";
     }
@@ -126,7 +126,7 @@ function rep($connection, $serverip) {
     } else {
     	$iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
     	$io = "x";
-    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { myAjax(\'" .$serverip. "\'); } }
+    	$onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { replica_restart(\'" .$serverip. "\'); } }
     		   						 else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
     		   						 return false;\"";
     }

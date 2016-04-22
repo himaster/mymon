@@ -59,4 +59,4 @@
     ?>
     </table>
 </div>
-<div id="test_div" class="status_bar"></div>
+<div id="status_div" class="status_bar"></div>
