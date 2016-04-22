@@ -26,18 +26,19 @@
 									FROM `mymon`.`users` 
 									LEFT JOIN `mymon`.`user_roles` AS `ur` ON (`id` = `ur`.`user_id`)
 									GROUP BY `id`;") or die($dbconnection->error);
-	while ($row_user = $result->fetch_assoc()) { ?>
+	while ($row_user = $result->fetch_assoc()) { 
+		$user_roles = explode(",", $row_user['roles']);
+		echo "<pre>";
+		var_dump($user_roles);
+		echo "</pre>";
+		die();
+		?>
 		<tr>
 			<td><input id="<?php echo trim($row_user['login']) ?>^uid" type="text" value="<?php echo trim($row_user['id']) ?>" onchange="javascript: users_editor(this.id, this.value);"></td>
 			<td><input id="<?php echo trim($row_user['login']) ?>^login" type="text" value="<?php echo trim($row_user['login']) ?>" onchange="javascript: users_editor(this.id, this.value); "></td>
 			<td><input id="<?php echo trim($row_user['login']) ?>^email" type="text" value="<?php echo trim($row_user['email']) ?>" onchange="javascript: users_editor(this.id, this.value); "></td>
 			<td><select id="<?php echo trim($row_user['login']) ?>^role" multiple onchange="javascript: users_editor(this.id, this.value); ">
 			<?php
-				$user_roles = explode(",", $row_user['roles']);
-				echo "<pre>";
-				var_dump($user_roles);
-				echo "</pre>";
-				die();
 				foreach ($roles as $key => $value) {
 					echo "<option value=\"$key\">$value\n";
 				}
