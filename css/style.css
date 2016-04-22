@@ -173,7 +173,6 @@ td {
 input {
 	background-color: inherit;
 	border: 0px;
-	width: 100%;
 }
 
 a:link {
@@ -407,7 +406,7 @@ a:active {
 	color: black;
 }
 .role select {
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .ipaddr {
@@ -758,6 +757,6 @@ img#message_logo {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: inherit !important;
+	border: 1px solid #cccccc !important;
 	background: inherit !important;
 }
