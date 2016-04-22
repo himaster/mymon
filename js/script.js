@@ -32,10 +32,8 @@ function buttonshowhide(button, popup) {
     else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
     if (popstate.display !== "block") {
         $('#' + button).animate(window.animation[0], {duration : 200, easing: 'swing'});
-        expanded = true;
     } else {
         $('#' + button).animate(window.animation[1], {duration: 200, easing: 'swing'});
-        expanded = false;
     }
 }
 function toggle_visibility(id) {
@@ -336,7 +334,6 @@ $(document).ready(function() {
         if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
         else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
         $("#left_button2").animate(window.animation[1], {duration: 200, easing: 'swing'});
-        expanded = false;
     });
     $("input[name=password]").keyup(function() {
         $("input[name=password2]").val($(this).val());
