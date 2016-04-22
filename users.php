@@ -16,12 +16,6 @@
     </tr>
 <?php
 	$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-	$result = $dbconnection->query("SELECT `id`, `name`
-									FROM `mymon`.`roles`") or die($dbconnection->error);
-	while($row = $result->fetch_assoc()){
-    	$roles[intval($row['id'])] = $row['name'];
-	}
-
 	$result = $dbconnection->query("SELECT `id`, `login`, `email`, `approvied`, GROUP_CONCAT(`ur`.`role_id`) AS roles
 									FROM `mymon`.`users` 
 									LEFT JOIN `mymon`.`user_roles` AS `ur` ON (`id` = `ur`.`user_id`)
