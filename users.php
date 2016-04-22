@@ -36,6 +36,10 @@
 			<td><select id="<?php echo trim($row_user['login']) ?>^role" multiple onchange="javascript: users_editor(this.id, this.value); ">
 			<?php
 				foreach ($roles as $key => $value) {
+
+					var_dump($value);
+					var_dump($user_roles);
+					die();
 					if (in_array($value, $user_roles)) $selected = "selected='selected'";
 					else $selected = "";
 					echo "<option value=\"$key\" $selected>$value\n";
