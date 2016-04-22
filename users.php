@@ -19,7 +19,7 @@
 	$result = $dbconnection->query("SELECT `id`, `name`
 									FROM `mymon`.`roles`") or die($dbconnection->error);
 	while($row = $result->fetch_assoc()){
-    	$roles[intval($row['id'])] = $row;
+    	$roles[intval($row['id'])] = $row['name'];
 	}
 	echo "<pre>";
 	var_dump($roles);
