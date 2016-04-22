@@ -319,18 +319,18 @@ $(document).ready(function() {
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     $("#left_button").click(function() {
+        buttonshowhide(this.id, "my_div");
         toggle_visibility_menu('my_div');
         if ($('#message_div').is(':visible')) {
             $('#message_div').trigger('click');;
         }
-        buttonshowhide(this.id, "my_div");
     });
     $("#left_button2").click(function() {
+        buttonshowhide(this.id, "message_div");
         toggle_visibility_msg('message_div');
         if ($('#my_div').is(':visible')) {
             $('my_div').trigger('click');;
         }
-        buttonshowhide(this.id, "message_div");
     });
     $("#message_submit").click(function() {
         var popstate = document.getElementById("message_div").style;
