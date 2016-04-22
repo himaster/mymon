@@ -27,6 +27,7 @@ function replica_repair(serverip) {
 }
 
 function buttonshowhide(button, popup) {
+    console.log(button);
     var popstate = document.getElementById(popup).style;
     if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
     else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
