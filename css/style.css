@@ -710,7 +710,7 @@ img#message_logo {
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: inherit !important;
 	color: inherit !important;
-	border: inherit !important;
+	border: 1px !important;
 	font-weight: inherit !important;
 }
 
