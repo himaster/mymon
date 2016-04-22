@@ -709,8 +709,10 @@ img#message_logo {
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: inherit !important;
 	color: inherit !important;
+	border: inherit !important;
 }
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
 	background-color: darkgray !important;
 	color: inherit !important;
+	border: inherit !important;
 }
