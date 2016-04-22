@@ -710,3 +710,7 @@ img#message_logo {
 	background: inherit !important;
 	color: inherit !important;
 }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background-color: darkgray !important;
+	color: inherit !important;
+}
