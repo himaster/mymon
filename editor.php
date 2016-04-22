@@ -6,16 +6,16 @@
 <table class="main_table table-striped">
 	<col span="5">
 	<tr class="title">
-        <td class="serv">Server</td>
+        <td class="serv">server</td>
         <td class="la">IP address</td>
-        <td class="role">Role</td>
-        <td class="rep">Replication</td>
-        <td class="loc">Locks</td>
+        <td class="role">server role</td>
+        <td class="rep">replication</td>
+        <td class="loc">locks</td>
         <td class="500">500s</td>
-        <td class="el">Elastic</td>
-        <td class="mon">Mongo</td>
-        <td class="red">Redis</td>
-        <td class="color">Color</td>
+        <td class="el">elastic</td>
+        <td class="mon">mongo</td>
+        <td class="red">redis</td>
+        <td class="color">color</td>
     </tr>
 <?php
 	$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
