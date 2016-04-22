@@ -35,10 +35,10 @@
 			<?php
 				$user_roles = explode(",", $row_user['roles']);
 				var_dump($user_roles);
+				die();
 				foreach ($roles as $key => $value) {
 					echo "<option value=\"$key\">$value\n";
 				}
-				die();
 			?>
 			</select></td>
 			<!-- <td><input id="<?php echo trim($row_user['login']) ?>^role" type="text" value="<?php echo trim($row_user['roles']) ?>" onchange="javascript: users_editor(this.id, this.value);"></td> -->
