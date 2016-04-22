@@ -731,3 +731,6 @@ img#message_logo {
     border: 1px solid darkgray !important;
     background: darkgray !important;
 }
+.ui-widget-content {
+	border: 1px solid rgb(128, 128, 128) !important;
+}
