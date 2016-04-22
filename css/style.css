@@ -737,7 +737,7 @@ img#message_logo {
 .ui-state-focus, 
 .ui-widget-header 
 .ui-state-focus {
-	border: 0px solid darkgray !important;
+	border: 1px solid darkgray !important;
 	background: darkgray !important;
 	color: inherit !important;
 }
@@ -760,7 +760,7 @@ img#message_logo {
 .ui-state-focus,
 .ui-widget-header 
 .ui-state-focus {
-	border: inherit !important;
+	border: 0px !important;
 	background: inherit !important;
 }
 
