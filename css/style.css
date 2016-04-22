@@ -724,7 +724,6 @@ img#message_logo {
 .ui-state-active {
 	background-color: darkgray !important;
 	color: inherit !important;
-	border: inherit !important;
 	font-weight: inherit;
 }
 
@@ -738,7 +737,7 @@ img#message_logo {
 .ui-state-focus, 
 .ui-widget-header 
 .ui-state-focus {
-	border: 0px solid darkgray !important;
+	border: 1px solid darkgray !important;
 	background: darkgray !important;
 	color: inherit !important;
 }
@@ -763,4 +762,8 @@ img#message_logo {
 .ui-state-focus {
 	border: 0px !important;
 	background: inherit !important;
+}
+
+.ui-widget {
+	font-size: 1m;
 }
