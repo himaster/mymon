@@ -29,6 +29,7 @@
 	while ($row_user = $result->fetch_assoc()) { 
 		$user_roles = explode(",", $row_user['roles']);
 		echo "<pre>";
+		var_dump($row_user['roles']);
 		var_dump($user_roles);
 		echo "</pre>";
 		die();
