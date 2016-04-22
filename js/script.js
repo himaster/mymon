@@ -334,6 +334,7 @@ $(document).ready(function() {
     $("input[name=password]").keyup(function() {
         $("input[name=password2]").val($(this).val());
     });
+    $("select").multiselect();
 });
 
 $(window).bind('orientationchange', function(e) {
