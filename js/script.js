@@ -319,10 +319,10 @@ $(document).ready(function() {
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     $("#left_button").click(function() {
-        buttonshowhide(this, "my_div");
+        buttonshowhide(this.id, "my_div");
     });
     $("#left_button2").click(function() {
-        buttonshowhide(this, "message_div");
+        buttonshowhide(this.id, "message_div");
     });
     $("#message_submit").click(function() {
         var popstate = document.getElementById("message_div").style;
