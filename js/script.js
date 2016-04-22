@@ -26,16 +26,15 @@ function replica_repair(serverip) {
     });
 }
 
-function buttonshowhide(id) {
-    console.log(id);
-    var popstate = document.getElementById(id).style;
+function buttonshowhide(button, popup) {
+    var popstate = document.getElementById(popup).style;
     if (detectmob()) window.animation = [{'top' : '5px'}, {'top' : '-3px'}];
     else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
     if (popstate.display !== "block") {
-        $('#' + id).animate(window.animation[0], {duration : 200, easing: 'swing'});
+        $('#' + button).animate(window.animation[0], {duration : 200, easing: 'swing'});
         expanded = true;
     } else {
-        $('#' + id).animate(window.animation[1], {duration: 200, easing: 'swing'});
+        $('#' + button).animate(window.animation[1], {duration: 200, easing: 'swing'});
         expanded = false;
     }
 }
@@ -319,10 +318,10 @@ $(document).ready(function() {
     $("#my_div").click(function() { on_top("my_div"); });
     $("#message_div").click(function() { on_top("message_div"); });
     $("#left_button").click(function() {
-        buttonshowhide("my_div");
+        buttonshowhide(this, "my_div");
     });
     $("#left_button2").click(function() {
-        buttonshowhide("message_div");
+        buttonshowhide(this, "message_div");
     });
     $("#message_submit").click(function() {
         var popstate = document.getElementById("message_div").style;
