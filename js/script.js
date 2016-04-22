@@ -276,6 +276,11 @@ function is_touch_device() {
       || navigator.maxTouchPoints;       // works on IE10/11 and Surface
 };
 
+function implode( glue, pieces ) { 
+    return ( ( pieces instanceof Array ) ? pieces.join ( glue ) : pieces );
+}
+
+
 $(window).resize(function() {
     reverst();
 });
