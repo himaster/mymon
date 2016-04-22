@@ -1,18 +1,16 @@
 
 <a href="#" onclick="toggle_visibility_menu('my_div');
 					 if ($('#message_div').is(':visible')) {
-					 	toggle_visibility_menu('message_div');
-					 } 
-					 on_top('my_div');">
+					 	$('#message_div').trigger('click');;
+					 }">
 	<div id="left_button" class="left_button">
 		<img src="images/profile.png">
 	</div>
 </a>
 <a href="javascript: toggle_visibility_msg('message_div');
 					 if ($('#my_div').is(':visible')) {
-					 	toggle_visibility_menu('my_div');
-					 }
-					 on_top('message_div');">
+					 	$('my_div').trigger('click');;
+					 }">
 	<div id="left_button2" class="left_button">
 		<div id="text">
 			msg
