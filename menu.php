@@ -16,18 +16,20 @@
 <?php
 	$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
 	if ($result->num_rows == 1) { 
-?>
-<a href="index.php?task=editor">
-	<div id="left_button3" class="left_button">
-		<img src="images/settings.png">
-	</div>
-</a>
-<a href="index.php?task=users_editor">
-	<div id="left_button4" class="left_button">
-		<img src="images/users.png">
-	</div>
-</a>
-<?php } ?>
+		$isAdmin = true;
+		?>
+		<a href="index.php?task=editor">
+			<div id="left_button3" class="left_button">
+				<img src="images/settings.png">
+			</div>
+		</a>
+		<a href="index.php?task=users_editor">
+			<div id="left_button4" class="left_button">
+				<img src="images/users.png">
+			</div>
+		</a>
+		<?php 
+	} ?>
 <div id="my_div" class="menu">
 	<b>Profile</b>
 	<p><p>

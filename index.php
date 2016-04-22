@@ -44,18 +44,21 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "editor":
+				if (!$isAdmin) die("You have not rights.");
 				include "header.html";
 				include "editor.php";		
 				include "footer.html";				
 				break;
 
 			case "users_editor":
+				if (!$isAdmin) die("You have not rights.");
 				include "header.html";
 				include "users.php";		
 				include "footer.html";				
 				break;
 
 			case "editor_save":
+				if (!$isAdmin) die("You have not rights.");
 				$servername = $_GET['servername'];
 				$columnname = $_GET['columnname'];
 				$val = $_GET['val'];
@@ -65,6 +68,7 @@ if (isset($_COOKIE["mymon"])) {
 				break;
 
 			case "users_editor_save":
+				if (!$isAdmin) die("You have not rights.");
 				$username = $_GET['username'];
 				$columnname = $_GET['columnname'];
 				$val = $_GET['val'];
