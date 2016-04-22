@@ -329,7 +329,7 @@ $(document).ready(function() {
         buttonshowhide(this.id, "message_div");
         toggle_visibility_msg('message_div');
         if ($('#my_div').is(':visible')) {
-            $('my_div').trigger('click');;
+            $('#my_div').trigger('click');;
         }
     });
     $("#message_submit").click(function() {
