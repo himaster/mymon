@@ -711,8 +711,13 @@ img#message_logo {
 	color: inherit !important;
 	border: inherit !important;
 }
+
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
 	background-color: darkgray !important;
 	color: inherit !important;
 	border: inherit !important;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+	border: 1px solid darkgray !important;
 }
