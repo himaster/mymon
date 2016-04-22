@@ -523,10 +523,12 @@ a:active {
     width: 100%;
 }
 .login {
-
+	padding-left: 5px;
+    padding-right: 5px;
 }
 .email {
-
+	padding-left: 5px;
+    padding-right: 5px;
 }
 .role {
 
