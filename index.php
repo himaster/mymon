@@ -35,7 +35,11 @@ if (isset($_COOKIE["mymon"])) {
 	$umon = $result_assoc['mon'];
 	$ured = $result_assoc['red'];
 	$unotify = $result_assoc['notify'];
+
 	if ($result->num_rows == 1) {
+		$result1 = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
+		if ($result1->num_rows == 1) $isAdmin = true;
+		else $isAdmin = false;
 		switch ($_GET["task"]) {
 			case "500err":
 				include "header.html";

@@ -14,10 +14,7 @@
 	</div>
 </a>
 <?php
-	$result = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
-	if ($result->num_rows == 1) { 
-		$isAdmin = true;
-		?>
+	if ($isAdmin) { ?>
 		<a href="index.php?task=editor">
 			<div id="left_button3" class="left_button">
 				<img src="images/settings.png">
