@@ -280,7 +280,6 @@ function implode( glue, pieces ) {
     return ( ( pieces instanceof Array ) ? pieces.join ( glue ) : pieces );
 }
 
-
 $(window).resize(function() {
     reverst();
 });
