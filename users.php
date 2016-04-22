@@ -6,12 +6,12 @@
 <table class="main_table table-striped">
 	<col span="5">
 	<tr class="title">
-        <td class="loc" width="60px">UID</td>
-        <td>Login</td>
-        <td>Email</td>
-        <td>Role</td>
-        <td>Approvied</td>
-        <td>Delete</td>
+        <td class="uid">UID</td>
+        <td class="login">Login</td>
+        <td class="email">Email</td>
+        <td class="role">Role</td>
+        <td class="approvied">Approvied</td>
+        <td class="delete">Delete</td>
 
     </tr>
 <?php
