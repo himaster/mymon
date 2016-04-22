@@ -8,7 +8,7 @@
 	<tr class="title">
         <td class="serv">server</td>
         <td class="la">IP address</td>
-        <td class="role">server role</td>
+        <td class="role">server&nbsp;role</td>
         <td class="rep">replication</td>
         <td class="loc">locks</td>
         <td class="500">500s</td>
