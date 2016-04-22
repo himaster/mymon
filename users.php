@@ -21,10 +21,7 @@
 	while($row = $result->fetch_assoc()){
     	$roles[intval($row['id'])] = $row['name'];
 	}
-	echo "<pre>";
-	var_dump($roles);
-	echo "</pre>";
-	die();
+
 	$result = $dbconnection->query("SELECT `id`, `login`, `email`, `approvied`, GROUP_CONCAT(`ur`.`role_id`) AS roles
 									FROM `mymon`.`users` 
 									LEFT JOIN `mymon`.`user_roles` AS `ur` ON (`id` = `ur`.`user_id`)
@@ -36,7 +33,12 @@
 			<td><input id="<?php echo trim($row_user['login']) ?>^email" type="text" value="<?php echo trim($row_user['email']) ?>" onchange="javascript: users_editor(this.id, this.value); "></td>
 			<td><select id="<?php echo trim($row_user['login']) ?>^role" multiple onchange="javascript: users_editor(this.id, this.value); ">
 			<?php
-
+				$user_roles = explode(",", $row_user['roles']);
+				var_dump($user_roles);
+				foreach ($roles as $key => $value) {
+					echo "<option value=\"$key\">$value\n";
+				}
+				die();
 			?>
 			</select></td>
 			<!-- <td><input id="<?php echo trim($row_user['login']) ?>^role" type="text" value="<?php echo trim($row_user['roles']) ?>" onchange="javascript: users_editor(this.id, this.value);"></td> -->
