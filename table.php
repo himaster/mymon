@@ -44,8 +44,8 @@
             $db = $array["db"];
             $mysql = $array["mysql"];
             $serverdb = $server . "_db";
-    		echo "<tr style=\"background-color: ". $color ."\">";
-            echo "<td id='" .$server. "_name'>" .$server. "</td>";
+    		echo "<tr>";
+            echo "<td style=\"color: ". $color ."\" id='" .$server. "_name'>" .$server. "</td>";
     		if ($ula == "1") echo "<td class=\"la\" id='" .$server. "_la'></td>";
     		if ($urep == "1") echo "<td class=\"rep\" id='" .$server. "_rep'></td>";
             if ($uloc == "1") echo "<td class=\"loc\" id='" .$server. "_locks'></td>";
