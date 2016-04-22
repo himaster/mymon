@@ -3,7 +3,7 @@
 		<img src="images/back.png">
 	</div>
 </a>
-<table class="main_table table-striped">
+<table class="main_table table-striped" id="users_table">
 	<col span="5">
 	<tr class="title">
         <td class="uid">UID</td>

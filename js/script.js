@@ -295,7 +295,7 @@ $(window).resize(function() {
 });
 
 $(document).ready(function() {
-    $(".main_table select").multiselect();
+    $("#users_table select").multiselect();
     if ((window.outerHeight - window.innerHeight) > 100) setTimeout("console.log(\"Looking in console? Are You developer may be? ;)\")", 5000);
     if (document.getElementById("notify") !== null ) {
         if (document.getElementById("notify").checked === true) window.create_new_mes = 1;
