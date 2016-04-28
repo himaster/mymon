@@ -348,6 +348,7 @@ document.body.addEventListener('touchstart', function(e) {
     if (!window.loading) { 
         window.swiped = true;
         startY = e.touches[0].screenY;
+        $('div#loader img').css('transform','rotate(0deg)');
         $("div#loader").show(); 
     }
 });
