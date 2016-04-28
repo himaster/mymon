@@ -362,7 +362,6 @@ document.body.addEventListener('touchend', function(e) {
     if (!window.loading) { 
         $("div#loader").hide();
         if (swipeY<=-70) {
-            console.log("Reloading");
             show_all();
         }
         window.swiped = false;
