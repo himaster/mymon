@@ -313,6 +313,7 @@ a:active {
 
 .main_table tbody tr:hover {
     background-color: darkgray;
+    z-index: 100;
 }
 
 .main_table tr:first-child {
