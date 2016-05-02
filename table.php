@@ -8,7 +8,7 @@
     <table class="main_table table-striped table-hover" id="main_table">
         <col span="5">
             <tr class="title">
-                <td>Server</td>
+                <th>Server</th>
                 <?php 
                 if ($ula == "1")  echo "<th class=\"la\">LA<div class=\"colons\" id=\"col1\">1</div></th>";
                 if ($urep == "1") echo "<th class=\"rep\">Replication<div class=\"colons\" id=\"col2\">2</div></th>";
