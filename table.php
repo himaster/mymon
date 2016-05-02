@@ -5,7 +5,7 @@
 <div id="loader">
     <img src="images/loader.png">
 </div>
-    <table class="main_table table-striped" id="main_table">
+    <table class="main_table table-striped table-hover" id="main_table">
         <col span="5">
             <tr class="title">
                 <td>Server</td>
