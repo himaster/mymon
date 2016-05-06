@@ -10,11 +10,11 @@
  * @link     http://mymon.pkwteile.de
  */
 
-if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
+if (( ! $connection = @ssh2_connect($_GET["serverip"], 22))
+        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
     die("Connection error!");
 }
-ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '');
 
 ?>
 
