@@ -54,7 +54,7 @@ function child_()
     global $stop_server;
     global $servername;
 
-    $docroot     = getcwd();
+    $docroot     = dirname(__FILE__);
     $retry_num   = 10;
     $serverip    = $array['ip'];
     $servername  = $array['servername'];
