@@ -10,7 +10,7 @@
  * @link     http://mymon.pkwteile.de
  */
 
-require_once "functions.php";
+require_once 'functions.php';
 
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
@@ -18,9 +18,10 @@ declare(ticks=1);
 
 set_error_handler('errHandler');
 
-pcntl_signal(SIGTERM, "sigHandler");
+pcntl_signal(SIGTERM, 'sigHandler');
 
-$connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
+$connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon')
+            or die($connection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
         or die($connection->error);
 $connection->close();
