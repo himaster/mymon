@@ -45,7 +45,6 @@ function child_()
     global $servername;
 
     $docroot     = dirname(__FILE__);
-    common_log("docroot= ".$docroot);
     $retry_num   = 10;
     $serverip    = $array["ip"];
     $servername  = $array["servername"];
@@ -288,19 +287,18 @@ function sigHandler($signo)
 {
     global $stop_server;
     switch ($signo) {
-        case SIGTERM: {
+        case SIGTERM:
             $stop_server = true;
             common_log("SIGTERM stop");
             break;
-        }
-        case SIGPIPE: {
+
+        case SIGPIPE:
             $stop_server = true;
             common_log("SIGPIPE stop");
             break;
-        }
-        default: {
+
+        default:
             break;
-        }
     }
 }
 
