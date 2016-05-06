@@ -17,7 +17,8 @@ set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
 
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;") or die($connection->error);
+$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
+        or die($connection->error);
 $connection->close();
 while ($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
