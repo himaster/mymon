@@ -3,7 +3,7 @@
 /**
  * 500 File Doc Comment
  *
- * @category 500_Errors
+ * @category Show_500_Errors
  * @package  MyMon
  * @author   himaster <himaster@mailer.ag>
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License

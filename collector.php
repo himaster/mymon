@@ -1,6 +1,17 @@
 <?php
+
+/**
+ * Collector File Doc Comment
+ *
+ * @category Data_Collector
+ * @package  MyMon
+ * @author   himaster <himaster@mailer.ag>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://mymon.pkwteile.de
+ */
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
-include_once "functions.php";
+require_once "functions.php";
 declare(ticks=1);
 set_error_handler('errHandler');
 pcntl_signal(SIGTERM, "sigHandler");
@@ -8,7 +19,7 @@ pcntl_signal(SIGTERM, "sigHandler");
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;") or die($connection->error);
 $connection->close();
-while($array = $result->fetch_assoc()) {
+while ($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
     if ($pid == -1) die("Child process can't be created");
     elseif ($pid) parent_();
