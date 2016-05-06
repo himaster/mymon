@@ -3,13 +3,13 @@
 /**
  * 500 File Doc Comment
  *
- * @category 500_errors
+ * @category 500_Errors
  * @package  MyMon
  * @author   himaster <himaster@mailer.ag>
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @link     http://mymon.pkwteile.de
- *
  */
+
 if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
     die("Connection error!");
