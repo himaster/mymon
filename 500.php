@@ -13,7 +13,7 @@
 require_once 'functions.php';
 
 if (( ! $connection = @ssh2_connect($_GET['serverip'], 22))
-        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
+        or ( ! @ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
     header($_SERVER['SERVER_PROTOCOL'].' 501 Internal Server Error', true, 500);
     die("Connection error!");
 }
