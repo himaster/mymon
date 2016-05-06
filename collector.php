@@ -10,10 +10,14 @@
  * @link     http://mymon.pkwteile.de
  */
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
 require_once "functions.php";
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
 declare(ticks=1);
+
 set_error_handler('errHandler');
+
 pcntl_signal(SIGTERM, "sigHandler");
 
 $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
@@ -43,8 +47,8 @@ function child_()
     global $array;
     global $stop_server;
     global $servername;
+    global $docroot;
 
-    $docroot     = dirname(__FILE__);
     $retry_num   = 10;
     $serverip    = $array["ip"];
     $servername  = $array["servername"];

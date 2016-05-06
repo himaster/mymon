@@ -2,6 +2,8 @@
 
 $hostname = "mymon.pkwteile.de";
 
+$docroot  = dirname(__FILE__);
+
 function no_injection($str = '')
 {
     $str = stripslashes($str);
