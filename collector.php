@@ -18,8 +18,6 @@ declare(ticks = 1);
 set_error_handler('errhandler');
 pcntl_signal(SIGTERM, 'sighandler');
 
-$docroot    = $_SERVER['DOCUMENT_ROOT'];
-
 $connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon') or die($connection->connect_errno."\n");
 $result     = $connection->query('SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;')
             or die($connection->error);
@@ -55,16 +53,18 @@ function child_()
     global $array;
     global $stop_server;
     global $servername;
-    $retry_num = 10;
-    $serverip = $array['ip'];
-    $servername = $array['servername'];
-    $errs = $array['err'];
-    $elastic = $array['el'];
-    $db = $array['db'];
-    $mysql = $array['mysql'];
-    $mon = $array['mon'];
-    $red = $array['red'];
-    $i = 1;
+
+    $docroot     = $_SERVER['DOCUMENT_ROOT'];
+    $retry_num   = 10;
+    $serverip    = $array['ip'];
+    $servername  = $array['servername'];
+    $errs        = $array['err'];
+    $elastic     = $array['el'];
+    $db          = $array['db'];
+    $mysql       = $array['mysql'];
+    $mon         = $array['mon'];
+    $red         = $array['red'];
+    $i           = 1;
     $ssh_conname = 'ssh_'.$servername;
     common_log($servername.' - started.');
     start:
