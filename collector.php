@@ -45,6 +45,7 @@ function child_()
     global $servername;
 
     $docroot     = dirname(__FILE__);
+    common_log("docroot= ".$docroot);
     $retry_num   = 10;
     $serverip    = $array["ip"];
     $servername  = $array["servername"];
