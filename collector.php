@@ -26,7 +26,7 @@ while ($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
     if ($pid === -1) {
         die('Child process can\'t be created');
-    } elseif ($pid === true) {
+    } else if ($pid === true) {
         parent_();
     } else {
         child_();
@@ -45,7 +45,7 @@ exit;
  */
 function parent_()
 {
-    return true;
+    //return true;
 }
 
 function child_()
