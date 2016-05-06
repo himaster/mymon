@@ -9,19 +9,35 @@
         <col span="5">
             <tr class="title">
                 <th>Server</th>
-                <?php 
-                if ($ula == "1")  echo "<th class=\"la\">LA<div class=\"colons\" id=\"col1\">1</div></th>";
-                if ($urep == "1") echo "<th class=\"rep\">Replication<div class=\"colons\" id=\"col2\">2</div></th>";
-                if ($uloc == "1") echo "<th class=\"loc\">Locks<div class=\"colons\" id=\"col3\">3</div></th>";
-                if ($u500 == "1") echo "<th class=\"500\">500s<div class=\"colons\" id=\"col4\">4</div></th>";
-                if ($uel == "1")  echo "<th class=\"el\">Elastic<div class=\"colons\" id=\"col5\">5</div></th>";
-                if ($umon == "1") echo "<th class=\"mon\">Mongo<div class=\"colons\" id=\"col6\">6</div></th>";
-                if ($ured == "1") echo "<th class=\"red\">Redis<div class=\"colons\" id=\"col7\">7</div></th>";
+                <?php
+                if ($ula == "1") {
+                    echo "<th class=\"la\">LA<div class=\"colons\" id=\"col1\">1</div></th>";
+                }
+                if ($urep == "1") {
+                    echo "<th class=\"rep\">Replication<div class=\"colons\" id=\"col2\">2</div></th>";
+                }
+                if ($uloc == "1") {
+                    echo "<th class=\"loc\">Locks<div class=\"colons\" id=\"col3\">3</div></th>";
+                }
+                if ($u500 == "1") {
+                    echo "<th class=\"500\">500s<div class=\"colons\" id=\"col4\">4</div></th>";
+                }
+                if ($uel == "1") {
+                    echo "<th class=\"el\">Elastic<div class=\"colons\" id=\"col5\">5</div></th>";
+                }
+                if ($umon == "1") {
+                    echo "<th class=\"mon\">Mongo<div class=\"colons\" id=\"col6\">6</div></th>";
+                }
+                if ($ured == "1") {
+                    echo "<th class=\"red\">Redis<div class=\"colons\" id=\"col7\">7</div></th>";
+                }
                 ?>
             </tr>
     <?php
-        if (ob_get_level() == 0) ob_start();
-        echo str_repeat(' ',1024*128);
+    if (ob_get_level() == 0) {
+        ob_start();
+    }
+        echo str_repeat(' ', 1024*128);
         flush();
         ob_flush();
         include "menu.php";
@@ -32,30 +48,47 @@
                                         ON `st`.`role` = `ur`.`role_id`
                                         WHERE `ur`.`user_id` = {$uid}
                                         ORDER BY `st`.`servername`;") or die($dbconnection->error());
-        while($array = $result->fetch_assoc()) {
-            $serverip = $array["ip"];
-            $server = $array["servername"];
-            $errs = $array["err"];
-            $elastic = $array["el"];
-            $mongo = $array["mongo"];
-            $redis = $array["redis"];
-            if ($array["color"] == "#ffffff") $color = "";
-            else $color = $array["color"];
-            $db = $array["db"];
-            $mysql = $array["mysql"];
-            $serverdb = $server . "_db";
-    		echo "<tr>";
-            echo "<td style=\"background-color: ". $color ."; z-index: 0\" id='" .$server. "_name'>" .$server. "</td>";
-    		if ($ula == "1") echo "<td class=\"la\" id='" .$server. "_la'></td>";
-    		if ($urep == "1") echo "<td class=\"rep\" id='" .$server. "_rep'></td>";
-            if ($uloc == "1") echo "<td class=\"loc\" id='" .$server. "_locks'></td>";
-    		if ($u500 == "1") echo "<td class=\"500\" id='" .$server. "_500'></td>";
-    		if ($uel == "1") echo "<td class=\"el\" id='" .$server. "_elastic'></td>";
-            if ($umon == "1") echo "<td class=\"mon\" id='" .$server. "_mongo'></td>";
-            if ($ured == "1") echo "<td class=\"red\" id='" .$server. "_redis'></td>";
+    while ($array = $result->fetch_assoc()) {
+        $serverip = $array["ip"];
+        $server = $array["servername"];
+        $errs = $array["err"];
+        $elastic = $array["el"];
+        $mongo = $array["mongo"];
+        $redis = $array["redis"];
+        if ($array["color"] == "#ffffff") {
+            $color = "";
+        } else {
+            $color = $array["color"];
         }
+        $db = $array["db"];
+        $mysql = $array["mysql"];
+        $serverdb = $server . "_db";
+        echo "<tr>";
+        echo "<td style=\"background-color: ". $color ."; z-index: 0\" id='" .$server. "_name'>" .$server. "</td>";
+        if ($ula == "1") {
+            echo "<td class=\"la\" id='" .$server. "_la'></td>";
+        }
+        if ($urep == "1") {
+            echo "<td class=\"rep\" id='" .$server. "_rep'></td>";
+        }
+        if ($uloc == "1") {
+            echo "<td class=\"loc\" id='" .$server. "_locks'></td>";
+        }
+        if ($u500 == "1") {
+            echo "<td class=\"500\" id='" .$server. "_500'></td>";
+        }
+        if ($uel == "1") {
+            echo "<td class=\"el\" id='" .$server. "_elastic'></td>";
+        }
+        if ($umon == "1") {
+            echo "<td class=\"mon\" id='" .$server. "_mongo'></td>";
+        }
+        if ($ured == "1") {
+            echo "<td class=\"red\" id='" .$server. "_redis'></td>";
+        }
+    }
 
-    	$dbconnection->close();
+        $dbconnection->close();
     ?>
     </table>
 </div>

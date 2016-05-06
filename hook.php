@@ -3,4 +3,3 @@
     exec('cd /var/www/netbox.co/mymon/ && git pull https://github.com/himaster/mymon.git master 2>&1', $output);
     exec('cd /var/www/netbox.co/mymon.test/ && git pull https://github.com/himaster/mymon.git test 2>&1', $output);
     print_r($output);
-?>
