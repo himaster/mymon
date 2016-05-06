@@ -182,21 +182,39 @@ function rep($connection, $serverip)
         $sqlfontcolor = "<font color=\"green\">";
         $sql = "&#10003;";
     } else {
-        $sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script><font color=\"red\">";
+        $sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script>".
+                        "<font color=\"red\">";
         $sql = "x";
-        $onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { replica_restart(\'" .$serverip. "\'); } }
-                                     else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
-                                     return false;\"";
+        $onclick = "onclick=\"javascript:   if(event.ctrlKey || event.metaKey) {
+                                                if(confirm(\'Want to RESTART replication?\')) {
+                                                    replica_restart(\'" .$serverip. "\');
+                                                }
+                                            }
+                                            else {
+                                                if(confirm(\'Want to skip one error and start?\')) {
+                                                    replica_repair(\'" .$serverip. "\');
+                                                }
+                                            }
+                                            return false;\"";
     }
     if ($data["Slave_IO_Running"] == "Yes") {
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
     } else {
-        $iofontcolor = "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script><font color=\"red\">";
+        $iofontcolor =  "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script>".
+                        "<font color=\"red\">";
         $io = "x";
-        $onclick = "onclick=\"javascript: if(event.ctrlKey || event.metaKey) { if(confirm(\'Want to RESTART replication?\')) { replica_restart(\'" .$serverip. "\'); } }
-                                     else { if(confirm(\'Want to skip one error and start?\')) { replica_repair(\'" .$serverip. "\'); } } 
-                                     return false;\"";
+        $onclick = "onclick=\"javascript:   if(event.ctrlKey || event.metaKey) {
+                                                if(confirm(\'Want to RESTART replication?\')) {
+                                                    replica_restart(\'" .$serverip. "\');
+                                                }
+                                            }
+                                            else {
+                                                if(confirm(\'Want to skip one error and start?\')) {
+                                                    replica_repair(\'" .$serverip. "\');
+                                                }
+                                            }
+                                            return false;\"";
     }
 
     if ($data["Seconds_Behind_Master"] == "0") {
@@ -230,7 +248,8 @@ function err500($connection, $serverip)
 function elastic($connection, $serverip)
 {
     $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
-                                     curl -sS -o /dev/null -XGET http://`ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+'`:9200/_cluster/health?pretty;
+                                     hostname=\$(ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+')
+                                     curl -sS -o /dev/null -XGET http://$hostname:9200/_cluster/health?pretty;
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
