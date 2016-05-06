@@ -263,8 +263,10 @@ function elastic($connection, $serverip)
 
 function locks($connection, $serverip)
 {
-    $locked = trim(ssh2_return($connection, "mysql -Ne \"SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30\" | wc -l"));
-    $conns  = trim(ssh2_return($connection, "mysql -Nse \"SHOW STATUS WHERE variable_name = 'Threads_connected'\" | awk '{print $2}'"));
+    $query  = "SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30";
+    $locked = trim(ssh2_return($connection, "mysql -Ne \"".$query."\" | wc -l"));
+    $query  = "SHOW STATUS WHERE variable_name = 'Threads_connected'";
+    $conns  = trim(ssh2_return($connection, "mysql -Nse \"".$query."\" | awk '{print $2}'"));
     if ($locked === "Timeout") {
         $locked = "T";
     }
