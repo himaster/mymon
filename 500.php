@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * 500 File Doc Comment
  *
