@@ -68,7 +68,7 @@ function child_()
     start:
 
     if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
-        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', 'id_rsa.pub', 'id_rsa', ''))) {
+        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', './id_rsa.pub', './id_rsa', ''))) {
         common_log($servername.' - retry #'.$i++.'.');
         sleep(1);
         if ($i < $retry_num) {
