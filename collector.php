@@ -18,6 +18,8 @@ declare(ticks = 1);
 set_error_handler('errhandler');
 pcntl_signal(SIGTERM, 'sighandler');
 
+$docroot    = $_SERVER['DOCUMENT_ROOT'];
+
 $connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon') or die($connection->connect_errno."\n");
 $result     = $connection->query('SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;')
             or die($connection->error);
@@ -68,7 +70,7 @@ function child_()
     start:
 
     if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
-        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', './id_rsa.pub', './id_rsa', ''))) {
+        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         common_log($servername.' - retry #'.$i++.'.');
         sleep(1);
         if ($i < $retry_num) {
