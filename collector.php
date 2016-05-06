@@ -43,21 +43,24 @@ function child_()
     global $array;
     global $stop_server;
     global $servername;
-    $retry_num = 10;
-    $serverip = $array["ip"];
-    $servername = $array["servername"];
-    $errs = $array["err"];
-    $elastic = $array["el"];
-    $db = $array["db"];
-    $mysql = $array["mysql"];
-    $mon = $array["mon"];
-    $red = $array["red"];
-    $i = 1;
+
+    $docroot     = dirname(__FILE__);
+    $retry_num   = 10;
+    $serverip    = $array["ip"];
+    $servername  = $array["servername"];
+    $errs        = $array["err"];
+    $elastic     = $array["el"];
+    $db          = $array["db"];
+    $mysql       = $array["mysql"];
+    $mon         = $array["mon"];
+    $red         = $array["red"];
+    $i           = 1;
     $ssh_conname = "ssh_".$servername;
     common_log($servername. " - started.");
     start:
     
-    if ((!$$ssh_conname = @ssh2_connect($serverip, 22)) or (!@ssh2_auth_pubkey_file($$ssh_conname, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', ''))) {
+    if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
+        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'id_rsa.pub', $docroot.'id_rsa', ''))) {
         common_log($servername." - retry #".$i++.".");
         sleep(1);
         if ($i < $retry_num) {
