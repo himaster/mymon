@@ -10,29 +10,32 @@
  * @link     http://mymon.pkwteile.de
  */
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-require_once "functions.php";
-declare(ticks=1);
-set_error_handler('errHandler');
-pcntl_signal(SIGTERM, "sigHandler");
+function main()
+{
+    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+    require_once "functions.php";
+    declare(ticks=1);
+    set_error_handler('errHandler');
+    pcntl_signal(SIGTERM, "sigHandler");
 
-$connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
-        or die($connection->error);
-$connection->close();
-while ($array = $result->fetch_assoc()) {
-    $pid = pcntl_fork();
-    if ($pid == -1) {
-        die("Child process can't be created");
-    } elseif ($pid) {
-        parent_();
-    } else {
-        child_();
-        exit;
+    $connection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($connection->connect_errno."\n");
+    $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
+            or die($connection->error);
+    $connection->close();
+    while ($array = $result->fetch_assoc()) {
+        $pid = pcntl_fork();
+        if ($pid == -1) {
+            die("Child process can't be created");
+        } elseif ($pid) {
+            parent_();
+        } else {
+            child_();
+            exit;
+        }
     }
+    $result->free();
+    exit;
 }
-$result->free();
-exit;
 
 function parent_()
 {
@@ -79,7 +82,8 @@ function child_()
     }
     unset($result);
     if ($db == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip)."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip).
+                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';");
     }
@@ -88,7 +92,8 @@ function child_()
     }
     unset($result);
     if ($errs == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip).
+                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';");
     }
@@ -97,7 +102,8 @@ function child_()
     }
     unset($result);
     if ($elastic == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip).
+                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `elastic`='' WHERE `ip`='" .$serverip. "';");
     }
@@ -106,7 +112,8 @@ function child_()
     }
     unset($result);
     if ($mysql == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='" .locks($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='" .locks($$ssh_conname, $serverip).
+                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='' WHERE `ip`='" .$serverip. "';");
     }
@@ -115,7 +122,8 @@ function child_()
     }
     unset($result);
     if ($mon == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip).
+                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='' WHERE `ip`='" .$serverip. "';");
     }
@@ -124,7 +132,8 @@ function child_()
     }
     unset($result);
     if ($red == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='" .redis($$ssh_conname, $serverip). "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='" .redis($$ssh_conname, $serverip).
+                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='' WHERE `ip`='" .$serverip. "';");
     }
@@ -314,3 +323,5 @@ function errHandler($errno, $errmsg, $filename, $linenum)
         fclose($f);
     }
 }
+
+main();
