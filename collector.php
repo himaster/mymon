@@ -371,7 +371,7 @@ function errhandler($errno, $errmsg, $filename, $linenum)
     $f = fopen('/var/log/mymon/errors.txt', 'a');
     if (! empty($f)) {
         $filename  = str_replace($_SERVER['DOCUMENT_ROOT'], '', $filename);
-        fwrite($f, '$date: server: $servername: $errmsg - $filename - $linenum\r\n');
+        fwrite($f, "$date: server: $servername: $errmsg - $filename - $linenum\r\n");
         fclose($f);
     }
 }
