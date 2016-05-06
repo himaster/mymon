@@ -249,7 +249,7 @@ function elastic($connection, $serverip)
 {
     $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
                                      hostname=\$(ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+')
-                                     curl -sS -o /dev/null -XGET http://$hostname:9200/_cluster/health?pretty;
+                                     curl -sS -o /dev/null -XGET http://\$hostname:9200/_cluster/health?pretty;
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
