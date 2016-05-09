@@ -8,7 +8,6 @@ $serverip = "pkwteile.no-ip.biz";
 $connection = ssh2_connect($serverip, 22);
 ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '');
 $str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
-
 foreach (explode("\n", $str) as $cLine) {
     if (strpos($cLine, "Timeout") != false) {
         echo "<font color=\"red\">".strpos($cLine, "Timeout")." - stopped</font>";
@@ -16,3 +15,4 @@ foreach (explode("\n", $str) as $cLine) {
     list($cKey, $cValue) = explode(':', $cLine, 2);
     $data[trim($cKey)] = trim($cValue);
 }
+var_dump($data);
