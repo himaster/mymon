@@ -233,7 +233,7 @@ function rep($connection, $serverip)
         $delta = $data["Seconds_Behind_Master"];
     }
 
-    return "<a title=\"" .mysql_escape_string($data["Last_SQL_Error"]). "\" 
+    return "<a title=\"" .@mysql_escape_string($data["Last_SQL_Error"]). "\" 
                href=\"#\"". $onclick . " >
                SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
                IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
