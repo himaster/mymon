@@ -16,7 +16,8 @@ if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
     exit(1);
 }
 $str = ssh2_return($$ssh_conname, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
-
+var_dump($str);
+die();
 foreach (explode("\n", $str) as $cLine) {
     if (strpos($cLine, "Timeout") != false) {
         return "<font color=\"red\">".strpos($cLine, "Timeout")." - stopped</font>";
@@ -25,4 +26,4 @@ foreach (explode("\n", $str) as $cLine) {
     $data[trim($cKey)] = trim($cValue);
 }
 
-var_dump($connection->mysqli_real_escape_string($data["Last_SQL_Error"]));
+var_dump($data["Last_SQL_Error"]);
