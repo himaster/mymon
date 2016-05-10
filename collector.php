@@ -189,8 +189,12 @@ function rep($connection, $serverip, $servername = null)
         if (strpos($cLine, "Timeout") != false) {
             return "<font color=\"red\">".strpos($cLine, "Timeout")." - stopped</font>";
         }
-        @list($cKey, $cValue) = @explode(':', $cLine, 2);
-        $data[trim($cKey)] = trim($cValue);
+        try {
+            list($cKey, $cValue) = explode(':', $cLine, 2);
+            $data[trim($cKey)] = trim($cValue);
+        } catch (Exception $ex) {
+            common_log('Exception: '.$ex->getMessage());
+        }
     }
     $onclick = "";
     if (array_key_exists("Slave_SQL_Running", $data) && ($data["Slave_SQL_Running"] == "Yes")) {
