@@ -1,4 +1,4 @@
-<?php
+Í<?php
 error_reporting(E_ALL);
 include_once("functions.php");
 
@@ -15,8 +15,24 @@ if (!isset($_GET['task'])) {
 }
 
 if ($_GET['task'] == "exit") {
-    setcookie('mymon[login]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
-    setcookie('mymon[password]', '', time()-604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
+    setcookie(
+        'mymon[login]',
+        '',
+        time()-604800,
+        dirname($_SERVER['PHP_SELF']),
+        $_SERVER['HTTP_HOST'],
+        isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+        true
+    );
+    setcookie(
+        'mymon[password]',
+        '',
+        time()-604800,
+        dirname($_SERVER['PHP_SELF']),
+        $_SERVER['HTTP_HOST'],
+        isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+        true
+    );
     unset($_COOKIE['mymon']);
     header("Location: " .host_scheme(). "://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
     die();
@@ -36,7 +52,10 @@ while ($row = $result->fetch_assoc()) {
 if (isset($_COOKIE["mymon"])) {
     $login = no_injection($_COOKIE["mymon"]["login"]);
     $password = no_injection($_COOKIE["mymon"]["password"]);
-    $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify  FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($dbconnection->error);
+    $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify
+                                    FROM `mymon`.`users`
+                                    WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1'
+                                    LIMIT 1") or die($dbconnection->error);
     $result_assoc = $result->fetch_assoc();
     $uid = $result_assoc['id'];
     $umail = $result_assoc['email'];
@@ -126,7 +145,7 @@ if (isset($_COOKIE["mymon"])) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
                     die("Can't connect to slave server");
                 }
-                if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+                if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
                     die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
                 }
                 $query = "SET GLOBAL SQL_SLAVE_SKIP_COUNTER=1;";
@@ -189,12 +208,22 @@ if (isset($_COOKIE["mymon"])) {
 
             case 'getdata':
                 $rows=array();
-                $result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis` FROM `mymon`.`stats`") or
+                $result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) 
+                        AS `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis` 
+                        FROM `mymon`.`stats`") or
                 die($dbconnection->error());
             while ($array = $result->fetch_assoc()) {
                 $rows["data"][] = $array;
             }
-                $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`) as `timestamp`, `messages`.`message`, `users`.`login` FROM `mymon`.`messages` JOIN `users` WHERE `messages`.`sender` = `users`.`id` AND `receiver` = '$uid' AND isRead = 0 AND isDeleted = 0 LIMIT 1;") or die($dbconnection->error());
+                $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`)
+                        AS `timestamp`, `messages`.`message`, `users`.`login`
+                        FROM `mymon`.`messages` JOIN `users`
+                        WHERE `messages`.`sender` = `users`.`id`
+                        AND `receiver` = '$uid'
+                        AND isRead = 0
+                        AND isDeleted = 0
+                        LIMIT 1;") or
+                die($dbconnection->error());
             if (mysqli_num_rows($result)>0) {
                 $rows["msg"] = $result->fetch_assoc();
             }
@@ -211,11 +240,16 @@ if (isset($_COOKIE["mymon"])) {
             while ($row = $result->fetch_assoc()) {
                 if ($_GET[$row['name']] == "on") {
                     $rid = $row['id'];
-                    $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) VALUES ('$uid', '$rid');") or die($dbconnection->error());
+                    $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`)
+                                          VALUES ('$uid', '$rid');") or die($dbconnection->error());
                 }
             }
-                $result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login';") or die($dbconnection->error());
-                $result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login';") or die($dbconnection->error());
+                $result = $dbconnection->query("UPDATE `mymon`.`users` 
+                                                SET approvied = '1'
+                                                WHERE login = '$login';") or die($dbconnection->error());
+                $result = $dbconnection->query("SELECT email
+                                                FROM `mymon`.`users`
+                                                WHERE login = '$login';") or die($dbconnection->error());
                 $msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$hostname, 70);
                 $headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
                 mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
@@ -225,19 +259,42 @@ if (isset($_COOKIE["mymon"])) {
             case "sendmsg":
                 $umessage = no_injection($_POST['umessage']);
                 foreach ($_POST['uselect'] as $ulogin) {
-                    $result = $dbconnection->query("INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`) VALUES ('$umessage', '$uid', '$ulogin');") or die("Error occured".$dbconnection->error);
+                    $result = $dbconnection->query("INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`)
+                                                    VALUES ('$umessage', '$uid', '$ulogin');") or
+                    die("Error occured".$dbconnection->error);
                 }
                 echo "Message sent.";
                 break;
 
             case "msgred":
-                $result = $dbconnection->query("UPDATE `mymon`.`messages` SET isRead = 1 WHERE receiver ='$uid' and isRead = 0 and isDeleted = 0 LIMIT 1;") or
+                $result = $dbconnection->query("UPDATE `mymon`.`messages` 
+                                                SET isRead = 1
+                                                WHERE receiver ='$uid'
+                                                AND isRead = 0
+                                                AND isDeleted = 0
+                                                LIMIT 1;") or
                 die($dbconnection->error());
                 break;
 
             default:
-                setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
-                setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
+                setcookie(
+                    'mymon[login]',
+                    $login,
+                    time()+604800,
+                    dirname($_SERVER['PHP_SELF']),
+                    $_SERVER['HTTP_HOST'],
+                    isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+                    true
+                );
+                setcookie(
+                    'mymon[password]',
+                    $password,
+                    time()+604800,
+                    dirname($_SERVER['PHP_SELF']),
+                    $_SERVER['HTTP_HOST'],
+                    isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+                    true
+                );
                 include "header.html";
                 include "table.php";
                 include "footer.html";
@@ -252,7 +309,12 @@ if (isset($_COOKIE["mymon"])) {
 } elseif (isset($_POST['auth_submit'])) {
     $login = no_injection($_POST['login']);
     $password = md5(no_injection($_POST['password']));
-    $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify  FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($dbconnection->error);
+    $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify 
+                                    FROM `mymon`.`users`
+                                    WHERE login ='" .$login. "'
+                                    AND password='" .$password. "'
+                                    AND approvied='1'
+                                    LIMIT 1") or die($dbconnection->error);
     $result_assoc = $result->fetch_assoc();
     $uid = $result_assoc['id'];
     $umail = $result_assoc['email'];
@@ -264,9 +326,32 @@ if (isset($_COOKIE["mymon"])) {
     $umon = $result_assoc['mon'];
     $ured = $result_assoc['red'];
     $unotify = $result_assoc['notify'];
+
     if ($result->num_rows == 1) {
-        setcookie('mymon[login]', $login, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
-        setcookie('mymon[password]', $password, time()+604800, dirname($_SERVER['PHP_SELF']), $_SERVER['HTTP_HOST'], isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]), true);
+        $result1 = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
+        if ($result1->num_rows == 1) {
+            $isAdmin = true;
+        } else {
+            $isAdmin = false;
+        }
+        setcookie(
+            'mymon[login]',
+            $login,
+            time()+604800,
+            dirname($_SERVER['PHP_SELF']),
+            $_SERVER['HTTP_HOST'],
+            isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+            true
+        );
+        setcookie(
+            'mymon[password]',
+            $password,
+            time()+604800,
+            dirname($_SERVER['PHP_SELF']),
+            $_SERVER['HTTP_HOST'],
+            isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+            true
+        );
         include "header.html";
         include "table.php";
         include "footer.html";
