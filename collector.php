@@ -20,11 +20,6 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, 'sigHandler');
 
-$ssh_callbacks = array('disconnect' => 'ssh_disconnect',
-                       'ignore'     => 'ssh_ignore',
-                       'debug'      => 'ssh_debug',
-                       'macerror'   => 'ssh_macerror');
-
 $connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon')
             or die($connection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
@@ -67,6 +62,10 @@ function child_()
     $i           = 1;
     $ssh_conname = "ssh_".$servername;
     common_log($servername. " - started.");
+    $ssh_callbacks = array('disconnect' => 'ssh_disconnect',
+                       'ignore'     => 'ssh_ignore',
+                       'debug'      => 'ssh_debug',
+                       'macerror'   => 'ssh_macerror');
     start:
     
     if (( ! $$ssh_conname = @ssh2_connect($serverip, 22, $ssh_callbacks))
