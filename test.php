@@ -8,6 +8,19 @@ $serverip = "pkwteile.no-ip.biz";
 $connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon')
             or die($connection->connect_errno."\n");
 $data = array();
+$servername = "gw";
+$serverip = "188.138.234.38";
+$ssh_conname = "ssh_".$servername;
+if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
+        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
+        common_log($servername." - retry #".$i++.".");
+        sleep(1);
+        if ($i < $retry_num) {
+            goto start;
+        } else {
+            exit(1);
+        }
+    }
 $str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
 
 foreach (explode("\n", $str) as $cLine) {
