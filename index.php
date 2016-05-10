@@ -335,6 +335,15 @@ if (isset($_COOKIE["mymon"])) {
     $ured = $result_assoc['red'];
     $unotify = $result_assoc['notify'];
     if ($result->num_rows == 1) {
+        $result1 = $dbconnection->query("SELECT *
+                                         FROM `mymon`.`user_roles`
+                                         WHERE `user_id` = {$uid}
+                                         AND `role_id` = 1") or die($dbconnection->error);
+        if ($result1->num_rows == 1) {
+            $isAdmin = true;
+        } else {
+            $isAdmin = false;
+        }
         setcookie(
             'mymon[login]',
             $login,
