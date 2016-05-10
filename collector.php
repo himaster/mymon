@@ -216,7 +216,7 @@ function rep($connection, $serverip, $servername = null)
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
     } else {
-        $iofontcolor =  "<script type=\"text/javascript\">notify(\"".$servername.": replication IO problem\");</script>".
+        $iofontcolor =  "<script type=\"text/javascript\">notify(\"$servername: replication IO problem\");</script>".
                         "<font color=\"red\">";
         $io = "x";
         $onclick = "onclick=\"javascript:   if(event.ctrlKey || event.metaKey) {
@@ -235,7 +235,8 @@ function rep($connection, $serverip, $servername = null)
     if (array_key_exists("Seconds_Behind_Master", $data) && ($data["Seconds_Behind_Master"] == "0")) {
         $deltafontcolor = "<font color=\"green\">";
         $delta = "0";
-    } elseif ((array_key_exists("Seconds_Behind_Master", $data) && ($data["Seconds_Behind_Master"] == "NULL")) || ! array_key_exists("Seconds_Behind_Master", $data)) {
+    } elseif ((array_key_exists("Seconds_Behind_Master", $data) && ($data["Seconds_Behind_Master"] == "NULL"))
+              || ! array_key_exists("Seconds_Behind_Master", $data)) {
         $deltafontcolor = "<font color=\"red\">";
         $delta = "x";
     } else {
