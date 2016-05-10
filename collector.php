@@ -186,7 +186,7 @@ function rep($connection, $serverip, $servername = null)
         $data[trim($cKey)] = trim($cValue);
     }
     $onclick = "";
-    if ($data["Slave_SQL_Running"] == "Yes") {
+    if (array_key_exists("Slave_SQL_Running", $data) && ($data["Slave_SQL_Running"] == "Yes")) {
         $sqlfontcolor = "<font color=\"green\">";
         $sql = "&#10003;";
     } else {
@@ -205,7 +205,7 @@ function rep($connection, $serverip, $servername = null)
                                             }
                                             return false;\"";
     }
-    if ($data["Slave_IO_Running"] == "Yes") {
+    if (array_key_exists("Slave_SQL_Running", $data) && ($data["Slave_IO_Running"] == "Yes")) {
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
     } else {
