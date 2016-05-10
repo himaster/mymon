@@ -20,6 +20,11 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, 'sigHandler');
 
+$ssh_callbacks = array('disconnect' => 'ssh_disconnect',
+                       'ignore'     => 'ssh_ignore',
+                       'debug'      => 'ssh_debug',
+                       'macerror'   => 'ssh_macerror');
+
 $connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon')
             or die($connection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
@@ -64,7 +69,7 @@ function child_()
     common_log($servername. " - started.");
     start:
     
-    if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
+    if (( ! $$ssh_conname = @ssh2_connect($serverip, 22, $ssh_callbacks))
         or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         common_log($servername." - retry #".$i++.".");
         sleep(1);
@@ -360,4 +365,24 @@ function errHandler($errno, $errmsg, $filename, $linenum)
         fwrite($f, "$date: server: $servername: $errmsg - $filename - $linenum\r\n");
         fclose($f);
     }
+}
+
+function ssh_disconnect()
+{
+    echo "SSH disconnect";
+}
+
+function ssh_ignore()
+{
+    echo "SSH ignore";
+}
+
+function ssh_debug()
+{
+    echo "SSH debug";
+}
+
+function ssh_macerror()
+{
+    echo "SSH macerror";
 }
