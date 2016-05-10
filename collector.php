@@ -368,20 +368,20 @@ function errHandler($errno, $errmsg, $filename, $linenum)
 
 function ssh_disconnect()
 {
-    echo "SSH disconnect";
+    common_log("SSH disconnect");
 }
 
 function ssh_ignore()
 {
-    echo "SSH ignore";
+    common_log("SSH ignore");
 }
 
 function ssh_debug()
 {
-    echo "SSH debug";
+    common_log("SSH debug");
 }
 
 function ssh_macerror()
 {
-    echo "SSH macerror";
+    common_log("SSH macerror");
 }
