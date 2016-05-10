@@ -179,14 +179,14 @@ if (isset($_COOKIE["mymon"])) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
                     die("Can't connect to slave server");
                 }
-                if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+                if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
                     die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
                 }
                 if (!$connection_master = ssh2_connect($masterip, 22)) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
                     die("Can't connect to master $masterip");
                 }
-                if (!ssh2_auth_pubkey_file($connection_master, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+                if (!ssh2_auth_pubkey_file($connection_master, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
                     die("<font color=\"red\">SSH key for master not feat!</font>");
                 }
 
@@ -213,12 +213,22 @@ if (isset($_COOKIE["mymon"])) {
 
             case 'getdata':
                 $rows=array();
-                $result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`) as `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis` FROM `mymon`.`stats`") or
+                $result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`)
+                        AS `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis`
+                        FROM `mymon`.`stats`;") or
                 die($dbconnection->error());
             while ($array = $result->fetch_assoc()) {
                 $rows["data"][] = $array;
             }
-                $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`) as `timestamp`, `messages`.`message`, `users`.`login` FROM `mymon`.`messages` JOIN `users` WHERE `messages`.`sender` = `users`.`id` AND `receiver` = '$uid' AND isRead = 0 AND isDeleted = 0 LIMIT 1;") or die($dbconnection->error());
+                $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`)
+                        AS `timestamp`, `messages`.`message`, `users`.`login`
+                        FROM `mymon`.`messages` JOIN `users`
+                        WHERE `messages`.`sender` = `users`.`id`
+                        AND `receiver` = '$uid'
+                        AND isRead = 0
+                        AND isDeleted = 0
+                        LIMIT 1;") or
+                die($dbconnection->error());
             if (mysqli_num_rows($result)>0) {
                 $rows["msg"] = $result->fetch_assoc();
             }
@@ -235,11 +245,19 @@ if (isset($_COOKIE["mymon"])) {
             while ($row = $result->fetch_assoc()) {
                 if ($_GET[$row['name']] == "on") {
                     $rid = $row['id'];
-                    $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) VALUES ('$uid', '$rid');") or die($dbconnection->error());
+                    $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) 
+                                          VALUES ('$uid', '$rid');") or
+                    die($dbconnection->error());
                 }
             }
-                $result = $dbconnection->query("UPDATE `mymon`.`users` SET approvied = '1' WHERE login = '$login';") or die($dbconnection->error());
-                $result = $dbconnection->query("SELECT email FROM `mymon`.`users` WHERE login = '$login';") or die($dbconnection->error());
+                $result = $dbconnection->query("UPDATE `mymon`.`users`
+                                                SET approvied = '1'
+                                                WHERE login = '$login';") or
+                die($dbconnection->error());
+                $result = $dbconnection->query("SELECT email
+                                                FROM `mymon`.`users`
+                                                WHERE login = '$login';") or
+                die($dbconnection->error());
                 $msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on https://" .$hostname, 70);
                 $headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
                 mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);
