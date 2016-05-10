@@ -77,14 +77,14 @@ function child_()
     $mysql_conname = "mysql_".$servername;
     $$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
                     or die($$mysql_conname->connect_errno."\n");
-    $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip).
+    $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `la`='".la($$ssh_conname, $serverip, $servername).
             "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     if (!isset($result)) {
         common_log($servername." - LA not updated!");
     }
     unset($result);
     if ($db == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip).
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';");
@@ -94,7 +94,7 @@ function child_()
     }
     unset($result);
     if ($errs == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip).
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='" .err500($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';");
@@ -104,7 +104,7 @@ function child_()
     }
     unset($result);
     if ($elastic == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip).
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `elastic`='' WHERE `ip`='" .$serverip. "';");
@@ -114,7 +114,7 @@ function child_()
     }
     unset($result);
     if ($mysql == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='" .locks($$ssh_conname, $serverip).
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='" .locks($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `locks`='' WHERE `ip`='" .$serverip. "';");
@@ -124,7 +124,7 @@ function child_()
     }
     unset($result);
     if ($mon == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip).
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `mongo`='' WHERE `ip`='" .$serverip. "';");
@@ -134,7 +134,7 @@ function child_()
     }
     unset($result);
     if ($red == 1) {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='" .redis($$ssh_conname, $serverip).
+        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='" .redis($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';");
     } else {
         $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `redis`='' WHERE `ip`='" .$serverip. "';");
@@ -149,7 +149,10 @@ function child_()
     common_log($servername. " - ended.");
 }
 
-function la($connection, $serverip)
+
+
+
+function la($connection, $serverip, $servername = null)
 {
     global $hostname;
     $la_string = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"), ":"), 1);
@@ -169,7 +172,7 @@ function la($connection, $serverip)
                target=\"_blank\">" .$fontcolor. "<b>" .$percent. "%</b></span>\n</a>";
 }
 
-function rep($connection, $serverip)
+function rep($connection, $serverip, $servername = null)
 {
     global $mysql_conname;
     global $$mysql_conname;
@@ -187,7 +190,7 @@ function rep($connection, $serverip)
         $sqlfontcolor = "<font color=\"green\">";
         $sql = "&#10003;";
     } else {
-        $sqlfontcolor = "<script type=\"text/javascript\">notify(\"Replication SQL problem\");</script>".
+        $sqlfontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": replication SQL problem\");</script>".
                         "<font color=\"red\">";
         $sql = "x";
         $onclick = "onclick=\"javascript:   if(event.ctrlKey || event.metaKey) {
@@ -206,7 +209,7 @@ function rep($connection, $serverip)
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
     } else {
-        $iofontcolor =  "<script type=\"text/javascript\">notify(\"Replication IO problem\");</script>".
+        $iofontcolor =  "<script type=\"text/javascript\">notify(\"".$servername.": replication IO problem\");</script>".
                         "<font color=\"red\">";
         $io = "x";
         $onclick = "onclick=\"javascript:   if(event.ctrlKey || event.metaKey) {
@@ -240,7 +243,7 @@ function rep($connection, $serverip)
                &#916;: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
-function err500($connection, $serverip)
+function err500($connection, $serverip, $servername = null)
 {
     global $hostname;
     $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
@@ -250,7 +253,7 @@ function err500($connection, $serverip)
              target=\"_blank\">" .$str. "\n</a>";
 }
 
-function elastic($connection, $serverip)
+function elastic($connection, $serverip, $servername = null)
 {
     $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
                                      hostname=\$(ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+')
@@ -258,7 +261,7 @@ function elastic($connection, $serverip)
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"Elastic problem\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": elastic problem\");</script><font color=\"red\">";
     } else {
         $fontcolor = "<font color=\"green\">";
     }
@@ -266,7 +269,7 @@ function elastic($connection, $serverip)
     return $fontcolor.$str. " ms</font>";
 }
 
-function locks($connection, $serverip)
+function locks($connection, $serverip, $servername = null)
 {
     $query  = "SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30";
     $locked = trim(ssh2_return($connection, "mysql -Ne \"".$query."\" | wc -l"));
@@ -281,20 +284,20 @@ function locks($connection, $serverip)
     if (($locked == "0") and ($conns < "5000")) {
         $fontcolor = "<font color=\"green\">";
     } else {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"DB locks\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": DB locks\");</script><font color=\"red\">";
     }
 
     return $fontcolor.$conns. " / " .$locked. "</font>";
 }
 
-function mongo($connection, $serverip)
+function mongo($connection, $serverip, $servername = null)
 {
     $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
                 mongo admin --quiet --eval 'printjson(db.serverStatus().connections.current)' 1>/dev/null;
                 date2=\$((\$(date +'%s%N') / 1000000));
                 echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"Mongo problem\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": mongo problem\");</script><font color=\"red\">";
     } else {
         $fontcolor = "<font color=\"green\">";
     }
@@ -302,14 +305,14 @@ function mongo($connection, $serverip)
     return $fontcolor.$str. " ms</font>";
 }
 
-function redis($connection, $serverip)
+function redis($connection, $serverip, $servername = null)
 {
     $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
                                      redis-cli info 1>/dev/null;
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"Redis problem\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": redis problem\");</script><font color=\"red\">";
     } else {
         $fontcolor = "<font color=\"green\">";
     }
