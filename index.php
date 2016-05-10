@@ -71,7 +71,10 @@ if (isset($_COOKIE["mymon"])) {
     $unotify = $result_assoc['notify'];
 
     if ($result->num_rows == 1) {
-        $result1 = $dbconnection->query("SELECT * FROM `mymon`.`user_roles` WHERE `user_id` = {$uid} AND `role_id` = 1");
+        $result1 = $dbconnection->query("SELECT *
+                                         FROM `mymon`.`user_roles`
+                                         WHERE `user_id` = {$uid}
+                                         AND `role_id` = 1") or die($dbconnection->error);
         if ($result1->num_rows == 1) {
             $isAdmin = true;
         } else {
@@ -147,7 +150,7 @@ if (isset($_COOKIE["mymon"])) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
                     die("Can't connect to slave server");
                 }
-                if (!ssh2_auth_pubkey_file($connection, 'root', '/var/www/netbox.co/mymon/id_rsa.pub', '/var/www/netbox.co/mymon/id_rsa', '')) {
+                if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
                     die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
                 }
                 $query = "SET GLOBAL SQL_SLAVE_SKIP_COUNTER=1;";
