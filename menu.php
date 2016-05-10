@@ -1,4 +1,3 @@
-
 <a href="#" onclick="">
 	<div id="left_button" class="left_button">
 		<img src="images/profile.png">
