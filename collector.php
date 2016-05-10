@@ -189,7 +189,7 @@ function rep($connection, $serverip, $servername = null)
         if (strpos($cLine, "Timeout") != false) {
             return "<font color=\"red\">".strpos($cLine, "Timeout")." - stopped</font>";
         }
-        list($cKey, $cValue) = explode(':', $cLine, 2);
+        list($cKey, $cValue) = @explode(':', $cLine, 2);
         $data[trim($cKey)] = trim($cValue);
     }
     $onclick = "";
