@@ -52,7 +52,12 @@ while ($row = $result->fetch_assoc()) {
 if (isset($_COOKIE["mymon"])) {
     $login = no_injection($_COOKIE["mymon"]["login"]);
     $password = no_injection($_COOKIE["mymon"]["password"]);
-    $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify  FROM `mymon`.`users` WHERE login ='" .$login. "' AND password='" .$password. "' AND approvied='1' LIMIT 1") or die($dbconnection->error);
+    $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify
+                                    FROM `mymon`.`users`
+                                    WHERE login ='" .$login. "'
+                                    AND password='" .$password. "'
+                                    AND approvied='1'
+                                    LIMIT 1") or die($dbconnection->error);
     $result_assoc = $result->fetch_assoc();
     $uid = $result_assoc['id'];
     $umail = $result_assoc['email'];
