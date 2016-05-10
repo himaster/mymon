@@ -112,8 +112,9 @@ if (isset($_COOKIE["mymon"])) {
                 $servername = $_GET['servername'];
                 $columnname = $_GET['columnname'];
                 $val = $_GET['val'];
-                $query = "UPDATE `mymon`.`stats` SET `$columnname` = '$val' WHERE `servername` = '$servername'";
-                if ($result = $dbconnection->query($query)) {
+                if ($result = $dbconnection->query("UPDATE `mymon`.`stats`
+                                                    SET `$columnname` = '$val'
+                                                    WHERE `servername` = '$servername'")) {
                     echo "Successfully edited";
                 } else {
                     print_r($dbconnection->error);
@@ -128,15 +129,21 @@ if (isset($_COOKIE["mymon"])) {
                 $columnname = $_GET['columnname'];
                 $val = $_GET['val'];
                 if ($columnname == "role") {
-                    $result = $dbconnection->query("SELECT `id` FROM `mymon`.`users` WHERE `login` = '$username'");
+                    $result = $dbconnection->query("SELECT `id`
+                                                    FROM `mymon`.`users`
+                                                    WHERE `login` = '$username'");
                     $user_id = $result->fetch_assoc()['id'];
-                    $query = "DELETE FROM `mymon`.`user_roles` WHERE `user_id` = '$user_id;'; ";
+                    $query = "DELETE FROM `mymon`.`user_roles`
+                              WHERE `user_id` = '$user_id;'; ";
                     $roles_array = explode(',', $val);
                     foreach ($roles_array as $item) {
-                        $query .= "INSERT INTO `mymon`.`user_roles`(`user_id`, `role_id`) VALUES ('$user_id', '$item'); ";
+                        $query .= "INSERT INTO `mymon`.`user_roles`(`user_id`, `role_id`)
+                                   VALUES ('$user_id', '$item');";
                     }
                 } else {
-                    $query = "UPDATE `mymon`.`users` SET `$columnname` = '$val' WHERE `login` = '$username'";
+                    $query = "UPDATE `mymon`.`users`
+                              SET `$columnname` = '$val'
+                              WHERE `login` = '$username'";
                 }
                 if ($result = $dbconnection->multi_query($query)) {
                     echo "Successfully edited";
@@ -163,7 +170,14 @@ if (isset($_COOKIE["mymon"])) {
                 break;
             
             case "replica_restart":
-                $backin = array("88.198.182.130","88.198.182.132","88.198.182.134","88.198.182.146","88.198.182.160","88.198.182.162");
+                $backin = array(
+                            "88.198.182.130",
+                            "88.198.182.132",
+                            "88.198.182.134",
+                            "88.198.182.146",
+                            "88.198.182.160",
+                            "88.198.182.162"
+                            );
                 $backout = array("217.118.19.156","pkwteile.no-ip.biz","188.138.234.38");
                 if (in_array($_GET['serverip'], $backin)) {
                     $masterip = "88.198.182.134";
@@ -217,9 +231,9 @@ if (isset($_COOKIE["mymon"])) {
                         AS `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis`
                         FROM `mymon`.`stats`;") or
                 die($dbconnection->error());
-                while ($array = $result->fetch_assoc()) {
-                    $rows["data"][] = $array;
-                }
+            while ($array = $result->fetch_assoc()) {
+                $rows["data"][] = $array;
+            }
                 $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`)
                         AS `timestamp`, `messages`.`message`, `users`.`login`
                         FROM `mymon`.`messages` JOIN `users`
@@ -229,9 +243,9 @@ if (isset($_COOKIE["mymon"])) {
                         AND isDeleted = 0
                         LIMIT 1;") or
                 die($dbconnection->error());
-                if (mysqli_num_rows($result)>0) {
+            if (mysqli_num_rows($result)>0) {
                     $rows["msg"] = $result->fetch_assoc();
-                }
+            }
                 header("Content-Type: application/json; charset=utf-8 ");
                 echo json_encode($rows);
                 break;
@@ -242,14 +256,14 @@ if (isset($_COOKIE["mymon"])) {
                 die($dbconnection->error());
                 $uid = $result->fetch_assoc()['id'];
                 $result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
-                while ($row = $result->fetch_assoc()) {
-                    if ($_GET[$row['name']] == "on") {
-                        $rid = $row['id'];
-                        $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) 
-                                              VALUES ('$uid', '$rid');") or
-                        die($dbconnection->error());
-                    }
+            while ($row = $result->fetch_assoc()) {
+                if ($_GET[$row['name']] == "on") {
+                    $rid = $row['id'];
+                    $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) 
+                    VALUES ('$uid', '$rid');") or
+                    die($dbconnection->error());
                 }
+            }
                 $result = $dbconnection->query("UPDATE `mymon`.`users`
                                                 SET approvied = '1'
                                                 WHERE login = '$login';") or
