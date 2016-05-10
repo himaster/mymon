@@ -15,7 +15,7 @@ if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
         or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
     exit(1);
 }
-$str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
+$str = ssh2_return($$ssh_conname, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
 
 foreach (explode("\n", $str) as $cLine) {
     if (strpos($cLine, "Timeout") != false) {
