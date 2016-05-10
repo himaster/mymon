@@ -190,7 +190,7 @@ function rep($connection, $serverip, $servername = null)
             return "<font color=\"red\">".strpos($cLine, "Timeout")." - stopped</font>";
         }
         try {
-            list($cKey, $cValue) = explode(':', "$cLine : ", 2);
+            list($cKey, $cValue) = explode(':', "$cLine", 2);
             $data[trim($cKey)] = trim($cValue);
         } catch (Exception $ex) {
             common_log('Exception: '.$ex->getMessage());
