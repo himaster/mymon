@@ -61,7 +61,9 @@ function child_()
     $red         = $array["red"];
     $i           = 1;
     $ssh_conname = "ssh_".$servername;
-    common_log($servername. " - started.");
+    if ($loglevel == 'debug') {
+        common_log($servername. " - started.");
+    }
     $ssh_callbacks = array('disconnect' => 'ssh_disconnect',
                        'ignore'     => 'ssh_ignore',
                        'debug'      => 'ssh_debug',
@@ -157,7 +159,9 @@ function child_()
     $$mysql_conname->close();
     unset($$mysql_conname);
     unset($$ssh_conname);
-    common_log($servername. " - ended.");
+    if ($loglevel == 'debug') {
+        common_log($servername. " - ended.");
+    }
 }
 
 
