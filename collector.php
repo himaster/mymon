@@ -190,7 +190,7 @@ function rep($connection, $serverip, $servername = null)
         $sqlfontcolor = "<font color=\"green\">";
         $sql = "&#10003;";
     } else {
-        $sqlfontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": replication SQL problem\");</script>".
+        $sqlfontcolor = "<script type=\"text/javascript\">notify(\"$servername: replication SQL problem\");</script>".
                         "<font color=\"red\">";
         $sql = "x";
         $onclick = "onclick=\"javascript:   if(event.ctrlKey || event.metaKey) {
@@ -261,7 +261,8 @@ function elastic($connection, $serverip, $servername = null)
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": elastic problem\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": elastic problem\");</script>
+                      <font color=\"red\">";
     } else {
         $fontcolor = "<font color=\"green\">";
     }
@@ -284,7 +285,8 @@ function locks($connection, $serverip, $servername = null)
     if (($locked == "0") and ($conns < "5000")) {
         $fontcolor = "<font color=\"green\">";
     } else {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": DB locks\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": DB locks\");</script>
+                      <font color=\"red\">";
     }
 
     return $fontcolor.$conns. " / " .$locked. "</font>";
@@ -297,7 +299,8 @@ function mongo($connection, $serverip, $servername = null)
                 date2=\$((\$(date +'%s%N') / 1000000));
                 echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": mongo problem\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": mongo problem\");</script>
+                      <font color=\"red\">";
     } else {
         $fontcolor = "<font color=\"green\">";
     }
@@ -312,7 +315,8 @@ function redis($connection, $serverip, $servername = null)
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
-        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": redis problem\");</script><font color=\"red\">";
+        $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": redis problem\");</script>
+                      <font color=\"red\">";
     } else {
         $fontcolor = "<font color=\"green\">";
     }
