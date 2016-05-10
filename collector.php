@@ -248,7 +248,7 @@ function rep($connection, $serverip, $servername = null)
         $delta = $data["Seconds_Behind_Master"];
     }
 
-    return "<a title=\"".(array_key_exists("Last_SQL_Error", $data) ? @mysql_real_escape_string($connection, $data["Last_SQL_Error"]):'')."\" 
+    return "<a title=\"".(array_key_exists("Last_SQL_Error", $data) ? @mysql_escape_string($data["Last_SQL_Error"]):'')."\" 
                href=\"#\"". $onclick . " >
                SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
                IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
