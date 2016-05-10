@@ -205,7 +205,7 @@ function rep($connection, $serverip, $servername = null)
                                             }
                                             return false;\"";
     }
-    if (array_key_exists("Slave_SQL_Running", $data) && ($data["Slave_IO_Running"] == "Yes")) {
+    if (array_key_exists("Slave_IO_Running", $data) && ($data["Slave_IO_Running"] == "Yes")) {
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
     } else {
@@ -225,10 +225,10 @@ function rep($connection, $serverip, $servername = null)
                                             return false;\"";
     }
 
-    if ($data["Seconds_Behind_Master"] == "0") {
+    if (array_key_exists("Seconds_Behind_Master", $data) && ($data["Seconds_Behind_Master"] == "0")) {
         $deltafontcolor = "<font color=\"green\">";
         $delta = "0";
-    } elseif ($data["Seconds_Behind_Master"] == "NULL") {
+    } elseif (($data["Seconds_Behind_Master"] == "NULL") || ! array_key_exists("Seconds_Behind_Master", $data)) {
         $deltafontcolor = "<font color=\"red\">";
         $delta = "x";
     } else {
