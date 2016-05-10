@@ -3,6 +3,7 @@
 $hostname = 'mymon.pkwteile.de';
 
 $loglevel = 'debug';
+
 $docroot  = dirname(__FILE__);
 
 function no_injection($str = '')

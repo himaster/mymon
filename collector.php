@@ -49,6 +49,7 @@ function child_()
     global $stop_server;
     global $servername;
     global $docroot;
+    global $loglevel;
 
     $retry_num   = 10;
     $serverip    = $array["ip"];
