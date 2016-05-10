@@ -112,7 +112,9 @@ if ($isAdmin) { ?>
     <b>Messaging</b>
     <p><p>
     <?php
-        $result = $dbconnection->query("SELECT `id`, `login`  FROM `mymon`.`users` WHERE approvied='1'") or die($dbconnection->error);
+        $result = $dbconnection->query("SELECT `id`, `login`
+                                        FROM `mymon`.`users`
+                                        WHERE approvied='1'") or die($dbconnection->error);
     ?>  
     <form method="post" name="message_form" id="message_form" action="javascript:msg_submit();">
         <textarea name="umessage" id="umessage" class="umessage"></textarea>

@@ -20,11 +20,14 @@ if (isset($_POST['submit'])) {
         $login = no_injection($_POST['login']);
         $password = md5(no_injection($_POST['password']));
         $email = no_injection($_POST['email']);
-        $result = $dbconnection->query("SELECT `id` FROM `users` WHERE `login`='{$login}'") or die($dbconnection->error());
+        $result = $dbconnection->query("SELECT `id`
+                                        FROM `users`
+                                        WHERE `login`='{$login}'") or die($dbconnection->error());
         if ($result->num_rows > 0) {
             echo 'Такой логин уже существует';
         } else {
-            $result = $dbconnection->query("INSERT INTO users(login , password , email, approvied) VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
+            $result = $dbconnection->query("INSERT INTO users(login , password , email, approvied)
+                                            VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
             $msg = "<html><head><title></title></head><body>";
             $msg .= "User $login ($email) just registered. <form action='https://mymon.pkwteile.de/index.php' method='get'>";
             $msg .= "<input type='hidden' name='task' value='confirm' />";
@@ -58,47 +61,26 @@ if (isset($_POST['submit'])) {
         $login = no_injection($_POST['login']);
         $password = md5(no_injection($_POST['password']));
         $email = no_injection($_POST['email']);
-        if (isset($_POST['la'])) {
-            $ula = 1;
-        } else {
-            $ula = 0;
-        }
-        if (isset($_POST['rep'])) {
-            $urep = 1;
-        } else {
-            $urep = 0;
-        }
-        if (isset($_POST['loc'])) {
-            $uloc = 1;
-        } else {
-            $uloc = 0;
-        }
-        if (isset($_POST['500'])) {
-            $u500 = 1;
-        } else {
-            $u500 = 0;
-        }
-        if (isset($_POST['el'])) {
-            $uel = 1;
-        } else {
-            $uel = 0;
-        }
-        if (isset($_POST['mon'])) {
-            $umon = 1;
-        } else {
-            $umon = 0;
-        }
-        if (isset($_POST['red'])) {
-            $ured = 1;
-        } else {
-            $ured = 0;
-        }
-        if (isset($_POST['notify'])) {
-            $unotify = 1;
-        } else {
-            $unotify = 0;
-        }
-        $query = "UPDATE users SET password = '$password', email = '$email', la = '$ula', rep = '$urep', loc = '$uloc', `500` = '$u500', el = '$uel', mon = '$umon', red = '$ured', notify = '$unotify' WHERE login = '$login'";
+        $ula = (isset($_POST['la'])) ? 1 : 0;
+        $urep = (isset($_POST['rep'])) ? 1 : 0;
+        $uloc = (isset($_POST['loc'])) ? 1 : 0;
+        $u500 = (isset($_POST['500'])) ? 1 : 0;
+        $uel = (isset($_POST['el'])) ? 1 : 0;
+        $umon = (isset($_POST['mon'])) ? 1 : 0;
+        $ured = (isset($_POST['red'])) ? 1 : 0;
+        $unotify = (isset($_POST['notify'])) ? 1 : 0;
+        $query = "UPDATE `users`
+                  SET `password` = '$password',
+                      `email` = '$email',
+                      `la` = '$ula',
+                      `rep` = '$urep',
+                      `loc` = '$uloc',
+                      `500` = '$u500',
+                      `el` = '$uel',
+                      `mon` = '$umon',
+                      `red` = '$ured',
+                      `notify` = '$unotify'
+                  WHERE login = '$login';";
         $result = $dbconnection->query($query) or die(mysql_error());
         header("Refresh:0; url=index.php");
     }
