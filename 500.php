@@ -10,8 +10,6 @@
  * @link     http://mymon.pkwteile.de
  */
 
-require_once 'functions.php';
-
 if (( ! $connection = @ssh2_connect($_GET['serverip'], 22))
         or ( ! @ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
     header($_SERVER['SERVER_PROTOCOL'].' 501 Internal Server Error', true, 500);
@@ -20,7 +18,7 @@ if (( ! $connection = @ssh2_connect($_GET['serverip'], 22))
 
 ?>
 
-<a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>">
+<a href="<?php echo $hostname ?>">
     <div class="left_button" id="back_button">
         <img src="images/back.png">
     </div>

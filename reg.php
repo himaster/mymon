@@ -1,11 +1,9 @@
 <?php
 
+require_once 'config.php';
+require_once 'functions.php';
+
 include 'header.html';
-
-require_once("functions.php");
-
-error_reporting(E_ALL);
-
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 echo "<div class=\"register\">";
 if (isset($_POST['submit'])) {

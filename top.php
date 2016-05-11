@@ -1,7 +1,4 @@
 <?php
-include 'header.html';
-
-require_once 'functions.php';
 
 if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);

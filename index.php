@@ -1,13 +1,14 @@
 <?php
-error_reporting(E_ALL);
-include_once("functions.php");
+
+require_once 'config.php';
+require_once 'functions.php';
 
 if (($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") || ($_SERVER['HTTP_HOST'] == "tmymon.pkwteile.de")) {
     $env="master";
 } elseif ($_SERVER['HTTP_HOST'] == "mymon.loc") {
     $env="dev";
 } else {
-    header("Location: " .host_scheme(). "://mymon.pkwteile.de/");
+    header("Location: ".$hostname);
 }
 
 if (!isset($_GET['task'])) {
@@ -34,7 +35,7 @@ if ($_GET['task'] == "exit") {
         true
     );
     unset($_COOKIE['mymon']);
-    header("Location: " .host_scheme(). "://" .$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+    header("Location: ".$hostname);
     die();
 }
 
