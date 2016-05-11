@@ -1,5 +1,10 @@
 <?php
 
+
+$hostname1 = host_scheme().'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+
+die($hostname1);
+
 $hostname = 'mymon.pkwteile.de';
 
 $loglevel = 'debug';
