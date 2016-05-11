@@ -766,4 +766,5 @@ img#message_logo {
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: darkgray;
+  z-index: 100;
 }
