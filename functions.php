@@ -5,11 +5,7 @@ if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERV
     $isSecure = true;
 }
 $REQUEST_PROTOCOL = $isSecure ? 'https' : 'http';
-$hostname1 = $REQUEST_PROTOCOL.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-
-die($hostname1);
-
-$hostname = 'mymon.pkwteile.de';
+$hostname = $REQUEST_PROTOCOL.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 
 $loglevel = 'debug';
 

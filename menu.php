@@ -103,7 +103,7 @@ if ($isAdmin) { ?>
             <input type="submit" id="submit_edit" name="submit_edit" value="save">
         </div>      
         <p>
-        <p><a href="<?php echo host_scheme() ?>://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>/?task=exit">
+        <p><a href="<?php echo $hostname ?>?task=exit">
                 <input type="button" value="logout">
             </a>
     </form>
