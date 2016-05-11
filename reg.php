@@ -1,5 +1,8 @@
 <?php
-include_once("functions.php");
+
+include 'header.html';
+
+require_once("functions.php");
 
 error_reporting(E_ALL);
 

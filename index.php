@@ -389,6 +389,7 @@ if (isset($_COOKIE["mymon"])) {
         include "table.php";
         include "footer.html";
     } else {
+        include "header.html";
         echo 'Неправильное имя или пароль';
     }
 } else {
