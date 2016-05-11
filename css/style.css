@@ -449,6 +449,7 @@ a:active {
     border: solid 2px black;
     color: black;
     height: 30px;
+    width: 100%;
 }
 
 .register td {
