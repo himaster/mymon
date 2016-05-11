@@ -5,6 +5,7 @@ if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERV
     $isSecure = true;
 }
 $REQUEST_PROTOCOL = $isSecure ? 'https' : 'http';
+
 $hostname = $REQUEST_PROTOCOL.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 
 $loglevel = 'debug';
