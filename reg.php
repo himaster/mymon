@@ -7,7 +7,7 @@ require_once("functions.php");
 error_reporting(E_ALL);
 
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-
+echo "<div class=\"register\">";
 if (isset($_POST['submit'])) {
     if (empty($_POST['login'])) {
         echo 'Вы не ввели логин';
@@ -32,7 +32,8 @@ if (isset($_POST['submit'])) {
             $result = $dbconnection->query("INSERT INTO users(login , password , email, approvied)
                                             VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
             $msg = "<html><head><title></title></head><body>";
-            $msg .= "User $login ($email) just registered. <form action='https://mymon.pkwteile.de/index.php' method='get'>";
+            $msg = file_get_contents('header.html');
+            $msg .= "User $login ($email) just registered. <form action=\"$hostname\" method='get'>";
             $msg .= "<input type='hidden' name='task' value='confirm' />";
             $msg .= "<input type='hidden' name='username' value=$login />";
             $result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
@@ -90,3 +91,4 @@ if (isset($_POST['submit'])) {
 } else {
     echo "None selected";
 }
+echo "</div>";
