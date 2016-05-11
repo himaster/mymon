@@ -42,7 +42,15 @@
         ob_flush();
         include "menu.php";
         include "messagebox.php";
-        $result = $dbconnection->query("SELECT `st`.`servername`, `st`.`ip`, `st`.`db`, `st`.`mysql`, `st`.`err`, `st`.`el`, `st`.`mongo`, `st`.`redis`, `st`.`color`
+        $result = $dbconnection->query("SELECT `st`.`servername`,
+                                               `st`.`ip`,
+                                               `st`.`db`,
+                                               `st`.`mysql`,
+                                               `st`.`err`,
+                                               `st`.`el`,
+                                               `st`.`mongo`,
+                                               `st`.`redis`,
+                                               `st`.`color`
                                         FROM `user_roles` AS `ur`
                                         JOIN `stats` AS `st`
                                         ON `st`.`role` = `ur`.`role_id`

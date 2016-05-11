@@ -10,15 +10,15 @@ $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or di
 echo "<div class=\"register\">";
 if (isset($_POST['submit'])) {
     if (empty($_POST['login'])) {
-        echo 'Вы не ввели логин';
+        echo 'You have not entered login';
     } elseif (empty($_POST['password'])) {
-        echo 'Вы не ввели пароль';
+        echo 'You have not entered password';
     } elseif (empty($_POST['password2'])) {
-        echo 'Вы не ввели подтверждение пароля';
+        echo 'You have not entered password confirmation';
     } elseif ($_POST['password'] != $_POST['password2']) {
-        echo 'Введенные пароли не совпадают';
+        echo 'Entered passwords are not equal';
     } elseif (empty($_POST['email'])) {
-        echo 'Вы не ввели E-mail';
+        echo 'You have not entered e-mail';
     } else {
         $login = no_injection($_POST['login']);
         $password = md5(no_injection($_POST['password']));
@@ -27,10 +27,11 @@ if (isset($_POST['submit'])) {
                                         FROM `users`
                                         WHERE `login`='{$login}'") or die($dbconnection->error());
         if ($result->num_rows > 0) {
-            echo 'Такой логин уже существует';
+            echo 'This login exists.';
         } else {
             $result = $dbconnection->query("INSERT INTO users(login , password , email, approvied)
-                                            VALUES ('$login', '$password', '$email', '0')") or die($dbconnection->error());
+                                            VALUES ('$login', '$password', '$email', '0')") or
+            die($dbconnection->error());
             $msg = "<html><head><title></title></head><body>";
             $msg = file_get_contents('header.html');
             $msg .= "User $login ($email) just registered. <form action=\"$hostname\" method='get'>";
@@ -49,18 +50,18 @@ if (isset($_POST['submit'])) {
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             mail($to, $subject, $msg, $headers);
-            echo "Регистрация успешно прошла. Ожидайте письма с подтверждением.";
+            echo "Registered successfull. Please, wait confirmation letter.";
         }
     }
 } elseif (isset($_POST['submit_edit'])) {
     if (empty($_POST['password'])) {
-        echo 'Вы не ввели пароль';
+        echo 'You have not entered password';
     } elseif (empty($_POST['password2'])) {
-        echo 'Вы не ввели подтверждение пароля';
+        echo 'You have not entered password confirmation';
     } elseif ($_POST['password'] != $_POST['password2']) {
-        echo 'Введенные пароли не совпадают';
+        echo 'Entered passwords are not equal';
     } elseif (empty($_POST['email'])) {
-        echo 'Вы не ввели E-mail';
+        echo 'You have not entered e-mail';
     } else {
         $login = no_injection($_POST['login']);
         $password = md5(no_injection($_POST['password']));
