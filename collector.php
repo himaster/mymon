@@ -12,6 +12,7 @@
 
 require_once 'functions.php';
 
+$hostname = 'https://mymon.pkwteile.de/';
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 declare(ticks=1);
