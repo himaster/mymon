@@ -172,7 +172,6 @@ function child_()
 function la($connection, $serverip, $servername = null)
 {
     global $hostname;
-    common_log("hostname=".$hostname);
     $la_string = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"), ":"), 1);
     $la = floatval(array_map("trim", explode(",", $la_string))[0]);
     $core = intval(ssh2_return($connection, "grep -c processor /proc/cpuinfo"));
