@@ -109,8 +109,8 @@ function show_all() {
                 document.getElementById("messagebox").style.display = "block";
             }
         },
-        error: function() {
-            console.log("error");
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError);
         },
         complete: function() {
             setTimeout(function() { 
