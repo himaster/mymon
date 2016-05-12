@@ -113,9 +113,11 @@ function show_all() {
             console.log("error");
         },
         complete: function() {
-            $("div#loader").hide();
-            $("div#loader").removeClass("wheel");
-            window.loading = false;
+            setTimeout(function() { 
+                $("div#loader").hide();
+                $("div#loader").removeClass("wheel");
+                window.loading = false;
+            }, 500);
             $("#load_fade").hide();
         }  
     });
