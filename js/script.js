@@ -77,6 +77,7 @@ function show_all() {
     $.ajax({
         url: 'index.php?task=getdata',
         dataType: 'json',
+        timeout: 5000,
         success: function(json) {
             json.data.forEach(function(item) {
                 var nowTime = ~~(new Date().getTime() / 1000);
@@ -107,14 +108,16 @@ function show_all() {
                 }
                 document.getElementById("messagebox").style.display = "block";
             }
-            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); window.loading = false; }, 1000);
-            $("#load_fade").hide();
         },
         error: function() {
             console.log("error");
-            setTimeout(function() { $("div#loader").hide(); $("div#loader").removeClass("wheel"); window.loading = false; }, 1000);
+        } 
+        complete: function() {
+            $("div#loader").hide();
+            $("div#loader").removeClass("wheel");
+            window.loading = false;
             $("#load_fade").hide();
-        }   
+        }  
     });
 }
 
