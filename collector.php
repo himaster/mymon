@@ -45,12 +45,13 @@ function parent_()
     global $balancerip;
     global $ssh_callbacks;
     global $retry_num;
+    global $docroot;
 
     $i = 1;
 
     start:
-    if (( ! $connection = @ssh2_connect($balancerip, 22, $ssh_callbacks))
-        or ( ! @ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
+    if (( ! $connection = ssh2_connect($balancerip, 22, $ssh_callbacks))
+        or ( ! ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         common_log("Balancer - retry #".$i++.".");
         sleep(1);
         if ($i < $retry_num) {
