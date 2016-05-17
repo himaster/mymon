@@ -105,8 +105,9 @@ if (isset($_COOKIE["mymon"])) {
                 include "users.php";
                 include "footer.html";
                 break;
-                
+
             case "botips":
+                header("Refresh: 5");
                 include "header.html";
                 include "botips.php";
                 include "footer.html";
