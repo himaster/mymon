@@ -115,7 +115,7 @@ if (isset($_COOKIE["mymon"])) {
 
             case "whois":
                 include "header.html";
-                echo whois("whois.arin.net", $_GET['ip']);
+                echo "<div style='color:white'>".whois("whois.arin.net", $_GET['ip'])."</div>";
                 include "footer.html";
                 break;
 
