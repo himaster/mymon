@@ -26,12 +26,18 @@ $connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon')
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
         or die($connection->error);
 $connection->close();
+
+$parent = true;
+
 while ($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();
     if ($pid == -1) {
         die("Child process can't be created");
     } elseif ($pid) {
-        parent_();
+        if ($parent) {
+            parent_();
+            $parent = false;
+        }
     } else {
         child_();
         exit;
