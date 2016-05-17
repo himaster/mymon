@@ -67,7 +67,7 @@ function parent_()
     $mysql_balancer = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
                       or die($$mysql_conname->connect_errno."\n");
     $i = 0;
-    foreach (botips($connection) as $value) {
+    /*foreach (botips($connection) as $value) {
         $i++;
         $query = "INSERT INTO `mymon`.`botips` (id, amount, ipaddr)
                   VALUES (".$i.", ".$value['amount'].", ".$value['ipaddr'].")
@@ -76,8 +76,7 @@ function parent_()
         if (!isset($result)) {
             common_log("Parent - not updated!");
         }
-    }
-    exit;
+    }*/
 }
 
 function child_()
