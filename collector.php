@@ -66,8 +66,8 @@ function parent_()
     foreach (botips($connection) as $value) {
         $i++;
         $query = "INSERT INTO `mymon`.`botips` (id, amount, ipaddr)
-                  VALUES (".$i.", ".$value['amount'].", ".$value['ipaddr'].") ON DUPLICATE KEY UPDATE;";
-        common_log("Parent: ".$query);
+                  VALUES (".$i.", ".$value['amount'].", ".$value['ipaddr'].")
+                  ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = ".$value['ipaddr'].";";
         $result = $mysql_balancer->query($query);
     }
     die();
