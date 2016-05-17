@@ -118,7 +118,7 @@ if (isset($_COOKIE["mymon"])) {
                 exec("whois ".$_GET['ip'], $output);
                 echo "<div class='whois'>";
                 foreach ($output as $row) {
-                    echo $row;
+                    echo $row."\n";
                 }
                 echo "</div>";
                 include "footer.html";
