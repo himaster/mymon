@@ -61,9 +61,11 @@ function parent_()
         }
     }
     foreach (botips() as $value) {
-        $query = "INSERT INTO `mymon`.`botips` (id, ipaddr, amount) VALUES (, ".$value['amount'].", ".$value['ipaddr'].");";
-        common_log("Parent: ".$query);
+        common_log("Parent: ".$value);
+        //$query = "INSERT INTO `mymon`.`botips` (id, ipaddr, amount) VALUES (, ".$value['amount'].", ".$value['ipaddr'].");";
+        //common_log("Parent: ".$query);
     }
+    die();
 }
 
 function child_()
