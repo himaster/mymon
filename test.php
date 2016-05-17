@@ -20,13 +20,9 @@ $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
                                  uniq -c |
                                  sort -n |
                                  tail -n30");
-$ipaddrarray = array(array());
-$i = 1;
-$strings = explode("\n", $str);
-foreach ($strings as $amount => $ipaddr) {
-    $ipaddrarray[$i]["amount"] = $amount;
-    $ipaddrarray[$i]["ipaddr"] = $ipaddr;
-    $i++;
+foreach (explode("\n", $str) as $cLine) {
+    list($cKey, $cValue) = explode(' ', "trim($cLine) ");
+    $ipaddrarray[$cKey] = $cValue;
 }
 
 var_dump($ipaddrarray);
