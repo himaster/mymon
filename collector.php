@@ -92,15 +92,12 @@ function child_()
 {
     global $array;
     global $stop_server;
-    global $servername;
+    //global $servername;
     global $docroot;
     global $loglevel;
     global $ssh_callbacks;
     global $retry_num;
 
-    if ($loglevel == 'debug') {
-        common_log($servername. " - started.");
-    }
     $serverip    = $array["ip"];
     $servername  = $array["servername"];
     $errs        = $array["err"];
@@ -111,6 +108,10 @@ function child_()
     $red         = $array["red"];
     $ssh_conname = "ssh_".$servername;
     $i           = 1;
+
+    if ($loglevel == 'debug') {
+        common_log($servername. " - started.");
+    }
 
     start:
     if (( ! $$ssh_conname = @ssh2_connect($serverip, 22, $ssh_callbacks))
