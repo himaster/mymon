@@ -46,6 +46,7 @@ function parent_()
     global $ssh_callbacks;
     global $retry_num;
     global $docroot;
+    global $loglevel;
 
     $i = 1;
 
