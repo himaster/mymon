@@ -9,7 +9,7 @@
         <td class="uid">ID</td>
         <td class="login">IP Addr</td>
         <td class="email">Amount</td>
-        <td class="approvied">blacklist</td>
+        <td class="approvied">Ban</td>
     </tr>
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");

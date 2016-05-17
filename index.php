@@ -107,7 +107,7 @@ if (isset($_COOKIE["mymon"])) {
                 break;
 
             case "botips":
-                header("Refresh: 5");
+                header("Refresh: 10");
                 include "header.html";
                 include "botips.php";
                 include "footer.html";
