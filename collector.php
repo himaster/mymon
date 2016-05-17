@@ -77,6 +77,9 @@ function parent_()
             common_log("Parent - not updated!");
         }
     }
+    if ($loglevel == 'debug') {
+        common_log("Parent - ended.");
+    }
 }
 
 function child_()
