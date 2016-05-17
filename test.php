@@ -1,29 +1,30 @@
 <?php
+
+require_once 'config.php';
 require_once 'functions.php';
 
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
+$serverip      = "88.198.182.144";
+$ssh_callbacks = array('disconnect' => 'ssh_disconnect',
+                   'ignore'     => 'ssh_ignore',
+                   'debug'      => 'ssh_debug',
+                   'macerror'   => 'ssh_macerror');
 
-$docroot  = dirname(__FILE__);
-$serverip = "pkwteile.no-ip.biz";
-$connection = new mysqli('188.138.234.38', 'mymon', 'eiGo7iek', 'mymon')
-            or die($connection->connect_errno."\n");
-$data = array();
-$servername = "gw";
-$serverip = "188.138.234.38";
-$ssh_conname = "ssh_".$servername;
-if (( ! $$ssh_conname = @ssh2_connect($serverip, 22))
-        or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
-    exit(1);
+if (( ! $connection = @ssh2_connect($serverip, 22, $ssh_callbacks))
+        or ( ! @ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
+    die("SSH connection error");
 }
-$str = ssh2_return($$ssh_conname, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
-var_dump($str);
-die();
-foreach (explode("\n", $str) as $cLine) {
-    if (strpos($cLine, "Timeout") != false) {
-        return "<font color=\"red\">".strpos($cLine, "Timeout")." - stopped</font>";
-    }
-    list($cKey, $cValue) = explode(':', "$cLine:");
-    $data[trim($cKey)] = trim($cValue);
+$str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
+                                 awk '{print $1}' |
+                                 sort |
+                                 uniq -c |
+                                 sort -n |
+                                 tail -n30");
+$ipaddrarray = array(array());
+$i = 1;
+foreach (explode("\n", $str) as $amount->$ipaddr) {
+    $ipaddrarray[$i]["amount"] = $amount;
+    $ipaddrarray[$i]["ipaddr"] = $ipaddr;
 }
 
-var_dump($data["Last_SQL_Error"]);
+var_dump($ipaddrarray);
