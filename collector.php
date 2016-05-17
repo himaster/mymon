@@ -70,13 +70,12 @@ function parent_()
     foreach (botips($connection) as $value) {
         $i++;
         $query = "INSERT INTO `mymon`.`botips` (id, amount, ipaddr)
-                  VALUES (".$i.", ".$value['amount'].", '".$value['ipaddr']."'')
+                  VALUES (".$i.", ".$value['amount'].", '".$value['ipaddr']."')
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = '".$value['ipaddr']."';";
-        common_log($query);
-        //$result = $mysql_balancer->query($query);
-        //if (!isset($result)) {
-        //    common_log("Parent - not updated!");
-        //}
+        $result = $mysql_balancer->query($query);
+        if (!isset($result)) {
+            common_log("Parent - not updated!");
+        }
     }
 }
 
