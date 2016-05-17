@@ -116,7 +116,11 @@ if (isset($_COOKIE["mymon"])) {
             case "whois":
                 include "header.html";
                 exec("whois ".$_GET['ip'], $output);
-                echo "<div class='whois'>".$output."</div>";
+                echo "<div class='whois'>";
+                foreach ($output as $row) {
+                    echo $row;
+                }
+                echo "</div>";
                 include "footer.html";
                 break;
 
