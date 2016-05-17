@@ -113,6 +113,12 @@ if (isset($_COOKIE["mymon"])) {
                 include "footer.html";
                 break;
 
+            case "whois":
+                include "header.html";
+                echo whois("whois.arin.net", $_GET['ip']);
+                include "footer.html";
+                break;
+
             case "editor_save":
                 if (!$isAdmin) {
                     die("You have not rights.");
