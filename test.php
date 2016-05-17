@@ -25,6 +25,7 @@ $i = 1;
 foreach (explode("\n", $str) as $amount->$ipaddr) {
     $ipaddrarray[$i]["amount"] = $amount;
     $ipaddrarray[$i]["ipaddr"] = $ipaddr;
+    $i++;
 }
 
 var_dump($ipaddrarray);
