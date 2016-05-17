@@ -22,8 +22,9 @@ $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
                                  tail -n30");
 foreach (explode("\n", $str) as $cLine) {
     $cLine = trim($cLine);
-    list($cKey, $cValue) = explode(' ', "$cLine ");
-    $ipaddrarray[$cKey] = $cValue;
+    list($cAmount, $cIPaddr) = explode(' ', "$cLine ");
+    $ipaddrarray['amount'] = $cAmount;
+    $ipaddrarray['ipaddr'] = $cIPaddr;
 }
 
 var_dump($ipaddrarray);
