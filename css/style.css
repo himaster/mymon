@@ -245,8 +245,7 @@ a:active {
 	max-width: 85%;
 	max-height: 85%;
 	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+	top: 10%;
 }
 
 #back_button a {
