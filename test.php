@@ -22,8 +22,6 @@ $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
                                  tail -n30");
 $i = 0;
 foreach (explode("\n", rtrim($str, "\n")) as $cLine) {
-    echo $cLine."\n";
-    continue;
     $i++;
     $cLine = trim($cLine);
     list($cAmount, $cIPaddr) = explode(' ', "$cLine ");
