@@ -20,12 +20,12 @@ $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
                                  uniq -c |
                                  sort -n |
                                  tail -n30");
-$i = 1;
+$i = 0;
 foreach (explode("\n", $str) as $cLine) {
+    $i++;
     $cLine = trim($cLine);
     list($cAmount, $cIPaddr) = explode(' ', "$cLine ");
     $ipaddrarray[$i]['amount'] = $cAmount;
     $ipaddrarray[$i]['ipaddr'] = $cIPaddr;
     echo $ipaddrarray[$i]['amount']." - ".$ipaddrarray[$i]['ipaddr']."\n";
-    $i++;
 }
