@@ -25,10 +25,11 @@ while ($row_ip = $result->fetch_assoc()) {
         </td>
         <td class="login">
             <?php
+            $link = "<a href='#' alt='".whois("whois.arin.net", $row_ip['ipaddr'])."'>".trim($row_ip['ipaddr'])."</a>";
             if ($row_ip['whitelisted'] === '1') {
-                echo "<font color='green'>".trim($row_ip['ipaddr'])."</font>";
+                echo "<font color='green'>".$link."</font>";
             } else {
-                echo trim($row_ip['ipaddr']);
+                echo $link;
             }
             ?>
         </td>
