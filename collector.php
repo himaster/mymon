@@ -342,6 +342,11 @@ function redis($connection, $serverip, $servername = null)
     return $fontcolor.$str. " ms</font>";
 }
 
+function botips($connection)
+{
+    return "botips";
+}
+
 function sigHandler($signo)
 {
     global $stop_server;
