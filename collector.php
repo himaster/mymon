@@ -60,8 +60,8 @@ function parent_()
             exit(1);
         }
     }
-    foreach (botips() as $k => $v) {
-        $query = "INSERT INTO `mymon`.`botips` (id, ipaddr, amount) VALUES (, ".$k.", ".$v.");";
+    foreach (botips() as $value) {
+        $query = "INSERT INTO `mymon`.`botips` (id, ipaddr, amount) VALUES (, ".$value['amount'].", ".$value['ipaddr'].");";
         common_log("Parent: ".$query);
     }
 }
