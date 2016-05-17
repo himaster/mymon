@@ -57,7 +57,7 @@ function parent_()
     $i = 1;
 
     if ($loglevel == 'debug') {
-        common_log("Parent - started.");
+        common_log("PARENT - started.");
     }
     start:
     if (( ! $connection = ssh2_connect($balancerip, 22, $ssh_callbacks))
