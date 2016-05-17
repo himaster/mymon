@@ -1,16 +1,16 @@
-<a href="#" onclick="">
+<a href="#" onclick="" title="Profile">
 	<div id="left_button" class="left_button">
 		<img src="images/profile.png">
 	</div>
 </a>
-<a href="#" onclick="">
+<a href="#" onclick="" title="Messaging">
 	<div id="left_button2" class="left_button">
 		<div id="text">
 			msg
 		</div>
 	</div>
 </a>
-<a href="index.php?task=botips" onclick="">
+<a href="index.php?task=botips" onclick="" title="Top IPs">
     <div id="left_button3" class="left_button">
         <div id="text">
             <img src="images/botips.png">
@@ -19,12 +19,12 @@
 </a>
 <?php
 if ($isAdmin) { ?>
-        <a href="index.php?task=editor">
+        <a href="index.php?task=editor" title="Server list">
             <div id="left_button13" class="left_button">
                 <img src="images/settings.png">
             </div>
         </a>
-        <a href="index.php?task=users_editor">
+        <a href="index.php?task=users_editor" title="Users">
             <div id="left_button14" class="left_button">
                 <img src="images/users.png">
             </div>
