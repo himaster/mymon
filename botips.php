@@ -27,9 +27,9 @@ while ($row_ip = $result->fetch_assoc()) {
         <td class="email">
             <?php
             if (($row_ip['amount'] > 3000) and ($row_ip['amount'] < 10000)) {
-                echo "<font class='shadow' color='yellow'>".trim($row_ip['amount'])."</font>";
+                echo "<font color='orange'>".trim($row_ip['amount'])."</font>";
             } else if ($row_ip['amount'] > 10000) {
-                echo "<font class='shadow' color='red'>".trim($row_ip['amount'])."</font>";
+                echo "<font color='red'>".trim($row_ip['amount'])."</font>";
             } else {
                 echo trim($row_ip['amount']);
             }
