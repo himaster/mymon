@@ -44,6 +44,9 @@ while ($row_ip = $result->fetch_assoc()) {
             }
             ?>
         </td>
+        <td>
+            
+        </td>
     </tr>
 <?php
 } ?>
