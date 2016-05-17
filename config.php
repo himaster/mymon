@@ -14,6 +14,17 @@ if (array_key_exists('HTTP_HOST', $_SERVER)) {
     $hostname = $REQUEST_PROTOCOL.'://mymon.pkwteile.de';
 }
 
+$ssh_callbacks = array('disconnect' => 'ssh_disconnect',
+                       'ignore'     => 'ssh_ignore',
+                       'debug'      => 'ssh_debug',
+                       'macerror'   => 'ssh_macerror');
+
+$balancerip = '88.198.182.148';
+
 $loglevel = 'debug';
 
 $docroot  = dirname(__FILE__);
+
+$retry_num   = 10;
+
+$iplistnum = 30;

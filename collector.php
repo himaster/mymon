@@ -42,6 +42,27 @@ exit;
 
 function parent_()
 {
+    global $balancerip;
+    global $ssh_callbacks;
+    global $retry_num;
+
+    $i = 1;
+
+    start:
+    if (( ! $connection = @ssh2_connect($balancerip, 22, $ssh_callbacks))
+        or ( ! @ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
+        common_log("Balancer - retry #".$i++.".");
+        sleep(1);
+        if ($i < $retry_num) {
+            goto start;
+        } else {
+            exit(1);
+        }
+    }
+    foreach (botips() as $k => $v) {
+        $query = "INSERT INTO `mymon`.`botips` (id, ipaddr, amount) VALUES (, ".$k.", ".$v.");";
+        common_log("Parent: ".$query);
+    }
 }
 
 function child_()
@@ -51,8 +72,12 @@ function child_()
     global $servername;
     global $docroot;
     global $loglevel;
+    global $ssh_callbacks;
+    global $retry_num;
 
-    $retry_num   = 10;
+    if ($loglevel == 'debug') {
+        common_log($servername. " - started.");
+    }
     $serverip    = $array["ip"];
     $servername  = $array["servername"];
     $errs        = $array["err"];
@@ -61,17 +86,10 @@ function child_()
     $mysql       = $array["mysql"];
     $mon         = $array["mon"];
     $red         = $array["red"];
-    $i           = 1;
     $ssh_conname = "ssh_".$servername;
-    if ($loglevel == 'debug') {
-        common_log($servername. " - started.");
-    }
-    $ssh_callbacks = array('disconnect' => 'ssh_disconnect',
-                       'ignore'     => 'ssh_ignore',
-                       'debug'      => 'ssh_debug',
-                       'macerror'   => 'ssh_macerror');
+    $i           = 1;
+
     start:
-    
     if (( ! $$ssh_conname = @ssh2_connect($serverip, 22, $ssh_callbacks))
         or ( ! @ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         common_log($servername." - retry #".$i++.".");
@@ -344,7 +362,21 @@ function redis($connection, $serverip, $servername = null)
 
 function botips($connection)
 {
-    return "botips";
+    global $iplistnum;
+
+    $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
+                                    awk '{print $1}' |
+                                    sort |
+                                    uniq -c |
+                                    sort -n |
+                                    tail -n".$iplistnum);
+    $i = 0;
+    foreach (explode("\n", rtrim($str, "\n")) as $cLine) {
+        $i++;
+        $cLine = trim($cLine);
+        list($ipaddrarray[$i]['amount'], $ipaddrarray[$i]['ipaddr']) = explode(' ', "$cLine ");
+    }
+    return $ipaddrarray;
 }
 
 function sigHandler($signo)
