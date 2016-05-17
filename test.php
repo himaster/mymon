@@ -27,5 +27,5 @@ foreach (explode("\n", $str) as $cLine) {
     list($cAmount, $cIPaddr) = explode(' ', "$cLine ");
     $ipaddrarray[$i]['amount'] = $cAmount;
     $ipaddrarray[$i]['ipaddr'] = $cIPaddr;
-    echo $ipaddrarray[$i]['amount']." - ".$ipaddrarray[$i]['ipaddr']."\n";
+    echo $i." - ".$ipaddrarray[$i]['amount']." - ".$ipaddrarray[$i]['ipaddr']."\n";
 }
