@@ -49,6 +49,9 @@ function parent_()
 
     $i = 1;
 
+    if ($loglevel == 'debug') {
+        common_log("Parent - started.");
+    }
     start:
     if (( ! $connection = ssh2_connect($balancerip, 22, $ssh_callbacks))
         or ( ! ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
@@ -69,8 +72,11 @@ function parent_()
                   VALUES (".$i.", ".$value['amount'].", ".$value['ipaddr'].")
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = ".$value['ipaddr'].";";
         $result = $mysql_balancer->query($query);
+        if (!isset($result)) {
+            common_log("Parent - not updated!");
+        }
     }
-    die();
+    exit;
 }
 
 function child_()
