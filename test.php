@@ -23,8 +23,6 @@ $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
 $ipaddrarray = array(array());
 $i = 1;
 $strings = explode("\n", $str);
-var_dump($strings);
-die();
 foreach ($strings as $amount->$ipaddr) {
     $ipaddrarray[$i]["amount"] = $amount;
     $ipaddrarray[$i]["ipaddr"] = $ipaddr;
