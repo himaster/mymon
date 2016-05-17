@@ -65,7 +65,6 @@ function whois($url, $ip)
             $text .= fgets($sock, 128)."<br>";
         }
         fclose($sock);
-
         $pattern = "|ReferralServer: whois://([^\n<:]+)|i";
         preg_match($pattern, $text, $out);
         if (!empty($out[1])) {
