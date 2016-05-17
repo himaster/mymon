@@ -67,16 +67,17 @@ function parent_()
     $mysql_balancer = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
                       or die($$mysql_conname->connect_errno."\n");
     $i = 0;
-    /*foreach (botips($connection) as $value) {
+    foreach (botips($connection) as $value) {
         $i++;
         $query = "INSERT INTO `mymon`.`botips` (id, amount, ipaddr)
                   VALUES (".$i.", ".$value['amount'].", ".$value['ipaddr'].")
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = ".$value['ipaddr'].";";
-        $result = $mysql_balancer->query($query);
-        if (!isset($result)) {
-            common_log("Parent - not updated!");
-        }
-    }*/
+        common_log($query);
+        //$result = $mysql_balancer->query($query);
+        //if (!isset($result)) {
+        //    common_log("Parent - not updated!");
+        //}
+    }
 }
 
 function child_()
