@@ -739,3 +739,14 @@ img#message_logo {
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: darkgray;
 }
+
+.shadow {
+	text-shadow: red 1px 0px,
+				 red 1px 1px,
+				 red 0px 1px,
+				 red -1px 1px,
+				 red -1px 0px,
+				 red -1px -1px,
+				 red 0px -1px,
+				 red 1px -1px;
+}
