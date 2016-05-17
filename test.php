@@ -22,7 +22,7 @@ $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
                                  tail -n30");
 $i = 0;
 foreach (explode("\n", $str) as $cLine) {
-    echo $cLine;
+    echo $cLine."\n";
     continue;
     $i++;
     $cLine = trim($cLine);
