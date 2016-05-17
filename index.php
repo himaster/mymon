@@ -105,6 +105,12 @@ if (isset($_COOKIE["mymon"])) {
                 include "users.php";
                 include "footer.html";
                 break;
+                
+            case "botips":
+                include "header.html";
+                include "botips.php";
+                include "footer.html";
+                break;
 
             case "editor_save":
                 if (!$isAdmin) {
