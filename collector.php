@@ -60,9 +60,15 @@ function parent_()
             exit(1);
         }
     }
+    $mysql_balancer = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
+                      or die($$mysql_conname->connect_errno."\n");
+    $i = 0;
     foreach (botips($connection) as $value) {
-        $query = "INSERT INTO `mymon`.`botips` (amount, ipaddr) VALUES (".$value['amount'].", ".$value['ipaddr'].");";
+        $i++;
+        $query = "INSERT INTO `mymon`.`botips` (id, amount, ipaddr)
+                  VALUES (".$i.", ".$value['amount'].", ".$value['ipaddr'].") ON DUPLICATE KEY UPDATE;";
         common_log("Parent: ".$query);
+        $result = $mysql_balancer->query($query);
     }
     die();
 }
