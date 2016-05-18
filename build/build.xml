@@ -2,10 +2,12 @@
 
 <project name="MyMon" default="deploy" basedir="../">
     <property file="build/config/project.properties" />
+    <property value="build/config/hosts/${hostname}.properties" override="true" />
 
     <target name="prepare">
         <echo message="Hello, welcome to ${phing.project.name}!" />
         <echo message="Current environment is: ${project.env}" />
+        <echo message="Current hostname is: ${hostname}" />
     </target>
 
     <target name="build" depends="prepare">
@@ -14,7 +16,7 @@
 
     <target name="deploy" depends="build">
         <echo msg="Deploying code to master" />
-        <ssh username="username" password="password" host="192.168.1.200" command="pwd" />
+        
         <echo msg="Deploying finished successfully!" />
     </target>
 </project>
