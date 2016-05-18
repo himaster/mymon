@@ -2,7 +2,6 @@
 
 <project name="MyMon" default="deploy" basedir="../">
     <property file="build/config/project.properties" />
-    <property value="build/config/hosts/${hostname}.properties" override="true" />
 
     <target name="prepare">
         <echo message="Hello, welcome to ${phing.project.name}!" />
@@ -14,9 +13,63 @@
         <echo msg="Build task (empty now) grunt maybe?.." />
     </target>
 
-    <target name="deploy" depends="build">
-        <echo msg="Deploying code to master" />
-        
-        <echo msg="Deploying finished successfully!" />
+    <target name="deploy" description="Deploys the current working copy to a remote host using FileSync">
+        <!-- Default hostname is empty, must be passed from the command line -->
+        <property name="hostname" value="false" override="true" />
+
+        <!-- Set default LISTONLY to false -->
+        <property name="listonly" value="0" override="true" />
+        <property name="hostfile" value="build/config/hosts/${hostname}.properties" />
+
+        <!-- Check for specific host/env file, if not fail! -->
+        <available file="${hostfile}" property="hostfilefound" value="true"/>
+
+        <fail unless="hostfilefound" message="Missing host configuration file (${hostfile})!" />
+
+        <!-- Host file exists so loading... -->
+        <property file="${hostfile}" />
+
+        <!-- Get timestamp -->
+        <tstamp />
+
+        <!-- Set default VERBOSE flag to TRUE -->
+        <if>
+            <not>
+                <isset property="sync.verbose" />
+            </not>
+            <then>
+                <property name="sync.verbose" value="1" override="true" />
+                <echo message="The value of sync.verbose has been set to ${sync.verbose}" />
+            </then>
+        </if>
+
+        <!-- Set default DELETE flag to FALSE -->
+        <if>
+            <not>
+                <isset property="sync.delete" />
+            </not>
+            <then>
+                <property name="sync.delete" value="0" override="true" />
+                <echo message="The value of sync.delete has been set to ${sync.delete}" />
+            </then>
+        </if>
+
+        <!-- Get auth info, password will be always required -->
+        <property name="sync.remote.auth" value="${sync.remote.user}@${sync.remote.host}" />
+
+        <!-- Perform Sync -->
+        <!-- See: http://fedecarg.com/wiki/filesynctask -->
+        <taskdef name="sync" classname="phing.tasks.ext.FileSyncTask" />
+        <echo message="The value of sync.source.projectdir - ${sync.source.projectdir}" />
+        <echo message="The value of sync.remote.auth - ${sync.remote.auth}" />
+        <echo message="The value of sync.destination.projectdir - ${sync.destination.projectdir}" />
+        <echo message="The value of listonly - ${listonly}" />
+        <echo message="The value of sync.exclude.file - ${sync.exclude.file}" />
+        <sync
+            sourcedir="${sync.source.projectdir}" 
+            destinationdir="${sync.remote.auth}:${sync.destination.projectdir}" 
+            excludefile="${sync.exclude.file}" 
+            delete="${sync.delete}" 
+            verbose="${sync.verbose}" />
     </target>
 </project>
