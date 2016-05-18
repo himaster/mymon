@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" basedir="../"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<project name="MyMon" default="deploy">
+<project name="MyMon" default="deploy" basedir="../">
     <property file="build/config/project.properties" />
 
     <target name="prepare">
