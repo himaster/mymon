@@ -62,7 +62,7 @@ function parent_()
     start:
     if (( ! $connection = ssh2_connect($balancerip, 22, $ssh_callbacks))
         or ( ! ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
-        common_log("Balancer - retry #".$i++.".");
+        common_log("PARENT - retry #".$i++.".");
         sleep(1);
         if ($i < $retry_num) {
             goto start;
@@ -80,11 +80,11 @@ function parent_()
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = '".$value['ipaddr']."';";
         $result = $mysql_balancer->query($query);
         if (!isset($result)) {
-            common_log("Parent - not updated!");
+            common_log("PARENT - not updated!");
         }
     }
     if ($loglevel == 'debug') {
-        common_log("Parent - ended.");
+        common_log("PARENT - ended.");
     }
 }
 
@@ -92,7 +92,6 @@ function child_()
 {
     global $array;
     global $stop_server;
-    //global $servername;
     global $docroot;
     global $loglevel;
     global $ssh_callbacks;
@@ -207,9 +206,6 @@ function child_()
         common_log($servername. " - ended.");
     }
 }
-
-
-
 
 function la($connection, $serverip, $servername = null)
 {
