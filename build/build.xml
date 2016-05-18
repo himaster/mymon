@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="MyMon" default="deploy">
+    <property file="build/config/project.properties" />
+
+    <target name="prepare">
+        <echo message="Hello, welcome to ${phing.project.name}!" />
+        <echo message="Current environment is: ${project.env}" />
+    </target>
+
+    <target name="build" depends="prepare">
+        <echo msg="Build task (empty now) grunt maybe?.." />
+    </target>
+
+    <target name="deploy" depends="build">
+        <echo msg="Deploying code to master" />
+        <ssh username="username" password="password" host="192.168.1.200" command="pwd" />
+        <echo msg="Deploying finished successfully!" />
+    </target>
+</project>
