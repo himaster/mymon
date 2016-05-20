@@ -21,7 +21,7 @@ $ssh_callbacks = array('disconnect' => 'ssh_disconnect',
 
 $balancerip = '88.198.182.148';
 
-$loglevel = 'debug';
+$loglevel = '';
 
 $docroot  = dirname(__FILE__);
 
