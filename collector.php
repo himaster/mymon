@@ -240,6 +240,7 @@ function rep($connection, $serverip, $servername = null)
         list($cKey, $cValue) = explode(':', "$cLine:");
         $data[trim($cKey)] = trim($cValue);
     }
+    common_log("Slave_SQL_Running: ".$data["Slave_SQL_Running"]);
     $onclick = "";
     if (array_key_exists("Slave_SQL_Running", $data) && ($data["Slave_SQL_Running"] == "Yes")) {
         $sqlfontcolor = "<font color=\"green\">";
@@ -260,6 +261,7 @@ function rep($connection, $serverip, $servername = null)
                                             }
                                             return false;\"";
     }
+    common_log("Slave_IO_Running: ".$data["Slave_IO_Running"]);
     if (array_key_exists("Slave_IO_Running", $data) && ($data["Slave_IO_Running"] == "Yes")) {
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
