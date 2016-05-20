@@ -281,7 +281,6 @@ function rep($connection, $serverip, $servername = null)
                                             }
                                             return false;\"";
     }
-    common_log("\$io=".$io);
     if (array_key_exists("Seconds_Behind_Master", $data) && ($data["Seconds_Behind_Master"] == "0")) {
         $deltafontcolor = "<font color=\"green\">";
         $delta = "0";
