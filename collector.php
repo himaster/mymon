@@ -136,11 +136,9 @@ function child_()
     if ($db == 1) {
         $query = "UPDATE `mymon`.`stats` SET `rep`='".$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername)).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+        common_log($servername." - ".$query);
     } else {
         $query = "UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
-    }
-    if ($loglevel > 0) {
-        common_log($servername." - ".$query);
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
