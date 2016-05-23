@@ -52,7 +52,10 @@ function host_scheme()
     return $isSecure ? 'https' : 'http';
 }
 
-function slackbot($message) {
+function slackbot($message)
+{
+    global $slackbotlevel;
+
     if ($slackbotlevel == "full") {
         $channel = "#sys-admins";
         $username = "mymon-bot";
