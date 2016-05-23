@@ -55,7 +55,7 @@ function host_scheme()
 function slackbot($message)
 {
     global $slackbotlevel;
-    //global $dbconnection;
+    global $dbconnection;
     
     $starttime = strtotime(date("Y-m-d H:i:s"));
     $lasttime  = strtotime($dbconnection->query("SELECT `timestamp`
