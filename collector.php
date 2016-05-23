@@ -246,6 +246,7 @@ function rep($connection, $serverip, $servername = null)
         $sqlfontcolor = "<font color=\"green\">";
         $sql = "&#10003;";
     } else {
+        slackbot($servername.": replication SQL problem");
         $sqlfontcolor = "<script type=\"text/javascript\">notify(\"$servername: replication SQL problem\");</script>".
                         "<font color=\"red\">";
         $sql = "x";
@@ -266,6 +267,7 @@ function rep($connection, $serverip, $servername = null)
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
     } else {
+        slackbot($servername.": replication IO problem");
         $iofontcolor =  "<script type=\"text/javascript\">notify(\"$servername: replication IO problem\");</script>".
                         "<font color=\"red\">";
         $io = "x";
@@ -342,6 +344,7 @@ function locks($connection, $serverip, $servername = null)
     if (($locked == "0") and ($conns < "5000")) {
         $fontcolor = "<font color=\"green\">";
     } else {
+        slackbot($servername.": DB locks");
         $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": DB locks\");</script>
                       <font color=\"red\">";
     }
@@ -356,6 +359,7 @@ function mongo($connection, $serverip, $servername = null)
                 date2=\$((\$(date +'%s%N') / 1000000));
                 echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
+        slackbot($servername.": mongo problem");
         $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": mongo problem\");</script>
                       <font color=\"red\">";
     } else {
@@ -372,6 +376,7 @@ function redis($connection, $serverip, $servername = null)
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
     if ($str == "Timeout") {
+        slackbot($servername.": redis problem");
         $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": redis problem\");</script>
                       <font color=\"red\">";
     } else {
