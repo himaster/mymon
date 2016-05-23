@@ -140,7 +140,7 @@ function child_()
         $query = "UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
     }
     if ($loglevel > 0) {
-        common_log($query);
+        common_log($servername." - ".$query);
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
