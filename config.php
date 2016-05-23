@@ -23,7 +23,7 @@ $balancerip = '88.198.182.148';
 
 $loglevel = '';
 
-$slackbotlevel = 'none';
+$slackbotlevel = '';
 
 $docroot  = dirname(__FILE__);
 

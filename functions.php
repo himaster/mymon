@@ -53,7 +53,7 @@ function host_scheme()
 }
 
 function slackbot($message) {
-    if ($slackbotlevel != 'none') {
+    if ($slackbotlevel == "full") {
         $channel = "#sys-admins";
         $username = "mymon-bot";
         $icon_url = "https://mymon.pkwteile.de/images/mymon_mini.png";
