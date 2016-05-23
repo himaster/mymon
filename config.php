@@ -23,6 +23,8 @@ $balancerip = '88.198.182.148';
 
 $loglevel = '';
 
+$slackbotlevel = 'none';
+
 $docroot  = dirname(__FILE__);
 
 $retry_num   = 10;
