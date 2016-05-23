@@ -85,8 +85,8 @@
 	}
 	div#logo {
 		position: fixed;
-		left: 45%;
-		top: 0px;
+		left: 10%;
+		top: 40px;
 	    z-index: 1;
 	}
 	#col1 {
