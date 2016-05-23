@@ -55,30 +55,27 @@ function host_scheme()
 function slackbot($message)
 {
     global $slackbotlevel;
-    global $$mysql_conname;
+    global $dbconnection;
     
     $starttime = strtotime(date("Y-m-d H:i:s"));
-    $lasttime  = strtotime($$mysql_conname->query("SELECT `timestamp`
+    $lasttime  = strtotime($dbconnection->query("SELECT `timestamp`
                                   FROM `mymon`.`slack_messages`;")->fetch_row()[0]);
-    if ($starttime - $lasttime > 60 and $slackbotlevel == "full") {
-        $$mysql_conname->query("UPDATE `mymon`.`slack_messages` SET `test` = NOT `test`;");
+    if ($starttime - $lasttime > 120 and $slackbotlevel == "full") {
+        $dbconnection->query("UPDATE `mymon`.`slack_messages` SET `test` = NOT `test`;");
         $channel = "#sys-admins";
         $username = "mymon-bot";
         $icon_url = "https://mymon.pkwteile.de/images/mymon_mini.png";
         $slackhook = "https://hooks.slack.com/services/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";
         $query = "payload={\"channel\": \"$channel\", \"username\": \"$username\", \"text\": \"$message\", \"icon_url\": \"$icon_url\"}";
 
-        // Set the cURL options
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $slackhook);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        // Execute post
         $result = curl_exec($ch);
 
-        // Close connection
         curl_close($ch);
         print_r($result);
     }
