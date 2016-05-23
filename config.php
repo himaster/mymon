@@ -21,7 +21,9 @@ $ssh_callbacks = array('disconnect' => 'ssh_disconnect',
 
 $balancerip = '88.198.182.148';
 
-# 'debug' or 'none'
+# 0 => 'none'
+# 1 => 'SQL scripts'
+# 3 => 'everything'
 $loglevel = 1;
 
 # 'full' or 'none'
