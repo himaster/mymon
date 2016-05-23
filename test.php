@@ -1,29 +1,20 @@
 <?php
 
-require_once 'config.php';
-require_once 'functions.php';
-
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$serverip      = "88.198.182.148";
-$ssh_callbacks = array('disconnect' => 'ssh_disconnect',
-                   'ignore'     => 'ssh_ignore',
-                   'debug'      => 'ssh_debug',
-                   'macerror'   => 'ssh_macerror');
-
-if (( ! $connection = ssh2_connect($serverip, 22, $ssh_callbacks))
-        or ( ! ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
-    die("SSH connection error");
+$database = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
+                  or die($$mysql_conname->connect_errno."\n");
+$slackbotlevel = 'full';
+function slackbot($message)
+{
+    global $slackbotlevel;
+    global $database;
+    
+    $starttime = strtotime(date("Y-m-d H:i:s"));
+    $lasttime = strtotime($database->query("SELECT `timestamp`
+                                  FROM `mymon`.`slack_messages`;")->fetch_row()[0]);
+    if ($starttime - $lasttime > 60 and $slackbotlevel == "full") {
+        $database->query("UPDATE `mymon`.`slack_messages` SET `test` = NOT `test`;");
+        echo $message;
+    }
 }
-$str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
-                                 awk '{print $1}' |
-                                 sort |
-                                 uniq -c |
-                                 sort -n |
-                                 tail -n30");
-$i = 0;
-foreach (explode("\n", rtrim($str, "\n")) as $cLine) {
-    $i++;
-    $cLine = trim($cLine);
-    list($ipaddrarray[$i]['amount'], $ipaddrarray[$i]['ipaddr']) = explode(' ', "$cLine ");
-}
-return $ipaddrarray;
+
+slackbot("Test");
