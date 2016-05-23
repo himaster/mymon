@@ -136,10 +136,11 @@ function child_()
     if ($db == 1) {
         $query = "UPDATE `mymon`.`stats` SET `rep`='".rep($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-        $result = $$mysql_conname->query($query);
     } else {
-        $result = $$mysql_conname->query("UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';");
+        $query = "UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
     }
+    common_log($servername." - ".$query);
+    $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - REP not updated!");
     }
