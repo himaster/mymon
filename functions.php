@@ -55,8 +55,13 @@ function host_scheme()
 function slackbot($message)
 {
     global $slackbotlevel;
-
-    if ($slackbotlevel == "full") {
+    global $$mysql_conname;
+    
+    $starttime = strtotime(date("Y-m-d H:i:s"));
+    $lasttime  = strtotime($$mysql_conname->query("SELECT `timestamp`
+                                  FROM `mymon`.`slack_messages`;")->fetch_row()[0]);
+    if ($starttime - $lasttime > 60 and $slackbotlevel == "full") {
+        $$mysql_conname->query("UPDATE `mymon`.`slack_messages` SET `test` = NOT `test`;");
         $channel = "#sys-admins";
         $username = "mymon-bot";
         $icon_url = "https://mymon.pkwteile.de/images/mymon_mini.png";
@@ -64,7 +69,6 @@ function slackbot($message)
         $query = "payload={\"channel\": \"$channel\", \"username\": \"$username\", \"text\": \"$message\", \"icon_url\": \"$icon_url\"}";
 
         // Set the cURL options
-        //die($query);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $slackhook);
         curl_setopt($ch, CURLOPT_POST, true);
