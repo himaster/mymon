@@ -139,6 +139,9 @@ function child_()
     } else {
         $query = "UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
     }
+    if ($loglevel > 0) {
+        common_log($query);
+    }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - REP not updated!");
@@ -232,7 +235,7 @@ function rep($connection, $serverip, $servername = null)
     global $mysql_conname;
     global $$mysql_conname;
     global $loglevel;
-    
+
     $data = array();
     $str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
     foreach (explode("\n", $str) as $cLine) {
