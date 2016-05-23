@@ -230,8 +230,6 @@ function la($connection, $serverip, $servername = null)
 
 function rep($connection, $serverip, $servername = null)
 {
-    global $mysql_conname;
-    global $$mysql_conname;
     global $loglevel;
 
     $data = array();
@@ -251,7 +249,7 @@ function rep($connection, $serverip, $servername = null)
         $sqlfontcolor = "<font color=\"green\">";
         $sql = "&#10003;";
     } else {
-        slackbot($$mysql_conname, $servername.": replication SQL problem");
+        slackbot($servername.": replication SQL problem");
         $sqlfontcolor = "<script type=\"text/javascript\">notify(\"$servername: replication SQL problem\");</script>".
                         "<font color=\"red\">";
         $sql = "x";
@@ -271,7 +269,7 @@ function rep($connection, $serverip, $servername = null)
         $iofontcolor = "<font color=\"green\">";
         $io = "&#10003;";
     } else {
-        slackbot($$mysql_conname, $servername.": replication IO problem");
+        slackbot($servername.": replication IO problem");
         $iofontcolor =  "<script type=\"text/javascript\">notify(\"$servername: replication IO problem\");</script>".
                         "<font color=\"red\">";
         $io = "x";
