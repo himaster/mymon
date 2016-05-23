@@ -40,23 +40,23 @@
  	}
 	#left_button {
 		top: -3px;
-		left: 40px;
+		left: 10px;
 	}
 	#left_button2 {
 		top: -3px;
-		left: 88px;
+		left: 58px;
 	}
 	#left_button3 {
 		top: -3px;
-		left: 135px;
+		left: 105px;
 	}
 	#left_button13 {
 		top: -3px;
-		left: 182px;
+		left: 152px;
 	}
 	#left_button14 {
 		top: -3px;
-		left: 229px;
+		left: 199px;
 	}
 	#back_button {
 		top: -3px;
@@ -85,7 +85,7 @@
 	}
 	div#logo {
 		position: fixed;
-		left: 45%;
+		left: 48%;
 		top: 0px;
 	    z-index: 1;
 	}
