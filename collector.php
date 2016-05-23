@@ -230,8 +230,6 @@ function la($connection, $serverip, $servername = null)
 
 function rep($connection, $serverip, $servername = null)
 {
-    global $mysql_conname;
-    global $$mysql_conname;
     global $loglevel;
 
     $data = array();

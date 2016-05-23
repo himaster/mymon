@@ -55,14 +55,14 @@ function host_scheme()
 function slackbot($message)
 {
     global $slackbotlevel;
-    global $mysql_conname;
-    global $$mysql_conname;
     
+    $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
+                      or die($dbconnection->connect_errno."\n");
     $starttime = strtotime(date("Y-m-d H:i:s"));
-    $lasttime  = strtotime($$mysql_conname->query("SELECT `timestamp`
+    $lasttime  = strtotime($dbconnection->query("SELECT `timestamp`
                                   FROM `mymon`.`slack_messages`;")->fetch_row()[0]);
     if ($starttime - $lasttime > 120 and $slackbotlevel == "full") {
-        $$mysql_conname->query("UPDATE `mymon`.`slack_messages` SET `test` = NOT `test`;");
+        $dbconnection->query("UPDATE `mymon`.`slack_messages` SET `test` = NOT `test`;");
         $channel = "#sys-admins";
         $username = "mymon-bot";
         $icon_url = "https://mymon.pkwteile.de/images/mymon_mini.png";
@@ -80,4 +80,5 @@ function slackbot($message)
         curl_close($ch);
         print_r($result);
     }
+    $dbconnection->close();
 }
