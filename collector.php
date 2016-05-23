@@ -251,13 +251,13 @@ function rep($connection, $serverip, $servername = null)
                         "<font color=\"red\">";
         $sql = "x";
         $onclick = "onclick=\"javascript:   if(event.ctrlKey || event.metaKey) {
-                                                if(confirm(\'Want to RESTART replication?\')) {
-                                                    replica_restart(\'" .$serverip. "\');
+                                                if(confirm('Want to RESTART replication?')) {
+                                                    replica_restart('" .$serverip. "');
                                                 }
                                             }
                                             else {
-                                                if(confirm(\'Want to skip one error and start?\')) {
-                                                    replica_repair(\'" .$serverip. "\');
+                                                if(confirm('Want to skip one error and start?')) {
+                                                    replica_repair('" .$serverip. "');
                                                 }
                                             }
                                             return false;\"";
