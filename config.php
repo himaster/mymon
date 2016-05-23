@@ -21,9 +21,11 @@ $ssh_callbacks = array('disconnect' => 'ssh_disconnect',
 
 $balancerip = '88.198.182.148';
 
+# 'debug' or 'none'
 $loglevel = '';
 
-$slackbotlevel = '';
+# 'full' or 'none'
+$slackbotlevel = 'full';
 
 $docroot  = dirname(__FILE__);
 
