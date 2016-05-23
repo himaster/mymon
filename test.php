@@ -96,4 +96,3 @@ function rep($connection, $serverip, $servername = null)
                IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
                &#916;: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
-
