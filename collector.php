@@ -56,7 +56,7 @@ function parent_()
 
     $i = 1;
 
-    if ($loglevel == 'debug') {
+    if ($loglevel > 1) {
         common_log("PARENT - started.");
     }
     start:
@@ -83,7 +83,7 @@ function parent_()
             common_log("PARENT - not updated!");
         }
     }
-    if ($loglevel == 'debug') {
+    if ($loglevel > 1) {
         common_log("PARENT - ended.");
     }
 }
@@ -108,7 +108,7 @@ function child_()
     $ssh_conname = "ssh_".$servername;
     $i           = 1;
 
-    if ($loglevel == 'debug') {
+    if ($loglevel > 1) {
         common_log($servername. " - started.");
     }
 
@@ -202,7 +202,7 @@ function child_()
     $$mysql_conname->close();
     unset($$mysql_conname);
     unset($$ssh_conname);
-    if ($loglevel == 'debug') {
+    if ($loglevel > 1) {
         common_log($servername. " - ended.");
     }
 }
@@ -241,8 +241,9 @@ function rep($connection, $serverip, $servername = null)
         $data[trim($cKey)] = trim($cValue);
     }
     $onclick = "";
-    common_log($servername.' - SQL :'.$data["Slave_SQL_Running"].' IO :'.$data["Slave_IO_Running"]);
-
+    if ($loglevel > 0) {
+        common_log($servername.' - SQL :'.$data["Slave_SQL_Running"].' IO :'.$data["Slave_IO_Running"]);
+    }
     if (array_key_exists("Slave_SQL_Running", $data) && ($data["Slave_SQL_Running"] == "Yes")) {
         $sqlfontcolor = "<font color=\"green\">";
         $sql = "&#10003;";

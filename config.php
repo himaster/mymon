@@ -22,7 +22,7 @@ $ssh_callbacks = array('disconnect' => 'ssh_disconnect',
 $balancerip = '88.198.182.148';
 
 # 'debug' or 'none'
-$loglevel = 'debug';
+$loglevel = '1';
 
 # 'full' or 'none'
 $slackbotlevel = 'full';
