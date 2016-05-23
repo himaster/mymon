@@ -10,7 +10,7 @@ $mysql_conname = "mysql_".$servername;
 
 $$mysql_conname = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
                   or die($$mysql_conname->connect_errno."\n");
-
+$ssh_conname = "ssh_".$servername;
 if (( ! $$ssh_conname = ssh2_connect($serverip, 22, $ssh_callbacks))
         or ( ! ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         die("SSH connect not opened!");
