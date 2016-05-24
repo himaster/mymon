@@ -619,7 +619,7 @@ a:active {
 }
 #text {
 	position: relative;
-	top: 50%;
+	top: 45%;
 	transform: translateY(-50%);
 	font-family: cursive;
     font-weight: bold;
