@@ -340,7 +340,7 @@ if (isset($_COOKIE["mymon"])) {
                 if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
                     die("<font color=\"red\">SSH key for server not feat!</font>");
                 }
-                console_log(ssh2_exec($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
+                console_log(ssh2_return($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
                 echo "IP address banned.";
                 break;
 
@@ -358,7 +358,7 @@ if (isset($_COOKIE["mymon"])) {
                 if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
                     die("<font color=\"red\">SSH key for server not feat!</font>");
                 }
-                console_log(ssh2_exec($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
+                console_log(ssh2_return($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
                 echo "IP address unbanned.";
                 break;
 
