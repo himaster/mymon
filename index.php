@@ -333,6 +333,7 @@ if (isset($_COOKIE["mymon"])) {
                 $result = $dbconnection->query("INSERT INTO `firewall`.`blacklist`
                                                 SET `ip` = '$ip_addr';") or
                 die($dbconnection->error());
+                echo "IP address banned.";
                 break;
 
             default:
