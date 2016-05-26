@@ -425,7 +425,7 @@ a:active {
 
 .status_bar {
 	display: none;
-	width: 492px;
+	width: 400px;
 	background-color: black;
 	height: 20px;
 	margin-left: auto;
