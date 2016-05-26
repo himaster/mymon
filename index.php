@@ -333,7 +333,7 @@ if (isset($_COOKIE["mymon"])) {
                 $result = $dbconnection->query("INSERT IGNORE INTO `firewall`.`blacklist`
                                                 SET `ip` = '$ip_addr';") or
                 die($dbconnection->error());
-                if (!$connection = ssh2_connect($_GET["balancer1"], 22)) {
+                if (!$connection = ssh2_connect("balancer1", 22)) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
                     die("Can't connect to slave server");
                 }
