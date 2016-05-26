@@ -9,7 +9,9 @@
         <td class="uid">ID</td>
         <td class="login">IP Addr</td>
         <td class="email">Amount</td>
-        <td class="approvied">Ban</td>
+        <?php if ($isAdmin) { ?>
+            <td class="approvied">Ban</td>
+        <?php } ?>
     </tr>
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
@@ -47,11 +49,14 @@ while ($row_ip = $result->fetch_assoc()) {
             }
             ?>
         </td>
+        <?php if ($isAdmin) { ?>
         <td>
             <input type="checkbox" <?php echo ($row_ip['blacklisted'] == 1) ? "checked" : ""; ?>
                    onchange="javascript: if (this.checked) ban_ip('<?php echo $row_ip['ipaddr']; ?>');
                                          else unban_ip('<?php echo $row_ip['ipaddr']; ?>');" \>
+
         </td>
+        <?php } ?>
     </tr>
 <?php
 } ?>
