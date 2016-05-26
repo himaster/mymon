@@ -327,8 +327,11 @@ if (isset($_COOKIE["mymon"])) {
                 break;
 
             case "ban_ip":
+                if (! $ip_addr = $_GET['ip_addr']) {
+                    die("No IP address to ban.");
+                }
                 $result = $dbconnection->query("INSERT INTO `firewall`.`blacklist`
-                                                SET `ip` = '".$_GET['ip_addr']."';") or
+                                                SET `ip` = '$ip_addr';") or
                 die($dbconnection->error());
                 break;
 
