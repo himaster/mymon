@@ -333,6 +333,7 @@ if (isset($_COOKIE["mymon"])) {
                 $result = $dbconnection->query("INSERT IGNORE INTO `firewall`.`blacklist`
                                                 SET `ip` = '$ip_addr';") or
                 die($dbconnection->error());
+                console_log(exec("/etc/firewall/fire_new.sh") or die("Firewall error!"));
                 echo "IP address banned.";
                 break;
 
@@ -343,6 +344,7 @@ if (isset($_COOKIE["mymon"])) {
                 $result = $dbconnection->query("DELETE FROM `firewall`.`blacklist`
                                                 WHERE `ip` = '$ip_addr';") or
                 die($dbconnection->error());
+                console_log(exec("/etc/firewall/fire_new.sh") or die("Firewall error!"));
                 echo "IP address unbanned.";
                 break;
 
