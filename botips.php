@@ -13,10 +13,13 @@
     </tr>
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-$result = $dbconnection->query("SELECT `bps`.`id`, `bps`.`amount`, `bps`.`ipaddr`, `wl`.`ip` IS NOT NULL AS `whitelisted`
+$result = $dbconnection->query("SELECT `bps`.`id`, `bps`.`amount`, `bps`.`ipaddr`,
+                                    `wl`.`ip` IS NOT NULL AS `whitelisted`, `bl`.`ip` IS NOT NULL AS `blacklisted`
                                 FROM `mymon`.`botips` AS `bps`
                                 LEFT JOIN `firewall`.`whitelist` AS `wl`
-                                ON (`bps`.`ipaddr` = `wl`.`ip`);") or die($dbconnection->error);
+                                ON (`bps`.`ipaddr` = `wl`.`ip`)
+                                LEFT JOIN `firewall`.`blacklist` AS `bl`
+                                ON (`bps`.`ipaddr` = `bl`.`ip`);") or die($dbconnection->error);
 while ($row_ip = $result->fetch_assoc()) {
 ?>
     <tr>
@@ -45,7 +48,7 @@ while ($row_ip = $result->fetch_assoc()) {
             ?>
         </td>
         <td>
-            
+            <input type="checkbox" <?php echo ($row_ip['blacklisted'] == 1) ? "checked" : ""; ?> ></input>
         </td>
     </tr>
 <?php
