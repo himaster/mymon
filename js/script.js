@@ -6,8 +6,9 @@ function replica_restart(serverip) {
         success: function(html){
             status(html);
         },
-        error: function(){
-            status("Error");
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
         }
     });
 }
@@ -20,8 +21,9 @@ function replica_repair(serverip) {
         success: function(html){
             status(html);
         },
-        error: function(){
-            status("Error");
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
         }
     });
 }
@@ -110,7 +112,8 @@ function show_all() {
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError);
+            status("Error!");
+            console.log("error: " + thrownError);
         },
         complete: function() {
             setTimeout(function() { 
@@ -131,34 +134,32 @@ function status(text) {
 
 function ban_ip(ip) {
     var dataString = '&task=ban_ip&ip_addr=' + ip;
-    console.log(dataString);
     $.ajax({
         url: 'index.php',
         data: dataString,
         cache: false,
         success: function(html) {
             status(html);
-            console.log("Ajax: " + html);
         },
-        error: function() {
-            console.log("error");
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
         }
     });
 }
 
 function unban_ip(ip) {
     var dataString = '&task=unban_ip&ip_addr=' + ip;
-    console.log(dataString);
     $.ajax({
         url: 'index.php',
         data: dataString,
         cache: false,
         success: function(html) {
             status(html);
-            console.log("Ajax: " + html);
         },
-        error: function() {
-            console.log("error");
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
         }
     });
 }
@@ -190,8 +191,9 @@ function editor(name, val) {
             status(html);
             console.log("Ajax: " + html);
         },
-        error: function() {
-            console.log("error");
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
         }
     });
 }
@@ -234,8 +236,9 @@ function mbclose() {
             new_mes.close();
             console.log(html);
         },
-        error: function() {
-            console.log("error");
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
         }
     });
 }
@@ -256,9 +259,10 @@ function msg_submit(){
             status(data);
             document.getElementById('message_div').style.display = 'none';
         },
-   error: function(){
-        alert('error handling here');
-      }
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
+        }
     });
 }
 
