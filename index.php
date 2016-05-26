@@ -335,10 +335,10 @@ if (isset($_COOKIE["mymon"])) {
                 die($dbconnection->error());
                 if (!$connection = ssh2_connect("balancer1", 22)) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-                    die("Can't connect to slave server");
+                    die("Can't connect to server");
                 }
                 if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
-                    die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
+                    die("<font color=\"red\">SSH key for server not feat!</font>");
                 }
                 console_log(ssh2_exec($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
                 echo "IP address banned.";
@@ -353,10 +353,10 @@ if (isset($_COOKIE["mymon"])) {
                 die($dbconnection->error());
                 if (!$connection = ssh2_connect("balancer1", 22)) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
-                    die("Can't connect to slave server");
+                    die("Can't connect to server");
                 }
                 if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
-                    die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
+                    die("<font color=\"red\">SSH key for server not feat!</font>");
                 }
                 console_log(ssh2_exec($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
                 echo "IP address unbanned.";
