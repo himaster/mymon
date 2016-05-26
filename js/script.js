@@ -129,7 +129,7 @@ function status(text) {
     setTimeout("document.getElementById('status_div').style.display = 'none'", 5000);
 }
 function ban_ip(ip) {
-    var dataString = '&task=ban_ip&ipaddr=' + ip;
+    var dataString = '&task=ban_ip&ip_addr=' + ip;
     console.log(dataString);
     $.ajax({
         url: 'index.php',
