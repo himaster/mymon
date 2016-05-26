@@ -326,6 +326,11 @@ if (isset($_COOKIE["mymon"])) {
                 die($dbconnection->error());
                 break;
 
+            case "ban_ip":
+                $result = $dbconnection->query("INSERT INTO `firewall`.`blacklist` SET `ip` = ".$_GET['ip_addr']) or
+                die($dbconnection->error());
+                break;
+
             default:
                 setcookie(
                     'mymon[login]',

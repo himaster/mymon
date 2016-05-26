@@ -130,6 +130,18 @@ function status(text) {
 }
 function ban_ip(ip) {
     var dataString = '&task=ban_ip&ipaddr=' + ip;
+    $.ajax({
+        url: 'index.php',
+        data: dataString,
+        cache: false,
+        success: function(html) {
+            status(html);
+            console.log("Ajax: " + html);
+        },
+        error: function() {
+            console.log("error");
+        }
+    });
 }
 
 function editor(name, val) {
