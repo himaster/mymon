@@ -335,6 +335,15 @@ if (isset($_COOKIE["mymon"])) {
                 die($dbconnection->error());
                 echo "IP address banned.";
                 break;
+            case "unban_ip":
+                if (! $ip_addr = $_GET['ip_addr']) {
+                    die("No IP address to unban.");
+                }
+                $result = $dbconnection->query("DELETE FROM `firewall`.`blacklist`
+                                                WHERE `ip` = '$ip_addr';") or
+                die($dbconnection->error());
+                echo "IP address unbanned.";
+                break;
 
             default:
                 setcookie(

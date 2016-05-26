@@ -49,7 +49,8 @@ while ($row_ip = $result->fetch_assoc()) {
         </td>
         <td>
             <input type="checkbox" <?php echo ($row_ip['blacklisted'] == 1) ? "checked" : ""; ?>
-                   onchange="javascript: console.log(this.checked); ban_ip('<?php echo $row_ip['ipaddr']; ?>');" \>
+                   onchange="javascript: if (this.checked) ban_ip('<?php echo $row_ip['ipaddr']; ?>');
+                                         else unban_ip('<?php echo $row_ip['ipaddr']; ?>');" \>
         </td>
     </tr>
 <?php
