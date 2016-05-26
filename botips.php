@@ -15,13 +15,14 @@
     </tr>
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-$result = $dbconnection->query("SELECT `bps`.`id`, `bps`.`amount`, `bps`.`ipaddr`,
+$result = $dbconnection->query("SET @id=31; 
+                                SELECT @id:=@id-1 AS `id`, `bps`.`amount`, `bps`.`ipaddr`,
                                     `wl`.`ip` IS NOT NULL AS `whitelisted`, `bl`.`ip` IS NOT NULL AS `blacklisted`
                                 FROM `mymon`.`botips` AS `bps`
                                 LEFT JOIN `firewall`.`whitelist` AS `wl`
                                 ON (`bps`.`ipaddr` = `wl`.`ip`)
                                 LEFT JOIN `firewall`.`blacklist` AS `bl`
-                                ON (`bps`.`ipaddr` = `bl`.`ip`);") or die($dbconnection->error);
+                                ON (`bps`.`ipaddr` = `bl`.`ip`) ORDER BY `bps`.`amount` DESC;") or die($dbconnection->error);
 while ($row_ip = $result->fetch_assoc()) {
 ?>
     <tr>
