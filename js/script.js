@@ -128,7 +128,7 @@ function status(text) {
     document.getElementById('status_div').style.display = 'block';
     setTimeout("document.getElementById('status_div').style.display = 'none'", 5000);
 }
-function ban(ip) {
+function ban_ip(ip) {
     var dataString = '&task=ban_ip&ipaddr=' + ip;
 }
 
