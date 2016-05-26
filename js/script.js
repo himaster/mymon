@@ -132,7 +132,6 @@ function status(text) {
 function ban_ip(ip) {
     $.ajax({
         url: 'index.php?task=ban_ip&ipaddr=' + ip,
-        data: dataString,
         cache: false,
         success: function(html) {
             status(html);
