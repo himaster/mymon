@@ -87,7 +87,7 @@
 		position: fixed;
 		left: 10%;
 		top: 40px;
-	    z-index: 1;
+	    z-index: -1;
 	}
 	#col1 {
 		top: 40px !important;
