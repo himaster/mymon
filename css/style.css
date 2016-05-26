@@ -426,12 +426,12 @@ a:active {
 .status_bar {
 	display: none;
 	width: 492px;
-	background-color: lightgray;
+	background-color: black;
 	height: 20px;
 	margin-left: auto;
   	margin-right: auto;
   	margin-top: 20px;
-  	color: black;
+  	color: lightgray;
 	padding-left: 10px;
   	
 }
