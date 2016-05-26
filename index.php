@@ -333,7 +333,14 @@ if (isset($_COOKIE["mymon"])) {
                 $result = $dbconnection->query("INSERT IGNORE INTO `firewall`.`blacklist`
                                                 SET `ip` = '$ip_addr';") or
                 die($dbconnection->error());
-                console_log(exec("/etc/firewall/fire_new.sh") or die("Firewall error!"));
+                if (!$connection = ssh2_connect($_GET["balancer1"], 22)) {
+                    header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+                    die("Can't connect to slave server");
+                }
+                if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
+                    die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
+                }
+                console_log(ssh2_exec($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
                 echo "IP address banned.";
                 break;
 
@@ -344,7 +351,14 @@ if (isset($_COOKIE["mymon"])) {
                 $result = $dbconnection->query("DELETE FROM `firewall`.`blacklist`
                                                 WHERE `ip` = '$ip_addr';") or
                 die($dbconnection->error());
-                console_log(exec("/etc/firewall/fire_new.sh") or die("Firewall error!"));
+                if (!$connection = ssh2_connect($_GET["balancer1"], 22)) {
+                    header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
+                    die("Can't connect to slave server");
+                }
+                if (!ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '')) {
+                    die("<font color=\"red\">SSH key for {$_GET["serverip"]} not feat!</font>");
+                }
+                console_log(ssh2_exec($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!"));
                 echo "IP address unbanned.";
                 break;
 
