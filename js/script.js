@@ -128,10 +128,10 @@ function status(text) {
     document.getElementById('status_div').style.display = 'block';
     setTimeout("document.getElementById('status_div').style.display = 'none'", 5000);
 }
+
 function ban_ip(ip) {
-    var dataString = '&task=ban_ip&ipaddr=' + ip;
     $.ajax({
-        url: 'index.php',
+        url: 'index.php?task=ban_ip&ipaddr=' + ip,
         data: dataString,
         cache: false,
         success: function(html) {
