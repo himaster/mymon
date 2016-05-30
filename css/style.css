@@ -69,7 +69,6 @@
 	  	padding-left: 1px !important;
 	    padding-right: 1px !important;
 	}
-
 	div#loader {
 		display: none;
 		position: fixed;
@@ -109,9 +108,14 @@
 	}
 	#col7 {
 		top: 40px !important;
-	}						 
+	}
+	.whois {
+		color: black;
+		background-color: lightgray;
+		padding: 10px;
+		border: 1px solid black;
+	}				 
 }
-
 
 /* All desktops */
 @media only screen
@@ -166,6 +170,12 @@
 	#back_button {
 		top: 20px;
 		left: -3px;
+	}
+	.whois {
+		color: black;
+		background-color: lightgray;
+		padding: 10px;
+		border: 1px solid black;
 	}
 }
 
@@ -759,9 +769,3 @@ img#message_logo {
 				 red 1px -1px;
 }
 
-.whois {
-	color: black;
-	background-color: lightgray;
-	margin: 20px;
-	padding: 10px;
-}
