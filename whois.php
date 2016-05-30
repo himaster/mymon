@@ -7,7 +7,8 @@ foreach ($output as $row) {
     if ((stripos($row, 'netname') !== false)
         or (stripos($row, 'descr') !== false)
         or (stripos($row, 'organisation') !== false)) {
-        echo $row."<br>";
+        echo "<b>".$row."</b><br>";
     }
+	echo $row."<br>";
 }
 echo "</div>";
