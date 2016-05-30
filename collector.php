@@ -83,11 +83,11 @@ function botips_()
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = '".$value['ipaddr']."';";
         $result = $mysql_balancer->query($query);
         if (!isset($result)) {
-            common_log("botips - not updated!");
+            common_log("botips_ - not updated!");
         }
     }
     if ($loglevel > 1) {
-        common_log("PARENT - ended.");
+        common_log("botips_ - ended.");
     }
 }
 
@@ -142,7 +142,9 @@ function child_()
     } else {
         $query = "UPDATE `mymon`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
     }
-    common_log($servername." - ".$query);
+    if ($loglevel > 1) {
+        common_log($servername." - ".$query);
+    }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - REP not updated!");
