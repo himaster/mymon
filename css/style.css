@@ -175,6 +175,8 @@
 		color: black;
 		background-color: lightgray;
 		padding: 10px;
+		margin-left: 40px;
+		margin-right: 40px;
 		border: 1px solid black;
 	}
 }
