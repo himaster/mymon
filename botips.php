@@ -33,6 +33,8 @@ while ($row_ip = $result->fetch_assoc()) {
             $link = trim($row_ip['ipaddr']);
             if ($row_ip['whitelisted'] === '1') {
                 echo "<a href='/?task=whois&ip=".$row_ip['ipaddr']."'><font color='green'>".$link."</font></a>";
+            } else if (CIDRCheck($link, '66.249.64.0/19')) {
+                echo "<a href='/?task=whois&ip=".$row_ip['ipaddr']."'><font color='gray'>".$link."</font></a>";
             } else {
                 echo "<a href='/?task=whois&ip=".$row_ip['ipaddr']."'>".$link."</a>";
             }
