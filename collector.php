@@ -34,19 +34,23 @@ while ($array = $result->fetch_assoc()) {
     if ($pid == -1) {
         die("Child process can't be created");
     } elseif ($pid) {
-        if ($parent) {
-            parent_();
-            $parent = false;
-        }
     } else {
         child_();
         exit;
     }
 }
 $result->free();
+$pid = pcntl_fork();
+if ($pid == -1) {
+    die("Child process can't be created");
+} elseif ($pid) {
+} else {
+    botips_();
+    exit;
+}
 exit;
 
-function parent_()
+function botips_()
 {
     global $balancerip;
     global $ssh_callbacks;
@@ -57,12 +61,12 @@ function parent_()
     $i = 1;
 
     if ($loglevel > 1) {
-        common_log("PARENT - started.");
+        common_log("botips_ - started.");
     }
     start:
     if (( ! $connection = ssh2_connect($balancerip, 22, $ssh_callbacks))
         or ( ! ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
-        common_log("PARENT - retry #".$i++.".");
+        common_log("botips_ - retry #".$i++.".");
         sleep(1);
         if ($i < $retry_num) {
             goto start;
@@ -79,7 +83,7 @@ function parent_()
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = '".$value['ipaddr']."';";
         $result = $mysql_balancer->query($query);
         if (!isset($result)) {
-            common_log("PARENT - not updated!");
+            common_log("botips - not updated!");
         }
     }
     if ($loglevel > 1) {
