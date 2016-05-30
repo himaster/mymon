@@ -16,13 +16,10 @@ if (( ! $connection = @ssh2_connect($_GET['serverip'], 22))
     die("Connection error!");
 }
 
+include "backbutton.php";
+
 ?>
 
-<a href="<?php echo $hostname ?>">
-    <div class="left_button" id="back_button">
-        <img src="images/back.png">
-    </div>
-</a>
 <div class="textstyle">
 
 <?php

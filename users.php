@@ -1,8 +1,6 @@
-<a href="<?php echo $hostname ?>">
-    <div class="left_button" id="back_button">
-        <img src="images/back.png">
-    </div>
-</a>
+<?php
+include "backbutton.php";
+?>
 <table class="main_table table-striped" id="users_table">
     <col span="5">
     <tr class="title">
