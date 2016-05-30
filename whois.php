@@ -8,7 +8,8 @@ foreach ($output as $row) {
         or (stripos($row, 'descr') !== false)
         or (stripos($row, 'organisation') !== false)) {
         echo "<b>".$row."</b><br>";
+    } else {
+        echo $row."<br>";
     }
-	echo $row."<br>";
 }
 echo "</div>";
