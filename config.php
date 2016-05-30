@@ -24,7 +24,7 @@ $balancerip = '88.198.182.148';
 # 0 => 'none'
 # 1 => 'SQL scripts'
 # 3 => 'everything'
-$loglevel = 1;
+$loglevel = 0;
 
 # 'full' or 'none'
 $slackbotlevel = 'full';
