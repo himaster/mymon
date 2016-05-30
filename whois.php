@@ -10,7 +10,8 @@ foreach ($output as $row) {
         or (stripos($row, 'orgname') !== false)
         or (stripos($row, 'orgtechname') !== false)
         or (stripos($row, 'netrange') !== false)
-        or (stripos($row, 'CIDR') !== false)) {
+        or (stripos($row, 'CIDR') !== false)
+        or (stripos($row, 'inetnum') !== false)) {
         echo "<b>".$row."</b><br>";
     } else {
         echo $row."<br>";
