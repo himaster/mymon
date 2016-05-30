@@ -760,6 +760,7 @@ img#message_logo {
 }
 
 .whois {
-	color: white;
+	color: black;
+	background-color: lightgray;
 	margin: 20px;
 }
