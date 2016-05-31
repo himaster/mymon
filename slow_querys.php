@@ -10,7 +10,7 @@ include "backbutton.php";
 </a>
 
 <?php
-$fp = fopen('slow.log', 'a+');
+$fp = fopen($docroot.'slow.log', 'a+');
 $query = '';
 $id = 0;
 $data = array(array());
