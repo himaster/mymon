@@ -555,6 +555,7 @@ a:active {
     text-align:center;
     position:relative;
     background-color: rgb(249, 249, 249);
+    padding-left: 70px;
 }
 .effect2 {
 	position: relative;
