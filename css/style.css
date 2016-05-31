@@ -788,6 +788,10 @@ img#message_logo {
     color: black;
 }
 
+.buttons:visited {
+    color: black;
+}
+
 .menuitem {
     padding: 5px;
 }
