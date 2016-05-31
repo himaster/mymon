@@ -1,6 +1,12 @@
 <?php
 include "backbutton.php";
 ?>
+
+<a href="index.php?task=slow_querys">
+    <div class="left_button2" id="back_button">
+        <img src="images/sql.png">
+    </div>
+</a>
 <table class="main_table table-striped" id="users_table">
     <col span="5">
     <tr class="title">
