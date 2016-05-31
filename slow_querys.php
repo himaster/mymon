@@ -45,7 +45,7 @@ if ($fp) {
 $query = '';
 fclose($fp);
 foreach (multi_array_unique($data, 'query') as &$value) {
-    echo "<div id=\"dd".$value['id']."\" class=\"wrapper-dropdown-4\">";
+    echo "<div id=\"dd\" class=\"wrapper-dropdown-4\">";
     echo $value['query'];
     echo "<ul class=\"dropdown\">";
     echo "<li><input id=\"el-1\" type=\"checkbox\" name=\"el-1\" value=\"db\" /><label for=\"el-1\">DB: ".$value['database']."</label</li>";

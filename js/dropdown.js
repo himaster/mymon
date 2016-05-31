@@ -29,3 +29,10 @@ DropDown.prototype = {
 		return this.index;
 	}
 }
+
+$(function() {
+	var dd = new DropDown( $('#dd') );
+	$(document).click(function() {
+		$('.wrapper-dropdown-4').removeClass('active');
+	});
+});
