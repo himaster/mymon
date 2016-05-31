@@ -23,6 +23,7 @@ while (!feof($fp)) {
         echo "<li><label>Lock time: $time</label</li>";
         echo "<li><label>Rows examined: $rows_examined</label</li>";
         echo "<li><label>Rows affected: $rows_affected</label</li>";
+        echo "</div>";
         $query = '';
         $a = explode(' ', $row);
         $time = trim($a[3]);
