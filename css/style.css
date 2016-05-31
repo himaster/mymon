@@ -779,3 +779,9 @@ img#message_logo {
 .menuitem {
     padding: 5px;
 }
+
+.centerinner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 532px;
+}
