@@ -1,33 +1,23 @@
 <html>
     <head>
-	<title>Test</title>
+	   <title>Test</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
     </head>
     <body scrolling="yes">
-		<table>
-		    <tr>
-			<td>test1</td>
-		    </tr>
-		    <tr>
-			<td>test2</td>
-		    </tr>
-		    <tr>
-			<td>test3</td>
-		    </tr>
-		    <tr>
-			<td>test4</td>
-		    </tr>
-        </table>
-        <b id="showScroll">0px</b>
-        <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
-        <script type="text/javascript" src="js/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/testscript.js"></script>
-        <script>
-            $(document).ready(function() {
-                $(window).scroll(function() {
-                  console.log("Scrolling.");
-                });
-            });
-        </script>
-    </body>
+		<div class="dropdown">
+            <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                Dropdown
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Действие</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Другое действие</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Что-то еще</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Отдельная ссылка</a></li>
+            </ul>
+        </div>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
     </body>
 </html>
