@@ -782,8 +782,10 @@ img#message_logo {
 
 .buttons:hover {
     color: black;
-    white-space: nowrap;
-    word-wrap: normal;
+}
+
+.buttons:active {
+    color: black;
 }
 
 .menuitem {
