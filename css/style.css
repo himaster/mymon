@@ -780,7 +780,7 @@ img#message_logo {
     word-wrap: normal;
 }
 
-.buttons :hover {
+.buttons:hover {
     color: black;
     white-space: nowrap;
     word-wrap: normal;
