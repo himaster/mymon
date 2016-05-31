@@ -30,9 +30,8 @@ DropDown.prototype = {
 	}
 }
 
-$(function() {
-	var dd = new DropDown( $('#dd') );
-	$(document).click(function() {
-		$('.wrapper-dropdown-4').removeClass('active');
-	});
+
+var dd = new DropDown( $('#dd') );
+$(document).click(function() {
+	$('.wrapper-dropdown-4').removeClass('active');
 });
