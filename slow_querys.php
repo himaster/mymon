@@ -58,6 +58,7 @@ foreach (multi_array_unique($data, 'query') as &$value) {
     echo "<li class=\"menuitem\" role=\"presentation\">Lock time: ".$value['lock_time']."</li>";
     echo "<li class=\"menuitem\" role=\"presentation\">Rows examined: ".$value['rows_examined']."</li>";
     echo "<li class=\"menuitem\" role=\"presentation\">Rows affected: ".$value['rows_affected']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">".$value['query']."</li>";
     echo "</ul></div>";
 }
 
