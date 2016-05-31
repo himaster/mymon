@@ -51,13 +51,13 @@ foreach (multi_array_unique($data, 'query') as &$value) {
     echo    "<span class=\"caret\"></span>";
     echo "</button>";
     echo "<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownButton".$value['id']."\">";
-    echo "<li class=\"menuitem\" role=\"presentation\">".$value['database']."</li>";
-    //echo "<li><label>Time: $time</label</li>";
-    //echo "<li><label>Host: $time</label</li>";
-    //echo "<li><label>Query time: $time</label</li>";
-    //echo "<li><label>Lock time: $time</label</li>";
-    //echo "<li><label>Rows examined: $rows_examined</label</li>";
-    //echo "<li><label>Rows affected: $rows_affected</label</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">DB: ".$value['database']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Time: ".$time."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\"><label>Host: ".$time."</label</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Query time: ".$time."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Lock time: ".$time."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Rows examined: ".$rows_examined."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Rows affected: ".$rows_affected."</li>";
     echo "</ul></div>";
 }
 
