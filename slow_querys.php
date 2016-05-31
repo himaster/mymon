@@ -49,7 +49,7 @@ while (!feof($fp)) {
 }
 $query = '';
 fclose($fp);
-
+die("Done");
 function multi_array_unique($array, $key)
 {
     $temp_array = array();
