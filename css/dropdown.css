@@ -7,6 +7,8 @@
 	border: 1px solid silver;
 	cursor: pointer;
 	outline: none;
+	white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
 }
 
 .wrapper-dropdown-4:after {

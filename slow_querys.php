@@ -17,17 +17,6 @@ if ($fp) {
                               "rows_affected" => $rows_affected,
                               "database" => $database,
                               "query" => $query);
-            echo "<div id=\"dd$id\" class=\"wrapper-dropdown-4\">";
-            echo $query;
-            echo "<ul class=\"dropdown\">";
-            echo "<li><input id=\"el-1\" type=\"checkbox\" name=\"el-1\" value=\"db\" /><label for=\"el-1\">DB: $database</label</li>";
-            //echo "<li><label>Time: $time</label</li>";
-            //echo "<li><label>Host: $time</label</li>";
-            //echo "<li><label>Query time: $time</label</li>";
-            //echo "<li><label>Lock time: $time</label</li>";
-            //echo "<li><label>Rows examined: $rows_examined</label</li>";
-            //echo "<li><label>Rows affected: $rows_affected</label</li>";
-            echo "</ul></div>";
             $query = '';
             $a = explode(' ', $row);
             $time = trim($a[3]);
@@ -55,7 +44,20 @@ if ($fp) {
 }
 $query = '';
 fclose($fp);
-die("Done");
+foreach ($data as &$value) {
+    echo "<div id=\"dd".$value['id']."\" class=\"wrapper-dropdown-4\">";
+    echo $value['query'];
+    echo "<ul class=\"dropdown\">";
+    echo "<li><input id=\"el-1\" type=\"checkbox\" name=\"el-1\" value=\"db\" /><label for=\"el-1\">DB: ".$value['database']."</label</li>";
+    //echo "<li><label>Time: $time</label</li>";
+    //echo "<li><label>Host: $time</label</li>";
+    //echo "<li><label>Query time: $time</label</li>";
+    //echo "<li><label>Lock time: $time</label</li>";
+    //echo "<li><label>Rows examined: $rows_examined</label</li>";
+    //echo "<li><label>Rows affected: $rows_affected</label</li>";
+    echo "</ul></div>";
+}
+
 
 function multi_array_unique($array, $key)
 {
