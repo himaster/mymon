@@ -2,6 +2,7 @@
 $fp=fopen('/var/log/mysql/slow.log', 'a+');
 $query = '';
 $data = array(array());
+die("Begin");
 while (!feof($fp)) {
     $row=fgets($fp, 1024);
     if (stripos($row, '# Time:') !== false) {
