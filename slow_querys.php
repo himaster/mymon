@@ -1,4 +1,6 @@
 <?php
+
+include "backbutton.php";
 $fp = fopen('/var/log/mysql/slow.log', 'a+');
 $query = '';
 $id = 0;
