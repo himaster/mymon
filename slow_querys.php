@@ -46,7 +46,8 @@ if ($fp) {
 }
 $query = '';
 fclose($fp);
-foreach (multi_array_unique($data, 'query') as &$value) {
+
+foreach (array_shift(multi_array_unique($data, 'query')) as &$value) {
     echo "<div class=\"dropdown centerinner\">";
     echo "<button class=\"btn dropdown-toggle buttons\" type=\"button\" id=\"dropdownButton".$value['id']."\" data-toggle=\"dropdown\">";
     echo    $value['query'];
