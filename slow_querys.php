@@ -45,10 +45,13 @@ if ($fp) {
 $query = '';
 fclose($fp);
 foreach (multi_array_unique($data, 'query') as &$value) {
-    echo "<div id=\"dd\" class=\"wrapper-dropdown-4\">";
-    echo $value['query'];
-    echo "<ul class=\"dropdown\">";
-    echo "<li><input id=\"el-1\" type=\"checkbox\" name=\"el-1\" value=\"db\" /><label for=\"el-1\">DB: ".$value['database']."</label</li>";
+    echo "<div class=\"dropdown\">";
+    echo "<button class=\"btn dropdown-toggle sr-only\" type=\"button\" id=\"dropdownButton".$value['id']."\" data-toggle=\"dropdown\">";
+    echo    $value['query'];
+    echo    "<span class=\"caret\"></span>";
+    echo "</button>";
+    echo "<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownButton".$value['id']."\">";
+    echo "<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">".$value['database']."</a></li>";
     //echo "<li><label>Time: $time</label</li>";
     //echo "<li><label>Host: $time</label</li>";
     //echo "<li><label>Query time: $time</label</li>";
