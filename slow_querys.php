@@ -1,15 +1,7 @@
 <?php
 
 include "backbutton.php";
-?>
 
-<a href="index.php?task=botips">
-    <div class="left_button" id="left_button2">
-        <img src="images/topips.png">
-    </div>
-</a>
-
-<?php
 $fp = fopen($docroot.'/slow.log', 'a+');
 $query = '';
 $id = 0;
