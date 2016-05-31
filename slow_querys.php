@@ -52,12 +52,12 @@ foreach (multi_array_unique($data, 'query') as &$value) {
     echo "</button>";
     echo "<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownButton".$value['id']."\">";
     echo "<li class=\"menuitem\" role=\"presentation\">DB: ".$value['database']."</li>";
-    echo "<li class=\"menuitem\" role=\"presentation\">Time: ".$time."</li>";
-    echo "<li class=\"menuitem\" role=\"presentation\">Host: ".$time."</li>";
-    echo "<li class=\"menuitem\" role=\"presentation\">Query time: ".$time."</li>";
-    echo "<li class=\"menuitem\" role=\"presentation\">Lock time: ".$time."</li>";
-    echo "<li class=\"menuitem\" role=\"presentation\">Rows examined: ".$rows_examined."</li>";
-    echo "<li class=\"menuitem\" role=\"presentation\">Rows affected: ".$rows_affected."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Time: ".$value['time']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Host: ".$value['host']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Query time: ".$value['query_time']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Lock time: ".$value['lock_time']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Rows examined: ".$value['rows_examined']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Rows affected: ".$value['rows_affected']."</li>";
     echo "</ul></div>";
 }
 
