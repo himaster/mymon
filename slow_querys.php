@@ -19,7 +19,7 @@ if ($fp) {
                               "query" => $query);
             $query = '';
             $a = explode(' ', $row);
-            $time = trim($a[4]);
+            $time = trim($a[3].$a[4]);
         } else if (stripos($row, '# User@Host:') !== false) {
             $a = explode(' ', $row);
             $host = $a[5];
