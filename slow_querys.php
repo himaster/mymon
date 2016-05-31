@@ -51,7 +51,7 @@ foreach (multi_array_unique($data, 'query') as &$value) {
     echo    "<span class=\"caret\"></span>";
     echo "</button>";
     echo "<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownButton".$value['id']."\">";
-    echo "<li role=\"presentation\">".$value['database']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">".$value['database']."</li>";
     //echo "<li><label>Time: $time</label</li>";
     //echo "<li><label>Host: $time</label</li>";
     //echo "<li><label>Query time: $time</label</li>";
