@@ -44,7 +44,7 @@ if ($fp) {
 }
 $query = '';
 fclose($fp);
-foreach ($data as &$value) {
+foreach (multi_array_unique($data, 'query') as &$value) {
     echo "<div id=\"dd".$value['id']."\" class=\"wrapper-dropdown-4\">";
     echo $value['query'];
     echo "<ul class=\"dropdown\">";
