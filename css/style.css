@@ -780,6 +780,12 @@ img#message_logo {
     word-wrap: normal;
 }
 
+.buttons :hover {
+    color: black;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
 .menuitem {
     padding: 5px;
 }
