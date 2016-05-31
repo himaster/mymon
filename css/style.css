@@ -771,9 +771,13 @@ img#message_logo {
 				 red 1px -1px;
 }
 
-.margin1 {
+.buttons {
     margin: 1px;
     width: 532px;
+    color: black;
+    line-height: 1;
+    white-space: nowrap;
+    word-wrap: normal;
 }
 
 .menuitem {
