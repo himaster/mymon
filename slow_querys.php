@@ -46,7 +46,7 @@ $query = '';
 fclose($fp);
 foreach (multi_array_unique($data, 'query') as &$value) {
     echo "<div class=\"dropdown\">";
-    echo "<button class=\"btn dropdown-toggle sr-only\" type=\"button\" id=\"dropdownButton".$value['id']."\" data-toggle=\"dropdown\">";
+    echo "<button class=\"btn dropdown-toggle margin10\" type=\"button\" id=\"dropdownButton".$value['id']."\" data-toggle=\"dropdown\">";
     echo    $value['query'];
     echo    "<span class=\"caret\"></span>";
     echo "</button>";
