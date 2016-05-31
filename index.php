@@ -254,9 +254,9 @@ if (isset($_COOKIE["mymon"])) {
                         AS `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis`
                         FROM `mymon`.`stats`;") or
                 die($dbconnection->error());
-            while ($array = $result->fetch_assoc()) {
-                $rows["data"][] = $array;
-            }
+                while ($array = $result->fetch_assoc()) {
+                    $rows["data"][] = $array;
+                }
                 $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`)
                         AS `timestamp`, `messages`.`message`, `users`.`login`
                         FROM `mymon`.`messages` JOIN `users`
@@ -266,9 +266,9 @@ if (isset($_COOKIE["mymon"])) {
                         AND isDeleted = 0
                         LIMIT 1;") or
                 die($dbconnection->error());
-            if (mysqli_num_rows($result)>0) {
-                    $rows["msg"] = $result->fetch_assoc();
-            }
+                if (mysqli_num_rows($result)>0) {
+                        $rows["msg"] = $result->fetch_assoc();
+                }
                 header("Content-Type: application/json; charset=utf-8 ");
                 echo json_encode($rows);
                 break;
@@ -279,14 +279,14 @@ if (isset($_COOKIE["mymon"])) {
                 die($dbconnection->error());
                 $uid = $result->fetch_assoc()['id'];
                 $result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
-            while ($row = $result->fetch_assoc()) {
-                if ($_GET[$row['name']] == "on") {
-                    $rid = $row['id'];
-                    $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) 
-                    VALUES ('$uid', '$rid');") or
-                    die($dbconnection->error());
+                while ($row = $result->fetch_assoc()) {
+                    if ($_GET[$row['name']] == "on") {
+                        $rid = $row['id'];
+                        $dbconnection->query("INSERT INTO `user_roles`(`user_id`, `role_id`) 
+                        VALUES ('$uid', '$rid');") or
+                        die($dbconnection->error());
+                    }
                 }
-            }
                 $result = $dbconnection->query("UPDATE `mymon`.`users`
                                                 SET approvied = '1'
                                                 WHERE login = '$login';") or
@@ -355,6 +355,12 @@ if (isset($_COOKIE["mymon"])) {
                 }
                 ssh2_return($connection, "/etc/firewall/firewall_new.sh") or die("Firewall error!");
                 echo "IP address unbanned.";
+                break;
+
+            case "slow_querys":
+                include "header.html";
+                include "slow_querys.php";
+                include "footer.html";
                 break;
 
             default:
