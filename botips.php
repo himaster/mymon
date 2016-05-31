@@ -3,7 +3,7 @@ include "backbutton.php";
 ?>
 
 <a href="index.php?task=slow_querys">
-    <div class="left_button2" id="back_button">
+    <div class="left_button" id="left_button2">
         <img src="images/sql.png">
     </div>
 </a>
