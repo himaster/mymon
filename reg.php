@@ -54,17 +54,19 @@ if (isset($_POST['submit'])) {
         }
     }
 } elseif (isset($_POST['submit_edit'])) {
+    $login = no_injection($_POST['login']);
     if (!empty($_POST['password'])) {
         if (empty($_POST['password2'])) {
             die('You have not entered password confirmation');
         } elseif ($_POST['password'] != $_POST['password2']) {
             die('Entered passwords are not equal');
+        } else {
+            $password = md5(no_injection($_POST['password']));
+            $query = "UPDATE `users` SET `password` = '$password' WHERE login = '$login';";
+            $result = $dbconnection->query($query) or die($dbconnection->error);
         }
-        $password = md5(no_injection($_POST['password']));
-        $query = "UPDATE `users` SET `password` = '$password' WHERE login = '$login';";
-        $result = $dbconnection->query($query) or die($dbconnection->error);
     }
-    $login = no_injection($_POST['login']);
+    
     $email = no_injection($_POST['email']);
     $ula = (isset($_POST['la'])) ? 1 : 0;
     $urep = (isset($_POST['rep'])) ? 1 : 0;
