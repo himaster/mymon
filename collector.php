@@ -316,7 +316,7 @@ function err500($connection, $serverip, $servername = null)
 
     return "<a title=\"Click to show 500 errors\" 
              href=". $hostname. "index.php?task=500err&serverip=" .$serverip. " 
-             target=\"_blank\">" .$str. "\n</a>";
+             target=\"_self\">" .$str. "\n</a>";
 }
 
 function elastic($connection, $serverip, $servername = null)
