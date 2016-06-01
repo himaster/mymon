@@ -64,6 +64,9 @@ while ($row_ip = $result->fetch_assoc()) {
                                          else unban_ip('<?php echo $row_ip['ipaddr']; ?>');" \>
 
         </td>
+        <td>
+            <input type="text" class="hidden">
+        <td>
         <?php } ?>
     </tr>
 <?php

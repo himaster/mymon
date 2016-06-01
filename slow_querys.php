@@ -6,7 +6,6 @@ $fp = fopen($docroot.'/slow.log', 'a+');
 $query = '';
 $id = 0;
 $data = array(array());
-//die("Begin");
 if ($fp) {
     while (!feof($fp)) {
         $row = fgets($fp, 1024);
@@ -66,7 +65,6 @@ foreach ($data_uniq as &$value) {
     echo "<li class=\"menuitem\" role=\"presentation\">".$value['query']."</li>";
     echo "</ul></div>";
 }
-
 
 function multi_array_unique($array, $key)
 {
