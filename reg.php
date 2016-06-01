@@ -23,19 +23,19 @@ if (isset($_POST['submit'])) {
         $email = no_injection($_POST['email']);
         $result = $dbconnection->query("SELECT `id`
                                         FROM `users`
-                                        WHERE `login`='{$login}'") or die($dbconnection->error());
+                                        WHERE `login`='{$login}'") or die($dbconnection->error);
         if ($result->num_rows > 0) {
             echo 'This login exists.';
         } else {
             $result = $dbconnection->query("INSERT INTO users(login , password , email, approvied)
                                             VALUES ('$login', '$password', '$email', '0')") or
-            die($dbconnection->error());
+                        die($dbconnection->error);
             $msg = "<html><head><title></title></head><body>";
             $msg = file_get_contents('header.html');
             $msg .= "User $login ($email) just registered. <form action=\"$hostname\" method='get'>";
             $msg .= "<input type='hidden' name='task' value='confirm' />";
             $msg .= "<input type='hidden' name='username' value=$login />";
-            $result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error());
+            $result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error);
             while ($row = $result->fetch_assoc()) {
                 $msg .= "<p>".$row['name']." <input type='checkbox' name='".$row['name']."' />";
             }
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
                   `red` = '$ured',
                   `notify` = '$unotify'
               WHERE login = '$login';";
-    $result = $dbconnection->query($query) or die($dbconnection->error());
+    $result = $dbconnection->query($query) or die($dbconnection->error);
     header("Refresh:0; url=index.php");
 } else {
     echo "None selected";
