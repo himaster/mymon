@@ -120,7 +120,7 @@
 /* All desktops */
 @media only screen
   and (min-device-width: 415px) {
-	div#loader {
+	.loader {
 		display: none;
 		position: fixed;
 		left: 5px;
@@ -129,7 +129,7 @@
 	    height: 30px;
 	    width: 30px;
 	}
-	div#loader img {
+	.loader img {
 	    height: 100%;
 	    width: 100%;
 	}
