@@ -60,34 +60,30 @@ if (isset($_POST['submit'])) {
         }
         $password = md5(no_injection($_POST['password']));
     }
-    if (empty($_POST['email'])) {
-        echo 'You have not entered e-mail';
-    } else {
-        $login = no_injection($_POST['login']);
-        $email = no_injection($_POST['email']);
-        $ula = (isset($_POST['la'])) ? 1 : 0;
-        $urep = (isset($_POST['rep'])) ? 1 : 0;
-        $uloc = (isset($_POST['loc'])) ? 1 : 0;
-        $u500 = (isset($_POST['500'])) ? 1 : 0;
-        $uel = (isset($_POST['el'])) ? 1 : 0;
-        $umon = (isset($_POST['mon'])) ? 1 : 0;
-        $ured = (isset($_POST['red'])) ? 1 : 0;
-        $unotify = (isset($_POST['notify'])) ? 1 : 0;
-        $query = "UPDATE `users`
-                  SET `password` = COALESCE($password, `password`),
-                      `email` = '$email',
-                      `la` = '$ula',
-                      `rep` = '$urep',
-                      `loc` = '$uloc',
-                      `500` = '$u500',
-                      `el` = '$uel',
-                      `mon` = '$umon',
-                      `red` = '$ured',
-                      `notify` = '$unotify'
-                  WHERE login = '$login';";
-        $result = $dbconnection->query($query) or die(mysql_error());
-        header("Refresh:0; url=index.php");
-    }
+    $login = no_injection($_POST['login']);
+    $email = no_injection($_POST['email']);
+    $ula = (isset($_POST['la'])) ? 1 : 0;
+    $urep = (isset($_POST['rep'])) ? 1 : 0;
+    $uloc = (isset($_POST['loc'])) ? 1 : 0;
+    $u500 = (isset($_POST['500'])) ? 1 : 0;
+    $uel = (isset($_POST['el'])) ? 1 : 0;
+    $umon = (isset($_POST['mon'])) ? 1 : 0;
+    $ured = (isset($_POST['red'])) ? 1 : 0;
+    $unotify = (isset($_POST['notify'])) ? 1 : 0;
+    $query = "UPDATE `users`
+              SET `password` = COALESCE($password, `password`),
+                  `email` = COALESCE($email, `email`),
+                  `la` = '$ula',
+                  `rep` = '$urep',
+                  `loc` = '$uloc',
+                  `500` = '$u500',
+                  `el` = '$uel',
+                  `mon` = '$umon',
+                  `red` = '$ured',
+                  `notify` = '$unotify'
+              WHERE login = '$login';";
+    $result = $dbconnection->query($query) or die(mysql_error());
+    header("Refresh:0; url=index.php");
 } else {
     echo "None selected";
 }
