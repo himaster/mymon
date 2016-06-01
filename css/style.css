@@ -806,7 +806,7 @@ img#message_logo {
 .ban_comment {
     position: absolute;
     width: 160px;
-    left: 245px;
+    left: 257px;
 }
 .ban_input {
     position: relative;
@@ -814,6 +814,7 @@ img#message_logo {
     padding-left: 5px;
     padding-right: 40px;
     top: -20px;
+    width: 168px;
 }
 .ban_button {
     position: relative;
