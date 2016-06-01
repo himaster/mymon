@@ -71,8 +71,8 @@ if (isset($_POST['submit'])) {
     $ured = (isset($_POST['red'])) ? 1 : 0;
     $unotify = (isset($_POST['notify'])) ? 1 : 0;
     $query = "UPDATE `users`
-              SET `password` = COALESCE($password, `password`),
-                  `email` = COALESCE($email, `email`),
+              SET `password` = COALESCE('$password', `password`),
+                  `email` = COALESCE('$email', `email`),
                   `la` = '$ula',
                   `rep` = '$urep',
                   `loc` = '$uloc',
