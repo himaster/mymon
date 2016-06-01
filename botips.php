@@ -70,7 +70,7 @@ while ($row_ip = $result->fetch_assoc()) {
                                             }
                                          }" \>
             <div id="ban_<?php echo $row_ip['id']; ?>" class="hidden ban_comment">
-                <input type="text" class="ban_input">
+                <input type="text" class="ban_input" placeholder="Comment">
                 <input type="button"
                        class="ban_button"
                        value="ban"
