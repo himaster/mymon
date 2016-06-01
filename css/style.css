@@ -802,3 +802,8 @@ img#message_logo {
     margin-right: auto;
     width: 532px;
 }
+
+.ban_comment {
+    position: absolute;
+    width: 200px;
+}
