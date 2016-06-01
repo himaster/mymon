@@ -807,3 +807,7 @@ img#message_logo {
     position: absolute;
     width: 200px;
 }
+
+.ban_input {
+    background-color: white;
+}
