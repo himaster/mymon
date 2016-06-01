@@ -4,9 +4,9 @@ error_reporting(E_ALL);
 
 
 if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (!empty($_SERVER['HTTPS']) && $_SERVER['SERVER_PORT'] === "443")) {
-    $isSecure = true;
+    $isSecure = 1;
 } else {
-    $isSecure = false;
+    $isSecure = 0;
 }
 $REQUEST_PROTOCOL = $isSecure ? 'https' : 'http';
 
