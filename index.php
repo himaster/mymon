@@ -392,7 +392,7 @@ if (isset($_COOKIE["mymon"])) {
         }
     } else {
         echo 'Неправильное имя или пароль в куках???';
-        echo "<input type='button' onclick='javascript: delete_cookie('mymon[password]'); delete_cookie('mymon[login]');'>";
+        echo "<input type='button' value='clear' onclick='javascript: delete_cookie('mymon[password]'); delete_cookie('mymon[login]');'>";
     }
 } elseif (isset($_POST['auth_submit'])) {
     $login = no_injection($_POST['login']);
