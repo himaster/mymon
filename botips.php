@@ -58,14 +58,11 @@ while ($row_ip = $result->fetch_assoc()) {
             ?>
         </td>
         <?php if ($isAdmin) { ?>
-        <td style="background-color: transparent">
+        <td>
             <input type="checkbox" <?php echo ($row_ip['blacklisted'] == 1) ? "checked" : ""; ?>
                    onchange="javascript: if (this.checked) $('#ban_<?php echo $row_ip['id']; ?>').removeClass('hidden');
                                          else unban_ip('<?php echo $row_ip['ipaddr']; ?>');" \>
-
-        </td>
-        <td>
-            <div id="ban_<?php echo $row_ip['id']; ?>" class="hidden">
+            <div id="ban_<?php echo $row_ip['id']; ?>" class="hidden ban_comment">
                 <input type="text">
                 <input type="button"
                        value="ban"
