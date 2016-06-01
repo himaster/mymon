@@ -382,6 +382,7 @@ if (isset($_COOKIE["mymon"])) {
                     $isSecure,
                     true
                 );
+                echo "HTTPS: ".$isSecure;
                 include "header.html";
                 include "table.php";
                 include "footer.html";
