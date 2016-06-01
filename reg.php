@@ -85,6 +85,7 @@ if (isset($_POST['submit'])) {
                   `red` = '$ured',
                   `notify` = '$unotify'
               WHERE login = '$login';";
+    echo "Query: ".$query;
     $result = $dbconnection->query($query) or die($dbconnection->error);
     echo "Updated successfully.";
     header("Refresh:0; url=index.php");
