@@ -811,6 +811,8 @@ img#message_logo {
 .ban_input {
     position: relative;
     background-color: white;
+    padding-left: 5px;
+    padding-right: 5px;
     top: -20px;
 }
 .ban_button {
