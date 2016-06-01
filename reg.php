@@ -4,7 +4,6 @@ require_once 'config.php';
 require_once 'functions.php';
 
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-echo "<div class=\"register\">";
 if (isset($_POST['submit'])) {
     if (empty($_POST['login'])) {
         echo 'You have not entered login';
@@ -48,7 +47,9 @@ if (isset($_POST['submit'])) {
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             mail($to, $subject, $msg, $headers);
             include 'header.html';
+            echo "<div class=\"register\">";
             echo "Registered successfull. Please, wait confirmation letter.";
+            echo "</div>";
             include 'footer.html';
         }
     }
@@ -86,8 +87,7 @@ if (isset($_POST['submit'])) {
               WHERE login = '$login';";
     echo "Query: ".$query;
     $result = $dbconnection->query($query) or die($dbconnection->error);
-    header("Refresh:0; url=index.php");
+    header("Refresh:0; url=/");
 } else {
     echo "None selected";
 }
-echo "</div>";
