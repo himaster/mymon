@@ -802,3 +802,7 @@ img#message_logo {
     margin-right: auto;
     width: 532px;
 }
+
+.hidden {
+    width: 0px;
+}
