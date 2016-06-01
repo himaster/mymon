@@ -3,7 +3,6 @@
 require_once 'config.php';
 require_once 'functions.php';
 
-include 'header.html';
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 echo "<div class=\"register\">";
 if (isset($_POST['submit'])) {
@@ -48,7 +47,9 @@ if (isset($_POST['submit'])) {
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             mail($to, $subject, $msg, $headers);
+            include 'header.html';
             echo "Registered successfull. Please, wait confirmation letter.";
+            include 'footer.html';
         }
     }
 } elseif (isset($_POST['submit_edit'])) {
