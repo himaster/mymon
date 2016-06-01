@@ -381,8 +381,8 @@ $(document).ready(function() {
         else window.animation = [{'left' : '5px'}, {'left' : '-3px'}];
         $("#left_button2").animate(window.animation[1], {duration: 200, easing: 'swing'});
     });
-    $("input[name=password]").keyup(function() {
-        $("input[name=password2]").val($(this).val());
+    $("#refresher").click(function() {
+        show_all();
     });
 });
 
