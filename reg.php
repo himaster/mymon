@@ -52,6 +52,7 @@ if (isset($_POST['submit'])) {
         }
     }
 } elseif (isset($_POST['submit_edit'])) {
+    echo "Got it!";
     if (!empty($_POST['password'])) {
         if (empty($_POST['password2'])) {
             die('You have not entered password confirmation');
