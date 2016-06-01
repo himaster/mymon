@@ -59,6 +59,7 @@ if (isset($_POST['submit'])) {
             die('Entered passwords are not equal');
         }
         $password = md5(no_injection($_POST['password']));
+        echo "Password: ".$password;
     }
     if (!empty($_POST['email'])) {
         $email = no_injection($_POST['email']);
