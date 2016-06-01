@@ -60,9 +60,13 @@ if (isset($_POST['submit'])) {
         }
         $password = md5(no_injection($_POST['password']));
         echo "Password: ".$password;
+    } else {
+        $password = null;
     }
     if (!empty($_POST['email'])) {
         $email = no_injection($_POST['email']);
+    } else {
+        $email = null;
     }
     $login = no_injection($_POST['login']);
     $ula = (isset($_POST['la'])) ? 1 : 0;
@@ -74,8 +78,8 @@ if (isset($_POST['submit'])) {
     $ured = (isset($_POST['red'])) ? 1 : 0;
     $unotify = (isset($_POST['notify'])) ? 1 : 0;
     $query = "UPDATE `users`
-              SET `password` = COALESCE($password, password),
-                  `email` = COALESCE($email, email),
+              SET `password` = 'COALESCE($password, password)',
+                  `email` = 'COALESCE($email, email)',
                   `la` = '$ula',
                   `rep` = '$urep',
                   `loc` = '$uloc',
