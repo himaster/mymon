@@ -382,6 +382,7 @@ if (isset($_COOKIE["mymon"])) {
                     isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
                     true
                 );
+                echo "HTTPS: ".isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]);
                 include "header.html";
                 include "table.php";
                 include "footer.html";
