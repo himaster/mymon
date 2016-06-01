@@ -5,4 +5,5 @@ require_once "functions.php";
 
 $slackbotlevel = 'full';
 
-slackbot()
+var_dump($_SERVER['HTTPS']);
+var_dump($_SERVER['SERVER_PORT']);
