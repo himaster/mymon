@@ -64,7 +64,7 @@ while ($row_user = $result->fetch_assoc()) {
             onchange="javascript: users_editor(this.id, this.checked);">
         </td>
         <td>
-            <input type="button" value="del" onclick="javascript: alert('Are you shure?');">
+            <input type="button" value="x" onclick="javascript: alert('Are you shure?');">
         </td>
     </tr>
 <?php
