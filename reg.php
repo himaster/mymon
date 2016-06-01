@@ -88,9 +88,7 @@ if (isset($_POST['submit'])) {
                   `notify` = '$unotify'
               WHERE login = '$login';";
     $result = $dbconnection->query($query) or die($dbconnection->error);
-    unset($_COOKIE['mymon[login]']);
-    unset($_COOKIE['mymon[password]']);
-    header("Refresh:0; url=/");
+    header("Refresh:0; url=/index.php?task=exit");
 } else {
     echo "None selected";
 }

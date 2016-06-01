@@ -22,7 +22,7 @@ if ($_GET['task'] == "exit") {
         time()-604800,
         dirname($_SERVER['PHP_SELF']),
         $_SERVER['HTTP_HOST'],
-        isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+        $isSecure,
         true
     );
     setcookie(
@@ -31,7 +31,7 @@ if ($_GET['task'] == "exit") {
         time()-604800,
         dirname($_SERVER['PHP_SELF']),
         $_SERVER['HTTP_HOST'],
-        isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+        $isSecure,
         true
     );
     unset($_COOKIE['mymon']);
