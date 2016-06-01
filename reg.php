@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                   `red` = '$ured',
                   `notify` = '$unotify'
               WHERE login = '$login';";
-    echo "Query: ".$query;
+    #echo "Query: ".$query;
     $result = $dbconnection->query($query) or die($dbconnection->error);
     header("Refresh:0; url=/");
 } else {
