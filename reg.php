@@ -85,6 +85,7 @@ if (isset($_POST['submit'])) {
                   `notify` = '$unotify'
               WHERE login = '$login';";
     $result = $dbconnection->query($query) or die($dbconnection->error);
+    echo "Updated successfully.";
     header("Refresh:0; url=index.php");
 } else {
     echo "None selected";
