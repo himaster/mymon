@@ -59,16 +59,11 @@ if (isset($_POST['submit'])) {
             die('Entered passwords are not equal');
         }
         $password = md5(no_injection($_POST['password']));
-        echo "Password: ".$password;
-    } else {
-        $password = null;
-    }
-    if (!empty($_POST['email'])) {
-        $email = no_injection($_POST['email']);
-    } else {
-        $email = null;
+        $query = "UPDATE `users` SET `password` = '$password' WHERE login = '$login';";
+        $result = $dbconnection->query($query) or die($dbconnection->error);
     }
     $login = no_injection($_POST['login']);
+    $email = no_injection($_POST['email']);
     $ula = (isset($_POST['la'])) ? 1 : 0;
     $urep = (isset($_POST['rep'])) ? 1 : 0;
     $uloc = (isset($_POST['loc'])) ? 1 : 0;
@@ -78,8 +73,7 @@ if (isset($_POST['submit'])) {
     $ured = (isset($_POST['red'])) ? 1 : 0;
     $unotify = (isset($_POST['notify'])) ? 1 : 0;
     $query = "UPDATE `users`
-              SET `password` = 'COALESCE($password, password)',
-                  `email` = 'COALESCE($email, email)',
+              SET `email` = '$email',
                   `la` = '$ula',
                   `rep` = '$urep',
                   `loc` = '$uloc',
@@ -91,7 +85,6 @@ if (isset($_POST['submit'])) {
               WHERE login = '$login';";
     echo "Query: ".$query;
     $result = $dbconnection->query($query) or die($dbconnection->error);
-    echo "Updated successfully.";
     header("Refresh:0; url=index.php");
 } else {
     echo "None selected";
