@@ -63,7 +63,7 @@ while ($row_ip = $result->fetch_assoc()) {
                    onchange="javascript: if (this.checked) $('#ban_<?php echo $row_ip['id']; ?>').removeClass('hidden');
                                          else unban_ip('<?php echo $row_ip['ipaddr']; ?>');" \>
             <div id="ban_<?php echo $row_ip['id']; ?>" class="hidden ban_comment">
-                <input type="text">
+                <input type="text" class="ban_input">
                 <input type="button"
                        value="ban"
                        onclick="javascript: ban_ip('<?php echo $row_ip['ipaddr']; ?>'); 
