@@ -370,7 +370,7 @@ if (isset($_COOKIE["mymon"])) {
                     time()+604800,
                     dirname($_SERVER['PHP_SELF']),
                     $_SERVER['HTTP_HOST'],
-                    isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+                    $isSecure,
                     true
                 );
                 setcookie(
@@ -379,7 +379,7 @@ if (isset($_COOKIE["mymon"])) {
                     time()+604800,
                     dirname($_SERVER['PHP_SELF']),
                     $_SERVER['HTTP_HOST'],
-                    isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]),
+                    $isSecure,
                     true
                 );
                 echo "HTTPS: ".isset($_SERVER["HTTP_X_FORWARDED_PROTOCOL"]);
