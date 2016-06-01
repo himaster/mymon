@@ -6,7 +6,7 @@
 </div>
 <div class="loader" id="refresher">
 </div>
-<div class="loader" id="loader">
+<div class="loader" id="loader" style="display: none;">
     <img src="images/loader.png">
 </div>
     <table class="main_table table-striped table-hover" id="main_table">

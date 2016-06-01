@@ -121,7 +121,6 @@
 @media only screen
   and (min-device-width: 415px) {
 	.loader {
-		display: none;
 		position: fixed;
 		left: 5px;
 		top: 5px;
