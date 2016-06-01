@@ -52,17 +52,18 @@ if (isset($_POST['submit'])) {
         }
     }
 } elseif (isset($_POST['submit_edit'])) {
-    if (empty($_POST['password'])) {
-        echo 'You have not entered password';
-    } elseif (empty($_POST['password2'])) {
-        echo 'You have not entered password confirmation';
-    } elseif ($_POST['password'] != $_POST['password2']) {
-        echo 'Entered passwords are not equal';
-    } elseif (empty($_POST['email'])) {
+    if (!empty($_POST['password'])) {
+        if (empty($_POST['password2'])) {
+            die('You have not entered password confirmation');
+        } elseif ($_POST['password'] != $_POST['password2']) {
+            die('Entered passwords are not equal');
+        }
+        $password = md5(no_injection($_POST['password']));
+    }
+    if (empty($_POST['email'])) {
         echo 'You have not entered e-mail';
     } else {
         $login = no_injection($_POST['login']);
-        $password = md5(no_injection($_POST['password']));
         $email = no_injection($_POST['email']);
         $ula = (isset($_POST['la'])) ? 1 : 0;
         $urep = (isset($_POST['rep'])) ? 1 : 0;
@@ -73,7 +74,7 @@ if (isset($_POST['submit'])) {
         $ured = (isset($_POST['red'])) ? 1 : 0;
         $unotify = (isset($_POST['notify'])) ? 1 : 0;
         $query = "UPDATE `users`
-                  SET `password` = '$password',
+                  SET `password` = COALESCE($password, `password`),
                       `email` = '$email',
                       `la` = '$ula',
                       `rep` = '$urep',

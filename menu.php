@@ -52,7 +52,7 @@ if ($isAdmin) { ?>
         <p>
         <div id="password_div"> password:
             <input type="password" id="password" name="password">
-            <input type="password" id="password2" name="password2" style="display: none;">
+            <input type="password" id="password2" name="password2">
         </div>
         <p>
         <p>
