@@ -821,4 +821,5 @@ img#message_logo {
     top: -40px;
     border: solid 1px darkgray;
     height: 19px;
+    padding-top: 0px;
 }
