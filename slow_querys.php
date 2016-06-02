@@ -27,6 +27,7 @@ if ($fp) {
             $a = explode(' ', $row);
             $host = $a[5];
         } else if (stripos($row, '# Schema:') !== false) {
+            $a = explode(' ', $row);
             $database = $a[3];
         } else if (stripos($row, '# Bytes_sent') !== false or
                    stripos($row, 'SET') !== false or
