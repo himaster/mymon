@@ -11,7 +11,7 @@ if ($fp) {
         $row = fgets($fp, 1024);
         if (stripos($row, '# Time:') !== false) {
             $data[] = array(  "id" => $id++,
-                              "date" => $date,
+                              "date" => date("d M Y", strtotime($date)),
                               "time" => $time,
                               "host" => $host,
                               "query_time" => $query_time,
