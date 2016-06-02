@@ -88,26 +88,8 @@
 		top: 40px;
 	    z-index: -1;
 	}
-	#col1 {
-		top: 40px !important;
-	}
-	#col2 {
-		top: 40px !important;
-	}
-	#col3 {
-		top: 40px !important;
-	}
-	#col4 {
-		top: 40px !important;
-	}
-	#col5 {
-		top: 40px !important;
-	}
-	#col6 {
-		top: 40px !important;
-	}
-	#col7 {
-		top: 40px !important;
+	.colons {
+		top: -12px !important;
 	}
 	.whois {
 		color: black;
