@@ -11,6 +11,7 @@ if ($fp) {
         $row = fgets($fp, 1024);
         if (stripos($row, '# Time:') !== false) {
             $data[] = array(  "id" => $id++,
+                              "date" => $date,
                               "time" => $time,
                               "host" => $host,
                               "query_time" => $query_time,
@@ -57,6 +58,7 @@ foreach ($data_uniq as &$value) {
     echo "</button>";
     echo "<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownButton".$value['id']."\">";
     echo "<li class=\"menuitem\" role=\"presentation\">DB: ".$value['database']."</li>";
+    echo "<li class=\"menuitem\" role=\"presentation\">Date: ".$value['date']."</li>";
     echo "<li class=\"menuitem\" role=\"presentation\">Time: ".$value['time']."</li>";
     echo "<li class=\"menuitem\" role=\"presentation\">Host: ".$value['host']."</li>";
     echo "<li class=\"menuitem\" role=\"presentation\">Query time: ".$value['query_time']."</li>";
