@@ -21,22 +21,22 @@ if ($fp) {
                               "query" => $query);
             $query = '';
             $a = explode(' ', $row);
+            $date = $a[2];
             $time = trim($a[3].$a[4]);
         } else if (stripos($row, '# User@Host:') !== false) {
             $a = explode(' ', $row);
             $host = $a[5];
-        } else if (stripos($row, '# Schema:') !== false or
-                   stripos($row, '# Bytes_sent') !== false or
-                   stripos($row, 'SET') !== false) {
+        } else if (stripos($row, '# Schema:') !== false) {
+            $database = $a[3];
+        } else if (stripos($row, '# Bytes_sent') !== false or
+                   stripos($row, 'SET') !== false or
+                   stripos($row, 'USE') !== false) {
         } else if (stripos($row, '# Query_time:') !== false) {
             $a = explode(' ', $row);
             $query_time = $a[2];
             $lock_time = $a[5];
             $rows_examined = $a[11];
             $rows_affected = $a[14];
-        } else if (stripos($row, 'USE') !== false) {
-            $a = explode(' ', $row);
-            $database = $a[1];
         } else {
             $query .= trim($row)." ";
         }
