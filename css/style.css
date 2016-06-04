@@ -1,4 +1,4 @@
-@media only screen 
+@media only screen
   and (min-device-width: 0px)
   and (max-device-width: 321px)
   and (orientation: portrait) {
@@ -6,7 +6,7 @@
  		font-size: 7px !important;
  	}
 }
-@media only screen 
+@media only screen
   and (min-device-width: 320px)
   and (max-device-width: 351px)
   and (orientation: portrait) {
@@ -14,7 +14,7 @@
  		font-size: 8px !important;
  	}
 }
-@media only screen 
+@media only screen
   and (min-device-width: 350px)
   and (max-device-width: 391px)
   and (orientation: portrait) {
@@ -23,7 +23,7 @@
  	}
 }
 
-@media only screen 
+@media only screen
   and (min-device-width: 390px)
   and (max-device-width: 415px)
   and (orientation: portrait) {
@@ -32,7 +32,7 @@
  	}
 }
 /* All mobiles */
-@media only screen 
+@media only screen
   and (max-device-width: 415px) {
   	body {
   		width: 99%;
@@ -74,7 +74,7 @@
 		position: fixed;
 		left: 5px;
 		top: 5px;
-	    z-index: 1;
+	    z-index: -1;
 	    height: 30px;
 	    width: 30px;
 	}
@@ -96,7 +96,7 @@
 		background-color: lightgray;
 		padding: 10px;
 		border: 1px solid black;
-	}				 
+	}
 }
 
 /* All desktops */
@@ -120,7 +120,7 @@
 		top: 60px;
 	    z-index: 1;
 	}
-	div#logo img{
+	div#logo img {
 	    -webkit-transform: rotate(90deg);
 	    -ms-transform: rotate(90deg);
 	    transform: rotate(90deg);
@@ -663,10 +663,9 @@ img#message_logo {
     animation-duration: 800ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
- 
-    z-index: 100;
+    z-index: 1;
 }
- 
+
 @keyframes spin {
     from {
         transform:rotate(0deg);
@@ -676,10 +675,10 @@ img#message_logo {
     }
 }
 
-.ui-state-default, 
-.ui-widget-content 
-.ui-state-default, 
-.ui-widget-header 
+.ui-state-default,
+.ui-widget-content
+.ui-state-default,
+.ui-widget-header
 .ui-state-default {
 	background: inherit !important;
 	color: inherit !important;
@@ -687,25 +686,25 @@ img#message_logo {
 	font-weight: inherit !important;
 }
 
-.ui-state-active, 
-.ui-widget-content 
-.ui-state-active, 
-.ui-widget-header 
+.ui-state-active,
+.ui-widget-content
+.ui-state-active,
+.ui-widget-header
 .ui-state-active {
 	background-color: darkgray !important;
 	color: inherit !important;
 	font-weight: inherit;
 }
 
-.ui-state-hover, 
-.ui-widget-content 
-.ui-state-hover, 
-.ui-widget-header 
-.ui-state-hover, 
-.ui-state-focus, 
-.ui-widget-content 
-.ui-state-focus, 
-.ui-widget-header 
+.ui-state-hover,
+.ui-widget-content
+.ui-state-hover,
+.ui-widget-header
+.ui-state-hover,
+.ui-state-focus,
+.ui-widget-content
+.ui-state-focus,
+.ui-widget-header
 .ui-state-focus {
 	border: 1px solid darkgray !important;
 	background: darkgray !important;
@@ -721,14 +720,14 @@ img#message_logo {
 }
 
 .ui-state-hover,
-.ui-widget-content 
+.ui-widget-content
 .ui-state-hover,
-.ui-widget-header 
+.ui-widget-header
 .ui-state-hover,
 .ui-state-focus,
-.ui-widget-content 
+.ui-widget-content
 .ui-state-focus,
-.ui-widget-header 
+.ui-widget-header
 .ui-state-focus {
 	border: 0px !important;
 	background: inherit !important;
