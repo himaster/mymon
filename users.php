@@ -16,7 +16,7 @@ include "backbutton.php";
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `login`, `email`, `approvied`, GROUP_CONCAT(`ur`.`role_id`)
                                 AS roles
-								FROM `mymon`.`users` 
+								FROM `mymon`.`users`
 								LEFT JOIN `mymon`.`user_roles` AS `ur` ON (`id` = `ur`.`user_id`)
 								GROUP BY `id`;") or die($dbconnection->error);
 while ($row_user = $result->fetch_assoc()) {
@@ -57,14 +57,20 @@ while ($row_user = $result->fetch_assoc()) {
     ?>
             </select>
         </td>
-        <td><input id="<?php echo trim($row_user['login']) ?>^approvied" type="checkbox" 
+        <td><input id="<?php echo trim($row_user['login']) ?>^approvied" type="checkbox"
 <?php if (trim($row_user['approvied']) == 1) {
     echo "checked ";
 } ?>
             onchange="javascript: users_editor(this.id, this.checked);">
         </td>
         <td>
-            <input type="button" value="x" onclick="javascript: alert('Are you shure?');">
+            <input type="button"
+                   id="<?php echo trim($row_user['id']) ?>"
+                   value="x"
+                   onclick="javascript: if(confirm('Want to delete user?')) {
+                                            user_remove(this.id);
+                                        }"
+            >
         </td>
     </tr>
 <?php
