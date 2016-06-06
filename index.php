@@ -168,7 +168,7 @@ if (isset($_COOKIE["mymon"])) {
 
             case "user_remove":
                 echo "User id: ".$_GET['user_id'];
-                $query = "DELETE FROM `mymon`.`users` WHERE `id` = '$_GET['user_id']'";
+                $query = "DELETE FROM `mymon`.`users` WHERE `id` = '".$_GET['user_id']."'";
                 if ($result = $dbconnection->query($query)) {
                     echo "Successfully removed.";
                 } else {
