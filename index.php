@@ -160,7 +160,7 @@ if (isset($_COOKIE["mymon"])) {
                               WHERE `login` = '$username'";
                 }
                 if ($result = $dbconnection->multi_query($query)) {
-                    echo "Successfully edited";
+                    echo "Successfully edited.";
                 } else {
                     var_dump($dbconnection->error);
                 }
@@ -168,6 +168,12 @@ if (isset($_COOKIE["mymon"])) {
 
             case "user_remove":
                 echo "User id: ".$_GET['user_id'];
+                $query = "DELETE FROM `mymon`.`users` WHERE `id` = '$_GET['user_id']'";
+                if ($result = $dbconnection->query($query)) {
+                    echo "Successfully removed.";
+                } else {
+                    var_dump($dbconnection->error);
+                }
                 break;
 
             case "replica_repair":
