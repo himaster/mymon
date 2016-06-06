@@ -226,7 +226,7 @@ function users_editor(name, val) {
     });
 }
 
-function users_remove(id) {
+function user_remove(id) {
     var dataString = '&task=user_remove&user_id=' + id;
     $.ajax({
         url: 'index.php',
