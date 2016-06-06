@@ -166,6 +166,10 @@ if (isset($_COOKIE["mymon"])) {
                 }
                 break;
 
+            case "user_remove":
+                echo $_GET['user_id'];
+                break;
+
             case "replica_repair":
                 if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
                     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
@@ -182,7 +186,7 @@ if (isset($_COOKIE["mymon"])) {
                 ssh2_exec($connection, "mysql -N -e 'start slave;'");
                 echo "successful.";
                 break;
-            
+
             case "replica_restart":
                 $backin = array(
                             "88.198.182.130",
@@ -232,7 +236,6 @@ if (isset($_COOKIE["mymon"])) {
                 $position = $result[1];
                 $query = $query. "MASTER_LOG_FILE=\"" .$file. "\", MASTER_LOG_POS=" .$position.";";
                 unset($conn_master);
-                
                 ssh2_exec($connection, "mysql -N -e 'stop slave;'");
                 if (!empty($query)) {
                     ssh2_exec($connection, "mysql -N -e '$query' 2>&1");

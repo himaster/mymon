@@ -218,7 +218,22 @@ function users_editor(name, val) {
         cache: false,
         success: function(html) {
             status(html);
-            console.log("Ajax: " + html);
+        },
+        error: function(html) {
+            status("Error!");
+            console.log("Error:" + html);
+        }
+    });
+}
+
+function users_remove(id) {
+    var dataString = '&task=user_remove&user_id=' + id;
+    $.ajax({
+        url: 'index.php',
+        data: dataString,
+        cache: false,
+        success: function(html) {
+            status(html);
         },
         error: function(html) {
             status("Error!");
@@ -246,7 +261,6 @@ function mbclose() {
 function msg_submit(){
     var Serialized =  $("#message_form").serialize();
     var a=document.forms["message_form"]["umessage"].value;
-    
     if (a==null || a=="") {
       alert("Please Fill All Required Field");
       return false;
