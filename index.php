@@ -167,7 +167,7 @@ if (isset($_COOKIE["mymon"])) {
                 break;
 
             case "user_remove":
-                echo $_GET['user_id'];
+                echo "User id: ".$_GET['user_id'];
                 break;
 
             case "replica_repair":
