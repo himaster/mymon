@@ -116,13 +116,13 @@ function show_all() {
             console.log("error: " + thrownError);
         },
         complete: function() {
-            setTimeout(function() { 
+            setTimeout(function() {
                 $("div#loader").hide();
                 $("div#loader").removeClass("wheel");
                 window.loading = false;
             }, 500);
             $("#load_fade").hide();
-        }  
+        }
     });
 }
 
@@ -313,7 +313,7 @@ function notify(message, time, override) {
     }
 }
 
-function detectmob() { 
+function detectmob() {
     if ( navigator.userAgent.match(/Android/i)
     || navigator.userAgent.match(/webOS/i)
     || navigator.userAgent.match(/iPhone/i)
@@ -339,11 +339,10 @@ function reverst() {
 }
 
 function is_touch_device() {
-  return 'ontouchstart' in window        // works on most browsers 
-      || navigator.maxTouchPoints;       // works on IE10/11 and Surface
+  return 'ontouchstart' in window || navigator.maxTouchPoints;
 };
 
-function implode( glue, pieces ) { 
+function implode( glue, pieces ) {
     return ( ( pieces instanceof Array ) ? pieces.join ( glue ) : pieces );
 }
 
@@ -405,21 +404,21 @@ $(window).bind('orientationchange', function(e) {
 });
 
 document.body.addEventListener('touchstart', function(e) {
-    if (!window.loading) { 
+    if (!window.loading) {
         window.swiped = true;
         startY = e.touches[0].screenY;
         $('div#loader img').css('transform','rotate(0deg)');
-        $("div#loader").show(); 
+        $("div#loader").show();
     }
 });
 document.body.addEventListener('touchmove', function(e) {
-    if (!window.loading) { 
+    if (!window.loading) {
         swipeY = startY - e.changedTouches[0].screenY;
         $('div#loader img').css('transform','rotate(' + (360 - (swipeY * 5)) + 'deg)');
     }
 });
 document.body.addEventListener('touchend', function(e) {
-    if (!window.loading) { 
+    if (!window.loading) {
         $("div#loader").hide();
         if (swipeY<=-70) {
             show_all();
