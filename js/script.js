@@ -134,6 +134,7 @@ function status(text) {
 
 function ban_ip(ip, comment) {
     var dataString = '&task=ban_ip&ip_addr=' + ip + '&comment' + comment;
+    console.log("comment: " + comment);
     $.ajax({
         url: 'index.php',
         data: dataString,
