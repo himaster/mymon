@@ -335,7 +335,7 @@ function reverst() {
     if (detectmob()) $("#main_table").removeAttr("style");
     else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
-    $(".ban_comment").not(".hidden").offset({left: $("#users_table").offset().left + $("#users_table").width()-30});
+    $(".ban_comment").not(".hidden").offset({left: $("#users_table").offset().left + $("#users_table").width()});
     try {
         document.getElementById('status_div').style.width = document.getElementById('main_table').clientWidth + "px";
     }

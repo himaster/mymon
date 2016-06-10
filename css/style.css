@@ -786,7 +786,6 @@ img#message_logo {
 .ban_comment {
     position: absolute;
     width: 140px;
-    left: 256px !important;
     display: inline-block;
 }
 .ban_input {
