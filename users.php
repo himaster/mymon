@@ -1,5 +1,5 @@
 <?php
-include "backbutton.php";
+backButton("/");
 ?>
 <table class="main_table table-striped" id="users_table">
     <col span="5">
