@@ -55,7 +55,7 @@ function host_scheme()
 function slackbot($message)
 {
     global $slackbotlevel;
-    
+
     $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
                       or die($dbconnection->connect_errno."\n");
     $starttime = strtotime(date("Y-m-d H:i:s"));
@@ -91,4 +91,13 @@ function CIDRCheck($IP, $CIDR)
     $ip_ip = ip2long($IP);
     $ip_ip_net = $ip_ip & $ip_mask;
     return ($ip_ip_net == $ip_net);
+}
+
+function backButton($href)
+{
+    echo "<a href='".$href."'>";
+    echo "<div class='left_button' id='back_button'>";
+    echo "    <img src='images/back.png'>";
+    echo "</div>";
+    echo "</a>";
 }

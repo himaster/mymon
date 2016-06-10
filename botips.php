@@ -1,5 +1,5 @@
 <?php
-include "backbutton.php";
+backButton("/");
 ?>
 
 <a href="index.php?task=slow_querys">
