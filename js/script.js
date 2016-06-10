@@ -132,8 +132,7 @@ function status(text) {
     setTimeout("document.getElementById('status_div').style.display = 'none'", 5000);
 }
 
-function ban_ip(ip) {
-    var comment = $(this).prev('input').val();
+function ban_ip(ip, comment) {
     var dataString = '&task=ban_ip&ip_addr=' + ip + '&comment=' + comment;
     $.ajax({
         url: 'index.php',
