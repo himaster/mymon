@@ -4,7 +4,6 @@ if (! $ip_addr = $_GET['ip_addr']) {
     die("No IP address to ban.");
 }
 $comment = $_GET['comment'];
-echo $comment;
 
 $result = $dbconnection->query("INSERT IGNORE INTO `firewall`.`blacklist`
                                 SET `ip` = '$ip_addr';") or
