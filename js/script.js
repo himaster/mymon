@@ -338,6 +338,7 @@ function reverst() {
     $(".ban_comment").not(".hidden").offset({left: $("#users_table").offset().left + $("#users_table").width()-30});
     try {
         document.getElementById('status_div').style.width = document.getElementById('main_table').clientWidth + "px";
+    }
     catch (err) {}
 }
 
