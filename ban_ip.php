@@ -6,7 +6,7 @@ if (! $ip_addr = $_GET['ip_addr']) {
 $comment = $_GET['comment'];
 
 $result = $dbconnection->query("INSERT IGNORE INTO `firewall`.`blacklist`
-                                SET `ip` = '$ip_addr';") or
+                                SET `ip` = '$ip_addr', `comment` = '$comment';") or
 die($dbconnection->error());
 if (!$connection = ssh2_connect("balancer1", 22)) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 501 Internal Server Error', true, 500);
