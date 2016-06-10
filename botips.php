@@ -74,7 +74,7 @@ while ($row_ip = $result->fetch_assoc()) {
                 <input type="button"
                        class="ban_button"
                        value="ban"
-                       onclick="javascript: ban_ip('<?php echo $row_ip['ipaddr']; ?>', $(this).prev('input').val());
+                       onclick="javascript: ban_ip('<?php echo $row_ip['ipaddr']; ?>', '');
                                             $('#ban_<?php echo $row_ip['id']; ?>').addClass('hidden');">
             </div>
         <td>
