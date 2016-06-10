@@ -336,6 +336,7 @@ function reverst() {
     else if (newFontSize < 15) el.style.fontSize = newFontSize + 'px';
     else el.style.fontSize = '15px';
     document.getElementById('status_div').style.width = document.getElementById('main_table').clientWidth + "px";
+    $(".ban_comment").not(".hidden").offset({left: $("#users_table").offset().left + $("#users_table").width()-30});
 }
 
 function is_touch_device() {
