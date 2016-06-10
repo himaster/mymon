@@ -32,7 +32,7 @@ while ($row_ip = $result->fetch_assoc()) {
 ?>
     <tr>
         <td class="uid">
-            <?php echo trim($row_ip['id']) ?> 
+            <?php echo trim($row_ip['id']) ?>
         </td>
         <td class="login">
             <?php
@@ -70,11 +70,11 @@ while ($row_ip = $result->fetch_assoc()) {
                                             }
                                          }" \>
             <div id="ban_<?php echo $row_ip['id']; ?>" class="hidden ban_comment">
-                <input type="text" class="ban_input" placeholder="Comment">
+                <input type="text" id="bancomment" class="ban_input" placeholder="Comment">
                 <input type="button"
                        class="ban_button"
                        value="ban"
-                       onclick="javascript: ban_ip('<?php echo $row_ip['ipaddr']; ?>'); 
+                       onclick="javascript: ban_ip('<?php echo $row_ip['ipaddr']; ?>', this.parent().$('#bancomment').val());
                                             $('#ban_<?php echo $row_ip['id']; ?>').addClass('hidden');">
             </div>
         <td>
