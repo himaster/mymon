@@ -785,19 +785,19 @@ img#message_logo {
 
 .ban_comment {
     position: absolute;
-    width: 100px;
-    left: 257px;
+    width: 200px;
+    display: inline-block;
 }
 .ban_input {
     position: relative;
     background-color: white;
     padding-left: 5px;
-    padding-right: 40px;
-    top: -20px;
-    width: 168px;
+    padding-right: 5px;
+    width: 106px;
 }
 .ban_button {
     position: relative;
-    left: 103px;
-    top: -40px;
+    left: -2%;
+    background-color: white;
+    padding: 1px;
 }
