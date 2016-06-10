@@ -1,5 +1,5 @@
 <?php
-include "backbutton.php";
+backButton("/index.php?task=botips");
 
 exec("whois ".$_GET['ip'], $output);
 echo "<div class='whois'>";
