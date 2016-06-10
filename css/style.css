@@ -784,8 +784,8 @@ img#message_logo {
 }
 
 .ban_comment {
-    position: absolute;
-    width: 160px;
+    position: fixed;
+    width: 42%;
     left: 257px;
 }
 .ban_input {
@@ -798,9 +798,6 @@ img#message_logo {
 }
 .ban_button {
     position: relative;
-    left: 68px;
-    top: -40px;
-    border: solid 1px darkgray;
-    height: 19px;
-    padding-top: 0px;
+    left: -15%;
+    top: -20px;
 }
