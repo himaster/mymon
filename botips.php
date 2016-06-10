@@ -62,7 +62,7 @@ while ($row_ip = $result->fetch_assoc()) {
             <input type="checkbox" <?php echo ($row_ip['blacklisted'] == 1) ? "checked" : ""; ?>
                    onchange="javascript: if (this.checked) {
                                             $('#ban_<?php echo $row_ip['id']; ?>').removeClass('hidden');
-                                            $(".ban_comment").not(".hidden").offset({left: $("#users_table").offset().left + $("#users_table").width()-30});
+                                            reverst();
                                          } else {
                                             if ($('#ban_<?php echo $row_ip['id']; ?>').hasClass('hidden')) {
                                                 unban_ip('<?php echo $row_ip['ipaddr']; ?>');
