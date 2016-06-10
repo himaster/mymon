@@ -1,6 +1,6 @@
 <?php
 
-include "backbutton.php";
+backButton("/index.php?task=botips");
 
 $fp = fopen($docroot.'/slow.log', 'a+');
 $query = '';

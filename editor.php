@@ -1,8 +1,6 @@
-<a href="http://<?php echo $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ?>">
-    <div class="left_button" id="back_button">
-        <img src="images/back.png">
-    </div>
-</a>
+<?php
+backButton("http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
+?>
 <table class="main_table table-striped">
     <col span="5">
     <tr class="title">
@@ -20,8 +18,8 @@
 <?php
     $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
                     or die($dbconnection->connect_errno."\n");
-    $query  = "SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el`, `mon`, `red`, `color` 
-                FROM `mymon`.`stats` 
+    $query  = "SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el`, `mon`, `red`, `color`
+                FROM `mymon`.`stats`
                 ORDER BY `servername`;";
     $result = $dbconnection->query($query) or die($dbconnection->error);
 while ($row_user = $result->fetch_assoc()) { ?>
