@@ -11,7 +11,7 @@
     <target name="prepare">
         <echo message="Hello, welcome to ${phing.project.name}!" />
         <echo message="Current environment is: ${project.env}" />
-        <echo message="Current hostname is: ${hostname}" />
+        <echo message="Current database is: ${db.name}" />
     </target>
 
     <!-- create our migration task -->
