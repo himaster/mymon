@@ -89,7 +89,7 @@
 	    z-index: -1;
 	}
 	.colons {
-		top: -12px !important;
+		top: -12px;
 	}
 	.whois {
 		color: black;
@@ -159,6 +159,9 @@
 		margin-left: 40px;
 		margin-right: 40px;
 		border: 1px solid black;
+	}
+	.colons {
+	    top: -15px;
 	}
 }
 
@@ -481,7 +484,6 @@ a:active {
 	width: 2%;
 	height: 0px;
     left: -10px;
-    top: -15px;
 	display: none;
 }
 
