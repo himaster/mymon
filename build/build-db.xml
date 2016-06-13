@@ -6,9 +6,16 @@
 
     <!-- Load our configuration -->
     <property file="config/build.properties" />
+    <property file="config/project.properties" />
+
+    <target name="prepare">
+        <echo message="Hello, welcome to ${phing.project.name}!" />
+        <echo message="Current environment is: ${project.env}" />
+        <echo message="Current hostname is: ${hostname}" />
+    </target>
 
     <!-- create our migration task -->
-    <target name="migrate" description="Database Migrations">
+    <target name="migrate" depends="prepare" description="Database Migrations">
 
         <!-- load the dbdeploy task -->
         <taskdef
