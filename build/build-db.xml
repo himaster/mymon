@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
-<project name="MyMon" basedir="../" default="build">
+<project name="MyMon" basedir="." default="build">
 
     <!-- Sets the DSTAMP, TSTAMP and TODAY properties -->
     <tstamp/>
 
     <!-- Load our configuration -->
-    <property file="build/config/build.properties" />
+    <property file="config/build.properties" />
 
     <!-- create our migration task -->
     <target name="migrate" description="Database Migrations">
