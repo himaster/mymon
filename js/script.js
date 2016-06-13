@@ -404,32 +404,32 @@ $(document).ready(function() {
     $("#refresher").click(function() {
         show_all();
     });
+    document.body.addEventListener('touchstart', function(e) {
+        if (!window.loading) {
+            window.swiped = true;
+            startY = e.touches[0].screenY;
+            $('div#loader img').css('transform','rotate(0deg)');
+            $("div#loader").show();
+        }
+    });
+    document.body.addEventListener('touchmove', function(e) {
+        if (!window.loading) {
+            swipeY = startY - e.changedTouches[0].screenY;
+            $('div#loader img').css('transform','rotate(' + (360 - (swipeY * 5)) + 'deg)');
+        }
+    });
+    document.body.addEventListener('touchend', function(e) {
+        if (!window.loading) {
+            $("div#loader").hide();
+            if (swipeY<=-70) {
+                show_all();
+            }
+            window.swiped = false;
+        }
+    });
 });
 
 $(window).bind('orientationchange', function(e) {
     window.location.reload();
 });
 
-document.body.addEventListener('touchstart', function(e) {
-    if (!window.loading) {
-        window.swiped = true;
-        startY = e.touches[0].screenY;
-        $('div#loader img').css('transform','rotate(0deg)');
-        $("div#loader").show();
-    }
-});
-document.body.addEventListener('touchmove', function(e) {
-    if (!window.loading) {
-        swipeY = startY - e.changedTouches[0].screenY;
-        $('div#loader img').css('transform','rotate(' + (360 - (swipeY * 5)) + 'deg)');
-    }
-});
-document.body.addEventListener('touchend', function(e) {
-    if (!window.loading) {
-        $("div#loader").hide();
-        if (swipeY<=-70) {
-            show_all();
-        }
-        window.swiped = false;
-    }
-});
