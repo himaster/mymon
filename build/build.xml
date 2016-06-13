@@ -1,25 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="MyMon" default="deploy" basedir="../">
+    <tstamp/>
+
     <property file="build/config/project.properties" />
+
+    <property name="hostfile" value="build/config/hosts/${hostname}.properties" />
+    <available file="${hostfile}" property="hostfilefound" value="true"/>
+    <fail unless="hostfilefound" message="Missing host configuration file (${hostfile})!" />
+    <property file="${hostfile}" />
 
     <target name="prepare">
         <echo message="Hello, welcome to ${phing.project.name}!" />
         <echo message="Current environment is: ${project.env}" />
         <echo message="Current hostname is: ${hostname}" />
+        <echo message="Current DB is: ${db.name}" />
     </target>
 
     <target name="build" depends="prepare">
         <echo msg="Build task (empty now) grunt maybe?.." />
     </target>
 
-    <target name="deploy" description="Deploys the current working copy to a remote host using FileSync">
+    <target name="migrate" depends="build" description="Database Migrations">
+
+        <!-- load the dbdeploy task -->
+        <taskdef
+            name="dbdeploy"
+            classname="phing.tasks.ext.dbdeploy.DbDeployTask"/>
+
+        <!--
+        these two filenames will contain the generated SQL
+        to do the deploy and roll it back
+        -->
+        <property
+            name="build.dbdeploy.deployfile"
+            value="build/scripts/deploy-${DSTAMP}${TSTAMP}.sql" />
+        <property
+            name="build.dbdeploy.undofile"
+            value="build/scripts/undo-${DSTAMP}${TSTAMP}.sql" />
+
+        <!-- generate the deployment scripts -->
+        <dbdeploy
+            url="mysql:host=${db.host};dbname=${db.name}"
+            userid="${db.user}"
+            password="${db.pass}"
+            dir="${sync.source.projectdir}/build/db/deltas"
+            outputfile="${sync.source.projectdir}/${build.dbdeploy.deployfile}"
+            undooutputfile="${sync.source.projectdir}/${build.dbdeploy.undofile}" />
+
+        <!--
+        Execute the SQL
+        Use mysql command line to avoid trouble with large files
+        or many statements and PDO
+        -->
+        <trycatch>
+            <try>
+                <exec
+                    command="${progs.mysql} -h${db.host} -u${db.user} -p${db.pass} ${db.name} &lt;
+                    ${build.dbdeploy.deployfile}"
+                    dir="${sync.source.projectdir}"
+                    checkreturn="true"
+                    passthru="true" />
+                <echo>Live  database was upgraded successfully</echo>
+            </try>
+            <catch>
+                <echo>Errors in upgrading database. Rolling back...</echo>
+                <exec
+                    command="${progs.mysql} -h${db.host} -u${db.user} -p${db.pass} ${db.name} &lt;
+                    ${build.dbdeploy.undofile}"
+                    dir="${sync.source.projectdir}"
+                    checkreturn="true"
+                    passthru="true" />
+                <echo>Roll back successfully</echo>
+            </catch>
+        </trycatch>
+    </target>
+
+    <target name="deploy" depends="migrate" description="Deploys the current working copy to a remote host using FileSync">
         <!-- Default hostname is empty, must be passed from the command line -->
         <property name="hostname" value="false" override="true" />
 
         <!-- Set default LISTONLY to false -->
         <property name="listonly" value="0" override="true" />
-        <property name="hostfile" value="build/config/hosts/${hostname}.properties" />
+        <!--<property name="hostfile" value="build/config/hosts/${hostname}.properties" /> -->
 
         <!-- Check for specific host/env file, if not fail! -->
         <available file="${hostfile}" property="hostfilefound" value="true"/>
@@ -68,7 +131,7 @@
         <sync
             sourcedir="${sync.source.projectdir}"
             destinationdir="${sync.remote.auth}:${sync.destination.projectdir}"
-            excludefile="${sync.exclude.file}"
+            exclude="${sync.exclude.file}"
             delete="${sync.delete}"
             verbose="${sync.verbose}" />
     </target>
