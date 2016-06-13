@@ -66,10 +66,10 @@
         <echo message="The value of listonly - ${listonly}" />
         <echo message="The value of sync.exclude.file - ${sync.exclude.file}" />
         <sync
-            sourcedir="${sync.source.projectdir}" 
-            destinationdir="${sync.remote.auth}:${sync.destination.projectdir}" 
-            excludefile="${sync.exclude.file}" 
-            delete="${sync.delete}" 
+            sourcedir="${sync.source.projectdir}"
+            destinationdir="${sync.remote.auth}:${sync.destination.projectdir}"
+            excludefile="${sync.exclude.file}"
+            delete="${sync.delete}"
             verbose="${sync.verbose}" />
     </target>
 </project>
