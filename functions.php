@@ -101,3 +101,12 @@ function backButton($href)
     echo "</div>";
     echo "</a>";
 }
+
+function not_less_than_zero($val)
+{
+    if ($val < 0) {
+        return 0;
+    } else {
+        return $val;
+    }
+}
