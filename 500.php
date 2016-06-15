@@ -28,6 +28,7 @@ if (empty($_GET["page"])) {
 } else {
 	$page = $_GET["page"];
 }
+echo $_SERVER['REQUEST_URI']."\n";
 echo "Pages: ";
 if ($page > 0) {
 	echo "<a href=500.php?page=".($page - 1)."> &lt; </a>";
