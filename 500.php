@@ -16,7 +16,7 @@ if (( ! $connection = @ssh2_connect($_GET['serverip'], 22))
     die("Connection error!");
 }
 
-include "backbutton.php";
+backButton("/");
 
 ?>
 
@@ -35,7 +35,10 @@ if ($page > 0) {
 	echo " ";
 }
 echo " -".$page."- ";
-echo "<a href=index.php?task=500err&serverip=".$_GET['serverip']."&page=".($page + 1).">&gt;</a><br>";
+$str_amount = ssh2_return($connection, "cat /var/log/500err.log");
+if ($str_amount > ($page * 10)) {
+	echo "<a href=index.php?task=500err&serverip=".$_GET['serverip']."&page=".($page + 1).">&gt;</a><br>";
+}
 echo "</p>";
 $str = ssh2_return($connection, "tail -n +".($page * 10)." /var/log/500.errs | head -n 11");
 echo nl2br($str);
