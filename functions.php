@@ -97,7 +97,7 @@ function backButton($href)
 {
     echo "<a href='".$href."'>";
     echo "<div class='left_button' id='back_button'>";
-    echo "    <img src='images/back.png'>";
+    echo "    <img src='images/back.png' title='Previous page'>";
     echo "</div>";
     echo "</a>";
 }
