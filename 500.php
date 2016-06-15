@@ -34,13 +34,13 @@ if ($page > 0) {
 } else {
 	echo " ";
 }
-echo " -".$page."- ";
+echo " -".($page + 1)."- ";
 $str_amount = ssh2_return($connection, "cat /var/log/500err.log");
 if ($str_amount > ($page * 10)) {
 	echo "<a href=index.php?task=500err&serverip=".$_GET['serverip']."&page=".($page + 1).">&gt;</a><br>";
 }
 echo "</p>";
-$str = ssh2_return($connection, "tail -n +".($page * 10)." /var/log/500.errs | head -n 11");
+$str = ssh2_return($connection, "tail -n +".($page * 10)." /var/log/500.errs | head -n 10");
 echo nl2br($str);
 
 ?>
