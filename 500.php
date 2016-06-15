@@ -31,12 +31,12 @@ if (empty($_GET["page"])) {
 echo $_SERVER['REQUEST_URI']."<br>";
 echo "Pages: ";
 if ($page > 0) {
-	echo "<a href=500.php?page=".($page - 1)."> &lt; </a>";
+	echo "<a href=".$_SERVER['REQUEST_URI']."&page=".($page - 1)."> &lt; </a>";
 } else {
 	echo " ";
 }
 echo " -".$page."- ";
-echo "<a href=500.php?page=".($page + 1).">&gt;</a><br>";
+echo "<a href=".$_SERVER['REQUEST_URI']."&page=".($page + 1)."> &gt;</a><br>";
 $str = ssh2_return($connection, "tail -n +".($page * 10)." /var/log/500.errs | head -n 11");
 echo nl2br($str);
 
