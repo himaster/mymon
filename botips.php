@@ -4,7 +4,7 @@ backButton("/");
 
 <a href="index.php?task=slow_querys">
     <div class="left_button" id="left_button2">
-        <img src="images/sql.png">
+        <img src="images/sql.png" title="MySQL slow scripts">
     </div>
 </a>
 <table class="main_table table-striped" id="users_table">
