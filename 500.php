@@ -29,7 +29,7 @@ if (empty($_GET["page"])) {
 	$page = $_GET["page"];
 }
 echo "<p align=center>";
-if ($page > 0) {
+if ($page > 1) {
 	echo "<a href=index.php?task=500err&serverip=".$_GET['serverip']."&page=".($page - 1).">&lt;</a>";
 } else {
 	echo " ";
