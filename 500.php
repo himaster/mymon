@@ -28,15 +28,15 @@ if (empty($_GET["page"])) {
 } else {
 	$page = $_GET["page"];
 }
-echo $_SERVER['REQUEST_URI']."<br>";
-echo "Pages: ";
+echo "<p align=center>";
 if ($page > 0) {
-	echo "<a href=".$_SERVER['REQUEST_URI']."&page=".($page - 1)."> &lt; </a>";
+	echo "<a href=index.php?task=500err&serverip=".$_GET['serverip']."&page=".($page - 1).">&lt;</a>";
 } else {
 	echo " ";
 }
 echo " -".$page."- ";
-echo "<a href=".$_SERVER['REQUEST_URI']."&page=".($page + 1)."> &gt;</a><br>";
+echo "<a href=index.php?task=500err&serverip=".$_GET['serverip']."&page=".($page + 1).">&gt;</a><br>";
+echo "</p>";
 $str = ssh2_return($connection, "tail -n +".($page * 10)." /var/log/500.errs | head -n 11");
 echo nl2br($str);
 
