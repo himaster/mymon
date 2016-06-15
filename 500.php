@@ -24,7 +24,7 @@ backButton("/");
 
 <?php
 if (empty($_GET["page"])) {
-	$page = 0;
+	$page = 1;
 } else {
 	$page = $_GET["page"];
 }
@@ -34,13 +34,13 @@ if ($page > 0) {
 } else {
 	echo " ";
 }
-echo " -".($page + 1)."- ";
+echo " -".$page."- ";
 $str_amount = ssh2_return($connection, "cat /var/log/500err.log");
 if ($str_amount > ($page * 10)) {
 	echo "<a href=index.php?task=500err&serverip=".$_GET['serverip']."&page=".($page + 1).">&gt;</a><br>";
 }
 echo "</p>";
-$str = ssh2_return($connection, "tail -n +".($page * 10)." /var/log/500.errs | head -n 10");
+$str = ssh2_return($connection, "tail -n +".(($page - 1) * 10)." /var/log/500.errs | head -n 10");
 echo nl2br($str);
 
 ?>
