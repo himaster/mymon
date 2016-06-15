@@ -23,8 +23,17 @@ include "backbutton.php";
 <div class="textstyle">
 
 <?php
-
-$str = ssh2_return($connection, 'cat /var/log/500.errs');
+if (empty($_GET["page"])) {
+	$page = 0;
+} else {
+	$page = $_GET["page"];
+}
+if ($page > 0) {
+	echo "<a href=500.php?page=".($page - 1)."> &lt; </a>";
+}
+echo $page;
+echo "<a href=500.php?page=".($page + 1).">&gt;</a>";
+$str = ssh2_return($connection, "tail -n +".($page * 10)." /var/log/500.errs | head -n 11");
 echo nl2br($str);
 
 ?>
