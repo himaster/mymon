@@ -119,7 +119,7 @@ while ($row_user = $result->fetch_assoc()) { ?>
                     oninput="javascript: editor(this.id, this.value);">
         </td>
         <td class="remove">
-            <a href="javascript: editor_remove($row_user['id']);">x</a>
+            <a href="javascript: editor_remove(<?php echo $row_user['id'] ?>);">x</a>
         </td>
 
     </tr>
