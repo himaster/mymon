@@ -14,6 +14,7 @@ backButton("http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
         <td class="mon">mongo</td>
         <td class="red">redis</td>
         <td class="color">color</td>
+        <td class="color">x</td>
     </tr>
 <?php
     $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
@@ -52,7 +53,7 @@ while ($row_user = $result->fetch_assoc()) { ?>
             </select>
         </td>
         <td class="rep">
-            <input  id="<?php echo trim($row_user['servername']) ?>^db" 
+            <input  id="<?php echo trim($row_user['servername']) ?>^db"
                     type="checkbox"
                                     <?php
                                     if (trim($row_user['db']) == 1) {
@@ -83,7 +84,7 @@ while ($row_user = $result->fetch_assoc()) { ?>
         </td>
         <td class="el">
             <input  id="<?php echo trim($row_user['servername']) ?>^el"
-                    type="checkbox" 
+                    type="checkbox"
                                     <?php
                                     if (trim($row_user['el']) == 1) {
                                         echo "checked ";
@@ -115,7 +116,12 @@ while ($row_user = $result->fetch_assoc()) { ?>
             <input  id="<?php echo trim($row_user['servername']) ?>^color"
                     type="color"
                     value="<?php echo trim($row_user['color']) ?>"
-                    oninput="javascript: editor(this.id, this.value);"></td>
+                    oninput="javascript: editor(this.id, this.value);">
+        </td>
+        <td class="remove">
+            <a onclick="javascript: editor_remove($row_user['id']);">
+        </td>
+
     </tr>
 <?php
 }

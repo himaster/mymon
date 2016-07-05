@@ -123,6 +123,10 @@ if (isset($_COOKIE["mymon"])) {
                 include "editor_save.php";
                 break;
 
+            case "editor_remove":
+                include "editor_remove.php";
+                break;
+
             case "users_editor_save":
                 include "users_editor_save.php";
                 break;

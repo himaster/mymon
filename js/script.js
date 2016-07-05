@@ -198,6 +198,22 @@ function editor(name, val) {
     });
 }
 
+function editor_remove(id) {
+    var dataString = '&task=editor_remove&id=' + id;
+    $.ajax({
+        url: 'index.php',
+        data: dataString,
+        cache: false,
+        success: function(html) {
+            status(html);
+            console.log("Ajax: " + html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
+        }
+    });
+}
 function users_editor(name, val) {
     var username = name.split('^')[0];
     var columnname = name.split('^')[1];
