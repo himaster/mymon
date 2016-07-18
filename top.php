@@ -6,7 +6,7 @@ if (!$connection = ssh2_connect($_GET["serverip"], 22)) {
 }
     ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', '');
 ?>
-    <a href="<?php echo $hostname ?>">
+    <a href="javascript:close_window();">
         <div class="left_button" id="back_button">
             <img src="images/back.png">
         </div>
