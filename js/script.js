@@ -431,7 +431,11 @@ $(document).ready(function() {
     document.body.addEventListener('touchmove', function(e) {
         if (!window.loading) {
             swipeY = startY - e.changedTouches[0].screenY;
-            $('div#loader img').css('transform','rotate(' + (360 - (swipeY * 5)) + 'deg)');
+            if (swipeY >= 360) {
+                show_all();
+            } else {
+                $('div#loader img').css('transform','rotate(' + (360 - (swipeY * 5)) + 'deg)');
+            }
         }
     });
     document.body.addEventListener('touchend', function(e) {
