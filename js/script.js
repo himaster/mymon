@@ -431,7 +431,7 @@ $(document).ready(function() {
     document.body.addEventListener('touchmove', function(e) {
         if (!window.loading) {
             swipeY = startY - e.changedTouches[0].screenY;
-            if (swipeY <= -360) {
+            if (swipeY <= -70) {
                 show_all();
             } else {
                 $('div#loader img').css('transform','rotate(' + (360 - (swipeY * 5)) + 'deg)');
