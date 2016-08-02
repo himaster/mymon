@@ -2,7 +2,7 @@
 
 require_once 'config.php';
 require_once 'functions.php';
-
+die("TEST");
 if (($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") || ($_SERVER['HTTP_HOST'] == "tmymon.pkwteile.de")) {
     $env="master";
 } elseif ($_SERVER['HTTP_HOST'] == "mymon.loc") {
