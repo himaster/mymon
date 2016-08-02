@@ -2,5 +2,5 @@
 /id_rsa
 /id_rsa.pub
 build/scripts/*.sql
-build/config/project.properties
-read.me
+build/config/*
+
