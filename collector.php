@@ -302,10 +302,10 @@ function rep($connection, $serverip, $servername = null)
         $delta = $data["Seconds_Behind_Master"];
     }
 
-    return "<a title=\"".(array_key_exists("Last_SQL_Error", $data) ? htmlspecialchars($data["Last_SQL_Error"]):'')."\" 
+    return "<a title=\"".(array_key_exists("Last_SQL_Error", $data) ? $data["Last_SQL_Error"]:'').(array_key_exists("Last_IO_Error", $data) ? $data["Last_IO_Error"]:'')."\"
                href=\"#\"". $onclick . " >
-               SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font> 
-               IO: " .$iofontcolor. "<b>" .$io. "</b></font> 
+               SQL: " .$sqlfontcolor. "<b>" .$sql. "</b></font>
+               IO: " .$iofontcolor. "<b>" .$io. "</b></font>
                &#916;: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
@@ -314,8 +314,8 @@ function err500($connection, $serverip, $servername = null)
     global $hostname;
     $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
 
-    return "<a title=\"Click to show 500 errors\" 
-             href=". $hostname. "index.php?task=500err&serverip=" .$serverip. " 
+    return "<a title=\"Click to show 500 errors\"
+             href=". $hostname. "index.php?task=500err&serverip=" .$serverip. "
              target=\"_self\">" .$str. "\n</a>";
 }
 
