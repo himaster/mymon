@@ -228,7 +228,7 @@ function la($connection, $serverip, $servername = null)
         $fontcolor = "<span style=\"color: red\">";
     }
 
-    return "<a title=\"".$la_string."\" 
+    return "<a title=\"".$la_string."\"
                href=\"".$hostname."index.php?task=top&serverip=" .$serverip. "\"
                target=\"_blank\">" .$fontcolor. "<b>" .$percent. "%</b></span>\n</a>";
 }
