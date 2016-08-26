@@ -5,7 +5,7 @@ require_once 'functions.php';
 
 if (($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") || ($_SERVER['HTTP_HOST'] == "tmymon.pkwteile.de")) {
     $env="master";
-} elseif ($_SERVER['HTTP_HOST'] == "mymon.loc") {
+} elseif ($_SERVER['HTTP_HOST'] == "localhost") {
     $env="dev";
 } else {
     header("Location: ".$hostname);
@@ -41,10 +41,12 @@ if ($_GET['task'] == "exit") {
 
 if ($env == "master") {
     $host="127.0.0.1";
+} elseif ($env == "dev") {
+    $host="percona";
 } else {
     $host="188.138.234.38";
 }
-$dbconnection = new mysqli($host, "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, "mymon", "eiGo7iek", "mymon") or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `name`
 								FROM `mymon`.`roles`") or die($dbconnection->error);
 while ($row = $result->fetch_assoc()) {
