@@ -3,4 +3,7 @@
 /id_rsa.pub
 build/scripts/*.sql
 build/config/*
+<<<<<<< HEAD
 
+=======
+>>>>>>> 80801820663ebf68f56b2a648f4029e6a14cc402
