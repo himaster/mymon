@@ -206,7 +206,8 @@ function editor_remove(id) {
         cache: false,
         success: function(html) {
             status(html);
-            console.log("Ajax: " + html);
+            location.reload();
+            //console.log("Ajax: " + html);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             status("Error!");
