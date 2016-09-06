@@ -59,7 +59,9 @@
                                         JOIN `stats` AS `st`
                                         ON `st`.`role` = `ur`.`role_id`
                                         WHERE `ur`.`user_id` = {$uid}
-                                        ORDER BY `st`.`servername`;") or die($dbconnection->error());
+                                        ORDER BY LEFT(`st`.`servername`,3),
+                                                 CAST( SUBSTRING(`st`.`servername`, INSTR(`st`.`servername`,  '-' ) +1 ) AS UNSIGNED),
+                                                 `st`.`servername`;") or die($dbconnection->error());
 
     while ($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
