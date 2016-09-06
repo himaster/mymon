@@ -21,7 +21,9 @@ backButton("http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
                     or die($dbconnection->connect_errno."\n");
     $query  = "SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el`, `mon`, `red`, `color`
                 FROM `mymon`.`stats`
-                ORDER BY `servername`;";
+                ORDER BY LEFT(`servername`,3),
+                         CAST( SUBSTRING(`servername`, INSTR(`servername`,  '-' ) +1 ) AS UNSIGNED),
+                         `servername`;";
     $result = $dbconnection->query($query) or die($dbconnection->error);
 while ($row_user = $result->fetch_assoc()) { ?>
     <tr>
