@@ -47,12 +47,8 @@
         include "menu.php";
         include "messagebox.php";
         $result = $dbconnection->query("SELECT `st`.`servername`,
-<<<<<<< HEAD
                                                LEFT(`st`.`servername`,PATINDEX('%[0-9]%',`st`.`servername`)-1) AS `servername_alpha`,
-                                               CONVERT(INT, SUBSTRING(`st`.`servername`, PATINDEX('%[0-9]%', `st`.`servername`), LEN(`st`.`servername`))) AS `servername_numeric`,
-=======
-                                               CAST(`st`.`servername` AS UNSIGNED) AS `st`.`servername2`
->>>>>>> parent of 7779ef4... Revert "Sort fix"
+                                               CAST(SUBSTRING(`st`.`servername`, PATINDEX('%[0-9]%', `st`.`servername`), LEN(`st`.`servername`)) as SIGNED) AS `servername_numeric`,
                                                `st`.`ip`,
                                                `st`.`db`,
                                                `st`.`mysql`,
@@ -65,12 +61,8 @@
                                         JOIN `stats` AS `st`
                                         ON `st`.`role` = `ur`.`role_id`
                                         WHERE `ur`.`user_id` = {$uid}
-<<<<<<< HEAD
                                         ORDER BY `servername_alpha`,`servername_numeric`;") or die($dbconnection->error());
 
-=======
-                                        ORDER BY `st`.`servername2`,`st`.`servername`;") or die($dbconnection->error());
->>>>>>> parent of 7779ef4... Revert "Sort fix"
     while ($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
