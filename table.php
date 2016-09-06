@@ -47,7 +47,7 @@
         include "menu.php";
         include "messagebox.php";
         $result = $dbconnection->query("SELECT `st`.`servername`,
-                                               CAST(`st`.`servername` AS UNSIGNED) AS `servername2`
+                                               CAST(`st`.`servername` AS UNSIGNED) AS `servername2`,
                                                `st`.`ip`,
                                                `st`.`db`,
                                                `st`.`mysql`,
