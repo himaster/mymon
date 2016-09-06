@@ -47,7 +47,6 @@
         include "menu.php";
         include "messagebox.php";
         $result = $dbconnection->query("SELECT `st`.`servername`,
-                                               CAST(`st`.`servername` AS UNSIGNED) AS `st`.`servername2`
                                                `st`.`ip`,
                                                `st`.`db`,
                                                `st`.`mysql`,
@@ -60,7 +59,7 @@
                                         JOIN `stats` AS `st`
                                         ON `st`.`role` = `ur`.`role_id`
                                         WHERE `ur`.`user_id` = {$uid}
-                                        ORDER BY `st`.`servername2`,`st`.`servername`;") or die($dbconnection->error());
+                                        ORDER BY `st`.`servername`;") or die($dbconnection->error());
     while ($array = $result->fetch_assoc()) {
         $serverip = $array["ip"];
         $server = $array["servername"];
