@@ -26,9 +26,6 @@ $result = $dbconnection->query("SELECT *
 while ($row_ip = $result->fetch_assoc()) {
 ?>
     <tr>
-        /*<td class="uid">
-            <?php echo trim($row_ip['id']) ?>
-        </td>*/
         <td class="ip">
             <?php echo "<a href='/?task=whois&ip=".trim($row_ip['ip'])."'>".trim($row_ip['ip'])."</a>"; ?>
         </td>
