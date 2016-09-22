@@ -115,6 +115,13 @@ if (isset($_COOKIE["mymon"])) {
                 include "footer.html";
                 break;
 
+            case "banips":
+                //header("Refresh: 30");
+                include "header.html";
+                include "banips.php";
+                include "footer.html";
+                break;
+
             case "whois":
                 include "header.html";
                 include "whois.php";
