@@ -15,7 +15,7 @@ backButton("/");
 <table class="main_table table-striped" id="users_table">
     <col span="5">
     <tr class="title">
-        <td class="uid">IP addr</td>
+        <td class="uip">IP addr</td>
         <td class="comment">Comment</td>
         <td class="time">Time</td>
         <?php if ($isAdmin) { ?>
@@ -31,7 +31,7 @@ $result = $dbconnection->query("SELECT *
 while ($row_ip = $result->fetch_assoc()) {
 ?>
     <tr>
-        <td class="ip">
+        <td class="uip">
             <?php echo "<a href='/?task=whois&ip=".trim($row_ip['ip'])."'>".trim($row_ip['ip'])."</a>"; ?>
         </td>
         <td class="comment">

@@ -525,6 +525,16 @@ a:active {
 
 }
 
+.uip {
+	width: 40px;
+}
+.comment {
+	width: 140px;
+}
+.time {
+	width: 100px;
+}
+
 .messagebox {
 	display: none;
     position: absolute;
