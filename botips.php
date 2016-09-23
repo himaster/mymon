@@ -13,7 +13,7 @@ backButton("/");
     </div>
 </a>
 <table class="main_table table-striped" id="users_table">
-    <col span="5">
+    <col span="4">
     <tr class="title">
         <td class="uid">ID</td>
         <td class="login">IP Addr</td>
