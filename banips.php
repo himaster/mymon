@@ -45,7 +45,8 @@ while ($row_ip = $result->fetch_assoc()) {
                 <input type="button"
                        class="ban_button"
                        value="x"
-                       onclick="javascript: unban_ip('<?php echo $row_ip['ip']; ?>');">
+                       onclick="javascript: unban_ip('<?php echo $row_ip['ip']; ?>');
+                                            window.setTimeout(location.reload(), 2000);">
             </div>
         <td>
         <?php } ?>

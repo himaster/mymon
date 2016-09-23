@@ -156,7 +156,6 @@ function unban_ip(ip) {
         cache: false,
         success: function(html) {
             status(html);
-            window.setTimeout(location.reload(), 2000);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             status("Error!");
