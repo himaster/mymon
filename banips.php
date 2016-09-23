@@ -2,6 +2,11 @@
 backButton("/");
 ?>
 
+<a href="index.php?task=botips">
+    <div class="left_button" id="left_button2">
+        <img src="images/sql.png" title="Bot IPs">
+    </div>
+</a>
 <a href="index.php?task=slow_querys">
     <div class="left_button" id="left_button2">
         <img src="images/sql.png" title="MySQL slow scripts">
