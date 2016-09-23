@@ -19,7 +19,7 @@ backButton("/");
         <td class="comment">Comment</td>
         <td class="time">Time</td>
         <?php if ($isAdmin) { ?>
-            <td class="approvied">Ban</td>
+            <td class="ban">Ban</td>
         <?php } ?>
     </tr>
 <?php
@@ -41,11 +41,11 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['time']); ?>
         </td>
         <?php if ($isAdmin) { ?>
-        <td>
+        <td class="ban">
                 <input type="button"
                        class="ban_button"
                        value="x"
-                       onclick="javascript: unban_ip('<?php echo $row_ip['ip']; ?>');">
+                       onclick="javascript: unban_ip('<?php echo $row_ip['ip']; ?>'); location.reload();">
             </div>
         <td>
         <?php } ?>
