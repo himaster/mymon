@@ -4,7 +4,7 @@ backButton("/");
 
 <a href="index.php?task=banips">
     <div class="left_button" id="left_button2">
-        <img src="images/sql.png" title="Banned IPs">
+        <img src="images/banip.png" title="Banned IPs">
     </div>
 </a>
 <a href="index.php?task=slow_querys">
