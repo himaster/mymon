@@ -325,7 +325,7 @@ function err500($connection, $serverip, $servername = null)
 function elastic($connection, $serverip, $servername = null)
 {
     $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
-                                     hostname=\$(ip -f inet addr show eth1 | grep -Po 'inet \K[\d.]+')
+                                     hostname=\$(ip -f inet addr show `[ \"$HOSTNAME\" == \"front5.pkwteile.de\" ] && echo \"en2\" || echo \"eth1\"` | grep -Po 'inet \K[\d.]+')
                                      curl -sS -o /dev/null -XGET http://\$hostname:9200/_cluster/health?pretty;
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
