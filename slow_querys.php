@@ -4,13 +4,13 @@ backButton("/index.php?task=botips");
 ?>
 
 <a href="index.php?task=banips">
-    <div class="left_button" id="left_button3">
+    <div class="left_button" id="left_button2">
         <img src="images/banip.png" title="Banned IPs">
     </div>
 </a>
 
 <a href="index.php?task=botips">
-    <div class="left_button" id="left_button2">
+    <div class="left_button" id="left_button3">
         <img src="images/botips.png" title="Bot IPs">
     </div>
 </a>
