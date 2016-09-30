@@ -38,7 +38,8 @@ while ($row_ip = $result->fetch_assoc()) {
         </td>
         <td class="git_master">
             <?php if ($isAdmin) {
-                    echo "<a href"
+                    echo "<a href=#>";
+                  }
             echo trim($row_ip['master_repo']);?>
         </td>
         <td class="git_test">
