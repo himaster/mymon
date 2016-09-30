@@ -122,6 +122,12 @@ if (isset($_COOKIE["mymon"])) {
                 include "footer.html";
                 break;
 
+            case "gitstatus":
+                include "header.html";
+                include "gitstatus.php";
+                include "footer.html";
+                break;
+
             case "whois":
                 include "header.html";
                 include "whois.php";
