@@ -1,9 +1,5 @@
 <?php
 
-if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
-    die();
-}
-
 error_reporting(E_ALL);
 
 
