@@ -51,7 +51,6 @@ while ($row_ip = $result->fetch_assoc()) {
         <td>
     </tr>
 <?php
-}
-echo $_SERVER["SCRIPT_NAME"]; ?>
+} ?>
 </table>
 <div id="status_div" class="status_bar"></div>
