@@ -3,7 +3,7 @@ backButton("/");
 ?>
 
 <a href="index.php?task=botips">
-    <div class="left_button" id="left_button2">
+    <div class="left_button" id="left_button">
         <img src="images/botips.png" title="Bot IPs">
     </div>
 </a>
