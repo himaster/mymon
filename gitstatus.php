@@ -41,13 +41,16 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
-            <?php if ($isAdmin){ echo "<a href=index.php?task=gitpull&tag=master&ip=".$row_ip['ip'].">";}
+            <?php if ($isAdmin){ echo "<a href=index.php?task=gitpull&tag=prod&ip=".$row_ip['ip'].">";}
                   echo trim($row_ip['master_repo']);
                   if ($isAdmin){ echo "</a>";}
             ?>
         </td>
         <td class="git_test">
-            <?php echo trim($row_ip['test_repo']);?>
+            <?php if ($isAdmin){ echo "<a href=index.php?task=gitpull&tag=dev&ip=".$row_ip['ip'].">";}
+                  echo trim($row_ip['test_repo']);
+                  if ($isAdmin){ echo "</a>";}
+            ?>
         <td>
     </tr>
 <?php
