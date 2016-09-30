@@ -32,6 +32,7 @@ function gitpull(serverip, tag) {
         url: 'index.php?task=gitpull&tag=' + tag + '&ip=' + serverip,
         success: function(html){
             status(html);
+            setTimeout("location.reload();", 3000);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             status("Error!");
