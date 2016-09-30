@@ -1,5 +1,9 @@
 <?php
 
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 if (!$isAdmin) {
     die("You have not rights.");
 }

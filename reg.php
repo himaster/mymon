@@ -1,4 +1,7 @@
 <?php
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
 
 require_once 'config.php';
 require_once 'functions.php';
@@ -66,7 +69,7 @@ if (isset($_POST['submit'])) {
             $result = $dbconnection->query($query) or die($dbconnection->error);
         }
     }
-    
+
     $email = no_injection($_POST['email']);
     $ula = (isset($_POST['la'])) ? 1 : 0;
     $urep = (isset($_POST['rep'])) ? 1 : 0;

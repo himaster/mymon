@@ -1,4 +1,9 @@
 <?php
+
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 backButton("/index.php?task=botips");
 
 exec("whois ".$_GET['ip'], $output);

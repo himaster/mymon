@@ -1,5 +1,9 @@
 <?php
 
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 function no_injection($str = '')
 {
     $str = stripslashes($str);

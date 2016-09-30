@@ -1,3 +1,10 @@
+<?php
+
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+?>
+
 <div id="load_fade" class="load_fading">
     <img src="images/loading.gif">
 </div>

@@ -1,4 +1,9 @@
 <?php
+
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 backButton("/");
 ?>
 <table class="main_table table-striped" id="users_table">

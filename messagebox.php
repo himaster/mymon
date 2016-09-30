@@ -1,4 +1,10 @@
-<?php ?>
+<?php
+
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
+?>
 <div id="messagebox" class="messagebox">
     <div id="fade" class="fading"></div>
     <img id="message_logo" src="images/mymon_mini.png">

@@ -10,6 +10,10 @@
  * @link     http://mymon.pkwteile.de
  */
 
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 if (( ! $connection = @ssh2_connect($_GET['serverip'], 22))
         or ( ! @ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
     header($_SERVER['SERVER_PROTOCOL'].' 501 Internal Server Error', true, 500);

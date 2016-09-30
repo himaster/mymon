@@ -1,5 +1,9 @@
 <?php
 
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 $backin = array(
             "88.198.182.130",
             "88.198.182.132",

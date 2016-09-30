@@ -1,5 +1,9 @@
 <?php
 
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 $umessage = no_injection($_POST['umessage']);
 foreach ($_POST['uselect'] as $ulogin) {
     $result = $dbconnection->query("INSERT INTO `mymon`.`messages` (`message`, `sender`, `receiver`)

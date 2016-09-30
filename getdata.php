@@ -1,5 +1,9 @@
 <?php
 
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 $rows=array();
 $result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`)
         AS `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis`

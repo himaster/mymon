@@ -1,5 +1,9 @@
 <?php
 
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+
 if (! $ip_addr = $_GET['ip_addr']) {
     die("No IP address to unban.");
 }

@@ -1,4 +1,7 @@
 <?php
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
 backButton("http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
 ?>
 <table class="main_table table-striped">

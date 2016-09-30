@@ -1,3 +1,9 @@
+<?php
+if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+    die();
+}
+?>
+
 <a href="#" onclick="" title="Profile">
 	<div id="left_button" class="left_button">
 		<img src="images/profile.png">
