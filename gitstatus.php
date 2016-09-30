@@ -41,9 +41,9 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
-            <?php $isAdmin ? echo "<a href=index.php?task=gitpull&tag=master&ip=$row_ip['ip']>";
+            <?php if ($isAdmin){ echo "<a href=index.php?task=gitpull&tag=master&ip=".$row_ip['ip'].">";}
                   echo trim($row_ip['master_repo']);
-                  $isAdmin ? echo "</a>";
+                  if ($isAdmin){ echo "</a>";}
             ?>
         </td>
         <td class="git_test">
