@@ -37,13 +37,16 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
-            <?php echo trim($row_ip['master_repo']);?>
+            <?php if ($isAdmin) {
+                    echo "<a href"
+            echo trim($row_ip['master_repo']);?>
         </td>
         <td class="git_test">
             <?php echo trim($row_ip['test_repo']);?>
         <td>
     </tr>
 <?php
-} ?>
+}
+echo $_SERVER["SCRIPT_NAME"]; ?>
 </table>
 <div id="status_div" class="status_bar"></div>
