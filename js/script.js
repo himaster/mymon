@@ -1,6 +1,5 @@
 function replica_restart(serverip) {
-    $('#status_div').html('processing...');
-    document.getElementById('status_div').style.display = 'block';
+    status('processing...');
     $.ajax({
         url: 'index.php?task=replica_restart&serverip=' + serverip,
         success: function(html){
@@ -14,10 +13,23 @@ function replica_restart(serverip) {
 }
 
 function replica_repair(serverip) {
-    $('#status_div').html('processing...');
-    document.getElementById('status_div').style.display = 'block';
+    status('processing...');
     $.ajax({
         url: 'index.php?task=replica_repair&serverip=' + serverip,
+        success: function(html){
+            status(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            status("Error!");
+            console.log("error: " + thrownError);
+        }
+    });
+}
+
+function gitpull(serverip, tag) {
+    status('processing...');
+    $.ajax({
+        url: 'index.php?task=gitpull&tag=' + tag + '&ip=' + serverip,
         success: function(html){
             status(html);
         },
