@@ -22,21 +22,17 @@ backButton("/");
     <col span="4">
     <tr class="title">
         <td class="hostname">Server</td>
-        <td class="ip">IP Addr</td>
         <td class="git_master">fuel.prod</td>
         <td class="git_test">fuel.dev</td>
     </tr>
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-$result = $dbconnection->query("SELECT servername, ip, master_repo, test_repo FROM `stats` WHERE git=1;") or die($dbconnection->error);
+$result = $dbconnection->query("SELECT servername, master_repo, test_repo FROM `stats` WHERE git=1;") or die($dbconnection->error);
 while ($row_ip = $result->fetch_assoc()) {
 ?>
     <tr>
         <td class="hostname">
             <?php echo trim($row_ip['servername']);?>
-        </td>
-        <td class="ip">
-            <?php echo trim($row_ip['ip']);?>
         </td>
         <td class="git_master">
             <?php echo trim($row_ip['master_repo']);?>
