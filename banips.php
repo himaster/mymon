@@ -7,11 +7,13 @@ backButton("/");
         <img src="images/botips.png" title="Bot IPs">
     </div>
 </a>
+
 <a href="index.php?task=slow_querys">
     <div class="left_button" id="left_button3">
         <img src="images/sql.png" title="MySQL slow scripts">
     </div>
 </a>
+
 <a href="index.php?task=gitstatus">
     <div class="left_button" id="left_button4">
         <img src="images/git.png" title="Git repositories status">
