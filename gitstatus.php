@@ -33,7 +33,7 @@ backButton("/");
     </tr>
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
-$result = $dbconnection->query("SELECT servername, master_repo, test_repo FROM `stats` WHERE git=1;") or die($dbconnection->error);
+$result = $dbconnection->query("SELECT servername, ip, master_repo, test_repo FROM `stats` WHERE git=1;") or die($dbconnection->error);
 while ($row_ip = $result->fetch_assoc()) {
 ?>
     <tr>
@@ -41,10 +41,10 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
-            <?php if ($isAdmin) {
-                    echo "<a href=#>";
-                  }
-            echo trim($row_ip['master_repo']);?>
+            <?php if ($isAdmin) echo "<a href=index.php?task=gitpull&tag=master&ip=$row_ip['ip']>";
+                  echo trim($row_ip['master_repo']);
+                  if ($isAdmin) echo "</a>";
+            ?>
         </td>
         <td class="git_test">
             <?php echo trim($row_ip['test_repo']);?>
