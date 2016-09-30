@@ -8,16 +8,18 @@ backButton("/");
     </div>
 </a>
 
-<a href="index.php?task=banips">
-    <div class="left_button" id="left_button3">
-        <img src="images/banip.png" title="Banned IPs">
-    </div>
-</a>
 <a href="index.php?task=slow_querys">
-    <div class="left_button" id="left_button4">
+    <div class="left_button" id="left_button3">
         <img src="images/sql.png" title="MySQL slow scripts">
     </div>
 </a>
+
+<a href="index.php?task=banips">
+    <div class="left_button" id="left_button4">
+        <img src="images/banip.png" title="Banned IPs">
+    </div>
+</a>
+
 <table class="main_table table-striped" id="users_table">
     <col span="4">
     <tr class="title">
