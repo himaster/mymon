@@ -624,6 +624,16 @@ a:active {
     width: 160px;
 }
 
+.hostname {
+	width: 100px;
+}
+.git_master {
+	width: 100px;
+}
+.git_test {
+	width: 100px;
+}
+
 #message_div {
 	left: 72px;
 	top: 72px;
