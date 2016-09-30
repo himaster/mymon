@@ -41,7 +41,7 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
-            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull($row_ip['ip'], 'prod')\">";}
+            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'prod')\">";}
                   echo trim($row_ip['master_repo']);
                   if ($isAdmin){ echo "</a>";}
             ?>
