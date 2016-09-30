@@ -21,10 +21,10 @@ backButton("/");
 <table class="main_table table-striped" id="users_table">
     <col span="4">
     <tr class="title">
-        <td class="hostname">ID</td>
+        <td class="hostname">Server</td>
         <td class="ip">IP Addr</td>
-        <td class="git_master">Amount</td>
-        <td class="git_test">Ban</td>
+        <td class="git_master">fuel.prod</td>
+        <td class="git_test">fuel.dev</td>
     </tr>
 <?php
 $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
@@ -39,10 +39,10 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['ip']);?>
         </td>
         <td class="git_master">
-            <?php trim($row_ip['master_repo']);?>
+            <?php echo trim($row_ip['master_repo']);?>
         </td>
         <td class="git_test">
-            <?php trim($row_ip['test_repo']);?>
+            <?php echo trim($row_ip['test_repo']);?>
         <td>
     </tr>
 <?php
