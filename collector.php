@@ -26,7 +26,7 @@ $mysqlhost = '188.138.234.38';
 
 $connection = new mysqli($mysqlhost, 'mymon', 'eiGo7iek', 'mymon')
             or die($connection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red FROM `mymon`.`stats`;")
+$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM `mymon`.`stats`;")
         or die($connection->error);
 $connection->close();
 
@@ -111,6 +111,7 @@ function child_()
     $mysql       = $array["mysql"];
     $mon         = $array["mon"];
     $red         = $array["red"];
+    $git         = $array["git"];
     $ssh_conname = "ssh_".$servername;
     $i           = 1;
 
@@ -208,6 +209,18 @@ function child_()
         common_log($servername." - REDIS not updated!");
     }
     unset($result);
+    if ($git == 1) {
+        $query = "UPDATE `mymon`.`stats` SET
+                     `master_repo`='" .repo($$ssh_conname, $serverip, "prod").
+                "' , `test_repo`='" .repo($$ssh_conname, $serverip, "dev").
+                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    } else {
+        $query = "UPDATE `mymon`.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
+    }
+    $result = $$mysql_conname->query($query);
+    if (!isset($result)) {
+        common_log($servername." - 500 not updated!");
+    }
     $$mysql_conname->close();
     unset($$mysql_conname);
     unset($$ssh_conname);
@@ -394,6 +407,20 @@ function redis($connection, $serverip, $servername = null)
     }
 
     return $fontcolor.$str. " ms</font>";
+}
+
+function repo($connection, $serverip, $repository)
+{
+    $str = ssh2_return($connection, "cd /home/developer/www/fuel.$repository/ && git rev-parse HEAD");
+    #if ($str == "Timeout") {
+    #    slackbot($servername.": redis problem");
+    #    $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": redis problem\");</script>
+    #                  <font color=\"red\">";
+    #} else {
+    #    $fontcolor = "<font color=\"green\">";
+    #}
+
+    return $str;
 }
 
 function botips($connection)
