@@ -8,9 +8,9 @@ backButton("/index.php?task=botips");
         <img src="images/botips.png" title="Bot IPs">
     </div>
 </a>
-<a href="index.php?task=gitstatus">
+<a href="index.php?task=banips">
     <div class="left_button" id="left_button3">
-        <img src="images/git.png" title="Git repositories status">
+        <img src="images/banip.png" title="Banned IPs">
     </div>
 </a>
 <a href="index.php?task=gitstatus">
