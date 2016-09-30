@@ -12,6 +12,11 @@ backButton("/");
         <img src="images/sql.png" title="MySQL slow scripts">
     </div>
 </a>
+<a href="index.php?task=gitstatus">
+    <div class="left_button" id="left_button4">
+        <img src="images/git.png" title="Git repositories status">
+    </div>
+</a>
 <table class="main_table table-striped" id="users_table">
     <col span="5">
     <tr class="title">
