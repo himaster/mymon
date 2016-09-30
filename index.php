@@ -200,6 +200,9 @@ if (isset($_COOKIE["mymon"])) {
             case "unban_ip":
                 include "unban_ip.php";
                 break;
+            case "gitpull":
+                include "gitpull.php";
+                break;
 
             case "slow_querys":
                 include "header.html";
