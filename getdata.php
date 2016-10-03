@@ -8,7 +8,7 @@ $rows=array();
 $result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`)
         AS `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis`
         FROM `mymon`.`stats`;") or
-die($dbconnection->error());
+die($dbconnection->error);
 while ($array = $result->fetch_assoc()) {
     $rows["data"][] = $array;
 }
@@ -20,7 +20,7 @@ $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages
         AND isRead = 0
         AND isDeleted = 0
         LIMIT 1;") or
-die($dbconnection->error());
+die($dbconnection->error);
 if (mysqli_num_rows($result)>0) {
         $rows["msg"] = $result->fetch_assoc();
 }
