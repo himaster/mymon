@@ -64,17 +64,17 @@ while ($row_ip = $result->fetch_assoc()) {
     </pre>
     <tr>
         <td class="hostname">
-            <?php echo trim($row_ip['st.servername']);?>
+            <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
-            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['st.ip']."', 'prod')\">";}
-                  echo trim($row_ip['st.master_repo']);
+            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'prod')\">";}
+                  echo trim($row_ip['master_repo']);
                   if ($isAdmin){ echo "</a>";}
             ?>
         </td>
         <td class="git_test">
-            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['st.ip']."', 'dev')\">";}
-                  echo trim($row_ip['st.test_repo']);
+            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'dev')\">";}
+                  echo trim($row_ip['test_repo']);
                   if ($isAdmin){ echo "</a>";}
             ?>
         <td>
