@@ -59,6 +59,9 @@ $result = $dbconnection->query("SELECT `st`.`servername`,
                                 WHERE `st`.`test_repo` IS NOT NULL AND git=1;") or die($dbconnection->error);
 while ($row_ip = $result->fetch_assoc()) {
 ?>
+    <pre>
+    <?php print_r($row_ip); ?>
+    </pre>
     <tr>
         <td class="hostname">
             <?php echo trim($row_ip['st.servername']);?>
