@@ -3,13 +3,8 @@
 require_once 'config.php';
 require_once 'functions.php';
 
-if (($_SERVER['HTTP_HOST'] == "mymon.pkwteile.de") || ($_SERVER['HTTP_HOST'] == "tmymon.pkwteile.de")) {
-    $env="master";
-} elseif ($_SERVER['HTTP_HOST'] == "localhost") {
-    $env="dev";
-} else {
-    header("Location: ".$hostname);
-}
+$env="master";
+
 
 if (!isset($_GET['task'])) {
     $_GET['task'] = "NULL";
