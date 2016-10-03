@@ -34,11 +34,6 @@ if ($_GET['task'] == "exit") {
     die();
 }
 
-
-$host = "127.13.34.130";
-$username = "adminbcPvPXU";
-$pass  = "eEIHMCbd7dCT";
-$db    = "my";
 $dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `name`
 								FROM $db.`roles`") or die($dbconnection->error);

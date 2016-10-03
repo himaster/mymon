@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
 	die("No id received.");
 }
 
-if ($result = $dbconnection->query("DELETE FROM `mymon`.`stats`
+if ($result = $dbconnection->query("DELETE FROM $db.`stats`
                                     WHERE `id` = '$id'")) {
     echo "Successfully edited";
 } else {

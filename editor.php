@@ -20,13 +20,12 @@ backButton("http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
         <td class="color">x</td>
     </tr>
 <?php
-    $dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon")
-                    or die($dbconnection->connect_errno."\n");
+    $dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $query  = "SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el`, `mon`, `red`, `color`
-                FROM `mymon`.`stats`
-                ORDER BY LEFT(`servername`,3),
-                         CAST( SUBSTRING(`servername`, INSTR(`servername`,  '-' ) +1 ) AS UNSIGNED),
-                         `servername`;";
+               FROM $db.`stats`
+               ORDER BY LEFT(`servername`,3),
+                        CAST( SUBSTRING(`servername`, INSTR(`servername`,  '-' ) +1 ) AS UNSIGNED),
+                        `servername`;";
     $result = $dbconnection->query($query) or die($dbconnection->error);
 while ($row_user = $result->fetch_assoc()) { ?>
     <tr>

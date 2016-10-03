@@ -36,3 +36,8 @@ $docroot  = dirname(__FILE__);
 $retry_num   = 10;
 
 $iplistnum = 30;
+
+$host = "127.13.34.130";
+$username = "adminbcPvPXU";
+$pass  = "eEIHMCbd7dCT";
+$db    = "my";

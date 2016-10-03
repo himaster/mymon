@@ -105,7 +105,7 @@ if ($isAdmin) { ?>
             </div>
             <p>
             <div style="display: inline-block;">
-                <p>Notifications: 
+                <p>Notifications:
                 <p><input type="checkbox" id="notify" name="notify" <?php if ($unotify == 1) {
                     echo "checked ";
 } ?> >
@@ -114,7 +114,7 @@ if ($isAdmin) { ?>
         <p>
         <div id="submit_div">
             <input type="submit" id="submit_edit" name="submit_edit" value="save">
-        </div>      
+        </div>
         <p>
         <p><a href="<?php echo $hostname ?>?task=exit">
                 <input type="button" value="logout">
@@ -126,9 +126,9 @@ if ($isAdmin) { ?>
     <p><p>
     <?php
         $result = $dbconnection->query("SELECT `id`, `login`
-                                        FROM `mymon`.`users`
+                                        FROM $db.`users`
                                         WHERE approvied='1'") or die($dbconnection->error);
-    ?>  
+    ?>
     <form method="post" name="message_form" id="message_form" action="javascript:msg_submit();">
         <textarea name="umessage" id="umessage" class="umessage"></textarea>
         <p><select multiple name="uselect[]">

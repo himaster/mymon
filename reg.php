@@ -6,7 +6,7 @@ if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
 require_once 'config.php';
 require_once 'functions.php';
 
-$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
 if (isset($_POST['submit'])) {
     if (empty($_POST['login'])) {
         echo 'You have not entered login';
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
         $password = md5(no_injection($_POST['password']));
         $email = no_injection($_POST['email']);
         $result = $dbconnection->query("SELECT `id`
-                                        FROM `users`
+                                        FROM $db.`users`
                                         WHERE `login`='{$login}'") or die($dbconnection->error);
         if ($result->num_rows > 0) {
             echo 'This login exists.';

@@ -35,10 +35,10 @@ backButton("/");
         <?php } ?>
     </tr>
 <?php
-$dbconnection = new mysqli("188.138.234.38", "mymon", "eiGo7iek", "mymon") or die($dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `bps`.`id`, `bps`.`amount`, `bps`.`ipaddr`,
                                     `wl`.`ip` IS NOT NULL AS `whitelisted`, `bl`.`ip` IS NOT NULL AS `blacklisted`
-                                FROM `mymon`.`botips` AS `bps`
+                                FROM $db.`botips` AS `bps`
                                 LEFT JOIN `firewall`.`whitelist` AS `wl`
                                 ON (`bps`.`ipaddr` = `wl`.`ip`)
                                 LEFT JOIN `firewall`.`blacklist` AS `bl`
