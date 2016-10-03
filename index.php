@@ -34,14 +34,12 @@ if ($_GET['task'] == "exit") {
     die();
 }
 
-if ($env == "master") {
-    $host="127.0.0.1";
-} elseif ($env == "dev") {
-    $host="percona";
-} else {
-    $host="188.138.234.38";
-}
-$dbconnection = new mysqli($host, "mymon", "eiGo7iek", "mymon") or die("Mysql error.".$dbconnection->connect_errno."\n");
+
+$host = $OPENSHIFT_MYSQL_DB_HOST;
+$login = "adminbcPvPXU";
+$pass  = "eEIHMCbd7dCT";
+$db    = "my";
+$dbconnection = new mysqli($host, $login, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `name`
 								FROM `mymon`.`roles`") or die($dbconnection->error);
 while ($row = $result->fetch_assoc()) {
