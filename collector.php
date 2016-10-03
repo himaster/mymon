@@ -12,6 +12,8 @@
 
 dl("/opt/rh/php54/root/usr/lib64/php/modules/ssh2.so");
 
+print_r(get_loaded_extensions());
+
 require_once 'config.php';
 require_once 'functions.php';
 
