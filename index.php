@@ -41,7 +41,7 @@ $pass  = "eEIHMCbd7dCT";
 $db    = "my";
 $dbconnection = new mysqli($host, $login, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `name`
-								FROM `mymon`.`roles`") or die($dbconnection->error);
+								FROM $db.`roles`") or die($dbconnection->error);
 while ($row = $result->fetch_assoc()) {
     $roles[intval($row['id'])] = $row['name'];
 }
