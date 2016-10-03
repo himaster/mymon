@@ -64,19 +64,27 @@ while ($row_ip = $result->fetch_assoc()) {
             <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
-            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'prod')\">";}
-                  if ($row_ip['master_uniq']){ echo "<font color=red>";}
+            <?php if ($row_ip['master_uniq']){
+                    echo "<font color=red>";
+                    if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'prod')\">";}
+                  }
                   echo trim($row_ip['master_repo']);
-                  if ($row_ip['master_uniq']){ echo "</font>";}
-                  if ($isAdmin){ echo "</a>";}
+                  if ($row_ip['master_uniq']){
+                    echo "</font>";
+                    if ($isAdmin){ echo "</a>";}
+                  }
             ?>
         </td>
         <td class="git_test">
-            <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'dev')\">";}
-                  if ($row_ip['test_uniq']){ echo "<font color=red>";}
+            <?php if ($row_ip['test_uniq']){
+                    echo "<font color=red>";
+                    if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'dev')\">";}
+                  }
                   echo trim($row_ip['test_repo']);
-                  if ($row_ip['test_uniq']){ echo "</font>";}
-                  if ($isAdmin){ echo "</a>";}
+                  if ($row_ip['test_uniq']){
+                    echo "</font>";
+                    if ($isAdmin){ echo "</a>";}
+                  }
             ?>
         <td>
     </tr>
