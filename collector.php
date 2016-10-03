@@ -10,6 +10,8 @@
  * @link     http://mymon.pkwteile.de
  */
 
+dl("/opt/rh/php54/root/usr/lib64/php/modules/ssh2.so");
+
 require_once 'config.php';
 require_once 'functions.php';
 
