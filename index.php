@@ -35,7 +35,7 @@ if ($_GET['task'] == "exit") {
 }
 
 
-$host = $OPENSHIFT_MYSQL_DB_HOST;
+$host = "127.13.34.130";
 $username = "adminbcPvPXU";
 $pass  = "eEIHMCbd7dCT";
 $db    = "my";
