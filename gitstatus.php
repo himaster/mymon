@@ -59,16 +59,15 @@ $result = $dbconnection->query("SELECT `st`.`servername`,
                                 WHERE `st`.`test_repo` IS NOT NULL AND git=1;") or die($dbconnection->error);
 while ($row_ip = $result->fetch_assoc()) {
 ?>
-    <pre>
-    <?php print_r($row_ip); ?>
-    </pre>
     <tr>
         <td class="hostname">
             <?php echo trim($row_ip['servername']);?>
         </td>
         <td class="git_master">
             <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'prod')\">";}
+                  if ($row_ip['master_uniq']){ echo "<font color=red>";}
                   echo trim($row_ip['master_repo']);
+                  if ($row_ip['master_uniq']){ echo "</font>";}
                   if ($isAdmin){ echo "</a>";}
             ?>
         </td>
