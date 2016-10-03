@@ -73,7 +73,9 @@ while ($row_ip = $result->fetch_assoc()) {
         </td>
         <td class="git_test">
             <?php if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'dev')\">";}
+                  if ($row_ip['test_uniq']){ echo "<font color=red>";}
                   echo trim($row_ip['test_repo']);
+                  if ($row_ip['test_uniq']){ echo "</font>";}
                   if ($isAdmin){ echo "</a>";}
             ?>
         <td>
