@@ -10,7 +10,7 @@
  * @link     http://mymon.pkwteile.de
  */
 
-dl("/opt/rh/php54/root/usr/lib64/php/modules/ssh2.so");
+dl("/var/lib/openshift/57f26d570c1e66cfba00019f/app-root/repo/ssh2-0.13/ssh2.so");
 
 print_r(get_loaded_extensions());
 
