@@ -12,12 +12,12 @@
 
 dl("/var/lib/openshift/57f26d570c1e66cfba00019f/app-root/repo/ssh2-0.13/ssh2.so");
 
-print_r(get_loaded_extensions());
 
 require_once 'config.php';
 require_once 'functions.php';
 
-$hostname = 'https://mymon.pkwteile.de/';
+$error_log = 'errors.txt';
+$hostname  = 'https://mymon.pkwteile.de/';
 
 declare(ticks=1);
 
@@ -465,7 +465,7 @@ function sigHandler($signo)
 function errHandler($errno, $errmsg, $filename, $linenum)
 {
     $date = date('Y-m-d H:i:s (T)');
-    $f = fopen('/var/log/mymon/errors.txt', 'a');
+    $f = fopen($error_log, 'a');
     if (!empty($f)) {
         $filename  = str_replace($_SERVER['DOCUMENT_ROOT'], '', $filename);
         fwrite($f, "$date: server: $servername: $errmsg - $filename - $linenum\r\n");
