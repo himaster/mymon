@@ -464,6 +464,7 @@ function sigHandler($signo)
 
 function errHandler($errno, $errmsg, $filename, $linenum)
 {
+    global $error_log;
     $date = date('Y-m-d H:i:s (T)');
     $f = fopen($error_log, 'a');
     if (!empty($f)) {
