@@ -25,9 +25,6 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, 'sigHandler');
 
-$mysqlhost = '188.138.234.38';
-#$mysqlhost = 'percona';
-
 $connection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $db.`stats`;")
         or die($connection->error);
