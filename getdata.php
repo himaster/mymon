@@ -7,14 +7,14 @@ if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
 $rows=array();
 $result = $dbconnection->query("SELECT `id`, UNIX_TIMESTAMP(`timestamp`)
         AS `timestamp`, `servername`, `la`, `rep`, `500`, `elastic`, `locks`, `mongo`, `redis`
-        FROM $db.`stats`;") or
+        FROM $database.`stats`;") or
 die($dbconnection->error);
 while ($array = $result->fetch_assoc()) {
     $rows["data"][] = $array;
 }
 $result = $dbconnection->query("SELECT `messages`.`id`, UNIX_TIMESTAMP(`messages`.`timestamp`)
         AS `timestamp`, `messages`.`message`, `users`.`login`
-        FROM $db.`messages` JOIN `users`
+        FROM $database.`messages` JOIN `users`
         WHERE `messages`.`sender` = `users`.`id`
         AND `receiver` = '$uid'
         AND isRead = 0

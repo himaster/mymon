@@ -20,9 +20,9 @@ backButton("http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));
         <td class="color">x</td>
     </tr>
 <?php
-    $dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $query  = "SELECT `id`, `servername`, `ip`, `role`, `db`, `mysql`, `err`, `el`, `mon`, `red`, `color`
-               FROM $db.`stats`
+               FROM $database.`stats`
                ORDER BY LEFT(`servername`,3),
                         CAST( SUBSTRING(`servername`, INSTR(`servername`,  '-' ) +1 ) AS UNSIGNED),
                         `servername`;";

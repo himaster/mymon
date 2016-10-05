@@ -10,14 +10,11 @@
  * @link     http://mymon.pkwteile.de
  */
 
-dl("/var/lib/openshift/57f26d570c1e66cfba00019f/app-root/repo/ssh2-0.13/ssh2.so");
-
 
 require_once 'config.php';
 require_once 'functions.php';
 
-$error_log = 'errors.txt';
-$hostname  = 'https://mymon.pkwteile.de/';
+$hostname   = 'https://mymon.pkwteile.de/';
 
 declare(ticks=1);
 
@@ -25,8 +22,8 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, 'sigHandler');
 
-$connection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $db.`stats`;")
+$connection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $database.`stats`;")
         or die($connection->error);
 $connection->close();
 
@@ -60,6 +57,10 @@ function botips_()
     global $retry_num;
     global $docroot;
     global $loglevel;
+    global $host;
+    global $username;
+    global $pass;
+    global $database;
 
     $i = 1;
 
@@ -77,10 +78,10 @@ function botips_()
             exit(1);
         }
     }
-    $mysql_balancer = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $mysql_balancer = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $i = 31;
     foreach (botips($connection) as $value) {
-        $query = "INSERT INTO $db.`botips` (id, amount, ipaddr)
+        $query = "INSERT INTO $database.`botips` (id, amount, ipaddr)
                   VALUES (".--$i.", ".$value['amount'].", '".$value['ipaddr']."')
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = '".$value['ipaddr']."';";
         $result = $mysql_balancer->query($query);
@@ -101,6 +102,10 @@ function child_()
     global $loglevel;
     global $ssh_callbacks;
     global $retry_num;
+    global $host;
+    global $username;
+    global $pass;
+    global $database;
 
     $serverip    = $array["ip"];
     $servername  = $array["servername"];
@@ -130,8 +135,8 @@ function child_()
         }
     }
     $mysql_conname = "mysql_".$servername;
-    $$mysql_conname = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
-    $query = "UPDATE $db.`stats` SET `la`='".la($$ssh_conname, $serverip, $servername).
+    $$mysql_conname = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $query = "UPDATE $database.`stats` SET `la`='".la($$ssh_conname, $serverip, $servername).
             "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -139,10 +144,10 @@ function child_()
     }
     unset($result);
     if ($db == 1) {
-        $query = "UPDATE $db.`stats` SET `rep`='".$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername)).
+        $query = "UPDATE $database.`stats` SET `rep`='".$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername)).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE $db.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE $database.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
     }
     if ($loglevel > 1) {
         common_log($servername." - ".$query);
@@ -153,10 +158,10 @@ function child_()
     }
     unset($result);
     if ($errs == 1) {
-        $query = "UPDATE $db.`stats` SET `500`='" .err500($$ssh_conname, $serverip, $servername).
+        $query = "UPDATE $database.`stats` SET `500`='" .err500($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE $db.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE $database.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -164,10 +169,10 @@ function child_()
     }
     unset($result);
     if ($elastic == 1) {
-        $query = "UPDATE $db.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip, $servername).
+        $query = "UPDATE $database.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE $db.`stats` SET `elastic`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE $database.`stats` SET `elastic`='' WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -175,10 +180,10 @@ function child_()
     }
     unset($result);
     if ($mysql == 1) {
-        $query = "UPDATE $db.`stats` SET `locks`='" .locks($$ssh_conname, $serverip, $servername).
+        $query = "UPDATE $database.`stats` SET `locks`='" .locks($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE $db.`stats` SET `locks`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE $database.`stats` SET `locks`='' WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -186,10 +191,10 @@ function child_()
     }
     unset($result);
     if ($mon == 1) {
-        $query = "UPDATE $db.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip, $servername).
+        $query = "UPDATE $database.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE $db.`stats` SET `mongo`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE $database.`stats` SET `mongo`='' WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -197,10 +202,10 @@ function child_()
     }
     unset($result);
     if ($red == 1) {
-        $query = "UPDATE $db.`stats` SET `redis`='" .redis($$ssh_conname, $serverip, $servername).
+        $query = "UPDATE $database.`stats` SET `redis`='" .redis($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE $db.`stats` SET `redis`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE $database.`stats` SET `redis`='' WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -208,12 +213,12 @@ function child_()
     }
     unset($result);
     if ($git == 1) {
-        $query = "UPDATE $db.`stats` SET
+        $query = "UPDATE $database.`stats` SET
                      `master_repo`='" .repo($$ssh_conname, $serverip, "prod").
                 "' , `test_repo`='" .repo($$ssh_conname, $serverip, "dev").
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE $db.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE $database.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -440,54 +445,3 @@ function botips($connection)
     return $ipaddrarray;
 }
 
-function sigHandler($signo)
-{
-    global $stop_server;
-    switch ($signo) {
-        case SIGTERM:
-            $stop_server = true;
-            common_log("SIGTERM stop");
-            break;
-
-        case SIGPIPE:
-            $stop_server = true;
-            common_log("SIGPIPE stop");
-            break;
-
-        default:
-            break;
-    }
-}
-
-function errHandler($errno, $errmsg, $filename, $linenum)
-{
-    global $error_log;
-    global $servername;
-    $date = date('Y-m-d H:i:s (T)');
-    $f = fopen($error_log, 'a');
-    if (!empty($f)) {
-        $filename  = str_replace($_SERVER['DOCUMENT_ROOT'], '', $filename);
-        fwrite($f, "$date: server: $servername: $errmsg - $filename - $linenum\r\n");
-        fclose($f);
-    }
-}
-
-function ssh_disconnect()
-{
-    common_log("SSH disconnect");
-}
-
-function ssh_ignore()
-{
-    common_log("SSH ignore");
-}
-
-function ssh_debug()
-{
-    common_log("SSH debug");
-}
-
-function ssh_macerror()
-{
-    common_log("SSH macerror");
-}

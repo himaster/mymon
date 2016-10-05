@@ -9,7 +9,7 @@ if (! $ip_addr = $_GET['ip_addr']) {
 }
 $comment = $_GET['comment'];
 
-$result = $dbconnection->query("INSERT IGNORE INTO `firewall`.`blacklist`
+$result = $dbconnection->query("INSERT IGNORE INTO $db.`blacklist`
                                 SET `ip` = '$ip_addr', `comment` = '$comment';") or
 die($dbconnection->error());
 if (!$connection = ssh2_connect("balancer1", 22)) {

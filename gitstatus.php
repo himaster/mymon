@@ -32,17 +32,17 @@ backButton("/");
         <td class="git_test">fuel.dev</td>
     </tr>
 <?php
-$dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `st`.`servername`,
                                        `st`.`ip`,
                                        `st`.`master_repo`,
                                        `st`.`test_repo`,
                                        IF(`st`.`master_repo`=`master_temp`.`master_repo`,'0','1') AS `master_uniq`,
                                        IF(`st`.`test_repo`=`test_temp`.`test_repo`,'0','1') AS `test_uniq`
-                                       FROM $db.`stats` AS `st`
+                                       FROM $database.`stats` AS `st`
                                 JOIN
                                     (SELECT `test_repo`, count(*) AS `count`
-                                     FROM $db.`stats`
+                                     FROM $database.`stats`
                                      WHERE `test_repo` IS NOT NULL
                                      GROUP BY `test_repo`
                                      ORDER BY `count`
@@ -50,7 +50,7 @@ $result = $dbconnection->query("SELECT `st`.`servername`,
                                      LIMIT 1) AS `test_temp`
                                 JOIN
                                     (SELECT `master_repo`, count(*) AS `count`
-                                     FROM $db.`stats`
+                                     FROM $database.`stats`
                                      WHERE `master_repo` IS NOT NULL
                                      GROUP BY `master_repo`
                                      ORDER BY `count`

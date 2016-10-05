@@ -62,8 +62,8 @@ if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
                                                `st`.`mongo`,
                                                `st`.`redis`,
                                                `st`.`color`
-                                        FROM `user_roles` AS `ur`
-                                        JOIN `stats` AS `st`
+                                        FROM $database.`user_roles` AS `ur`
+                                        JOIN $database.`stats` AS `st`
                                         ON `st`.`role` = `ur`.`role_id`
                                         WHERE `ur`.`user_id` = {$uid}
                                         ORDER BY LEFT(`st`.`servername`,3),

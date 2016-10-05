@@ -12,18 +12,18 @@ $columnname = $_GET['columnname'];
 $val = $_GET['val'];
 if ($columnname == "role") {
     $result = $dbconnection->query("SELECT `id`
-                                    FROM $db.`users`
+                                    FROM $database.`users`
                                     WHERE `login` = '$username'");
     $user_id = $result->fetch_assoc()['id'];
-    $query = "DELETE FROM $db.`user_roles`
+    $query = "DELETE FROM $database.`user_roles`
               WHERE `user_id` = '$user_id;'; ";
     $roles_array = explode(',', $val);
     foreach ($roles_array as $item) {
-        $query .= "INSERT INTO $db.`user_roles`(`user_id`, `role_id`)
+        $query .= "INSERT INTO $database.`user_roles`(`user_id`, `role_id`)
                    VALUES ('$user_id', '$item');";
     }
 } else {
-    $query = "UPDATE $db.`users`
+    $query = "UPDATE $database.`users`
               SET `$columnname` = '$val'
               WHERE `login` = '$username'";
 }

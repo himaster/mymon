@@ -1,5 +1,8 @@
 <?php
 
+$error_log  = '/var/log/mymon/errors.txt';
+$common_log = '/var/log/mymon/common.txt';
+
 function no_injection($str = '')
 {
     $str = stripslashes($str);
@@ -25,8 +28,9 @@ function ssh2_return($connection, $query)
 
 function common_log($logmsg)
 {
+    global $common_log;
     $date = date('Y-m-d H:i:s (T)');
-    $f = fopen('/var/log/mymon/common.txt', 'a');
+    $f = fopen($common_log, 'a');
     if (!empty($f)) {
         fwrite($f, "$date: PID:".getmypid()."  $logmsg\r\n");
         fclose($f);
@@ -56,12 +60,12 @@ function slackbot($message)
 {
     global $slackbotlevel;
 
-    $dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $starttime = strtotime(date("Y-m-d H:i:s"));
     $lasttime  = strtotime($dbconnection->query("SELECT `timestamp`
-                                  FROM $db.`slack_messages`;")->fetch_row()[0]);
+                                  FROM $database.`slack_messages`;")->fetch_row()[0]);
     if ($starttime - $lasttime > 300 and $slackbotlevel == "full") {
-        $dbconnection->query("UPDATE $db.`slack_messages` SET `test` = NOT `test`;");
+        $dbconnection->query("UPDATE $database.`slack_messages` SET `test` = NOT `test`;");
         $channel = "#sys-admins";
         $username = "mymon-bot";
         $icon_url = "https://mymon.pkwteile.de/images/mymon_mini.png";
@@ -108,4 +112,56 @@ function not_less_than_zero($val)
     } else {
         return $val;
     }
+}
+
+function sigHandler($signo)
+{
+    global $stop_server;
+    switch ($signo) {
+        case SIGTERM:
+            $stop_server = true;
+            common_log("SIGTERM stop");
+            break;
+
+        case SIGPIPE:
+            $stop_server = true;
+            common_log("SIGPIPE stop");
+            break;
+
+        default:
+            break;
+    }
+}
+
+function errHandler($errno, $errmsg, $filename, $linenum)
+{
+    global $error_log;
+    global $servername;
+    $date = date('Y-m-d H:i:s (T)');
+    $f = fopen($error_log, 'a');
+    if (!empty($f)) {
+        $filename  = str_replace($_SERVER['DOCUMENT_ROOT'], '', $filename);
+        fwrite($f, "$date: server: $servername: $errmsg - $filename - $linenum\r\n");
+        fclose($f);
+    }
+}
+
+function ssh_disconnect()
+{
+    common_log("SSH disconnect");
+}
+
+function ssh_ignore()
+{
+    common_log("SSH ignore");
+}
+
+function ssh_debug()
+{
+    common_log("SSH debug");
+}
+
+function ssh_macerror()
+{
+    common_log("SSH macerror");
 }

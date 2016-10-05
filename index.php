@@ -34,9 +34,9 @@ if ($_GET['task'] == "exit") {
     die();
 }
 
-$dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `name`
-								FROM $db.`roles`") or die($dbconnection->error);
+								FROM $database.`roles`") or die($dbconnection->error);
 while ($row = $result->fetch_assoc()) {
     $roles[intval($row['id'])] = $row['name'];
 }
@@ -44,7 +44,7 @@ if (isset($_COOKIE["mymon"])) {
     $login = no_injection($_COOKIE["mymon"]["login"]);
     $password = no_injection($_COOKIE["mymon"]["password"]);
     $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify
-                                    FROM $db.`users`
+                                    FROM $database.`users`
                                     WHERE login ='" .$login. "'
                                     AND password='" .$password. "'
                                     AND approvied='1'
@@ -63,7 +63,7 @@ if (isset($_COOKIE["mymon"])) {
 
     if ($result->num_rows == 1) {
         $result1 = $dbconnection->query("SELECT *
-                                         FROM $db.`user_roles`
+                                         FROM $database.`user_roles`
                                          WHERE `user_id` = {$uid}
                                          AND `role_id` = 1") or die($dbconnection->error);
         if ($result1->num_rows == 1) {
@@ -136,7 +136,7 @@ if (isset($_COOKIE["mymon"])) {
 
             case "user_remove":
                 echo "User id: ".$_GET['user_id'];
-                $query = "DELETE FROM $db.`users` WHERE `id` = '".$_GET['user_id']."'";
+                $query = "DELETE FROM $database.`users` WHERE `id` = '".$_GET['user_id']."'";
                 if ($result = $dbconnection->query($query)) {
                     echo "Successfully removed.";
                 } else {
@@ -172,7 +172,7 @@ if (isset($_COOKIE["mymon"])) {
                 break;
 
             case "msgred":
-                $result = $dbconnection->query("UPDATE $db.`messages`
+                $result = $dbconnection->query("UPDATE $database.`messages`
                                                 SET isRead = 1
                                                 WHERE receiver ='$uid'
                                                 AND isRead = 0
@@ -232,7 +232,7 @@ if (isset($_COOKIE["mymon"])) {
     $login = no_injection($_POST['login']);
     $password = md5(no_injection($_POST['password']));
     $result = $dbconnection->query("SELECT id, login, password, email, la, rep, loc, `500`, el, mon, red, notify
-                                    FROM $db.`users`
+                                    FROM $database.`users`
                                     WHERE login ='" .$login. "'
                                     AND password='" .$password. "'
                                     AND approvied='1'
@@ -250,7 +250,7 @@ if (isset($_COOKIE["mymon"])) {
     $unotify = $result_assoc['notify'];
     if ($result->num_rows == 1) {
         $result1 = $dbconnection->query("SELECT *
-                                         FROM $db.`user_roles`
+                                         FROM $database.`user_roles`
                                          WHERE `user_id` = {$uid}
                                          AND `role_id` = 1") or die($dbconnection->error);
         if ($result1->num_rows == 1) {

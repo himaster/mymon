@@ -6,7 +6,7 @@ if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
 require_once 'config.php';
 require_once 'functions.php';
 
-$dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 if (isset($_POST['submit'])) {
     if (empty($_POST['login'])) {
         echo 'You have not entered login';
@@ -23,12 +23,12 @@ if (isset($_POST['submit'])) {
         $password = md5(no_injection($_POST['password']));
         $email = no_injection($_POST['email']);
         $result = $dbconnection->query("SELECT `id`
-                                        FROM $db.`users`
+                                        FROM $database.`users`
                                         WHERE `login`='{$login}'") or die($dbconnection->error);
         if ($result->num_rows > 0) {
             echo 'This login exists.';
         } else {
-            $result = $dbconnection->query("INSERT INTO users(login , password , email, approvied)
+            $result = $dbconnection->query("INSERT INTO $database.`users` (login , password , email, approvied)
                                             VALUES ('$login', '$password', '$email', '0')") or
                         die($dbconnection->error);
             $msg = "<html><head><title></title></head><body>";
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
             $msg .= "User $login ($email) just registered. <form action=\"$hostname\" method='get'>";
             $msg .= "<input type='hidden' name='task' value='confirm' />";
             $msg .= "<input type='hidden' name='username' value=$login />";
-            $result = $dbconnection->query("SELECT `id`, `name` FROM `roles`") or die($dbconnection->error);
+            $result = $dbconnection->query("SELECT `id`, `name` FROM $database.`roles`") or die($dbconnection->error);
             while ($row = $result->fetch_assoc()) {
                 $msg .= "<p>".$row['name']." <input type='checkbox' name='".$row['name']."' />";
             }

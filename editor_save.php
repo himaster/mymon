@@ -9,7 +9,7 @@ if (!$isAdmin) {
 $servername = $_GET['servername'];
 $columnname = $_GET['columnname'];
 $val = $_GET['val'];
-if ($result = $dbconnection->query("UPDATE $db.`stats`
+if ($result = $dbconnection->query("UPDATE $database.`stats`
                                     SET `$columnname` = '$val'
                                     WHERE `servername` = '$servername'")) {
     echo "Successfully edited";

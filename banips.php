@@ -34,10 +34,10 @@ backButton("/");
         <?php } ?>
     </tr>
 <?php
-$dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT *
-                                FROM $db.`blacklist`
-                                ORDER BY $db.`blacklist`.`ip`
+                                FROM $database.`blacklist`
+                                ORDER BY $database.`blacklist`.`ip`
                                 ASC;") or die($dbconnection->error);
 while ($row_ip = $result->fetch_assoc()) {
 ?>

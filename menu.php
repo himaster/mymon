@@ -126,7 +126,7 @@ if ($isAdmin) { ?>
     <p><p>
     <?php
         $result = $dbconnection->query("SELECT `id`, `login`
-                                        FROM $db.`users`
+                                        FROM $database.`users`
                                         WHERE approvied='1'") or die($dbconnection->error);
     ?>
     <form method="post" name="message_form" id="message_form" action="javascript:msg_submit();">

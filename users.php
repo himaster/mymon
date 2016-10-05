@@ -18,11 +18,11 @@ backButton("/");
 
     </tr>
 <?php
-$dbconnection = new mysqli($host, $username, $pass, $db) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `login`, `email`, `approvied`, GROUP_CONCAT(`ur`.`role_id`)
                                 AS roles
-								FROM $db.`users`
-								LEFT JOIN $db.`user_roles` AS `ur` ON (`id` = `ur`.`user_id`)
+								FROM $database.`users`
+								LEFT JOIN $database.`user_roles` AS `ur` ON (`id` = `ur`.`user_id`)
 								GROUP BY `id`;") or die($dbconnection->error);
 while ($row_user = $result->fetch_assoc()) {
     $user_roles = explode(",", $row_user['roles']);

@@ -7,7 +7,7 @@ if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
 if (! $ip_addr = $_GET['ip_addr']) {
     die("No IP address to unban.");
 }
-$result = $dbconnection->query("DELETE FROM `firewall`.`blacklist`
+$result = $dbconnection->query("DELETE FROM $database.`blacklist`
                                 WHERE `ip` = '$ip_addr';") or
 die($dbconnection->error());
 if (!$connection = ssh2_connect("balancer1", 22)) {
