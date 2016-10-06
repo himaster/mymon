@@ -65,24 +65,20 @@ while ($row_ip = $result->fetch_assoc()) {
         </td>
         <td class="git_master">
             <?php if ($row_ip['master_uniq']){
-                    echo "<font color=red>";
-                    if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'prod')\">";}
+                    if ($isAdmin){ echo "<a href=# style=\"color: red;\" onClick=\"gitpull('".$row_ip['ip']."', 'prod')\">";}
                   }
                   echo trim($row_ip['master_repo']);
                   if ($row_ip['master_uniq']){
-                    echo "</font>";
                     if ($isAdmin){ echo "</a>";}
                   }
             ?>
         </td>
         <td class="git_test">
             <?php if ($row_ip['test_uniq']){
-                    echo "<font color=red>";
-                    if ($isAdmin){ echo "<a href=# onClick=\"gitpull('".$row_ip['ip']."', 'dev')\">";}
+                    if ($isAdmin){ echo "<a href=# style=\"color: red;\" onClick=\"gitpull('".$row_ip['ip']."', 'dev')\">";}
                   }
                   echo trim($row_ip['test_repo']);
                   if ($row_ip['test_uniq']){
-                    echo "</font>";
                     if ($isAdmin){ echo "</a>";}
                   }
             ?>
