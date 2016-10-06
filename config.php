@@ -37,7 +37,7 @@ $retry_num   = 10;
 
 $iplistnum = 30;
 
-$host     = "netbox.co";
-$username = "root";
-$pass     = "aiX4tohh";
+$host     = "balancer1.pkwteile.de";
+$username = "mymon";
+$pass     = "VeiSh6Uc";
 $database = "mymon";
