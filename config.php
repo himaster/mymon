@@ -37,7 +37,7 @@ $retry_num   = 10;
 
 $iplistnum = 30;
 
-$host     = "mysql";
+$host     = "netbox.co";
 $username = "root";
 $pass     = "aiX4tohh";
-$database       = "mymon";
+$database = "mymon";
