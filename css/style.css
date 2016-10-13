@@ -835,6 +835,6 @@ img#message_logo {
 .ban_button {
     position: relative;
     left: -2%;
-    background-color: white;
+    #background-color: white;
     padding: 1px;
 }
