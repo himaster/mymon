@@ -1,5 +1,7 @@
 <?php
 
+var_dump($_GET);
+die();
 $login = no_injection($_GET["username"]);
 $result = $dbconnection->query("SELECT id FROM $database.`users` WHERE login ='{$login}' LIMIT 1;") or die($dbconnection->error);
 $uid = $result->fetch_assoc()['id'];
