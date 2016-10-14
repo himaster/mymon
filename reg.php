@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["SCRIPT_NAME"] != "/index.php") {
+if ($_SERVER["SCRIPT_NAME"] != "/reg.php") {
     die();
 }
 
