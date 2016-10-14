@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
             $msg = file_get_contents('header.html');
             $msg .= "User $login ($email) just registered. <form action=\"$hostname\" method='get'>";
             $msg .= "<input type='hidden' name='task' value='confirm' />";
-            $msg .= "<input type='hidden' name='username' value=$login />";
+            $msg .= "<input type='hidden' name='username' value='$login' />";
             $result = $dbconnection->query("SELECT `id`, `name` FROM $database.`roles`") or die($dbconnection->error);
             while ($row = $result->fetch_assoc()) {
                 $msg .= "<p>".$row['name']." <input type='checkbox' name='".$row['name']."' />";
