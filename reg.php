@@ -7,6 +7,8 @@ require_once 'config.php';
 require_once 'functions.php';
 
 $dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+var_dump($_POST);
+die();
 if (isset($_POST['submit'])) {
     if (empty($_POST['login'])) {
         echo 'You have not entered login';

@@ -40,4 +40,4 @@ $iplistnum = 30;
 $dbhost     = "balancer1.pkwteile.de";
 $dbusername = "mymon";
 $dbpass     = "VeiSh6Uc";
-$database = "mymon";
+$database   = "mymon";
