@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config.php';
+
 $error_log  = '/var/log/mymon/errors.txt';
 $common_log = '/var/log/mymon/common.txt';
 
@@ -59,6 +61,10 @@ function host_scheme()
 function slackbot($message)
 {
     global $slackbotlevel;
+    global $host;
+    global $username;
+    global $pass;
+    global $database;
 
     $dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $starttime = strtotime(date("Y-m-d H:i:s"));
