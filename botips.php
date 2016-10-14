@@ -35,7 +35,7 @@ backButton("/");
         <?php } ?>
     </tr>
 <?php
-$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `bps`.`id`, `bps`.`amount`, `bps`.`ipaddr`,
                                     `wl`.`ip` IS NOT NULL AS `whitelisted`, `bl`.`ip` IS NOT NULL AS `blacklisted`
                                 FROM $database.`botips` AS `bps`

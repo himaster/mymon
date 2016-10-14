@@ -22,7 +22,7 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, 'sigHandler');
 
-$connection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$connection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $database.`stats`;")
         or die($connection->error);
 $connection->close();
@@ -57,9 +57,9 @@ function botips_()
     global $retry_num;
     global $docroot;
     global $loglevel;
-    global $host;
-    global $username;
-    global $pass;
+    global $dbhost;
+    global $dbusername;
+    global $dbpass;
     global $database;
 
     $i = 1;
@@ -78,7 +78,7 @@ function botips_()
             exit(1);
         }
     }
-    $mysql_balancer = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $mysql_balancer = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $i = 31;
     foreach (botips($connection) as $value) {
         $query = "INSERT INTO $database.`botips` (id, amount, ipaddr)
@@ -102,9 +102,9 @@ function child_()
     global $loglevel;
     global $ssh_callbacks;
     global $retry_num;
-    global $host;
-    global $username;
-    global $pass;
+    global $dbhost;
+    global $dbusername;
+    global $dbpass;
     global $database;
 
     $serverip    = $array["ip"];
@@ -135,7 +135,7 @@ function child_()
         }
     }
     $mysql_conname = "mysql_".$servername;
-    $$mysql_conname = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $$mysql_conname = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $query = "UPDATE $database.`stats` SET `la`='".la($$ssh_conname, $serverip, $servername).
             "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);

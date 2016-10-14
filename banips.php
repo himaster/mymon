@@ -34,7 +34,7 @@ backButton("/");
         <?php } ?>
     </tr>
 <?php
-$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT *
                                 FROM $database.`blacklist`
                                 ORDER BY $database.`blacklist`.`ip`

@@ -61,12 +61,12 @@ function host_scheme()
 function slackbot($message)
 {
     global $slackbotlevel;
-    global $host;
-    global $username;
-    global $pass;
+    global $dbhost;
+    global $dbusername;
+    global $dbpass;
     global $database;
 
-    $dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
     $starttime = strtotime(date("Y-m-d H:i:s"));
     $lasttime  = strtotime($dbconnection->query("SELECT `timestamp`
                                   FROM $database.`slack_messages`;")->fetch_row()[0]);

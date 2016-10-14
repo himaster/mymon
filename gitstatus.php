@@ -32,7 +32,7 @@ backButton("/");
         <td class="git_test">fuel.dev</td>
     </tr>
 <?php
-$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `st`.`servername`,
                                        `st`.`ip`,
                                        `st`.`master_repo`,

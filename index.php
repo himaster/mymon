@@ -34,7 +34,7 @@ if ($_GET['task'] == "exit") {
     die();
 }
 
-$dbconnection = new mysqli($host, $username, $pass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
 $result = $dbconnection->query("SELECT `id`, `name`
 								FROM $database.`roles`") or die($dbconnection->error);
 while ($row = $result->fetch_assoc()) {
