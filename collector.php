@@ -22,10 +22,10 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, 'sigHandler');
 
-$connection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
-$result = $connection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $database.`stats`;")
-        or die($connection->error);
-$connection->close();
+$dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+$result = $dbconnection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $database.`stats`;")
+        or die($dbconnection->error);
+$dbconnection->close();
 
 $parent = true;
 
