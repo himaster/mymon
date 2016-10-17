@@ -1,9 +1,9 @@
 <?php
 
 var_dump($_GET);
-die();
+
 $login = no_injection($_GET["username"]);
-$result = $dbconnection->query("SELECT id FROM $database.`users` WHERE login ='{$login}' LIMIT 1;") or die($dbconnection->error);
+$result = $dbconnection->query("SELECT `id` FROM $database.`users` WHERE `login` ='{$login}' LIMIT 1;") or die($dbconnection->error);
 $uid = $result->fetch_assoc()['id'];
 $result = $dbconnection->query("SELECT `id`, `name` FROM $database.`roles`") or die($dbconnection->error);
 while ($row = $result->fetch_assoc()) {
@@ -14,11 +14,11 @@ while ($row = $result->fetch_assoc()) {
     }
 }
 $result = $dbconnection->query("UPDATE $database.`users`
-                                SET approvied = '1'
-                                WHERE login = '$login';") or die($dbconnection->error);
-$result = $dbconnection->query("SELECT email
+                                SET `approvied` = '1'
+                                WHERE `login` = '$login';") or die($dbconnection->error);
+$result = $dbconnection->query("SELECT `email`
                                 FROM $database.`users`
-                                WHERE login = '$login';") or die($dbconnection->error);
+                                WHERE `login` = '$login';") or die($dbconnection->error);
 $msg = wordwrap("Hi! Your login ($login) just confirmed. Try to login on ".$hostname, 70);
 $headers =  "From: mymon@netbox.co\r\nReply-To: himaster@mailer.ag\r\n";
 mail($result->fetch_assoc()['email'], "Mymon registration", $msg, $headers);

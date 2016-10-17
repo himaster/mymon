@@ -1,7 +1,4 @@
 <?php
-if ($_SERVER["SCRIPT_NAME"] != "/reg.php") {
-    die();
-}
 
 require_once 'config.php';
 require_once 'functions.php';
