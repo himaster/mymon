@@ -332,7 +332,7 @@ function err500($connection, $serverip, $servername = null)
 {
     global $hostname;
     $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
-    common_log($str);
+    common_log($servername.' - '.$str);
     return "<a title=\"Click to show 500 errors\"
              href=". $hostname. "index.php?task=500err&serverip=" .$serverip. "
              target=\"_self\">" .$str. "\n</a>";
