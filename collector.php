@@ -166,7 +166,7 @@ function child_()
         ob_start();
         var_dump($query);
         $res = ob_get_clean();
-        common_log($servername." - ".$res);
+        common_log($servername." - ".$res." || ".$value);
     }
     $result = $$mysql_conname->query($query);
     if (empty($result)) {
