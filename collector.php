@@ -149,7 +149,7 @@ function child_()
     }
     unset($result);
 
-    $value = ($db == 1):$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername))?"";
+    $value = ($db == 1)?$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername)):"";
     $query = "UPDATE `$database`.`stats` SET `rep`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     if ($loglevel > 1) {
         common_log($servername." - ".$query);
@@ -160,7 +160,7 @@ function child_()
     }
     unset($result);
 
-    $value = ($errs == 1):err500($$ssh_conname, $serverip, $servername)?"";
+    $value = ($errs == 1)?err500($$ssh_conname, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `500`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -168,7 +168,7 @@ function child_()
     }
     unset($result);
 
-    $value = ($elastic == 1):elastic($$ssh_conname, $serverip, $servername)?"";
+    $value = ($elastic == 1)?elastic($$ssh_conname, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `elastic`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -176,7 +176,7 @@ function child_()
     }
     unset($result);
 
-    $value = ($mysql == 1):locks($$ssh_conname, $serverip, $servername)?"";
+    $value = ($mysql == 1)?locks($$ssh_conname, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `locks`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
@@ -184,7 +184,7 @@ function child_()
     }
     unset($result);
 
-    $value = ($mon == 1):mongo($$ssh_conname, $serverip, $servername)?"";
+    $value = ($mon == 1)?mongo($$ssh_conname, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `mongo`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
