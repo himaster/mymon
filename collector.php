@@ -144,7 +144,7 @@ function child_()
     $query = "UPDATE $database.`stats` SET `la`='".la($$ssh_conname, $serverip, $servername).
             "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
-    common_log($servername." - "print_r($result, true);
+    common_log($servername." - ".print_r($result, true);
     if (!isset($result)) {
         common_log($servername." - LA not updated!");
     }
