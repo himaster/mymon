@@ -135,7 +135,7 @@ function child_()
         }
     }
     $mysql_conname = "mysql_".$servername;
-    $$mysql_conname = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $$mysql_conname = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error:".$$mysql_conname->connect_error."\n");
     $query = "UPDATE $database.`stats` SET `la`='".la($$ssh_conname, $serverip, $servername).
             "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
@@ -165,7 +165,9 @@ function child_()
     }
     $result = $$mysql_conname->query($query);
     if ($servername == "cdn") {
-        common_log($servername.' - '.$$mysql_conname->error);
+        while ($row = $result->fetch_assoc()) {
+            common_log($servername.' - '.print_r($row, TRUE);
+        }
     }
     if (!isset($result)) {
         common_log($servername." - 500 not updated!");
