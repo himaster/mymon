@@ -160,7 +160,9 @@ function child_()
     if ($errs == 1) {
         $query = "UPDATE $database.`stats` SET `500`='" .err500($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-        common_log($servername.' - '.$query);
+        if ($servername == "cdn") {
+            common_log($servername.' - '.$query);
+        }
     } else {
         $query = "UPDATE $database.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
     }
