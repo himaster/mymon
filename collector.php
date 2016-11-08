@@ -165,8 +165,8 @@ function child_()
     }
     $result = $$mysql_conname->query($query);
 #    if ($servername == "cdn") {
-        while ($row = $result->fetch_assoc()) {
-            common_log($servername.' - '.print_r($row, TRUE));
+        while ($array = $result->fetch_assoc()) {
+            common_log($servername.' - '.print_r($array, TRUE));
         }
 #    }
     if (!isset($result)) {
