@@ -163,13 +163,8 @@ function child_()
     }
     unset($result);
     if ($errs == 1) {
-        $value = err500($$ssh_conname, $serverip, $servername);
-        if ($servername == "cdn") {
-            ob_start();
-            var_dump($value);
-            $res = ob_get_clean();
-            common_log($servername." - ".$res);
-        }
+        #$value = err500($$ssh_conname, $serverip, $servername);
+        $value = "Hello, World";
         $query = "UPDATE `$database`.`stats` SET `500`='" .$value.
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
