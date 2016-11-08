@@ -142,7 +142,7 @@ function child_()
     if (!isset($result)) {
         common_log($servername." - LA not updated!");
     }
-    unset($result);
+    $result->free();
     if ($db == 1) {
         $query = "UPDATE $database.`stats` SET `rep`='".$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername)).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
@@ -156,7 +156,7 @@ function child_()
     if (!isset($result)) {
         common_log($servername." - REP not updated!");
     }
-    unset($result);
+    $result->free();
     if ($errs == 1) {
         $query = "UPDATE $database.`stats` SET `500`='" .err500($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
@@ -166,13 +166,13 @@ function child_()
     $result = $$mysql_conname->query($query);
     if ($servername == "cdn") {
 #        while ($array = $result->fetch_assoc()) {
-            common_log($servername.' - '.print_r($result, TRUE));
+            common_log($servername.' - '.print_r($result->fetch_assoc(), TRUE));
 #        }
     }
     if (!isset($result)) {
         common_log($servername." - 500 not updated!");
     }
-    unset($result);
+    $result->free();
     if ($elastic == 1) {
         $query = "UPDATE $database.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
@@ -183,7 +183,7 @@ function child_()
     if (!isset($result)) {
         common_log($servername." - ELASTIC not updated!");
     }
-    unset($result);
+    $result->free();
     if ($mysql == 1) {
         $query = "UPDATE $database.`stats` SET `locks`='" .locks($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
@@ -194,7 +194,7 @@ function child_()
     if (!isset($result)) {
         common_log($servername." - LOCKS not updated!");
     }
-    unset($result);
+    $result->free();
     if ($mon == 1) {
         $query = "UPDATE $database.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
@@ -205,7 +205,7 @@ function child_()
     if (!isset($result)) {
         common_log($servername." - MONGO not updated!");
     }
-    unset($result);
+    $result->free();
     if ($red == 1) {
         $query = "UPDATE $database.`stats` SET `redis`='" .redis($$ssh_conname, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
