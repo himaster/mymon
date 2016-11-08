@@ -141,19 +141,16 @@ function child_()
         exit();
     }
 
-    $query = "UPDATE `$database`.`stats` SET `la`='".la($$ssh_conname, $serverip, $servername).
-            "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $value = la($$ssh_conname, $serverip, $servername);
+    $query = "UPDATE `$database`.`stats` SET `la`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - LA not updated!");
     }
     unset($result);
-    if ($db == 1) {
-        $query = "UPDATE `$database`.`stats` SET `rep`='".$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername)).
-                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    } else {
-        $query = "UPDATE `$database`.`stats` SET `rep`='' WHERE `ip`='" .$serverip. "';";
-    }
+
+    $value = ($db == 1):$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername))?"";
+    $query = "UPDATE `$database`.`stats` SET `rep`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     if ($loglevel > 1) {
         common_log($servername." - ".$query);
     }
@@ -162,45 +159,33 @@ function child_()
         common_log($servername." - REP not updated!");
     }
     unset($result);
-    if ($errs == 1) {
-        $value = err500($$ssh_conname, $serverip, $servername);
-    } else {
-        $value = "";
-    }
+
+    $value = ($errs == 1):err500($$ssh_conname, $serverip, $servername)?"";
     $query = "UPDATE `$database`.`stats` SET `500`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - 500 not updated!");
     }
     unset($result);
-    if ($elastic == 1) {
-        $query = "UPDATE `$database`.`stats` SET `elastic`='" .elastic($$ssh_conname, $serverip, $servername).
-                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    } else {
-        $query = "UPDATE `$database`.`stats` SET `elastic`='' WHERE `ip`='" .$serverip. "';";
-    }
+
+    $value = ($elastic == 1):elastic($$ssh_conname, $serverip, $servername)?"";
+    $query = "UPDATE `$database`.`stats` SET `elastic`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - ELASTIC not updated!");
     }
     unset($result);
-    if ($mysql == 1) {
-        $query = "UPDATE `$database`.`stats` SET `locks`='" .locks($$ssh_conname, $serverip, $servername).
-                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    } else {
-        $query = "UPDATE `$database`.`stats` SET `locks`='' WHERE `ip`='" .$serverip. "';";
-    }
+
+    $value = ($mysql == 1):locks($$ssh_conname, $serverip, $servername)?"";
+    $query = "UPDATE `$database`.`stats` SET `locks`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - LOCKS not updated!");
     }
     unset($result);
-    if ($mon == 1) {
-        $query = "UPDATE `$database`.`stats` SET `mongo`='" .mongo($$ssh_conname, $serverip, $servername).
-                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    } else {
-        $query = "UPDATE `$database`.`stats` SET `mongo`='' WHERE `ip`='" .$serverip. "';";
-    }
+
+    $value = ($mon == 1):mongo($$ssh_conname, $serverip, $servername)?"";
+    $query = "UPDATE `$database`.`stats` SET `mongo`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - MONGO not updated!");
