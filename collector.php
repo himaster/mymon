@@ -169,7 +169,7 @@ function child_()
         common_log($servername." - ".$res);
     }
     $result = $$mysql_conname->query($query);
-    if (!isset($result)) {
+    if (empty($result)) {
         common_log($servername." - 500 not updated!");
     }
     unset($result);
