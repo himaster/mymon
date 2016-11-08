@@ -171,7 +171,7 @@ function child_()
     $result = $$mysql_conname->query($query);
     if ($servername == "cdn") {
         ob_start();
-        var_dump($errs);
+        var_dump($query);
         $res = ob_get_clean();
         common_log($servername." - ".$res);
     }
