@@ -164,11 +164,11 @@ function child_()
         $query = "UPDATE $database.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
-#    if ($servername == "cdn") {
-        while ($array = $result->fetch_assoc()) {
-            common_log($servername.' - '.print_r($array, TRUE));
-        }
-#    }
+    if ($servername == "cdn") {
+#        while ($array = $result->fetch_assoc()) {
+            common_log($servername.' - '.print_r($result, TRUE));
+#        }
+    }
     if (!isset($result)) {
         common_log($servername." - 500 not updated!");
     }
