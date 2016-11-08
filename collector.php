@@ -165,7 +165,7 @@ function child_()
     }
     $result = $$mysql_conname->query($query);
     if ($servername == "cdn") {
-        common_log($servername.' - '.$result);
+        common_log($servername.' - '.$$mysql_conname->error;
     }
     if (!isset($result)) {
         common_log($servername." - 500 not updated!");
