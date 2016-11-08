@@ -145,7 +145,7 @@ function child_()
             "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     ob_start();
-    var_dump($result);
+    var_dump($$mysql_conname);
     $res = ob_get_clean();
     common_log($servername." - ".$res);
     if (!isset($result)) {
