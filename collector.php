@@ -164,13 +164,10 @@ function child_()
     unset($result);
     if ($errs == 1) {
         $value = err500($$ssh_conname, $serverip, $servername);
-        #$value = "Hello, World";
-        $query = "UPDATE `$database`.`stats` SET `500`='" .$value.
-                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        #$query = "UPDATE `$database`.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
-
+        $value = "";
     }
+    $query = "UPDATE `$database`.`stats` SET `500`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
         common_log($servername." - 500 not updated!");
