@@ -164,7 +164,12 @@ function child_()
     unset($result);
     if ($errs == 1) {
         $value = err500($$ssh_conname, $serverip, $servername);
-        $value = empty($value)?"00000":$value;
+        if ($servername == "cdn") {
+            ob_start();
+            var_dump($query);
+            $res = ob_get_clean();
+            common_log($servername." - ".$res);
+        }
         $query = "UPDATE `$database`.`stats` SET `500`='" .$value.
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
@@ -172,12 +177,6 @@ function child_()
 
     }
     $result = $$mysql_conname->query($query);
-    if ($servername == "cdn") {
-        ob_start();
-        var_dump($query);
-        $res = ob_get_clean();
-        common_log($servername." - ".$res);
-    }
     if (!isset($result)) {
         common_log($servername." - 500 not updated!");
     }
