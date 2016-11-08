@@ -163,7 +163,9 @@ function child_()
     }
     unset($result);
     if ($errs == 1) {
-        $query = "UPDATE `$database`.`stats` SET `500`='" .err500($$ssh_conname, $serverip, $servername).
+        $value = err500($$ssh_conname, $serverip, $servername);
+        $value = empty($value)?"00000":$value;
+        $query = "UPDATE `$database`.`stats` SET `500`='" .$value.
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
         #$query = "UPDATE `$database`.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
