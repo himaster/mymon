@@ -166,7 +166,7 @@ function child_()
         $value = err500($$ssh_conname, $serverip, $servername);
         if ($servername == "cdn") {
             ob_start();
-            var_dump($query);
+            var_dump($value);
             $res = ob_get_clean();
             common_log($servername." - ".$res);
         }
