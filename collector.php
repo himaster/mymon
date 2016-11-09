@@ -130,7 +130,7 @@ function child_()
     }
 
     start:
-    if (( ! $$server_ssh_conn = ssh2_connect($serverip, 22, $ssh_callbacks))
+    if (( ! $server_ssh_conn = ssh2_connect($serverip, 22, $ssh_callbacks))
         or ( ! ssh2_auth_pubkey_file($server_ssh_conn, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         common_log($servername." - retry #".$i++.".");
         sleep(1);
