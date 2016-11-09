@@ -5,16 +5,14 @@ require_once 'config.php';
 $error_log  = '/var/log/mymon/errors.txt';
 $common_log = '/var/log/mymon/common.txt';
 
-function no_injection($str = '')
-{
+function no_injection($str = '') {
     $str = stripslashes($str);
     $str = trim($str);
     $str = htmlspecialchars($str);
     return $str;
 }
 
-function ssh2_return($connection, $query)
-{
+function ssh2_return($connection, $query) {
     $stream = ssh2_exec($connection, $query);
     $error_stream = ssh2_fetch_stream($stream, SSH2_STREAM_STDERR);
     stream_set_blocking($error_stream, true);
@@ -28,8 +26,7 @@ function ssh2_return($connection, $query)
     }
 }
 
-function common_log($logmsg)
-{
+function common_log($logmsg) {
     global $common_log;
     $date = date('Y-m-d H:i:s (T)');
     $f = fopen($common_log, 'a');
@@ -39,8 +36,7 @@ function common_log($logmsg)
     }
 }
 
-function console_log($data)
-{
+function console_log($data) {
     if (is_array($data)) {
         $output = "<script>console.log('console log: " .implode(',', $data). "');</script>";
     } else {
@@ -49,8 +45,7 @@ function console_log($data)
     echo $output;
 }
 
-function host_scheme()
-{
+function host_scheme() {
     $isSecure = false;
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
         $isSecure = true;
@@ -58,8 +53,7 @@ function host_scheme()
     return $isSecure ? 'https' : 'http';
 }
 
-function slackbot($message)
-{
+function slackbot($message) {
     global $slackbotlevel;
     global $dbhost;
     global $dbusername;
@@ -92,8 +86,7 @@ function slackbot($message)
     $dbconnection->close();
 }
 
-function CIDRCheck($IP, $CIDR)
-{
+function CIDRCheck($IP, $CIDR) {
     list($net, $mask) = split("/", $CIDR);
     $ip_net = ip2long($net);
     $ip_mask = ~((1 << (32 - $mask)) - 1);
@@ -102,8 +95,7 @@ function CIDRCheck($IP, $CIDR)
     return ($ip_ip_net == $ip_net);
 }
 
-function backButton($href)
-{
+function backButton($href) {
     echo "<a href='".$href."'>";
     echo "<div class='left_button' id='back_button'>";
     echo "    <img src='images/back.png' title='Previous page'>";
@@ -111,8 +103,7 @@ function backButton($href)
     echo "</a>";
 }
 
-function not_less_than_zero($val)
-{
+function not_less_than_zero($val) {
     if ($val < 0) {
         return 0;
     } else {
@@ -120,8 +111,7 @@ function not_less_than_zero($val)
     }
 }
 
-function sigHandler($signo)
-{
+function sigHandler($signo) {
     global $stop_server;
     switch ($signo) {
         case SIGTERM:
@@ -139,8 +129,7 @@ function sigHandler($signo)
     }
 }
 
-function errHandler($errno, $errmsg, $filename, $linenum)
-{
+function errHandler($errno, $errmsg, $filename, $linenum) {
     global $error_log;
     global $servername;
     $date = date('Y-m-d H:i:s (T)');
@@ -152,28 +141,23 @@ function errHandler($errno, $errmsg, $filename, $linenum)
     }
 }
 
-function ssh_disconnect()
-{
+function ssh_disconnect() {
     common_log("SSH disconnect");
 }
 
-function ssh_ignore()
-{
+function ssh_ignore() {
     common_log("SSH ignore");
 }
 
-function ssh_debug()
-{
+function ssh_debug() {
     common_log("SSH debug");
 }
 
-function ssh_macerror()
-{
+function ssh_macerror() {
     common_log("SSH macerror");
 }
 
-function var_bump($variable)
-{
+function var_bump($variable) {
     ob_start();
     var_dump($variable);
     $res = ob_get_clean();
