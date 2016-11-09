@@ -22,9 +22,12 @@ set_error_handler('errHandler');
 
 pcntl_signal(SIGTERM, 'sigHandler');
 
-$dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
-$result = $dbconnection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $database.`stats`;")
-        or die($dbconnection->error);
+$dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database);
+if ($dbconnection->connect_errno) {
+    printf("MySQL connection error: %s\n", $dbconnection->connect_error);
+    exit();
+}
+$result = $dbconnection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $database.`stats`;");
 $dbconnection->close();
 
 $parent = true;
@@ -68,8 +71,8 @@ function botips_()
         common_log("botips_ - started.");
     }
     start:
-    if (( ! $connection = ssh2_connect($balancerip, 22, $ssh_callbacks))
-        or ( ! ssh2_auth_pubkey_file($connection, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
+    if (( ! $balancer_ssh_conn = ssh2_connect($balancerip, 22, $ssh_callbacks))
+        or ( ! ssh2_auth_pubkey_file($balancer_ssh_conn, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         common_log("botips_ - retry #".$i++.".");
         sleep(1);
         if ($i < $retry_num) {
@@ -78,13 +81,17 @@ function botips_()
             exit(1);
         }
     }
-    $mysql_balancer = new mysqli($dbhost, $dbusername, $dbpass, $database) or die("Mysql error.".$dbconnection->connect_errno."\n");
+    $dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database);
+    if ($dbconnection->connect_errno) {
+        printf("MySQL connection error: %s\n", $dbconnection->connect_error);
+        exit();
+    }
     $i = 31;
-    foreach (botips($connection) as $value) {
+    foreach (botips($balancer_ssh_conn) as $value) {
         $query = "INSERT INTO $database.`botips` (id, amount, ipaddr)
                   VALUES (".--$i.", ".$value['amount'].", '".$value['ipaddr']."')
                   ON DUPLICATE KEY UPDATE `amount` = ".$value['amount'].", `ipaddr` = '".$value['ipaddr']."';";
-        $result = $mysql_balancer->query($query);
+        $result = $dbconnection->query($query);
         if (!isset($result)) {
             common_log("botips_ - not updated!");
         }
@@ -116,7 +123,6 @@ function child_()
     $mon         = $array["mon"];
     $red         = $array["red"];
     $git         = $array["git"];
-    $ssh_conname = "ssh_".$servername;
     $i           = 1;
 
     if ($loglevel > 1) {
@@ -124,8 +130,8 @@ function child_()
     }
 
     start:
-    if (( ! $$ssh_conname = ssh2_connect($serverip, 22, $ssh_callbacks))
-        or ( ! ssh2_auth_pubkey_file($$ssh_conname, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
+    if (( ! $$server_ssh_conn = ssh2_connect($serverip, 22, $ssh_callbacks))
+        or ( ! ssh2_auth_pubkey_file($server_ssh_conn, 'root', $docroot.'/id_rsa.pub', $docroot.'/id_rsa', ''))) {
         common_log($servername." - retry #".$i++.".");
         sleep(1);
         if ($i < $retry_num) {
@@ -134,36 +140,35 @@ function child_()
             exit(1);
         }
     }
-    $mysql_conname = "mysql_".$servername;
-    $$mysql_conname = new mysqli($dbhost, $dbusername, $dbpass, $database);
-    if ($$mysql_conname->connect_errno) {
-        printf("MySQL connection error: %s\n", $mysqli->connect_error);
+    $dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database);
+    if ($dbconnection->connect_errno) {
+        printf("MySQL connection error: %s\n", $dbconnection->connect_error);
         exit();
     }
 
-    $value = la($$ssh_conname, $serverip, $servername);
+    $value = la($server_ssh_conn, $serverip, $servername);
     $query = "UPDATE `$database`.`stats` SET `la`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $$mysql_conname->query($query);
+    $result = $dbconnection->query($query);
     if (!isset($result)) {
         common_log($servername." - LA not updated!");
     }
     unset($result);
 
-    $value = ($db == 1)?$$mysql_conname->escape_string(rep($$ssh_conname, $serverip, $servername)):"";
+    $value = ($db == 1)?$dbconnection->escape_string(rep($server_ssh_conn, $serverip, $servername)):"";
     $query = "UPDATE `$database`.`stats` SET `rep`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     if ($loglevel > 1) {
         common_log($servername." - ".$query);
     }
-    $result = $$mysql_conname->query($query);
+    $result = $dbconnection->query($query);
     if (!isset($result)) {
         common_log($servername." - REP not updated!");
     }
     unset($result);
 
-    $value = ($errs == 1)?err500($$ssh_conname, $serverip, $servername):"";
+    $value = ($errs == 1)?err500($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `500`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    
-    $result = $$mysql_conname->query($query);
+
+    $result = $dbconnection->query($query);
     if ($servername == "cdn") {
         ob_start();
         var_dump($query);
@@ -175,66 +180,65 @@ function child_()
     }
     unset($result);
 
-    $value = ($elastic == 1)?elastic($$ssh_conname, $serverip, $servername):"";
+    $value = ($elastic == 1)?elastic($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `elastic`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $$mysql_conname->query($query);
+    $result = $dbconnection->query($query);
     if (!isset($result)) {
         common_log($servername." - ELASTIC not updated!");
     }
     unset($result);
 
-    $value = ($mysql == 1)?locks($$ssh_conname, $serverip, $servername):"";
+    $value = ($mysql == 1)?locks($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `locks`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $$mysql_conname->query($query);
+    $result = $dbconnection->query($query);
     if (!isset($result)) {
         common_log($servername." - LOCKS not updated!");
     }
     unset($result);
 
-    $value = ($mon == 1)?mongo($$ssh_conname, $serverip, $servername):"";
+    $value = ($mon == 1)?mongo($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `mongo`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $$mysql_conname->query($query);
+    $result = $dbconnection->query($query);
     if (!isset($result)) {
         common_log($servername." - MONGO not updated!");
     }
     unset($result);
     if ($red == 1) {
-        $query = "UPDATE `$database`.`stats` SET `redis`='" .redis($$ssh_conname, $serverip, $servername).
+        $query = "UPDATE `$database`.`stats` SET `redis`='" .redis($server_ssh_conn, $serverip, $servername).
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
         $query = "UPDATE `$database`.`stats` SET `redis`='' WHERE `ip`='" .$serverip. "';";
     }
-    $result = $$mysql_conname->query($query);
+    $result = $dbconnection->query($query);
     if (!isset($result)) {
         common_log($servername." - REDIS not updated!");
     }
     unset($result);
     if ($git == 1) {
         $query = "UPDATE `$database`.`stats` SET
-                     `master_repo`='" .repo($$ssh_conname, $serverip, "prod").
-                "' , `test_repo`='" .repo($$ssh_conname, $serverip, "dev").
+                     `master_repo`='" .repo($server_ssh_conn, $serverip, "prod").
+                "' , `test_repo`='" .repo($server_ssh_conn, $serverip, "dev").
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
         $query = "UPDATE `$database`.`stats` SET `master_repo`='', `test_repo`=''  WHERE `ip`='" .$serverip. "';";
     }
-    $result = $$mysql_conname->query($query);
+    $result = $dbconnection->query($query);
     if (!isset($result)) {
-        common_log($servername." - 500 not updated!");
+        common_log($servername." - git not updated!");
     }
-    $$mysql_conname->close();
-    unset($$mysql_conname);
-    unset($$ssh_conname);
+    $dbconnection->close();
+    unset($server_ssh_conn);
     if ($loglevel > 1) {
         common_log($servername. " - ended.");
     }
 }
 
-function la($connection, $serverip, $servername = null)
+function la($ssh_conn, $serverip, $servername = null)
 {
     global $hostname;
-    $la_string = substr(strrchr(ssh2_return($connection, "/usr/bin/uptime"), ":"), 1);
+    $la_string = substr(strrchr(ssh2_return($ssh_conn, "/usr/bin/uptime"), ":"), 1);
     $la = floatval(array_map("trim", explode(",", $la_string))[0]);
-    $core = intval(ssh2_return($connection, "grep -c processor /proc/cpuinfo"));
+    $core = intval(ssh2_return($ssh_conn, "grep -c processor /proc/cpuinfo"));
     $percent = intval($la/$core*100);
     if ($percent < 75) {
         $fontcolor = "<span style=\"color: green;\">";
@@ -249,12 +253,11 @@ function la($connection, $serverip, $servername = null)
                target=\"_blank\">" .$fontcolor. "<b>" .$percent. "%</b></span>\n</a>";
 }
 
-function rep($connection, $serverip, $servername = null)
+function rep($ssh_conn, $serverip, $servername = null)
 {
     global $loglevel;
-
     $data = array();
-    $str = ssh2_return($connection, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
+    $str = ssh2_return($ssh_conn, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
     foreach (explode("\n", $str) as $cLine) {
         if (strpos($cLine, "Timeout") != false) {
             return "<font color=\"red\">".strpos($cLine, "Timeout")." - stopped</font>";
@@ -325,17 +328,17 @@ function rep($connection, $serverip, $servername = null)
                &#916;: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
-function err500($connection, $serverip, $servername = null)
+function err500($ssh_conn, $serverip, $servername = null)
 {
     global $hostname;
-    $str = trim(ssh2_return($connection, "cat /var/log/500err.log"));
+    $str = trim(ssh2_return($ssh_conn, "cat /var/log/500err.log"));
 
     return '<a title="Click to show 500 errors" href="'.$hostname.'index.php?task=500err&serverip='.$serverip.'" target="_self">'.$str.'</a>';
 }
 
-function elastic($connection, $serverip, $servername = null)
+function elastic($ssh_conn, $serverip, $servername = null)
 {
-    $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
+    $str = ssh2_return($ssh_conn, "date1=\$((\$(date +'%s%N') / 1000000));
                                      hostname=\$(ip -f inet addr show `[ \"\$HOSTNAME\" == \"front5.pkwteile.de\" ] && echo \"em2\" || echo \"eth1\"` | grep -Po 'inet \K[\d.]+')
                                      curl -sS -o /dev/null -XGET http://\$hostname:9200/_cluster/health?pretty;
                                      date2=\$((\$(date +'%s%N') / 1000000));
@@ -350,12 +353,12 @@ function elastic($connection, $serverip, $servername = null)
     return $fontcolor.$str. " ms</font>";
 }
 
-function locks($connection, $serverip, $servername = null)
+function locks($ssh_conn, $serverip, $servername = null)
 {
     $query  = "SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30";
-    $locked = trim(ssh2_return($connection, "mysql -Ne \"".$query."\" | wc -l"));
+    $locked = trim(ssh2_return($ssh_conn, "mysql -Ne \"".$query."\" | wc -l"));
     $query  = "SHOW STATUS WHERE variable_name = 'Threads_connected'";
-    $conns  = trim(ssh2_return($connection, "mysql -Nse \"".$query."\" | awk '{print $2}'"));
+    $conns  = trim(ssh2_return($ssh_conn, "mysql -Nse \"".$query."\" | awk '{print $2}'"));
     if ($locked === "Timeout") {
         $locked = "T";
     }
@@ -373,9 +376,9 @@ function locks($connection, $serverip, $servername = null)
     return $fontcolor.$conns. " / " .$locked. "</font>";
 }
 
-function mongo($connection, $serverip, $servername = null)
+function mongo($ssh_conn, $serverip, $servername = null)
 {
-    $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
+    $str = ssh2_return($ssh_conn, "date1=\$((\$(date +'%s%N') / 1000000));
                 mongo admin --quiet --eval 'printjson(db.serverStatus().connections.current)' 1>/dev/null;
                 date2=\$((\$(date +'%s%N') / 1000000));
                 echo -n \$((\$date2-\$date1));");
@@ -390,9 +393,9 @@ function mongo($connection, $serverip, $servername = null)
     return $fontcolor.$str. " ms</font>";
 }
 
-function redis($connection, $serverip, $servername = null)
+function redis($ssh_conn, $serverip, $servername = null)
 {
-    $str = ssh2_return($connection, "date1=\$((\$(date +'%s%N') / 1000000));
+    $str = ssh2_return($ssh_conn, "date1=\$((\$(date +'%s%N') / 1000000));
                                      redis-cli info 1>/dev/null;
                                      date2=\$((\$(date +'%s%N') / 1000000));
                                      echo -n \$((\$date2-\$date1));");
@@ -407,9 +410,9 @@ function redis($connection, $serverip, $servername = null)
     return $fontcolor.$str. " ms</font>";
 }
 
-function repo($connection, $serverip, $repository)
+function repo($ssh_conn, $serverip, $repository)
 {
-    $str = ssh2_return($connection, "cd /home/developer/www/fuel.$repository/ && git rev-parse HEAD");
+    $str = ssh2_return($ssh_conn, "cd /home/developer/www/fuel.$repository/ && git rev-parse HEAD");
     #if ($str == "Timeout") {
     #    slackbot($servername.": redis problem");
     #    $fontcolor = "<script type=\"text/javascript\">notify(\"".$servername.": redis problem\");</script>
@@ -421,11 +424,10 @@ function repo($connection, $serverip, $repository)
     return $str;
 }
 
-function botips($connection)
+function botips($ssh_conn)
 {
     global $iplistnum;
-
-    $str = ssh2_return($connection, "tail -n 1000000 /var/log/nginx/access.log |
+    $str = ssh2_return($ssh_conn, "tail -n 1000000 /var/log/nginx/access.log |
                                     awk '{print $1}' |
                                     sort |
                                     uniq -c |
@@ -437,6 +439,7 @@ function botips($connection)
         $cLine = trim($cLine);
         list($ipaddrarray[$i]['amount'], $ipaddrarray[$i]['ipaddr']) = explode(' ', "$cLine ");
     }
+
     return $ipaddrarray;
 }
 
