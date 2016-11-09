@@ -148,83 +148,58 @@ function child_()
 
     $value = la($server_ssh_conn, $serverip, $servername);
     $query = "UPDATE `$database`.`stats` SET `la`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $dbconnection->query($query);
-    if (!isset($result)) {
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - LA not updated!");
     }
-    unset($result);
 
     $value = ($db == 1)?$dbconnection->escape_string(rep($server_ssh_conn, $serverip, $servername)):"";
     $query = "UPDATE `$database`.`stats` SET `rep`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     if ($loglevel > 1) {
         common_log($servername." - ".$query);
     }
-    $result = $dbconnection->query($query);
-    if (!isset($result)) {
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - REP not updated!");
     }
-    unset($result);
 
     $value = ($errs == 1)?err500($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `500`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-
-    $result = $dbconnection->query($query);
-    if ($servername == "cdn") {
-        common_log($servername." - ".var_bump($query));
-    }
-    if (empty($result)) {
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - 500 not updated!");
     }
-    unset($result);
 
     $value = ($elastic == 1)?elastic($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `elastic`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $dbconnection->query($query);
-    if (!isset($result)) {
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - ELASTIC not updated!");
     }
-    unset($result);
 
     $value = ($mysql == 1)?locks($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `locks`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $dbconnection->query($query);
-    if (!isset($result)) {
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - LOCKS not updated!");
     }
-    unset($result);
 
     $value = ($mon == 1)?mongo($server_ssh_conn, $serverip, $servername):"";
     $query = "UPDATE `$database`.`stats` SET `mongo`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    $result = $dbconnection->query($query);
-    if (!isset($result)) {
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - MONGO not updated!");
     }
-    unset($result);
-    if ($red == 1) {
-        $query = "UPDATE `$database`.`stats` SET `redis`='" .redis($server_ssh_conn, $serverip, $servername).
-                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    } else {
-        $query = "UPDATE `$database`.`stats` SET `redis`='' WHERE `ip`='" .$serverip. "';";
-    }
-    $result = $dbconnection->query($query);
-    if (!isset($result)) {
+
+    $value = ($red == 1)?redis($server_ssh_conn, $serverip, $servername):"";
+    $query = "UPDATE `$database`.`stats` SET `redis`='" .$value."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - REDIS not updated!");
     }
-    unset($result);
-    if ($git == 1) {
-        $query = "UPDATE `$database`.`stats` SET
-                     `master_repo`='" .repo($server_ssh_conn, $serverip, "prod").
-                "' , `test_repo`='" .repo($server_ssh_conn, $serverip, "dev").
-                "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
-    } else {
-        $query = "UPDATE `$database`.`stats` SET `master_repo`='', `test_repo`=''  WHERE `ip`='" .$serverip. "';";
-    }
-    $result = $dbconnection->query($query);
-    if (!isset($result)) {
+
+    $value = ($git == 1)?repo($server_ssh_conn, $serverip, "prod")."' , `test_repo`='" .repo($server_ssh_conn, $serverip, "dev"):"' , `test_repo`='";
+    $query = "UPDATE `$database`.`stats` SET `master_repo`='" .$value."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - git not updated!");
     }
+
     $dbconnection->close();
     unset($server_ssh_conn);
+
     if ($loglevel > 1) {
         common_log($servername. " - ended.");
     }
