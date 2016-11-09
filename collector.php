@@ -17,8 +17,6 @@ declare(ticks=1);
 set_error_handler('errHandler');
 pcntl_signal(SIGTERM, 'sigHandler');
 
-$hostname   = 'https://mymon.pkwteile.de/';
-
 $dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database);
 if ($dbconnection->connect_errno) {
     printf("MySQL connection error: %s\n", $dbconnection->connect_error);
@@ -310,10 +308,9 @@ function rep($ssh_conn, $serverip, $servername = null) {
 }
 
 function err500($ssh_conn, $serverip, $servername = null) {
-    global $hostname;
     $str = trim(ssh2_return($ssh_conn, "cat /var/log/500err.log"));
 
-    return '<a title="Click to show 500 errors" href="'.$hostname.'index.php?task=500err&serverip='.$serverip.'" target="_self">'.$str.'</a>';
+    return '<a title="Click to show 500 errors" href="/index.php?task=500err&serverip='.$serverip.'" target="_self">'.$str.'</a>';
 }
 
 function elastic($ssh_conn, $serverip, $servername = null) {
