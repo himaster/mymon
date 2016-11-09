@@ -215,7 +215,7 @@ function child_()
                 "' , `test_repo`='" .repo($$ssh_conname, $serverip, "dev").
                 "' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
     } else {
-        $query = "UPDATE `$database`.`stats` SET `500`='' WHERE `ip`='" .$serverip. "';";
+        $query = "UPDATE `$database`.`stats` SET `master_repo`='', `test_repo`=''  WHERE `ip`='" .$serverip. "';";
     }
     $result = $$mysql_conname->query($query);
     if (!isset($result)) {
