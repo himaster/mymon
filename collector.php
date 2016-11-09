@@ -170,10 +170,7 @@ function child_()
 
     $result = $dbconnection->query($query);
     if ($servername == "cdn") {
-        ob_start();
-        var_dump($query);
-        $res = ob_get_clean();
-        common_log($servername." - ".$res." || ".$result);
+        common_log($servername." - ".var_bump($query));
     }
     if (empty($result)) {
         common_log($servername." - 500 not updated!");

@@ -171,3 +171,11 @@ function ssh_macerror()
 {
     common_log("SSH macerror");
 }
+
+function var_bump($variable)
+{
+    ob_start();
+    var_dump($variable);
+    $res = ob_get_clean();
+    return $res;
+}
