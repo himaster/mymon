@@ -43,7 +43,7 @@ $result = $dbconnection->query("SELECT `st`.`servername`,
                                 JOIN
                                     (SELECT `test_repo`, count(*) AS `count`
                                      FROM $database.`stats`
-                                     WHERE `test_repo` IS NOT NULL
+                                     WHERE trim(`test_repo`) <> ''
                                      GROUP BY `test_repo`
                                      ORDER BY `count`
                                      DESC
@@ -51,7 +51,7 @@ $result = $dbconnection->query("SELECT `st`.`servername`,
                                 JOIN
                                     (SELECT `master_repo`, count(*) AS `count`
                                      FROM $database.`stats`
-                                     WHERE `master_repo` IS NOT NULL
+                                     WHERE trim(`master_repo`) <> ''
                                      GROUP BY `master_repo`
                                      ORDER BY `count`
                                      DESC
