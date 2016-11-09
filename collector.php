@@ -96,6 +96,7 @@ function botips_()
             common_log("botips_ - not updated!");
         }
     }
+    unset($balancer_ssh_conn);
     if ($loglevel > 1) {
         common_log("botips_ - ended.");
     }
@@ -147,13 +148,17 @@ function child_()
     }
 
     $value = la($server_ssh_conn, $serverip, $servername);
-    $query = "UPDATE `$database`.`stats` SET `la`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `la`='".$value."', `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - LA not updated!");
     }
 
     $value = ($db == 1)?$dbconnection->escape_string(rep($server_ssh_conn, $serverip, $servername)):"";
-    $query = "UPDATE `$database`.`stats` SET `rep`='".$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `rep`='".$value."', `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ($loglevel > 1) {
         common_log($servername." - ".$query);
     }
@@ -162,37 +167,49 @@ function child_()
     }
 
     $value = ($errs == 1)?err500($server_ssh_conn, $serverip, $servername):"";
-    $query = "UPDATE `$database`.`stats` SET `500`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `500`='" .$value."', `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - 500 not updated!");
     }
 
     $value = ($elastic == 1)?elastic($server_ssh_conn, $serverip, $servername):"";
-    $query = "UPDATE `$database`.`stats` SET `elastic`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `elastic`='" .$value."', `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - ELASTIC not updated!");
     }
 
     $value = ($mysql == 1)?locks($server_ssh_conn, $serverip, $servername):"";
-    $query = "UPDATE `$database`.`stats` SET `locks`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `locks`='" .$value."', `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - LOCKS not updated!");
     }
 
     $value = ($mon == 1)?mongo($server_ssh_conn, $serverip, $servername):"";
-    $query = "UPDATE `$database`.`stats` SET `mongo`='" .$value."', `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `mongo`='" .$value."', `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - MONGO not updated!");
     }
 
     $value = ($red == 1)?redis($server_ssh_conn, $serverip, $servername):"";
-    $query = "UPDATE `$database`.`stats` SET `redis`='" .$value."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `redis`='" .$value."' , `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - REDIS not updated!");
     }
 
     $value = ($git == 1)?repo($server_ssh_conn, $serverip, "prod")."' , `test_repo`='" .repo($server_ssh_conn, $serverip, "dev"):"' , `test_repo`='";
-    $query = "UPDATE `$database`.`stats` SET `master_repo`='" .$value."' , `timestamp`=CURRENT_TIMESTAMP WHERE `ip`='" .$serverip. "';";
+    $query = "UPDATE `$database`.`stats`
+              SET `master_repo`='" .$value."' , `timestamp`=CURRENT_TIMESTAMP
+              WHERE `ip`='" .$serverip. "';";
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - git not updated!");
     }
