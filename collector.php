@@ -10,6 +10,7 @@
  * @link     http://mymon.pkwteile.de
  */
 
+error_reporting(E_ALL);
 
 require_once 'config.php';
 require_once 'functions.php';
@@ -22,10 +23,9 @@ if ($dbconnection->connect_errno) {
     printf("MySQL connection error: %s\n", $dbconnection->connect_error);
     exit();
 }
-$result = $dbconnection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git FROM $database.`stats`;");
+$result = $dbconnection->query("SELECT ip, servername, db, mysql, err, el, mon, red, git
+                                FROM $database.`stats`;");
 $dbconnection->close();
-
-$parent = true;
 
 while ($array = $result->fetch_assoc()) {
     $pid = pcntl_fork();

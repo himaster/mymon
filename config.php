@@ -1,14 +1,12 @@
 <?php
 
-error_reporting(E_ALL);
-
-
-if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (!empty($_SERVER['HTTPS']) && $_SERVER['SERVER_PORT'] === "443")) {
+if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+	(!empty($_SERVER['HTTPS']) && $_SERVER['SERVER_PORT'] === "443")) {
     $isSecure = 1;
 } else {
     $isSecure = 0;
 }
-$REQUEST_PROTOCOL = $isSecure ? 'https' : 'http';
+$REQUEST_PROTOCOL = $isSecure?'https':'http';
 
 if (array_key_exists('HTTP_HOST', $_SERVER)) {
     $hostname = $REQUEST_PROTOCOL.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
