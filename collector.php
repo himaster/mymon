@@ -13,14 +13,11 @@
 
 require_once 'config.php';
 require_once 'functions.php';
+declare(ticks=1);
+set_error_handler('errHandler');
+pcntl_signal(SIGTERM, 'sigHandler');
 
 $hostname   = 'https://mymon.pkwteile.de/';
-
-declare(ticks=1);
-
-set_error_handler('errHandler');
-
-pcntl_signal(SIGTERM, 'sigHandler');
 
 $dbconnection = new mysqli($dbhost, $dbusername, $dbpass, $database);
 if ($dbconnection->connect_errno) {
@@ -53,8 +50,7 @@ if ($pid == -1) {
 }
 exit;
 
-function botips_()
-{
+function botips_() {
     global $balancerip;
     global $ssh_callbacks;
     global $retry_num;
@@ -102,8 +98,7 @@ function botips_()
     }
 }
 
-function child_()
-{
+function child_() {
     global $array;
     global $stop_server;
     global $docroot;
@@ -222,9 +217,7 @@ function child_()
     }
 }
 
-function la($ssh_conn, $serverip, $servername = null)
-{
-    global $hostname;
+function la($ssh_conn, $serverip, $servername = null) {
     $la_string = substr(strrchr(ssh2_return($ssh_conn, "/usr/bin/uptime"), ":"), 1);
     $la = floatval(array_map("trim", explode(",", $la_string))[0]);
     $core = intval(ssh2_return($ssh_conn, "grep -c processor /proc/cpuinfo"));
@@ -238,12 +231,11 @@ function la($ssh_conn, $serverip, $servername = null)
     }
 
     return "<a title=\"".$la_string."\"
-               href=\"".$hostname."index.php?task=top&serverip=" .$serverip. "\"
+               href=\"/index.php?task=top&serverip=" .$serverip. "\"
                target=\"_blank\">" .$fontcolor. "<b>" .$percent. "%</b></span>\n</a>";
 }
 
-function rep($ssh_conn, $serverip, $servername = null)
-{
+function rep($ssh_conn, $serverip, $servername = null) {
     global $loglevel;
     $data = array();
     $str = ssh2_return($ssh_conn, "printf %s \"$(mysql -e 'show slave status\G' | awk 'FNR>1')\"");
@@ -317,16 +309,14 @@ function rep($ssh_conn, $serverip, $servername = null)
                &#916;: " .$deltafontcolor. "<b>" .$delta. "</b></font>\n</a>";
 }
 
-function err500($ssh_conn, $serverip, $servername = null)
-{
+function err500($ssh_conn, $serverip, $servername = null) {
     global $hostname;
     $str = trim(ssh2_return($ssh_conn, "cat /var/log/500err.log"));
 
     return '<a title="Click to show 500 errors" href="'.$hostname.'index.php?task=500err&serverip='.$serverip.'" target="_self">'.$str.'</a>';
 }
 
-function elastic($ssh_conn, $serverip, $servername = null)
-{
+function elastic($ssh_conn, $serverip, $servername = null) {
     $str = ssh2_return($ssh_conn, "date1=\$((\$(date +'%s%N') / 1000000));
                                      hostname=\$(ip -f inet addr show `[ \"\$HOSTNAME\" == \"front5.pkwteile.de\" ] && echo \"em2\" || echo \"eth1\"` | grep -Po 'inet \K[\d.]+')
                                      curl -sS -o /dev/null -XGET http://\$hostname:9200/_cluster/health?pretty;
@@ -342,8 +332,7 @@ function elastic($ssh_conn, $serverip, $servername = null)
     return $fontcolor.$str. " ms</font>";
 }
 
-function locks($ssh_conn, $serverip, $servername = null)
-{
+function locks($ssh_conn, $serverip, $servername = null) {
     $query  = "SELECT info FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state LIKE '%lock%' AND time > 30";
     $locked = trim(ssh2_return($ssh_conn, "mysql -Ne \"".$query."\" | wc -l"));
     $query  = "SHOW STATUS WHERE variable_name = 'Threads_connected'";
@@ -365,8 +354,7 @@ function locks($ssh_conn, $serverip, $servername = null)
     return $fontcolor.$conns. " / " .$locked. "</font>";
 }
 
-function mongo($ssh_conn, $serverip, $servername = null)
-{
+function mongo($ssh_conn, $serverip, $servername = null) {
     $str = ssh2_return($ssh_conn, "date1=\$((\$(date +'%s%N') / 1000000));
                 mongo admin --quiet --eval 'printjson(db.serverStatus().connections.current)' 1>/dev/null;
                 date2=\$((\$(date +'%s%N') / 1000000));
@@ -382,8 +370,7 @@ function mongo($ssh_conn, $serverip, $servername = null)
     return $fontcolor.$str. " ms</font>";
 }
 
-function redis($ssh_conn, $serverip, $servername = null)
-{
+function redis($ssh_conn, $serverip, $servername = null) {
     $str = ssh2_return($ssh_conn, "date1=\$((\$(date +'%s%N') / 1000000));
                                      redis-cli info 1>/dev/null;
                                      date2=\$((\$(date +'%s%N') / 1000000));
@@ -399,8 +386,7 @@ function redis($ssh_conn, $serverip, $servername = null)
     return $fontcolor.$str. " ms</font>";
 }
 
-function repo($ssh_conn, $serverip, $repository)
-{
+function repo($ssh_conn, $serverip, $repository) {
     $str = ssh2_return($ssh_conn, "cd /home/developer/www/fuel.$repository/ && git rev-parse HEAD");
     #if ($str == "Timeout") {
     #    slackbot($servername.": redis problem");
@@ -413,8 +399,7 @@ function repo($ssh_conn, $serverip, $repository)
     return $str;
 }
 
-function botips($ssh_conn)
-{
+function botips($ssh_conn) {
     global $iplistnum;
     $str = ssh2_return($ssh_conn, "tail -n 1000000 /var/log/nginx/access.log |
                                     awk '{print $1}' |
@@ -431,4 +416,3 @@ function botips($ssh_conn)
 
     return $ipaddrarray;
 }
-
