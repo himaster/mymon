@@ -203,6 +203,7 @@ function child_() {
     $query = "UPDATE `$database`.`stats`
               SET `master_repo`='" .$value."' , `timestamp`=CURRENT_TIMESTAMP
               WHERE `ip`='" .$serverip. "';";
+    var_bump($query);
     if ( ! $result = $dbconnection->query($query)) {
         common_log($servername." - git not updated!");
     }
